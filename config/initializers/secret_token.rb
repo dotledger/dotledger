@@ -9,4 +9,8 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Rahani::Application.config.secret_key_base = '0329bddff8ab3b85f432861a4addd98b07c4272585903f01290a0bf2d8ee0303d91f39e97f229f9ad19e48a1ad470bfb8769f20ea453d793f38bc24353cfae47'
+Rahani::Application.config.secret_key_base = if ENV.has_key? 'SECRET_TOKEN'
+  ENV['SECRET_TOKEN']
+else
+  ('x' * 30)
+end
