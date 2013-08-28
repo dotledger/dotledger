@@ -1,6 +1,11 @@
 Rahani::Application.routes.draw do
   namespace :api, :except => [:edit, :new], :defaults => {:format => :json} do
     resources :accounts
+    resources :transactions do
+      collection do
+        post :import
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

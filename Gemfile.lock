@@ -54,8 +54,13 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.24)
+    mini_portile (0.5.1)
     minitest (4.7.5)
     multi_json (1.7.9)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
+    ofx (0.3.2)
+      nokogiri
     pg (0.16.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -128,6 +133,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   factory_girl_rails
   jquery-rails
+  ofx
   pg
   pry-rails
   rails (= 4.0.0)

@@ -12,6 +12,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'jquery-rails'
 
+gem 'ofx'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
