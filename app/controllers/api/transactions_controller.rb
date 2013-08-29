@@ -3,6 +3,10 @@ module Api
     def index
       @transactions = Transaction.all
 
+      if account_id.present?
+        @transactions = @transactions.where(:account_id => account_id)
+      end
+
       respond_with @transactions
     end
 

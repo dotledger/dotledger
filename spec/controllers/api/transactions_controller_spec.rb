@@ -5,12 +5,29 @@ describe Api::TransactionsController do
   let!(:account) { FactoryGirl.create :account }
 
   describe "GET index" do
-    before { get :index }
+    let!(:account_transactions) { FactoryGirl.create_list :transaction, 4, :account => account }
+    let!(:other_transactions) { FactoryGirl.create_list :transaction, 4 }
 
-    it { should respond_with :success }
+    context "no filters" do
+      before { get :index }
 
-    it "should return all transactions" do
-      expect(assigns(:transactions)).to eq [transaction]
+      it { should respond_with :success }
+
+      it "should return all transactions" do
+        expect(assigns(:transactions)).to match_array [transaction, account_transactions, other_transactions].flatten
+      end
+    end
+
+    context "filter by account_id" do
+      before do
+        get :index, :account_id => account.id
+      end
+
+      it { should respond_with :success }
+
+      it "should return all transactions for the account" do
+        expect(assigns(:transactions)).to match_array account_transactions
+      end
     end
   end
 
