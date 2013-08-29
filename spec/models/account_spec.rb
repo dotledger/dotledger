@@ -22,4 +22,6 @@ describe Account do
   it { should validate_uniqueness_of :number }
 
   it { should ensure_inclusion_of(:type).in_array(['Cheque', 'Savings', 'Credit Card', 'Other']) }
+
+  it { should have_many :transactions }
 end

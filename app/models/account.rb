@@ -1,6 +1,8 @@
 class Account < ActiveRecord::Base
   self.inheritance_column = nil
 
+  has_many :transactions
+
   ACCOUNT_TYPES = ['Cheque', 'Savings', 'Credit Card', 'Other']
 
   validates :name, :presence => true

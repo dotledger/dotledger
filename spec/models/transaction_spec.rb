@@ -25,6 +25,8 @@ describe Transaction do
 
   it { should validate_presence_of :account }
 
+  it { should belong_to :account }
+
   describe "#import" do
     let(:file) { File.open("#{fixture_path}/example.ofx") }
     let(:account) { FactoryGirl.create :account }
