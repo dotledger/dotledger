@@ -5,9 +5,14 @@ namespace :rahani do
       account = Account.find(args[:account_id])
       ofx_file = File.open(args[:file])
 
-      statement = StatementCreator.new(account, ofx_file).call
+      creator = StatementCreator.new(:account => account, :file => ofx_file)
 
-      puts "Imported #{statement.transactions.count} transactions into #{account.name}."
+      if creator.save
+        puts "Imported #{creator.statement.transactions.count} transactions into #{account.name}."
+      else
+        puts "Error: #{creator.errors.messages.map {|k,v| "#{k} #{v.join(', ')}."}.join}"
+      end
+
     rescue StandardError => e
       puts "Error: #{e.message}"
       exit 1

@@ -14,6 +14,8 @@ gem 'jquery-rails'
 
 gem 'ofx'
 
+gem 'virtus'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'

@@ -27,6 +27,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.13)
+    backports (3.3.3)
     builder (3.1.4)
     coderay (1.0.9)
     coffee-rails (4.0.0)
@@ -36,6 +37,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    descendants_tracker (0.0.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.1)
@@ -125,6 +127,9 @@ GEM
     uglifier (2.2.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    virtus (0.5.5)
+      backports (~> 3.3)
+      descendants_tracker (~> 0.0.1)
 
 PLATFORMS
   ruby
@@ -141,3 +146,4 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   shoulda-matchers
   uglifier (>= 1.3.0)
+  virtus
