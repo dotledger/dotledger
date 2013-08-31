@@ -1,0 +1,7 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: rahani_test
+  pool: 5
+  username: postgres
+  password:
