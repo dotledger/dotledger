@@ -3,6 +3,8 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :account
 
+  belongs_to :statement
+
   validates :amount, :presence => true
 
   validates :fit_id, :presence => true
