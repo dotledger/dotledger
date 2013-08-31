@@ -11,6 +11,8 @@ describe Account do
 
   it { should have_db_column(:type).of_type(:string).with_options(:null => false) }
 
+  it { should have_db_column(:balance).of_type(:decimal).with_options(:precision => 10, :scale => 2, :null => false, :default => 0.0) }
+
   it { should have_db_index(:number).unique(:true) }
 
   it { should validate_presence_of :name }
