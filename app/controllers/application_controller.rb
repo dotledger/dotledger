@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def boot
-
+    gon.accounts = Account.all
+    gon.account_types = Account::ACCOUNT_TYPES
+    gon.category_types = Category::CATEGORY_TYPES
   end
 end

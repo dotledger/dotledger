@@ -1,0 +1,22 @@
+@import "variables";
+@import "bootstrap";
+
+body.loading {
+  opacity: 0.5;
+}
+
+#main {
+  margin-top: $navbar-height + 10px;
+}
+
+.form-horizontal input[type=file] {
+  margin-top: 6px;
+}
+
+table tr .edit-category {
+  display: none;
+}
+
+table tr:hover .edit-category {
+  display: inline;
+}

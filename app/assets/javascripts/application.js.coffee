@@ -1,0 +1,11 @@
+#= require jquery
+#= require bootstrap/dropdown
+#= require moment
+#= require accounting
+#= require underscore
+#= require underscore.string
+#= require backbone
+#= require backbone.babysitter
+#= require backbone.wreqr
+#= require backbone.marionette
+#= require rahani

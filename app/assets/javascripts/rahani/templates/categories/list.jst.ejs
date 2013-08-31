@@ -1,0 +1,17 @@
+<div class="page-header">
+  <div class="pull-right">
+    <a href="/categories/new" class="btn btn-default">
+      <span class="glyphicon glyphicon-plus"></span>
+    </a>
+  </div>
+
+  <h1>Categories</h1>
+</div>
+
+<% _.each(categoryTypes(), function(type) { %>
+  <h4><%= type.label %></h4>
+  <table class="table" id="<%= type.id %>">
+    <tbody>
+    </tbody>
+  </table>
+<% }) %>

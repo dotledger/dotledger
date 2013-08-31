@@ -16,9 +16,18 @@ gem 'ofx'
 
 gem 'virtus'
 
+gem 'ejs'
+
+gem 'gon'
+
+gem 'bootstrap-sass',
+  :github => 'thomas-mcdonald/bootstrap-sass',
+  :branch => '3'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'pry-rails'
+  gem 'jasmine-rails'
 end
