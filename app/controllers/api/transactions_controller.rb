@@ -40,14 +40,6 @@ module Api
       respond_with @transaction
     end
 
-    def import
-      @account = Account.find(account_id)
-
-      @transactions = Transaction.import(file, @account)
-
-      respond_with @transactions
-    end
-
     private
 
     def transaction_id
@@ -60,10 +52,6 @@ module Api
 
     def transaction_params
       params.permit(:amount, :fit_id, :memo, :name, :payee, :posted_at, :ref_number, :type, :account_id)
-    end
-
-    def file
-      params[:file]
     end
   end
 end

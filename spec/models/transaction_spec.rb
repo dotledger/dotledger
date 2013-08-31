@@ -28,15 +28,4 @@ describe Transaction do
   it { should belong_to :account }
 
   it { should belong_to :statement }
-
-  describe "#import" do
-    let(:file) { File.open("#{fixture_path}/example.ofx") }
-    let(:account) { FactoryGirl.create :account }
-
-    it "should import transactions from a file" do
-      expect {
-        Transaction.import(file, account)
-      }.to change(Transaction, :count).by(4)
-    end
-  end
 end

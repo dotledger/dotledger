@@ -96,22 +96,4 @@ describe Api::TransactionsController do
       }.to change(Transaction, :count).by(-1)
     end
   end
-
-  describe "POST import" do
-    def valid_request
-      post :import, :account_id => account.id,
-        :file => fixture_file_upload('example.ofx')
-    end
-
-    it "should respond with 200" do
-      valid_request
-      expect(subject).to respond_with(:success)
-    end
-
-    it "should create 4 transaction" do
-      expect {
-        valid_request
-      }.to change(Transaction, :count).by(4)
-    end
-  end
 end
