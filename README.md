@@ -1,4 +1,4 @@
-Rahani
+Rahani [![Build Status](https://travis-ci.org/kaleworsley/rahani.png?branch=master)](https://travis-ci.org/kaleworsley/rahani) [![Code Climate](https://codeclimate.com/github/kaleworsley/rahani.png)](https://codeclimate.com/github/kaleworsley/rahani)
 ======
 
 Rahani is a Free and Open Source personal finance management tool.
