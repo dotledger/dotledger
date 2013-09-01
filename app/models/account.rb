@@ -5,6 +5,8 @@ class Account < ActiveRecord::Base
 
   has_many :statements
 
+  has_many :sorted_transactions
+
   ACCOUNT_TYPES = ['Cheque', 'Savings', 'Credit Card', 'Other']
 
   validates :name, :presence => true

@@ -5,6 +5,8 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :statement
 
+  has_one :sorted_transaction
+
   validates :amount, :presence => true
 
   validates :fit_id, :presence => true

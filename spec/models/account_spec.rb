@@ -28,4 +28,6 @@ describe Account do
   it { should have_many :transactions }
 
   it { should have_many :statements }
+
+  it { should have_many :sorted_transactions }
 end

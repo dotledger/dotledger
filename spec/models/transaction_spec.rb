@@ -28,4 +28,6 @@ describe Transaction do
   it { should belong_to :account }
 
   it { should belong_to :statement }
+
+  it { should have_one :sorted_transaction }
 end
