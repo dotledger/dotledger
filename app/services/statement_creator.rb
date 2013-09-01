@@ -39,14 +39,16 @@ class StatementCreator
 
   def persist!
     Statement.transaction do
-  
+
       create_statement!
 
       parser.account.transactions.each do |t|
         create_transaction!(t)
       end
 
-      set_statement_dates
+      set_statement_dates!
+
+      set_account_balance!
 
       self.statement
     end
@@ -71,7 +73,7 @@ class StatementCreator
     )
   end
 
-  def set_statement_dates
+  def set_statement_dates!
     from_date = sorted_transactions.first.posted_at
     to_date = sorted_transactions.last.posted_at
     self.statement.update!(
@@ -86,5 +88,11 @@ class StatementCreator
 
   def sorted_transactions
     self.statement.transactions.order(:posted_at)
+  end
+
+  def set_account_balance!
+    if self.account.statements.order(:to_date).last == self.statement
+      self.account.update!(:balance => self.statement.balance)
+    end
   end
 end

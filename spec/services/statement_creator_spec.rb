@@ -35,6 +35,40 @@ describe StatementCreator do
         expect(statement_creator.statement.to_date).to eq Time.parse('2013-01-30').utc.to_date
       end
     end
+
+    describe "set account balance" do
+      context "latest statement" do
+        before do
+          FactoryGirl.create :statement,
+            :to_date => Date.parse('2012-12-01'),
+            :balance => 10.00,
+            :account => account
+          account.update(:balance => 10.00)
+        end
+
+        it "should update the account balance" do
+          expect {
+            statement_creator.save
+          }.to change(account, :balance).from(10.to_d).to(2000.to_d)
+        end
+      end
+
+      context "older statement" do
+        before do
+          FactoryGirl.create :statement,
+            :to_date => Date.parse('2013-03-01'),
+            :balance => 10.00,
+            :account => account
+          account.update(:balance => 10.00)
+        end
+
+        it "should update the account balance" do
+          expect {
+            statement_creator.save
+          }.to_not change(account, :balance)
+        end
+      end
+    end
   end
 
   describe "missing account" do
