@@ -21,9 +21,18 @@ describe StatementCreator do
     end
 
     describe ".statement" do
+      before { statement_creator.save }
+
       it "should return the statement" do
-        statement_creator.save
         expect(statement_creator.statement).to be_an_instance_of Statement
+      end
+
+      it "should set the from_date" do
+        expect(statement_creator.statement.from_date).to eq Time.parse('2013-01-05').utc.to_date
+      end
+
+      it "should set the to_date" do
+        expect(statement_creator.statement.to_date).to eq Time.parse('2013-01-30').utc.to_date
       end
     end
   end

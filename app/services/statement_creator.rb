@@ -39,24 +39,52 @@ class StatementCreator
 
   def persist!
     Statement.transaction do
-      parser = OFX::Parser::Base.new(self.file).parser
-      @statement = Statement.create!(
-        :balance => parser.account.balance.amount,
-        :account => self.account
-      )
+  
+      create_statement!
 
       parser.account.transactions.each do |t|
-        new_transaction = Transaction.new do |tr|
-          %w(amount memo name payee posted_at ref_number type fit_id).each do |m|
-            tr.send("#{m}=", t.send(m))
-          end
-          tr.account = self.account
-          tr.statement = statement
-        end
-
-        new_transaction.save!
+        create_transaction!(t)
       end
-      statement
+
+      set_statement_dates
+
+      self.statement
     end
+  end
+
+  def create_transaction!(t)
+    new_transaction = Transaction.new do |tr|
+      %w(amount memo name payee posted_at ref_number type fit_id).each do |m|
+        tr.send("#{m}=", t.send(m))
+      end
+      tr.account = self.account
+      tr.statement = self.statement
+    end
+
+    new_transaction.save!
+  end
+
+  def create_statement!
+    @statement = Statement.create!(
+      :balance => parser.account.balance.amount,
+      :account => self.account
+    )
+  end
+
+  def set_statement_dates
+    from_date = sorted_transactions.first.posted_at
+    to_date = sorted_transactions.last.posted_at
+    self.statement.update!(
+      :from_date => from_date,
+      :to_date => to_date,
+    )
+  end
+
+  def parser
+    @parser ||= OFX::Parser::Base.new(self.file).parser
+  end
+
+  def sorted_transactions
+    self.statement.transactions.order(:posted_at)
   end
 end

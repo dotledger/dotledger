@@ -5,6 +5,10 @@ describe Statement do
 
   it { should have_db_column(:account_id).of_type(:integer).with_options(:null => false) }
 
+  it { should have_db_column(:from_date).of_type(:date) }
+
+  it { should have_db_column(:to_date).of_type(:date) }
+
   it { should validate_presence_of :balance }
 
   it { should validate_presence_of :account }

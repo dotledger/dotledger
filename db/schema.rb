@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130831091403) do
+ActiveRecord::Schema.define(version: 20130901013906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20130831091403) do
     t.decimal  "balance",    precision: 10, scale: 2, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "from_date"
+    t.date     "to_date"
   end
 
   add_index "statements", ["account_id"], name: "index_statements_on_account_id", using: :btree
