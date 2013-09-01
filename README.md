@@ -1,4 +1,4 @@
-Rahani [![Build Status](https://travis-ci.org/kaleworsley/rahani.png?branch=master)](https://travis-ci.org/kaleworsley/rahani) [![Code Climate](https://codeclimate.com/github/kaleworsley/rahani.png)](https://codeclimate.com/github/kaleworsley/rahani)
+Rahani [![Build Status](https://travis-ci.org/kaleworsley/rahani.png?branch=master)](https://travis-ci.org/kaleworsley/rahani) [![Code Climate](https://codeclimate.com/github/kaleworsley/rahani.png)](https://codeclimate.com/github/kaleworsley/rahani) [![Coverage Status](https://coveralls.io/repos/kaleworsley/rahani/badge.png?branch=master)](https://coveralls.io/r/kaleworsley/rahani?branch=master)
 ======
 
 Rahani is a Free and Open Source personal finance management tool.
