@@ -3,6 +3,8 @@ class Category < ActiveRecord::Base
 
   has_many :sorted_transactions
 
+  has_many :sorting_rules
+
   CATEGORY_TYPES = ['Flexible', 'Essential', 'Income']
 
   validates :name, :presence => true, :uniqueness => true

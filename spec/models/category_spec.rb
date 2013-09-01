@@ -20,4 +20,6 @@ describe Category do
   it { should ensure_inclusion_of(:type).in_array(['Flexible', 'Essential', 'Income']) }
 
   it { should have_many :sorted_transactions }
+
+  it { should have_many :sorting_rules }
 end
