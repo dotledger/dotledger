@@ -31,3 +31,5 @@ group :development, :test do
   gem 'pry-rails'
   gem 'jasmine-rails'
 end
+
+gem 'coveralls', :require => false
