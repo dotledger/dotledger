@@ -43,7 +43,8 @@ class StatementCreator
       create_statement!
 
       parser.account.transactions.each do |t|
-        create_transaction!(t)
+        tr = create_transaction!(t)
+        sort_transaction(tr)
       end
 
       set_statement_dates!
@@ -64,6 +65,7 @@ class StatementCreator
     end
 
     new_transaction.save!
+    new_transaction
   end
 
   def create_statement!
@@ -94,5 +96,9 @@ class StatementCreator
     if self.account.statements.order(:to_date).last == self.statement
       self.account.update!(:balance => self.statement.balance)
     end
+  end
+
+  def sort_transaction(transaction)
+    TransactionSorter.new(transaction).sort
   end
 end
