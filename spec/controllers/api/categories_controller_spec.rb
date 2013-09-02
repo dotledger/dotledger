@@ -35,7 +35,7 @@ describe Api::CategoriesController do
       expect(subject).to respond_with(:success)
     end
 
-    it "should create an category" do
+    it "should create a category" do
       expect {
         valid_request
       }.to change(Category, :count).by(1)
