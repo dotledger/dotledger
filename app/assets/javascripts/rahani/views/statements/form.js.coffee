@@ -33,7 +33,6 @@ Rahani.module 'Views.Statements', ->
         processData: false
         type: 'POST'
         success: =>
-          console.log arguments
           @trigger 'save'
 
         error: (resp)=>
