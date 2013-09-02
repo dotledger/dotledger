@@ -15,6 +15,11 @@ Rahani.module 'Routers', ->
       'categories/new': 'newCategory'
       'categories/:id/edit': 'editCategory'
 
+      # Sorting Rules
+      'sorting-rules': 'listSortingRules'
+      'sorting-rules/new': 'newSortingRule'
+      'sorting-rules/:id/edit': 'editSortingRule'
+
     root: ->
       accounts = new Rahani.Collections.Accounts()
       dashboard = new Rahani.Views.Application.Dashboard()
@@ -101,5 +106,46 @@ Rahani.module 'Routers', ->
         Backbone.history.navigate("/categories", trigger: true)
 
       category.fetch
+        success: ->
+          Rahani.mainRegion.show(form)
+
+    listSortingRules: ->
+      sorting_rules = new Rahani.Collections.SortingRules()
+      sorting_rules.fetch
+        success: ->
+          list = new Rahani.Views.SortingRules.List
+            collection: sorting_rules
+
+          Rahani.mainRegion.show(list)
+
+    newSortingRule: ->
+      sorting_rule = new Rahani.Models.SortingRule()
+      categories = new Rahani.Collections.Categories()
+
+      categories.fetch()
+
+      form = new Rahani.Views.SortingRules.Form
+        model: sorting_rule
+        categories: categories
+
+      form.on 'save', (model)->
+        Backbone.history.navigate("/sorting-rules", trigger: true)
+
+      Rahani.mainRegion.show(form)
+
+    editSortingRule: (sorting_rule_id)->
+      sorting_rule = new Rahani.Models.SortingRule(id: sorting_rule_id)
+      categories = new Rahani.Collections.Categories()
+
+      categories.fetch()
+
+      form = new Rahani.Views.SortingRules.Form
+        model: sorting_rule
+        categories: categories
+
+      form.on 'save', (model)->
+        Backbone.history.navigate("/sorting-rules", trigger: true)
+
+      sorting_rule.fetch
         success: ->
           Rahani.mainRegion.show(form)

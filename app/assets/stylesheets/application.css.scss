@@ -13,10 +13,12 @@ body.loading {
   margin-top: 6px;
 }
 
-table tr .edit-category {
-  display: none;
+table tr .edit-category,
+table tr .edit-sorting-rule {
+  visibility: hidden;
 }
 
-table tr:hover .edit-category {
-  display: inline;
+table tr:hover .edit-category,
+table tr:hover .edit-sorting-rule {
+  visibility: visible;
 }
