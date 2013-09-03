@@ -1,7 +1,7 @@
 module Api
   class SortingRulesController < BaseController
     def index
-      @sorting_rules = SortingRule.all
+      @sorting_rules = SortingRule.includes(:category)
 
       respond_with @sorting_rules
     end
