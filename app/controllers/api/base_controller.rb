@@ -1,6 +1,6 @@
 module Api
-  class BaseController < ApplicationController 
-    skip_before_filter :verify_authenticity_token  
+  class BaseController < ApplicationController
+    skip_before_filter :verify_authenticity_token
     before_filter :default_format_json
     respond_to :json
 
@@ -9,6 +9,27 @@ module Api
     end
 
     private
+    def page_number
+      params[:page]
+    end
+
+    def set_pagination_header(collection)
+      first_page = collection.current_page == 1
+      last_page = collection.current_page == collection.total_pages
+      previous_page = first_page ? nil : collection.current_page - 1
+      next_page = last_page ? nil : collection.current_page + 1
+
+      headers['X-Pagination'] = {
+        total_pages: collection.total_pages,
+        total_items: collection.total_count,
+        current_page: collection.current_page,
+        next_page: next_page,
+        previous_page: previous_page,
+        first_page: first_page,
+        last_page: last_page
+      }.to_json
+    end
+
     def default_format_json
       if(request.headers["HTTP_ACCEPT"].nil? &&
          params[:format].nil?)

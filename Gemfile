@@ -20,6 +20,8 @@ gem 'ejs'
 
 gem 'gon'
 
+gem 'kaminari'
+
 gem 'bootstrap-sass',
   :github => 'thomas-mcdonald/bootstrap-sass',
   :branch => '3'
