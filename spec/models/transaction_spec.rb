@@ -36,7 +36,7 @@ describe Transaction do
   it { should have_one :sorted_transaction }
 
   it "should set the search attribute before validation" do
-    transaction = FactoryGirl.build :transaction, :name => "Foo", :memo => "Bar"
+    transaction = FactoryGirl.build :transaction, :name => "FOO", :memo => "BAR"
 
     expect {
       transaction.valid?

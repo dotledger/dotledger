@@ -20,6 +20,6 @@ class Transaction < ActiveRecord::Base
   private
 
   def set_search
-    self.search = "#{self.name} #{self.memo}".strip
+    self.search = "#{self.name} #{self.memo}".strip.titleize
   end
 end
