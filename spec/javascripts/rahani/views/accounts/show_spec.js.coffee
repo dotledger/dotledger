@@ -6,8 +6,11 @@ describe "Rahani.Views.Accounts.Show", ->
       number: '123'
       id: 1
 
+    collection = new Rahani.Collections.Transactions()
+
     view = new Rahani.Views.Accounts.Show
       model: model
+      collection: collection
     view
 
   it "should be defined", ->

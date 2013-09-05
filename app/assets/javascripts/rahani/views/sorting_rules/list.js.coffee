@@ -3,3 +3,5 @@ Rahani.module 'Views.SortingRules', ->
     template: 'sorting_rules/list'
     getItemView: -> Rahani.Views.SortingRules.ListItem
     itemViewContainer: 'table tbody'
+    initialize: ->
+      Rahani.Helpers.pagination(this, @collection)

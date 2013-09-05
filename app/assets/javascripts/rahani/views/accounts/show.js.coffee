@@ -3,3 +3,5 @@ Rahani.module 'Views.Accounts', ->
     template: 'accounts/show'
     getItemView: -> Rahani.Views.Transactions.TableRow
     itemViewContainer: 'tbody'
+    initialize: ->
+      Rahani.Helpers.pagination(this, @collection)

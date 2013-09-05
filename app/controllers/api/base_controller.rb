@@ -16,6 +16,7 @@ module Api
     def set_pagination_header(collection)
       first_page = collection.current_page == 1
       last_page = collection.current_page == collection.total_pages
+      last_page = true if collection.total_pages == 0
       previous_page = first_page ? nil : collection.current_page - 1
       next_page = last_page ? nil : collection.current_page + 1
 

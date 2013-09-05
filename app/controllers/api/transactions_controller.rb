@@ -7,6 +7,10 @@ module Api
         @transactions = @transactions.where(:account_id => account_id)
       end
 
+      @transactions = @transactions.page(page_number)
+
+      set_pagination_header(@transactions)
+
       respond_with @transactions
     end
 

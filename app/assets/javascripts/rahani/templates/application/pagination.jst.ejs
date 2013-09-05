@@ -1,0 +1,7 @@
+<% if (pagination && pagination.total_pages > 0) { %>
+<ul class="pager">
+  <li class="<%= disablePrevious() %>"><a class="previous" href="#">&larr;</a></li>
+  <li> <%= pagination && pagination.current_page %> of <%= pagination && pagination.total_pages %> </li>
+  <li class="<%= disableNext() %>"><a class="next" href="#">&rarr;</a></li>
+</ul>
+<% } %>
