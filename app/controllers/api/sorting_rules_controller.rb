@@ -1,7 +1,11 @@
 module Api
   class SortingRulesController < BaseController
     def index
-      @sorting_rules = SortingRule.includes(:category).page(page_number)
+      @sorting_rules = SortingRule.includes(:category)
+
+      @sorting_rules = @sorting_rules.order(:name, :contains)
+      
+      @sorting_rules = @sorting_rules.page(page_number)
 
       set_pagination_header(@sorting_rules)
 

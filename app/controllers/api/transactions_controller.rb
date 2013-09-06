@@ -15,6 +15,8 @@ module Api
         @transactions = @transactions.unsorted
       end
 
+      @transactions = @transactions.order(:posted_at => :desc)
+
       @transactions = @transactions.page(page_number)
 
       set_pagination_header(@transactions)

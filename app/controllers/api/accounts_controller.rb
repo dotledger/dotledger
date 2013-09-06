@@ -3,6 +3,8 @@ module Api
     def index
       @accounts = Account.all
 
+      @accounts = @accounts.order(:name)
+
       respond_with @accounts
     end
 

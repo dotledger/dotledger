@@ -3,6 +3,8 @@ module Api
     def index
       @categories = Category.all
 
+      @categories = @categories.order(:type, :name)
+
       respond_with @categories
     end
 
