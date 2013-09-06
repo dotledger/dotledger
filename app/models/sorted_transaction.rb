@@ -10,4 +10,6 @@ class SortedTransaction < ActiveRecord::Base
   validates :account, :presence => true
 
   validates :transaction, :presence => true
+
+  delegate :name, :to => :category, :prefix => true
 end
