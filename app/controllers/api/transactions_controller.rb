@@ -1,7 +1,7 @@
 module Api
   class TransactionsController < BaseController
     def index
-      @transactions = Transaction.all
+      @transactions = Transaction.includes(:sorted_transaction => :category)
 
       if account_id.present?
         @transactions = @transactions.where(:account_id => account_id)
