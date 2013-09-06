@@ -16,6 +16,14 @@ class Transaction < ActiveRecord::Base
   validates :search, :presence => true
 
   before_validation :set_search
+  
+  scope :unsorted, proc {
+    includes(:sorted_transaction).where(:sorted_transactions => {:id => nil})
+  }
+
+  scope :sorted, proc {
+    includes(:sorted_transaction).where.not(:sorted_transactions => {:id => nil}).references(:sorted_transactions)
+  }
 
   private
 

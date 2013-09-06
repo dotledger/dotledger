@@ -42,4 +42,44 @@ describe Transaction do
       transaction.valid?
     }.to change(transaction, :search).from(nil).to("Foo Bar")
   end
+
+  describe "#unsorted" do
+    let!(:unsorted) { FactoryGirl.create_list :transaction, 2 }
+    let!(:sorted) { FactoryGirl.create_list :transaction, 2 }
+
+    before do
+      category = FactoryGirl.create :category
+      sorted.each do |t|
+        t.create_sorted_transaction!(
+          :name => t.search,
+          :category => category,
+          :account => t.account
+        )
+      end
+    end
+
+    it "should not include sorted transactions" do
+      expect(Transaction.unsorted).to match_array unsorted
+    end
+  end
+
+  describe "#sorted" do
+    let!(:unsorted) { FactoryGirl.create_list :transaction, 2 }
+    let!(:sorted) { FactoryGirl.create_list :transaction, 2 }
+
+    before do
+      category = FactoryGirl.create :category
+      sorted.each do |t|
+        t.create_sorted_transaction!(
+          :name => t.search,
+          :category => category,
+          :account => t.account
+        )
+      end
+    end
+
+    it "should not include unsorted transactions" do
+      expect(Transaction.sorted).to match_array sorted
+    end
+  end
 end
