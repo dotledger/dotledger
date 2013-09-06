@@ -44,7 +44,14 @@ class StatementCreator
 
       parser.account.transactions.each do |t|
         tr = create_transaction!(t)
-        sort_transaction(tr)
+
+        if tr
+          sort_transaction(tr)
+        end
+      end
+
+      if self.statement.transactions.empty?
+        raise ActiveRecord::Rollback
       end
 
       set_statement_dates!
@@ -56,16 +63,26 @@ class StatementCreator
   end
 
   def create_transaction!(t)
-    new_transaction = Transaction.new do |tr|
-      %w(amount memo name payee posted_at ref_number type fit_id).each do |m|
-        tr.send("#{m}=", t.send(m))
-      end
-      tr.account = self.account
-      tr.statement = self.statement
-    end
+    new_transaction = Transaction.where(
+      :amount => t.amount,
+      :memo => t.memo,
+      :name => t.name,
+      :payee => t.payee,
+      :posted_at => t.posted_at,
+      :ref_number => t.ref_number,
+      :type => t.type,
+      :fit_id => t.fit_id
+    ).first_or_initialize
 
-    new_transaction.save!
-    new_transaction
+    if new_transaction.new_record?
+      new_transaction.account = self.account
+      new_transaction.statement = self.statement
+
+      new_transaction.save!
+      new_transaction
+    else
+      false
+    end
   end
 
   def create_statement!
