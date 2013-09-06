@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
 
   has_many :sorting_rules
 
-  CATEGORY_TYPES = ['Flexible', 'Essential', 'Income']
+  CATEGORY_TYPES = ['Flexible', 'Essential', 'Income', 'Transfer']
 
   validates :name, :presence => true, :uniqueness => true
 

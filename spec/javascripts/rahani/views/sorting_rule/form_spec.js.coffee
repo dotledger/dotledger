@@ -16,6 +16,11 @@ describe "Rahani.Views.SortingRules.Form", ->
         name: 'Category Three'
         type: 'Income'
       }
+      {
+        id: 44
+        name: 'Transfer In'
+        type: 'Transfer'
+      }
     ]
     view = new Rahani.Views.SortingRules.Form
       model: model
@@ -40,9 +45,11 @@ describe "Rahani.Views.SortingRules.Form", ->
     expect(view.$el).toContain('option[value=11]')
     expect(view.$el).toContain('option[value=22]')
     expect(view.$el).toContain('option[value=33]')
+    expect(view.$el).toContain('option[value=44]')
     expect(view.$el).toContain('optgroup[label=Essential]')
     expect(view.$el).toContain('optgroup[label=Flexible]')
     expect(view.$el).toContain('optgroup[label=Income]')
+    expect(view.$el).toContain('optgroup[label=Transfer]')
 
   it "renders the heading for new sorting_rule", ->
     view = createView().render()

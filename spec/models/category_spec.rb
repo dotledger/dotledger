@@ -17,7 +17,7 @@ describe Category do
 
   it { should validate_uniqueness_of :name }
 
-  it { should ensure_inclusion_of(:type).in_array(['Flexible', 'Essential', 'Income']) }
+  it { should ensure_inclusion_of(:type).in_array(['Flexible', 'Essential', 'Income', 'Transfer']) }
 
   it { should have_many :sorted_transactions }
 

@@ -21,6 +21,7 @@ describe "Rahani.Views.Categories.Form", ->
     expect(view.$el).toContain('option[value=Flexible]')
     expect(view.$el).toContain('option[value=Essential]')
     expect(view.$el).toContain('option[value=Income]')
+    expect(view.$el).toContain('option[value=Transfer]')
 
   it "renders the heading for new category", ->
     view = createView().render()

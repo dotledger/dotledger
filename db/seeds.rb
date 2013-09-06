@@ -1,5 +1,4 @@
 if Rails.env.development?
-
   Account.create! [
     {:name => 'Eftpos', :number => '12-1234-1234567-001', :type => 'Cheque'},
     {:name => 'Savings', :number => '12-1234-1234567-002', :type => 'Savings'},
@@ -37,6 +36,10 @@ if Rails.env.development?
       'Other Income & Deposits',
       'Salary & Wages',
       'Tax Credits'
+    ],
+    'Transfer' => [
+      'Transfer In',
+      'Transfer Out'
     ]
   }
 
@@ -45,5 +48,4 @@ if Rails.env.development?
       Category.create!(:type => type, :name => name)
     end
   end
-
 end
