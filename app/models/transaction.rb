@@ -28,6 +28,6 @@ class Transaction < ActiveRecord::Base
   private
 
   def set_search
-    self.search = "#{self.name} #{self.memo}".strip.titleize
+    self.search = "#{self.name} #{self.memo}".strip.titleize.gsub(/\s+/, ' ')
   end
 end
