@@ -7,6 +7,21 @@ describe Api::TransactionsController do
   describe "GET index" do
     let!(:account_transactions) { FactoryGirl.create_list :transaction, 4, :account => account }
     let!(:other_transactions) { FactoryGirl.create_list :transaction, 4 }
+    let!(:sorted_transactions) { FactoryGirl.create_list :transaction, 4 }
+    let!(:all_transactions) { [transaction, account_transactions, other_transactions, sorted_transactions].flatten }
+    let!(:unsorted_transactions) { [transaction, account_transactions, other_transactions].flatten }
+
+    before do
+      category = FactoryGirl.create :category
+
+      sorted_transactions.each do |t|
+        t.create_sorted_transaction(
+          :account => t.account,
+          :category => category,
+          :name => t.search
+        )
+      end
+    end
 
     context "no filters" do
       before { get :index }
@@ -14,7 +29,7 @@ describe Api::TransactionsController do
       it { should respond_with :success }
 
       it "should return all transactions" do
-        expect(assigns(:transactions)).to match_array [transaction, account_transactions, other_transactions].flatten
+        expect(assigns(:transactions)).to match_array all_transactions
       end
     end
 
@@ -27,6 +42,30 @@ describe Api::TransactionsController do
 
       it "should return all transactions for the account" do
         expect(assigns(:transactions)).to match_array account_transactions
+      end
+    end
+
+    context "filter sorted" do
+      before do
+        get :index, :sorted => true
+      end
+
+      it { should respond_with :success }
+
+      it "should return sorted transactions" do
+        expect(assigns(:transactions)).to match_array sorted_transactions
+      end
+    end
+
+    context "filter unsorted" do
+      before do
+        get :index, :unsorted => true
+      end
+
+      it { should respond_with :success }
+
+      it "should return unsorted transactions" do
+        expect(assigns(:transactions)).to match_array unsorted_transactions
       end
     end
   end

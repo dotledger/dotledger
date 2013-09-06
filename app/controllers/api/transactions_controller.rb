@@ -7,6 +7,14 @@ module Api
         @transactions = @transactions.where(:account_id => account_id)
       end
 
+      if filter_sorted
+        @transactions = @transactions.sorted
+      end
+
+      if filter_unsorted
+        @transactions = @transactions.unsorted
+      end
+
       @transactions = @transactions.page(page_number)
 
       set_pagination_header(@transactions)
@@ -52,6 +60,14 @@ module Api
 
     def account_id
       params[:account_id].to_s
+    end
+
+    def filter_sorted
+      !!(params[:sorted].to_s =~ /true/i)
+    end
+
+    def filter_unsorted
+      !!(params[:unsorted].to_s =~ /true/i)
     end
 
     def transaction_params
