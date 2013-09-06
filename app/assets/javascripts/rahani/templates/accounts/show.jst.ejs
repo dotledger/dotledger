@@ -16,19 +16,13 @@
   <small><%= number %></small>
 </div>
 
-<table class="table" id="transactions">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Name</th>
-      <th>Memo</th>
-      <th>Type</th>
-      <th>Spent</th>
-      <th>Received</th>
-    </tr>
-  </thead>
+<ul class="nav nav-tabs nav-justified">
+  <li><a href="#sorted-transactions" data-toggle="tab">Sorted</a></li>
+  <li><a href="#unsorted-transactions" data-toggle="tab">Unsorted</a></li>
+</ul>
 
-  <tbody></tbody>
-</table>
+<div class="tab-content">
+  <div class="tab-pane" id="sorted-transactions"></div>
+  <div class="tab-pane" id="unsorted-transactions"></div>
+</div>
 
-<div class="pager-region"></div>

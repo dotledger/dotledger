@@ -1,13 +1,12 @@
 describe "Rahani.Views.Transactions.TableRow", ->
-  createView = ->
-    model =  new Rahani.Models.Transaction
-      name: 'Some Name'
-      memo: 'Some Memo'
+  createModel = ->
+    new Rahani.Models.Transaction
+      search: 'Some Name'
       amount: '10.00'
-      type: 'xfer'
       posted_at: '2013-01-01'
       id: 1
 
+  createView = (model = createModel()) ->
     view = new Rahani.Views.Transactions.TableRow
       model: model
     view
@@ -22,13 +21,17 @@ describe "Rahani.Views.Transactions.TableRow", ->
     view = createView()
     expect(view.render).not.toThrow()
 
-  it "renders the name", ->
+  it "renders the search if the transaction is unsorted", ->
     view = createView().render()
     expect(view.$el).toContainText('Some Name')
 
-  it "renders the memo", ->
-    view = createView().render()
-    expect(view.$el).toContainText('Some Memo')
+  it "renders sorted name if the transaction is sorted", ->
+    model = createModel()
+    model.set
+      sorted_transaction:
+        name: 'Sorted Name'
+    view = createView(model).render()
+    expect(view.$el).toContainText('Sorted Name')
 
   it "renders the amount", ->
     view = createView().render()
@@ -37,3 +40,15 @@ describe "Rahani.Views.Transactions.TableRow", ->
   it "renders the posted at date", ->
     view = createView().render()
     expect(view.$el).toContain('time[datetime="2013-01-01"]')
+
+  it "renders unsorted if the transaction is unsorted", ->
+    view = createView().render()
+    expect(view.$el).toContainText('Unsorted')
+
+  it "renders category name if the transaction is sorted", ->
+    model = createModel()
+    model.set
+      sorted_transaction:
+        category_name: 'Foobar'
+    view = createView(model).render()
+    expect(view.$el).toContainText('Foobar')

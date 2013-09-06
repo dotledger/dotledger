@@ -33,19 +33,37 @@ Rahani.module 'Routers', ->
 
     showAccount: (account_id)->
       account = new Rahani.Models.Account(id: account_id)
-      transactions = new Rahani.Collections.Transactions()
+      sortedTransactions = new Rahani.Collections.Transactions()
+      unsortedTransactions = new Rahani.Collections.Transactions()
 
-      transactions.fetch
+      sortedTransactions.fetch
         data:
           account_id: account_id
+          sorted: true
+
+      unsortedTransactions.fetch
+        data:
+          account_id: account_id
+          unsorted: true
+
+      show = new Rahani.Views.Accounts.Show
+        model: account
 
       account.fetch
         success: ->
-          show = new Rahani.Views.Accounts.Show
-            model: account
-            collection: transactions
 
           Rahani.mainRegion.show(show)
+
+          sortedView = new Rahani.Views.Transactions.Table(
+            collection: sortedTransactions
+          )
+
+          unsortedView = new Rahani.Views.Transactions.Table(
+            collection: unsortedTransactions
+          )
+
+          show.sortedTransactions.show(sortedView)
+          show.unsortedTransactions.show(unsortedView)
 
     newAccount: ->
       account = new Rahani.Models.Account()
