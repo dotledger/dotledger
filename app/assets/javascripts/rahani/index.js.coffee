@@ -4,6 +4,7 @@
 #= require ./routers
 #= require ./models
 #= require ./collections
+#= require_tree ./regions
 #= require_tree ./views
 #= require_tree ./initializers
 
@@ -34,3 +35,4 @@ Backbone.Marionette.Renderer.render = (template, data)->
 Rahani.addRegions
   headerRegion: "header",
   mainRegion: "#main"
+  footerRegion: "footer"

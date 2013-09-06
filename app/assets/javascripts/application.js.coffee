@@ -1,6 +1,7 @@
 #= require jquery
 #= require bootstrap/dropdown
 #= require bootstrap/tab
+#= require bootstrap/modal
 #= require moment
 #= require accounting
 #= require underscore

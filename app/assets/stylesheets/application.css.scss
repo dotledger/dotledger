@@ -22,3 +22,7 @@ table tr:hover .edit-category,
 table tr:hover .edit-sorting-rule {
   visibility: visible;
 }
+
+.modal-dialog .modal-body .form-horizontal {
+  margin: 0 20px;
+}
