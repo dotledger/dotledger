@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :sorted_transaction do
     name "MyString"
     transaction
-    category nil
+    category
     account
   end
 end
