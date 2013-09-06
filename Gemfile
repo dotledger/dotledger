@@ -22,6 +22,8 @@ gem 'gon'
 
 gem 'kaminari'
 
+gem 'active_model_serializers'
+
 gem 'bootstrap-sass',
   :github => 'thomas-mcdonald/bootstrap-sass',
   :branch => '3'
