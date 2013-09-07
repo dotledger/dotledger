@@ -10,7 +10,8 @@ class TransactionSorter
       @sorted_transaction = @transaction.create_sorted_transaction!(
         :name => name,
         :category_id => rule.category_id,
-        :account_id => @transaction.account_id
+        :account_id => @transaction.account_id,
+        :review => rule.review
       )
     end
   end

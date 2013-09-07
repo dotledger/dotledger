@@ -29,4 +29,10 @@ describe TransactionSorter do
     subject.sort
     expect(subject.sorted_transaction.name).to eq transaction.search
   end
+
+  it "should flag the sorted transaction for review if review is true on the rule" do
+    best_rule.update(:review => true)
+    subject.sort
+    expect(subject.sorted_transaction.review).to eq true
+  end
 end
