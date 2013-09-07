@@ -7,18 +7,21 @@ describe "Rahani.Views.Accounts.List", ->
           name: 'Some Account'
           balance: 10.00
           updated_at: '2013-01-01T01:00:00Z'
+          unsorted_transaction_count: 0
         }
         {
           id: 2
           name: 'Some Other Account'
           balance: 12.00
           updated_at: '2013-01-02T01:00:00Z'
+          unsorted_transaction_count: 10
         }
         {
           id: 3
           name: 'Some Debt'
           balance: -12.00
           updated_at: '2013-01-03T01:00:00Z'
+          unsorted_transaction_count: 12
         }
       ]
     )
@@ -53,6 +56,12 @@ describe "Rahani.Views.Accounts.List", ->
     expect(view.$el).toContain('time[datetime="2013-01-01T01:00:00Z"]')
     expect(view.$el).toContain('time[datetime="2013-01-02T01:00:00Z"]')
     expect(view.$el).toContain('time[datetime="2013-01-03T01:00:00Z"]')
+
+
+  it "render the unsorted transaction counts", ->
+    view = createView().render()
+    expect(view.$el).toHaveText(/12 unsorted/)
+    expect(view.$el).toHaveText(/10 unsorted/)
 
   it "renders the heading", ->
     view = createView().render()

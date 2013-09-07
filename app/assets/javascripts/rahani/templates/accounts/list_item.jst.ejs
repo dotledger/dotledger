@@ -1,4 +1,9 @@
-<span class="pull-right"><strong><%= accounting.formatMoney(balance) %></strong></span>
+<span class="pull-right">
+  <strong><%= accounting.formatMoney(balance) %></strong>
+  <% if (unsorted_transaction_count) { %>
+    <div class="text-muted text-right"><small><%= unsorted_transaction_count %> unsorted</small></div>
+  <% } %>
+</span>
 <h4 class="list-group-item-heading"><a href="/accounts/<%= id %>"><%= name %></a></h4>
 <p class="list-group-item-text">
   <small class="text-muted">Updated <time datetime="<%= updated_at %>"><%= moment(updated_at).fromNow() %></time></small>
