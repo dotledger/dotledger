@@ -49,7 +49,7 @@ module Api
     end
 
     def sorting_rule_params
-      params.permit(:name, :contains, :category_id)
+      params.permit(:name, :contains, :category_id, :review)
     end
   end
 end

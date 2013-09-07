@@ -7,6 +7,8 @@ describe SortingRule do
 
   it { should have_db_column(:name).of_type(:string).with_options(:default => nil) }
 
+  it { should have_db_column(:review).of_type(:boolean).with_options(:default => false, :null => false) }
+
   it { should have_db_index(:contains).unique(:true) }
 
   it { should validate_presence_of :contains }

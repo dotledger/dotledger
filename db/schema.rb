@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130906131833) do
+ActiveRecord::Schema.define(version: 20130907115208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,12 +37,13 @@ ActiveRecord::Schema.define(version: 20130906131833) do
   add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
 
   create_table "sorted_transactions", force: true do |t|
-    t.string   "name",           null: false
-    t.integer  "transaction_id", null: false
-    t.integer  "category_id",    null: false
-    t.integer  "account_id",     null: false
+    t.string   "name",                           null: false
+    t.integer  "transaction_id",                 null: false
+    t.integer  "category_id",                    null: false
+    t.integer  "account_id",                     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "review",         default: false, null: false
   end
 
   add_index "sorted_transactions", ["account_id"], name: "index_sorted_transactions_on_account_id", using: :btree
@@ -50,11 +51,12 @@ ActiveRecord::Schema.define(version: 20130906131833) do
   add_index "sorted_transactions", ["transaction_id"], name: "index_sorted_transactions_on_transaction_id", using: :btree
 
   create_table "sorting_rules", force: true do |t|
-    t.string   "contains",    null: false
+    t.string   "contains",                    null: false
     t.string   "name"
-    t.integer  "category_id", null: false
+    t.integer  "category_id",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "review",      default: false, null: false
   end
 
   add_index "sorting_rules", ["category_id"], name: "index_sorting_rules_on_category_id", using: :btree
