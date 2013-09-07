@@ -18,4 +18,17 @@ namespace :rahani do
       exit 1
     end
   end
+
+  desc "Re-run sorting rules on unsorted transactions"
+  task :sort => :environment do
+    count = 0
+    Transaction.unsorted.each do |t|
+      sorter = TransactionSorter.new(t)
+      sorter.sort
+
+      count += 1 if sorter.sorted_transaction.present?
+    end
+
+    puts "Sorted #{count} transactions."
+  end
 end
