@@ -34,12 +34,19 @@ Rahani.module 'Routers', ->
     showAccount: (account_id)->
       account = new Rahani.Models.Account(id: account_id)
       sortedTransactions = new Rahani.Collections.Transactions()
+      reviewTransactions = new Rahani.Collections.Transactions()
       unsortedTransactions = new Rahani.Collections.Transactions()
 
       sortedTransactions.fetch
         data:
           account_id: account_id
           sorted: true
+          review: false
+
+      reviewTransactions.fetch
+        data:
+          account_id: account_id
+          review: true
 
       unsortedTransactions.fetch
         data:
@@ -58,11 +65,16 @@ Rahani.module 'Routers', ->
             collection: sortedTransactions
           )
 
+          reviewView = new Rahani.Views.Transactions.Table(
+            collection: reviewTransactions
+          )
+
           unsortedView = new Rahani.Views.Transactions.Table(
             collection: unsortedTransactions
           )
 
           show.sortedTransactions.show(sortedView)
+          show.reviewTransactions.show(reviewView)
           show.unsortedTransactions.show(unsortedView)
 
     newAccount: ->

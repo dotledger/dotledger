@@ -3,6 +3,7 @@ Rahani.module 'Views.Accounts', ->
     template: 'accounts/show'
     regions:
       sortedTransactions: '#sorted-transactions'
+      reviewTransactions: '#review-transactions'
       unsortedTransactions: '#unsorted-transactions'
     onRender: ->
       @$el.find('#sorted-transactions').addClass('active')
