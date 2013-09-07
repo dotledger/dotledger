@@ -5,6 +5,7 @@ describe "Rahani.Views.SortingRules.ListItem", ->
       contains: 'Rule'
       category_name: 'Some Category'
       category_id: 1
+      review: true
       id: 1
 
     view = new Rahani.Views.SortingRules.ListItem
@@ -32,3 +33,7 @@ describe "Rahani.Views.SortingRules.ListItem", ->
   it "renders the category name", ->
     view = createView().render()
     expect(view.$el).toHaveText(/Some Category/)
+
+  it "renders review", ->
+    view = createView().render()
+    expect(view.$el).toHaveText(/Review/)

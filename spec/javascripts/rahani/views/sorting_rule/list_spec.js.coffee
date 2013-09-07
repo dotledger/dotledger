@@ -8,6 +8,7 @@ describe "Rahani.Views.SortingRules.List", ->
           name: 'New Name'
           category_id: 1
           category_name: 'Some Category'
+          review: true
         }
         {
           id: 2
@@ -15,6 +16,7 @@ describe "Rahani.Views.SortingRules.List", ->
           name: 'New Other Name'
           category_id: 2
           category_name: 'Some Other Category'
+          review: false
         }
       ]
     )
@@ -46,6 +48,10 @@ describe "Rahani.Views.SortingRules.List", ->
     view = createView().render()
     expect(view.$el).toHaveText(/Some Category/)
     expect(view.$el).toHaveText(/Some Other Category/)
+
+  it "renders review", ->
+    view = createView().render()
+    expect(view.$el).toHaveText(/Review/)
 
   it "renders the heading", ->
     view = createView().render()

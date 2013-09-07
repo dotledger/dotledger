@@ -28,6 +28,17 @@
   </div>
 
   <div class="form-group">
+    <label for="sorting_rule_review" class="col-lg-2 control-label">Flag matches for review</label>
+    <div class="col-lg-5">
+      <select class="form-control" id="sorting_rule_review" name="review">
+        <option value="false">No</option> 
+        <option value="true">Yes</option> 
+      </select>
+    </div>
+    <div class="errors col-lg-5"></div>
+  </div>
+
+  <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <button type="submit" class="save btn btn-default">Save</button>
       <a class="btn btn-link" href="/sorting-rules">Cancel</a>

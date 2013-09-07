@@ -50,6 +50,9 @@ describe "Rahani.Views.SortingRules.Form", ->
     expect(view.$el).toContain('optgroup[label=Flexible]')
     expect(view.$el).toContain('optgroup[label=Income]')
     expect(view.$el).toContain('optgroup[label=Transfer]')
+    expect(view.$el).toContain('select[name=review]')
+    expect(view.$el).toContain('option[value=true]')
+    expect(view.$el).toContain('option[value=false]')
 
   it "renders the heading for new sorting_rule", ->
     view = createView().render()
@@ -73,6 +76,7 @@ describe "Rahani.Views.SortingRules.Form", ->
     view.$el.find('input[name=name]').val('New Name')
     view.$el.find('input[name=contains]').val('Old Name')
     view.$el.find('select[name=category]').val('11')
+    view.$el.find('select[name=review]').val('true')
 
     spyOn(model, 'set')
 
@@ -82,15 +86,18 @@ describe "Rahani.Views.SortingRules.Form", ->
       name: 'New Name'
       contains: 'Old Name'
       category_id: '11'
+      review: 'true'
 
   it "renders the form fields with the model values", ->
     model = new Rahani.Models.SortingRule
       name: 'Foobar'
       contains: 'Barfoo'
       category_id: '22'
+      review: 'true'
 
     view = createView(model).render()
 
     expect(view.$el.find('input[name=name]')).toHaveValue('Foobar')
     expect(view.$el.find('input[name=contains]')).toHaveValue('Barfoo')
     expect(view.$el.find('select[name=category]')).toHaveValue('22')
+    expect(view.$el.find('select[name=review]')).toHaveValue('true')
