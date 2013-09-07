@@ -5,10 +5,13 @@ describe Api::TransactionsController do
   let!(:account) { FactoryGirl.create :account }
 
   describe "GET index" do
-    let!(:account_transactions) { FactoryGirl.create_list :transaction, 4, :account => account }
-    let!(:other_transactions) { FactoryGirl.create_list :transaction, 4 }
-    let!(:sorted_transactions) { FactoryGirl.create_list :transaction, 4 }
-    let!(:all_transactions) { [transaction, account_transactions, other_transactions, sorted_transactions].flatten }
+    let!(:account_transactions) { FactoryGirl.create_list :transaction, 2, :account => account }
+    let!(:other_transactions) { FactoryGirl.create_list :transaction, 2 }
+    let!(:sorted_transactions) { FactoryGirl.create_list :transaction, 2 }
+    let!(:transactions_for_review) { FactoryGirl.create_list :transaction, 2 }
+    let!(:all_transactions) {
+      [transaction, account_transactions, other_transactions, sorted_transactions, transactions_for_review].flatten
+    }
     let!(:unsorted_transactions) { [transaction, account_transactions, other_transactions].flatten }
 
     before do
@@ -18,7 +21,17 @@ describe Api::TransactionsController do
         t.create_sorted_transaction(
           :account => t.account,
           :category => category,
-          :name => t.search
+          :name => t.search,
+          :review => false
+        )
+      end
+
+      transactions_for_review.each do |t|
+        t.create_sorted_transaction(
+          :account => t.account,
+          :category => category,
+          :name => t.search,
+          :review => true
         )
       end
     end
@@ -53,7 +66,7 @@ describe Api::TransactionsController do
       it { should respond_with :success }
 
       it "should return sorted transactions" do
-        expect(assigns(:transactions)).to match_array sorted_transactions
+        expect(assigns(:transactions)).to match_array [sorted_transactions, transactions_for_review].flatten
       end
     end
 
@@ -66,6 +79,30 @@ describe Api::TransactionsController do
 
       it "should return unsorted transactions" do
         expect(assigns(:transactions)).to match_array unsorted_transactions
+      end
+    end
+
+    context "filter flagged for review" do
+      before do
+        get :index, :review => true
+      end
+
+      it { should respond_with :success }
+
+      it "should return transactions flagged for review" do
+        expect(assigns(:transactions)).to match_array transactions_for_review
+      end
+    end
+
+    context "filter not flagged for review" do
+      before do
+        get :index, :review => false
+      end
+
+      it { should respond_with :success }
+
+      it "should return transactions not flagged for review" do
+        expect(assigns(:transactions)).to match_array sorted_transactions
       end
     end
   end

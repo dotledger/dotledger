@@ -25,6 +25,14 @@ class Transaction < ActiveRecord::Base
     includes(:sorted_transaction).where.not(:sorted_transactions => {:id => nil}).references(:sorted_transactions)
   }
 
+  scope :for_review, proc {
+    includes(:sorted_transaction).where(:sorted_transactions => {:review => true})
+  }
+
+  scope :not_for_review, proc {
+    includes(:sorted_transaction).where(:sorted_transactions => {:review => false})
+  }
+
   private
 
   def set_search

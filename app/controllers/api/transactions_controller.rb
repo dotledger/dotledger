@@ -15,6 +15,14 @@ module Api
         @transactions = @transactions.unsorted
       end
 
+      if filter_for_review
+        @transactions = @transactions.for_review
+      end
+
+      if filter_not_for_review
+        @transactions = @transactions.not_for_review
+      end
+
       @transactions = @transactions.order(:posted_at => :desc)
 
       @transactions = @transactions.page(page_number)
@@ -70,6 +78,14 @@ module Api
 
     def filter_unsorted
       !!(params[:unsorted].to_s =~ /true/i)
+    end
+
+    def filter_for_review
+      !!(params[:review].to_s =~ /true/i)
+    end
+
+    def filter_not_for_review
+      !!(params[:review].to_s =~ /false/i)
     end
 
     def transaction_params
