@@ -21,6 +21,7 @@ Rahani.module 'Views.SortingRules', ->
       @renderCategories()
 
     renderCategories: ->
+      @ui.category.empty()
       _.each @options.categories.groupBy('type'), (categories, label) =>
         $optgroup = $("<optgroup label='#{label}'></optgroup>")
         _.each categories, (category) =>
