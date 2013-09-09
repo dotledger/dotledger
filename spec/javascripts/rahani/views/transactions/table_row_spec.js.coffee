@@ -1,4 +1,22 @@
 describe "Rahani.Views.Transactions.TableRow", ->
+
+  sortedTransaction = ->
+    model = createModel()
+    model.set
+      sorted_transaction:
+        category_name: 'Test Category'
+        name: 'Test Sorted Transaction'
+    model
+
+  sortedForReviewTransaction = ->
+    model = createModel()
+    model.set
+      sorted_transaction:
+        review: true
+        category_name: 'Test Category'
+        name: 'Test Sorted Transaction'
+    model
+
   createModel = ->
     new Rahani.Models.Transaction
       search: 'Some Name'
@@ -7,9 +25,8 @@ describe "Rahani.Views.Transactions.TableRow", ->
       id: 1
 
   createView = (model = createModel()) ->
-    view = new Rahani.Views.Transactions.TableRow
+    new Rahani.Views.Transactions.TableRow
       model: model
-    view
 
   it "should be defined", ->
     expect(Rahani.Views.Transactions.TableRow).toBeDefined()
@@ -21,18 +38,6 @@ describe "Rahani.Views.Transactions.TableRow", ->
     view = createView()
     expect(view.render).not.toThrow()
 
-  it "renders the search if the transaction is unsorted", ->
-    view = createView().render()
-    expect(view.$el).toContainText('Some Name')
-
-  it "renders sorted name if the transaction is sorted", ->
-    model = createModel()
-    model.set
-      sorted_transaction:
-        name: 'Sorted Name'
-    view = createView(model).render()
-    expect(view.$el).toContainText('Sorted Name')
-
   it "renders the amount", ->
     view = createView().render()
     expect(view.$el).toContainText('$10.00')
@@ -41,14 +46,40 @@ describe "Rahani.Views.Transactions.TableRow", ->
     view = createView().render()
     expect(view.$el).toContain('time[datetime="2013-01-01"]')
 
-  it "renders unsorted if the transaction is unsorted", ->
-    view = createView().render()
-    expect(view.$el).toContainText('Unsorted')
+  describe "transaction unsorted", ->
+    it "renders sort button", ->
+      view = createView().render()
+      expect(view.$el).toContain('a.sort-transaction')
 
-  it "renders category name if the transaction is sorted", ->
-    model = createModel()
-    model.set
-      sorted_transaction:
-        category_name: 'Foobar'
-    view = createView(model).render()
-    expect(view.$el).toContainText('Foobar')
+    it "renders the search", ->
+      view = createView().render()
+      expect(view.$el).toContainText('Some Name')
+
+    it "renders unsorted", ->
+      view = createView().render()
+      expect(view.$el).toContainText('Unsorted')
+
+  describe "transaction flagged for review", ->
+    it "renders sort button", ->
+      view = createView(sortedForReviewTransaction()).render()
+      expect(view.$el).toContain('a.sort-transaction')
+      expect(view.$el.find('a.sort-transaction')).toHaveText('Edit')
+
+    it "renders ok button", ->
+      view = createView(sortedForReviewTransaction()).render()
+      expect(view.$el).toContain('a.review-okay-transaction')
+      expect(view.$el.find('a.review-okay-transaction')).toHaveText('Ok')
+
+  describe "transaction sorted", ->
+    it "renders sort button", ->
+      view = createView(sortedTransaction()).render()
+      expect(view.$el).toContain('a.edit-transaction')
+      expect(view.$el.find('a.edit-transaction')).toHaveText('Edit')
+
+    it "renders category name", ->
+      view = createView(sortedTransaction()).render()
+      expect(view.$el).toContainText('Test Category')
+
+    it "renders sorted transaction name", ->
+      view = createView(sortedTransaction()).render()
+      expect(view.$el).toContainText('Test Sorted Transaction')

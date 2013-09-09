@@ -5,39 +5,19 @@ Rahani.module 'Views.Transactions', ->
     events:
       'click .sort-transaction': 'showSortForm'
       'click .edit-transaction': 'showEditForm'
-      'click .review-transaction': 'review'
+      'click .review-okay-transaction': 'reviewOkay'
     showSortForm: ->
-      categories = new Rahani.Collections.Categories()
-      categories.fetch()
-      sorted_transaction = new Rahani.Models.SortedTransaction(
-        @model.get('sorted_transaction')
-      )
-      form = new Rahani.Views.SortedTransactions.Form
-        model: sorted_transaction
-        transaction: @model
-        categories: categories
-      Rahani.modalRegion.show(form)
-
+      form = @sortedTransactionForm()
       form.on 'save', =>
         form.close()
         @remove()
 
     showEditForm: ->
-      categories = new Rahani.Collections.Categories()
-      categories.fetch()
-      sorted_transaction = new Rahani.Models.SortedTransaction(
-        @model.get('sorted_transaction')
-      )
-      form = new Rahani.Views.SortedTransactions.Form
-        model: sorted_transaction
-        transaction: @model
-        categories: categories
-      Rahani.modalRegion.show(form)
-
+      form = @sortedTransactionForm()
       form.on 'save', =>
         form.close()
 
-    review: ->
+    reviewOkay: ->
       sorted_transaction = new Rahani.Models.SortedTransaction(
         @model.get('sorted_transaction')
       )
@@ -47,6 +27,23 @@ Rahani.module 'Views.Transactions', ->
       sorted_transaction.save {},
         success: =>
           @remove()
+
+    sortedTransactionForm: ->
+      categories = new Rahani.Collections.Categories()
+      categories.fetch()
+      sorted_transaction = new Rahani.Models.SortedTransaction(
+        @model.get('sorted_transaction')
+      )
+
+      sorted_transaction.set(review: false)
+
+      form = new Rahani.Views.SortedTransactions.Form
+        model: sorted_transaction
+        transaction: @model
+        categories: categories
+      Rahani.modalRegion.show(form)
+
+      form
 
     templateHelpers: ->
       name: =>
@@ -64,7 +61,10 @@ Rahani.module 'Views.Transactions', ->
           sorted_transaction = @model.get('sorted_transaction')
 
           if sorted_transaction.review
-            '<a href="#" class="review-transaction btn-xs btn btn-default" title="Review transaction">Ok</a>'
+            '<div class="btn-group">' +
+            '<a href="#" class="review-okay-transaction btn-xs btn btn-default" title="Review transaction">Ok</a>' +
+            '<a href="#" class="sort-transaction btn-xs btn btn-default" title="Review transaction">Edit</a>' +
+            '</div>'
           else
             '<a href="#" class="edit-transaction btn-xs btn btn-default" title="Sort transaction">Edit</a>'
         else
