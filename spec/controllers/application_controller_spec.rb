@@ -10,7 +10,8 @@ describe ApplicationController do
       expect(controller.gon.all_variables.keys).to match_array [
         "accounts",
         "account_types",
-        "category_types"
+        "category_types",
+        "goal_periods"
       ]
     end
   end

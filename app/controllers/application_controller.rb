@@ -7,5 +7,6 @@ class ApplicationController < ActionController::Base
     gon.accounts = Account.order(:name)
     gon.account_types = Account::ACCOUNT_TYPES
     gon.category_types = Category::CATEGORY_TYPES
+    gon.goal_periods = Goal::GOAL_PERIODS
   end
 end
