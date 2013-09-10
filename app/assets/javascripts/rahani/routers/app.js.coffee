@@ -20,6 +20,9 @@ Rahani.module 'Routers', ->
       'sorting-rules/new': 'newSortingRule'
       'sorting-rules/:id/edit': 'editSortingRule'
 
+      # Goals
+      'goals': 'listGoals'
+
     root: ->
       accounts = new Rahani.Collections.Accounts()
       dashboard = new Rahani.Views.Application.Dashboard()
@@ -179,3 +182,12 @@ Rahani.module 'Routers', ->
       sorting_rule.fetch
         success: ->
           Rahani.mainRegion.show(form)
+
+    listGoals: ->
+      goals = new Rahani.Collections.Goals()
+      goals.fetch
+        success: ->
+          list = new Rahani.Views.Goals.List
+            collection: goals
+
+          Rahani.mainRegion.show(list)
