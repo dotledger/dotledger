@@ -10,8 +10,5 @@
 
 <% _.each(categoryTypes(), function(type) { %>
   <h4><%= type.label %></h4>
-  <table class="table" id="<%= type.id %>">
-    <tbody>
-    </tbody>
-  </table>
+  <div class="list-group" id="<%= type.id %>"></div>
 <% }) %>

@@ -1,4 +1,5 @@
 Rahani.module 'Views.Categories', ->
   class @ListItem extends Backbone.Marionette.ItemView
-    tagName: 'tr'
+    tagName: 'div'
+    className: 'list-group-item'
     template: 'categories/list_item'

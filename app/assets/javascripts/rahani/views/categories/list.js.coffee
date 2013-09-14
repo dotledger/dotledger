@@ -11,4 +11,4 @@ Rahani.module 'Views.Categories', ->
 
     appendHtml: (collectionView, itemView, index)->
       list_id =  "category-type-#{_.string.underscored(itemView.model.get('type'))}"
-      collectionView.$("table##{list_id} tbody").append(itemView.el)
+      collectionView.$("div##{list_id}").append(itemView.el)
