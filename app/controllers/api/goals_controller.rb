@@ -2,6 +2,8 @@ module Api
   class GoalsController < BaseController
     def index
       @goals = Goal.includes(:category)
+      
+      @goals = @goals.order('categories.type ASC, categories.name')
 
       respond_with @goals
     end
