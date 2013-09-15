@@ -20,6 +20,12 @@ Rahani.module 'Views.Goals', ->
     events:
       'click button.save': 'save'
       'submit form': 'save'
+      'change input': 'reRender'
+      'change select': 'reRender'
+
+    reRender: ->
+      @update()
+      @render()
 
     update: ->
       data =
@@ -37,3 +43,14 @@ Rahani.module 'Views.Goals', ->
           @trigger 'save', @model
 
       false
+    templateHelpers: ->
+      monthAmount: =>
+        amount = switch @model.get('period')
+          when 'Month'
+            1 * @model.get('amount')
+          when 'Fortnight'
+            1 * @model.get('amount') * 13.0/6
+          when 'Week'
+            1 * @model.get('amount') * 13.0/3
+
+        accounting.formatMoney(amount)
