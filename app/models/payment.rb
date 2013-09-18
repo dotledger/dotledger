@@ -1,0 +1,23 @@
+require 'schedule_serializer'
+
+class Payment < ActiveRecord::Base
+  include IceCube
+
+  self.inheritance_column = nil
+
+  belongs_to :category
+
+  PAYMENT_TYPES = ['Spend', 'Receive']
+
+  validates :name, :presence => true, :uniqueness => true
+
+  validates :category, :presence => true
+
+  validates :amount, :presence => true
+
+  validates :schedule, :presence => true
+
+  validates :type, :presence => true, :inclusion => { :in => PAYMENT_TYPES }
+
+  serialize :schedule, ScheduleSerializer.new
+end

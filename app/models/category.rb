@@ -5,6 +5,8 @@ class Category < ActiveRecord::Base
 
   has_many :sorting_rules
 
+  has_many :payments
+
   has_one :goal
 
   CATEGORY_TYPES = ['Flexible', 'Essential', 'Income', 'Transfer']

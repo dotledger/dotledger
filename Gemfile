@@ -24,6 +24,8 @@ gem 'kaminari'
 
 gem 'active_model_serializers'
 
+gem 'ice_cube'
+
 gem 'bootstrap-sass',
   :github => 'thomas-mcdonald/bootstrap-sass',
   :branch => '3'

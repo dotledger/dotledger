@@ -23,12 +23,13 @@ describe Category do
 
   it { should have_many :sorting_rules }
 
+  it { should have_many :payments }
+
   it { should have_one :goal }
 
   it "should create a related goal" do
     expect {
       FactoryGirl.create :category
-
     }.to change(Goal, :count).by(1)
   end
 end
