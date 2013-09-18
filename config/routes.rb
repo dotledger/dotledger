@@ -7,6 +7,7 @@ Rahani::Application.routes.draw do
     resources :sorting_rules
     resources :statements, :only => [:index, :show, :create, :destroy]
     resources :transactions
+    resources :payments
   end
 
   if Rails.env.development? || Rails.env.test?
