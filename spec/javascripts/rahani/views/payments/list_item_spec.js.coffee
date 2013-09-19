@@ -32,3 +32,8 @@ describe "Rahani.Views.Payments.ListItem", ->
   it "renders the amount", ->
     view = createView().render()
     expect(view.$el).toContainText('$1,000.00')
+
+  it "renders the edit button", ->
+    view = createView().render()
+    expect(view.$el).toContainText('Edit')
+    expect(view.$el).toContain('a[href="/payments/1/edit"]')

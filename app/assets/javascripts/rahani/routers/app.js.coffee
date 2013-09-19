@@ -25,6 +25,8 @@ Rahani.module 'Routers', ->
 
       # Payments
       'payments': 'listPayments'
+      'payments/new': 'newPayment'
+      'payments/:id/edit': 'editPayment'
 
     root: ->
       accounts = new Rahani.Collections.Accounts()
@@ -203,3 +205,36 @@ Rahani.module 'Routers', ->
             collection: payments
 
           Rahani.mainRegion.show(list)
+
+    newPayment: ->
+      payment = new Rahani.Models.Payment()
+      categories = new Rahani.Collections.Categories()
+
+      categories.fetch()
+
+      form = new Rahani.Views.Payments.Form
+        model: payment
+        categories: categories
+
+      form.on 'save', (model)->
+        Backbone.history.navigate("/payments", trigger: true)
+
+      Rahani.mainRegion.show(form)
+
+    editPayment: (payment_id)->
+      payment = new Rahani.Models.Payment(id: payment_id)
+      categories = new Rahani.Collections.Categories()
+
+      categories.fetch()
+
+      form = new Rahani.Views.Payments.Form
+        model: payment
+        categories: categories
+
+      payment.fetch(
+        success: ->
+          Rahani.mainRegion.show(form)
+      )
+
+      form.on 'save', ->
+        Backbone.history.navigate("/payments", trigger: true)

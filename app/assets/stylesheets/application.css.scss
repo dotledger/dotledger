@@ -13,14 +13,20 @@ body.loading {
   margin-top: 6px;
 }
 
-table tr .edit-category,
-table tr .edit-sorting-rule {
-  visibility: hidden;
-}
+table {
+  tr {
+    .edit-payment,
+    .edit-sorting-rule {
+      visibility: hidden;
+    }
 
-table tr:hover .edit-category,
-table tr:hover .edit-sorting-rule {
-  visibility: visible;
+    &:hover {
+      .edit-payment,
+      .edit-sorting-rule {
+        visibility: visible;
+      }
+    }
+  }
 }
 
 .modal-dialog .modal-body .form-horizontal {
@@ -32,5 +38,9 @@ table.payments {
 
   th.amount {
     width: 10%;
+  }
+
+  th.edit {
+    width: 60px;
   }
 }
