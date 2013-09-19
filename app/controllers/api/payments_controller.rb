@@ -15,6 +15,8 @@ module Api
     def create
       @payment = Payment.new(payment_params)
 
+      @payment.schedule = ScheduleBuilder.new(params).build
+
       @payment.save
 
       respond_with @payment
@@ -22,6 +24,8 @@ module Api
 
     def update
       @payment = Payment.find(payment_id)
+
+      @payment.schedule = ScheduleBuilder.new(params).build
 
       @payment.update(payment_params)
 
