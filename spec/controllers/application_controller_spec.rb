@@ -11,7 +11,9 @@ describe ApplicationController do
         "accounts",
         "account_types",
         "category_types",
-        "goal_periods"
+        "goal_periods",
+        "payment_periods",
+        "payment_types"
       ]
     end
   end

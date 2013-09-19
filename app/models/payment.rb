@@ -9,6 +9,8 @@ class Payment < ActiveRecord::Base
 
   PAYMENT_TYPES = ['Spend', 'Receive']
 
+  PAYMENT_PERIODS = ['Day', 'Week', 'Month']
+
   validates :name, :presence => true, :uniqueness => true
 
   validates :category, :presence => true
