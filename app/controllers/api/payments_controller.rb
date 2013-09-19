@@ -1,7 +1,7 @@
 module Api
   class PaymentsController < BaseController
     def index
-      @payments = Payment.all
+      @payments = Payment.includes(:category)
 
       respond_with @payments
     end

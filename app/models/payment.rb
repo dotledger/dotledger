@@ -19,5 +19,7 @@ class Payment < ActiveRecord::Base
 
   validates :type, :presence => true, :inclusion => { :in => PAYMENT_TYPES }
 
+  delegate :name, :type, :to => :category, :prefix => true
+
   serialize :schedule, ScheduleSerializer.new
 end
