@@ -26,3 +26,11 @@ table tr:hover .edit-sorting-rule {
 .modal-dialog .modal-body .form-horizontal {
   margin: 0 20px;
 }
+
+table.payments {
+  table-layout: fixed;
+
+  th.amount {
+    width: 10%;
+  }
+}

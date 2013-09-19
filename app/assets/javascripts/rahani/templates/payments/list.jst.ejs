@@ -1,0 +1,21 @@
+<div class="page-header">
+  <h1>Payments</h1>
+</div>
+
+<% _.each(paymentDates(), function(date) { %>
+  <h4><%= moment(date).format('LL') %></h4>
+
+  <table class="table payments" id="payment-date-<%= moment(date).format('X') %>">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th class="amount">Spend</th>
+        <th class="amount">Receive</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    </tbody>
+  </table>
+<% }) %>

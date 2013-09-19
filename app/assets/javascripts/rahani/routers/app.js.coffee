@@ -23,6 +23,9 @@ Rahani.module 'Routers', ->
       # Goals
       'goals': 'listGoals'
 
+      # Payments
+      'payments': 'listPayments'
+
     root: ->
       accounts = new Rahani.Collections.Accounts()
       dashboard = new Rahani.Views.Application.Dashboard()
@@ -189,5 +192,14 @@ Rahani.module 'Routers', ->
         success: ->
           list = new Rahani.Views.Goals.List
             collection: goals
+
+          Rahani.mainRegion.show(list)
+
+    listPayments: ->
+      payments = new Rahani.Collections.Payments()
+      payments.fetch
+        success: ->
+          list = new Rahani.Views.Payments.List
+            collection: payments
 
           Rahani.mainRegion.show(list)
