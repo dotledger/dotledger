@@ -12,8 +12,8 @@ Rahani.module 'Views.Categories', ->
         $option = $("<option value='#{option}'>#{option}</option>")
         @ui.type.append($option)
 
-      @ui.name.val(@model.escape('name'))
-      @ui.type.val(@model.escape('type'))
+      @ui.name.val(@model.get('name'))
+      @ui.type.val(@model.get('type'))
 
     events:
       'click button.save': 'save'

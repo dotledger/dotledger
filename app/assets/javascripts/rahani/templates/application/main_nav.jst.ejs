@@ -6,7 +6,7 @@
     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts</a>
       <ul class="dropdown-menu">
         <% accounts().each(function(account) { %>
-          <li><a href="/accounts/<%= account.get('id') %>"><%= account.get('name') %></a></li>
+          <li><a href="/accounts/<%= account.get('id') %>"><%- account.get('name') %></a></li>
         <% }) %>
       </ul> 
     </li>

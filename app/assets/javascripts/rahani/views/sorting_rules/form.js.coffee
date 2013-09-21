@@ -15,9 +15,9 @@ Rahani.module 'Views.SortingRules', ->
       @options.categories.on 'all', =>
         @renderCategories()
 
-      @ui.name.val(@model.escape('name'))
-      @ui.contains.val(@model.escape('contains'))
-      @ui.review.val(@model.escape('review')).change()
+      @ui.name.val(@model.get('name'))
+      @ui.contains.val(@model.get('contains'))
+      @ui.review.val(@model.get('review')).change()
       @renderCategories()
 
     renderCategories: ->
@@ -29,7 +29,7 @@ Rahani.module 'Views.SortingRules', ->
           $optgroup.append($option)
         @ui.category.append($optgroup)
 
-      @ui.category.val(@model.escape('category_id'))
+      @ui.category.val(@model.get('category_id'))
 
     events:
       'click button.save': 'save'

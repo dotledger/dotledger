@@ -25,13 +25,13 @@ Rahani.module 'Views.Payments', ->
         $option = $("<option value='#{option}'>#{option}(s)</option>")
         @ui.repeat_period.append($option)
 
-      @ui.name.val(@model.escape('name'))
-      @ui.amount.val(@model.escape('amount'))
-      @ui.date.val(@model.escape('date'))
+      @ui.name.val(@model.get('name'))
+      @ui.amount.val(@model.get('amount'))
+      @ui.date.val(@model.get('date'))
       @ui.repeat.prop('checked', @model.get('repeat'))
-      @ui.repeat_interval.val(@model.escape('repeat_interval'))
-      @ui.repeat_period.val(@model.escape('repeat_period'))
-      @ui.type.val(@model.escape('type'))
+      @ui.repeat_interval.val(@model.get('repeat_interval'))
+      @ui.repeat_period.val(@model.get('repeat_period'))
+      @ui.type.val(@model.get('type'))
       @renderCategories()
       @toggleRepeat()
 
@@ -44,7 +44,7 @@ Rahani.module 'Views.Payments', ->
           $optgroup.append($option)
         @ui.category.append($optgroup)
 
-      @ui.category.val(@model.escape('category_id'))
+      @ui.category.val(@model.get('category_id'))
 
     events:
       'click button.save': 'save'

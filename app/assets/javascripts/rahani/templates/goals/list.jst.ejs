@@ -3,7 +3,7 @@
 </div>
 
 <% _.each(categoryTypes(), function(type) { %>
-  <h4><%= type.label %></h4>
+  <h4><%- type.label %></h4>
   <div class="list-group" id="<%= type.id %>"></div>
 <% }) %>
 

@@ -14,8 +14,8 @@ Rahani.module 'Views.Goals', ->
         $option = $("<option value='#{option}'>#{option}</option>")
         @ui.period.append($option)
 
-      @ui.amount.val(@model.escape('amount'))
-      @ui.period.val(@model.escape('period'))
+      @ui.amount.val(@model.get('amount'))
+      @ui.period.val(@model.get('period'))
 
     events:
       'click button.save': 'save'

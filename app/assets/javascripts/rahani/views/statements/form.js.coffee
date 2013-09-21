@@ -13,7 +13,7 @@ Rahani.module 'Views.Statements', ->
       new Rahani.Helpers.FormErrors(@model, @$el)
 
     templateHelpers: ->
-      accountName: @options.account.escape('name')
+      accountName: @options.account.get('name')
       accountId: @options.account.get('id')
 
     save: ->

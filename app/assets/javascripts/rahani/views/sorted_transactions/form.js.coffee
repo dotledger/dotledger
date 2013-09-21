@@ -20,8 +20,8 @@ Rahani.module 'Views.SortedTransactions', ->
           $optgroup.append($option)
         @ui.category.append($optgroup)
 
-      @ui.name.val(@model.escape('name') || @options.transaction.get('search'))
-      @ui.category.val(@model.escape('category_id'))
+      @ui.name.val(@model.get('name') || @options.transaction.get('search'))
+      @ui.category.val(@model.get('category_id'))
 
     events:
       'click button.save': 'save'
