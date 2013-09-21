@@ -1,0 +1,17 @@
+.pace .pace-progress {
+  background: $progress-bar-bg;
+  position: fixed;
+  z-index: 100;
+  top: $navbar-height - $progress-bar-height - 1px; // 1px for the navbar border
+  left: 0;
+  height: $progress-bar-height;
+}
+
+.pace .pace-progress {
+  @include transition-transform(0.5s);
+  @include translate(0%, 0%);
+}
+
+.pace.pace-active .pace-progress {
+  @include translate(0%, 100%);
+}

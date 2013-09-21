@@ -1,9 +1,6 @@
 @import "variables";
 @import "bootstrap";
-
-body.loading {
-  opacity: 0.5;
-}
+@import "pace";
 
 #main {
   margin-top: $navbar-height + 10px;
