@@ -19,6 +19,13 @@ Rahani.module 'Views.Categories', ->
       'click button.save': 'save'
       'submit form': 'save'
 
+    templateHelpers: ->
+      pageHeader: =>
+        if @model.has('name')
+          @model.get('name')
+        else
+          'New Category'
+
     update: ->
       data =
         name: @ui.name.val()

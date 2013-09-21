@@ -1,6 +1,6 @@
 <td><time datetime="<%= posted_at %>"><%= moment(posted_at).format("D MMM YYYY") %></time></td>
 <td><%- name() %></td>
-<td><%- category() %></td>
-<td><%= amount < 0 ? accounting.formatMoney(-amount) : '' %></td>
-<td><%= amount >= 0 ? accounting.formatMoney(amount) : '' %></td>
+<td><%= category() %></td>
+<td><%= spentAmount() %></td>
+<td><%= receivedAmount() %></td>
 <td><%= editSortReview() %></td>

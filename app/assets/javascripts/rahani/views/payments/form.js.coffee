@@ -51,6 +51,13 @@ Rahani.module 'Views.Payments', ->
       'submit form': 'save'
       'change input[name=repeat]': 'toggleRepeat'
 
+    templateHelpers: ->
+      pageHeader: =>
+        if @model.has('name')
+          @model.get('name')
+        else
+          'New Payment'
+
     toggleRepeat: ->
       if @ui.repeat.prop('checked')
         @ui.repeat_period.parents('.form-group').show()
@@ -58,7 +65,6 @@ Rahani.module 'Views.Payments', ->
       else
         @ui.repeat_period.parents('.form-group').hide()
         @ui.repeat_interval.parents('.form-group').hide()
-
 
     update: ->
       data =

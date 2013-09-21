@@ -21,6 +21,18 @@ Rahani.module 'Views.Accounts', ->
       'click button.save': 'save'
       'submit form': 'save'
 
+    templateHelpers: ->
+      pageHeader: =>
+        if @model.has('name')
+          @model.get('name')
+        else
+          'New Account'
+      cancelPath: =>
+        if @model.get('id')
+          "/accounts/#{@model.get('id')}"
+        else
+          "/" 
+
     update: ->
       data =
         name: @ui.name.val()

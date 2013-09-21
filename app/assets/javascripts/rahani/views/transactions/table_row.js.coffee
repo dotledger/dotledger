@@ -53,9 +53,15 @@ Rahani.module 'Views.Transactions', ->
           @model.get('search')
       category: =>
         if @model.has('sorted_transaction')
-          @model.get('sorted_transaction').category_name
+          _.escape(@model.get('sorted_transaction').category_name)
         else
           '<span class="text-muted">Unsorted</span>'
+      spentAmount: =>
+        if @model.get('amount') < 0
+          accounting.formatMoney(-@model.get('amount'))
+      receivedAmount: =>
+        if @model.get('amount') > 0
+          accounting.formatMoney(@model.get('amount'))
       editSortReview: =>
         if @model.has('sorted_transaction')
           sorted_transaction = @model.get('sorted_transaction')
