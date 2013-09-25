@@ -9,5 +9,22 @@ FactoryGirl.define do
     payee "Payee"
     posted_at DateTime.now
     account
+
+    factory :transaction_sorted do
+      after(:create) do |transaction|
+        FactoryGirl.create :sorted_transaction,
+          :transaction => transaction,
+          :name => transaction.search
+      end
+    end
+
+    factory :transaction_review do
+      after(:create) do |transaction|
+        FactoryGirl.create :sorted_transaction,
+          :review => true,
+          :transaction => transaction,
+          :name => transaction.search
+      end
+    end
   end
 end
