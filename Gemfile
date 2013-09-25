@@ -36,6 +36,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'jasmine-rails'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 gem 'coveralls', :require => false
