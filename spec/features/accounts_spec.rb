@@ -100,4 +100,72 @@ feature "Accounts", :truncate => true, :js => true do
       end
     end
   end
+
+  describe "Create" do
+    before do
+      visit "/accounts/new"
+    end
+
+    it "shows the heading" do
+      expect(page).to have_content "New Account"
+    end
+
+    it "shows the form" do
+      expect(page).to have_field "Name"
+      expect(page).to have_field "Number"
+      expect(page).to have_field "Type"
+      expect(page).to have_button "Save"
+      expect(page).to have_link "Cancel", :href => "/"
+    end
+
+    it "creates a new account" do
+      expect {
+        fill_in "Name", :with => "Test Account"
+        fill_in "Number", :with => "12-1234-1234567-123"
+        select "Savings", :from => "Type"
+
+        click_button "Save"
+
+        expect(page).to have_content "Test Account"
+      }.to change { Account.count }.by(1)
+    end
+  end
+
+  describe "Update" do
+    let(:account) do
+      FactoryGirl.create :account,
+        :name => "Test Account",
+        :balance => 2000.00,
+        :number => "12-3456-1234567-123",
+        :type => "Savings"
+    end
+
+    before do
+      visit "/accounts/#{account.id}/edit"
+    end
+
+    it "shows the heading" do
+      expect(page).to have_content "Test Account"
+    end
+
+    it "shows the form" do
+      expect(find_field("Name").value).to eq "Test Account"
+      expect(find_field("Number").value).to eq "12-3456-1234567-123"
+      expect(find_field("Type").value).to eq "Savings"
+      expect(page).to have_button "Save"
+      expect(page).to have_link "Cancel", :href => "/accounts/#{account.id}"
+    end
+
+    it "updates an existing account" do
+      expect {
+        fill_in "Name", :with => "New Account Name"
+
+        click_button "Save"
+
+        expect(page).to have_content "New Account Name"
+
+        account.reload
+      }.to change { account.name }.from("Test Account").to("New Account Name")
+    end
+  end
 end
