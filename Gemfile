@@ -14,7 +14,7 @@ gem 'jquery-rails'
 
 gem 'ofx'
 
-gem 'virtus'
+gem 'virtus', '~> 0.5'
 
 gem 'ejs'
 
@@ -26,9 +26,7 @@ gem 'active_model_serializers'
 
 gem 'ice_cube'
 
-gem 'bootstrap-sass',
-  :github => 'thomas-mcdonald/bootstrap-sass',
-  :branch => '3'
+gem 'bootstrap-sass', '~> 3.0.0.0.rc2'
 
 group :development, :test do
   gem 'rspec-rails'
