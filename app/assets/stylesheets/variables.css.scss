@@ -1,13 +1,20 @@
 // Bootstrap variables
 
-$navbar-default-bg: #64bfd5;
+$navbar-height: 50px;
+
+$navbar-default-bg: #6FCAC2;
 $navbar-default-color: #fff;
 
-$navbar-default-link-color: #0090a6;
+$navbar-default-link-color: darken($navbar-default-bg, 30%);
 $navbar-default-link-active-color: #fff;
 
 $navbar-default-brand-color: #fff;
 $navbar-default-brand-hover-color: #fff;
 
-$progress-bar-height: 5px;
+$progress-bar-height: 6px;
 $progress-bar-bg: #ddd;
+$progress-activity-size: $navbar-height / 2;
+
+$brand-primary: $navbar-default-link-color;
+
+$font-family-sans-serif: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
