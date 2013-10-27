@@ -6,30 +6,10 @@ Rahani is a Free and Open Source personal finance management tool.
 The aim of this project is to create a stable, FOSS alternative to [Xero Personal](https://www.xero.com/personal/)
 which is being [shut down](http://blog.xero.com/2013/08/winding-down-xero-personal-in-november-2014/) in november 2014.
 
-Dashboard
----------
+Screenshots
+-----------
 
-![Dashboard](https://raw.github.com/kaleworsley/rahani/master/doc/screenshots/dashboard.png)
-
-Account
--------
-
-![Account](https://raw.github.com/kaleworsley/rahani/master/doc/screenshots/account.png)
-
-Sort Transaction
-----------------
-
-![Sort Transaction](https://raw.github.com/kaleworsley/rahani/master/doc/screenshots/sort-transaction.png)
-
-Categories
-----------
-
-![Categories](https://raw.github.com/kaleworsley/rahani/master/doc/screenshots/categories.png)
-
-Sorting Rules
--------------
-
-![Sorting Rules](https://raw.github.com/kaleworsley/rahani/master/doc/screenshots/sorting-rules.png)
+See [SCREENSHOTS.md](SCREENSHOTS.md).
 
 License
 -------
