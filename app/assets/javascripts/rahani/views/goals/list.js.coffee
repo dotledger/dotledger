@@ -16,5 +16,4 @@ Rahani.module 'Views.Goals', ->
       collectionView.$("div##{list_id}").append(itemView.el)
 
     saveAll: ->
-      console.log 'test'
       @children.call('save')
