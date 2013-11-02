@@ -38,6 +38,7 @@ describe "Rahani.Views.Accounts.ListItem", ->
   it "renders unsorted transaction count if greater than 0", ->
     view = createView().render()
     expect(view.$el).toHaveText(/123 unsorted/)
+    expect(view.$el).toContain('a[href="/accounts/1/unsorted"]')
 
   it "does not render unsorted transaction count if 0", ->
     model = new Rahani.Models.Account
