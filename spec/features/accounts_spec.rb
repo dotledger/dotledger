@@ -46,6 +46,18 @@ feature "Accounts", :truncate => true, :js => true do
       expect(page).to have_content "12-3456-1234567-123"
     end
 
+    it "shows the sorted tab label" do
+      expect(page).to have_content "Sorted 1"
+    end
+
+    it "shows the review tab label" do
+      expect(page).to have_content "Review 1"
+    end
+
+    it "shows the unsorted tab label" do
+      expect(page).to have_content "Unsorted 1"
+    end
+
     describe "Unsorted Transactions" do
       before do
         click_on "Unsorted"

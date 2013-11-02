@@ -17,9 +17,9 @@
 </div>
 
 <ul class="nav nav-tabs nav-justified">
-  <li><a href="/accounts/<%= id %>/sorted" data-tab-id="sorted-transactions">Sorted</a></li>
-  <li><a href="/accounts/<%= id %>/review" data-tab-id="review-transactions">Review</a></li>
-  <li><a href="/accounts/<%= id %>/unsorted" data-tab-id="unsorted-transactions">Unsorted</a></li>
+  <li><a href="/accounts/<%= id %>/sorted" data-tab-id="sorted-transactions">Sorted <span class="badge pull-right"><%= sorted_transaction_count %></span></a></li>
+  <li><a href="/accounts/<%= id %>/review" data-tab-id="review-transactions">Review <span class="badge pull-right"><%= review_transaction_count %></span></a></li>
+  <li><a href="/accounts/<%= id %>/unsorted" data-tab-id="unsorted-transactions">Unsorted <span class="badge pull-right"><%= unsorted_transaction_count %></span></a></li>
 </ul>
 
 <div class="tab-content">
