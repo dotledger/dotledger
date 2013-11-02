@@ -6,9 +6,10 @@ Rahani.module 'Routers', ->
 
       # Accounts
       'accounts/new': 'newAccount'
-      'accounts/:account_id': 'showAccount'
       'accounts/:account_id/edit': 'editAccount'
       'accounts/:account_id/import': 'newStatement'
+      'accounts/:account_id': 'showAccount'
+      'accounts/:account_id/:tab': 'showAccount'
 
       # Categories
       'categories': 'listCategories'
@@ -39,51 +40,44 @@ Rahani.module 'Routers', ->
 
       Rahani.mainRegion.show(dashboard)
 
-    showAccount: (account_id)->
+    showAccount: (account_id, tab = 'sorted')->
       account = new Rahani.Models.Account(id: account_id)
-      sortedTransactions = new Rahani.Collections.Transactions()
-      reviewTransactions = new Rahani.Collections.Transactions()
-      unsortedTransactions = new Rahani.Collections.Transactions()
+      transactions = new Rahani.Collections.Transactions()
 
-      sortedTransactions.fetch
-        data:
-          account_id: account_id
-          sorted: true
-          review: false
+      switch tab
+        when 'sorted'
+          transactions.fetch
+            data:
+              account_id: account_id
+              sorted: true
+              review: false
 
-      reviewTransactions.fetch
-        data:
-          account_id: account_id
-          review: true
+        when 'review'
+          transactions.fetch
+            data:
+              account_id: account_id
+              review: true
 
-      unsortedTransactions.fetch
-        data:
-          account_id: account_id
-          unsorted: true
+        when 'unsorted'
+          transactions.fetch
+            data:
+              account_id: account_id
+              unsorted: true
 
       show = new Rahani.Views.Accounts.Show
         model: account
+        tab: tab
 
       account.fetch
         success: ->
 
           Rahani.mainRegion.show(show)
 
-          sortedView = new Rahani.Views.Transactions.Table(
-            collection: sortedTransactions
+          transactionsTableView = new Rahani.Views.Transactions.Table(
+            collection: transactions
           )
 
-          reviewView = new Rahani.Views.Transactions.Table(
-            collection: reviewTransactions
-          )
-
-          unsortedView = new Rahani.Views.Transactions.Table(
-            collection: unsortedTransactions
-          )
-
-          show.sortedTransactions.show(sortedView)
-          show.reviewTransactions.show(reviewView)
-          show.unsortedTransactions.show(unsortedView)
+          show.transactions.show(transactionsTableView)
 
     newAccount: ->
       account = new Rahani.Models.Account()

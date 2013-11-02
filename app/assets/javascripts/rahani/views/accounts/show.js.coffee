@@ -1,10 +1,9 @@
 Rahani.module 'Views.Accounts', ->
   class @Show extends Backbone.Marionette.Layout
+    initialize: (options)->
+      @tab = options.tab
     template: 'accounts/show'
     regions:
-      sortedTransactions: '#sorted-transactions'
-      reviewTransactions: '#review-transactions'
-      unsortedTransactions: '#unsorted-transactions'
+      transactions: '#transactions'
     onRender: ->
-      @$el.find('#sorted-transactions').addClass('active')
-      @$el.find('a[href="#sorted-transactions"]').parent().addClass('active')
+      @$el.find("a[data-tab-id='#{@tab}-transactions']").parent().addClass('active')
