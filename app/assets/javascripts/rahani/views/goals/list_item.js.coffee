@@ -8,6 +8,9 @@ Rahani.module 'Views.Goals', ->
       amount: 'input[name=amount]'
       period: 'select[name=period]'
 
+    initialize: ->
+      @hasChanged = false
+
     onRender: ->
       new Rahani.Helpers.FormErrors(@model, @$el)
       _.each RahaniData.goal_periods, (option)=>
@@ -34,13 +37,17 @@ Rahani.module 'Views.Goals', ->
 
       @model.set(data)
 
+      if @model.hasChanged()
+        @hasChanged = true
+
     save: ->
       @update()
 
-      if @model.hasChanged()
+      if @hasChanged
         @model.save {},
-        success: =>
-          @trigger 'save', @model
+          success: =>
+            @hasChanged = false
+            @trigger 'save', @model
 
       false
     templateHelpers: ->
