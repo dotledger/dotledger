@@ -1,11 +1,15 @@
 <div class="row">
   <div class="col-sm-5"><strong><%- category_name %></strong></div>
-  <div class="col-sm-3 input-group input-group-sm">
-    <span class="input-group-addon">$</span> 
-    <input class="form-control" type="number" name="amount" />
+  <div class="col-sm-3">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">$</span> 
+      <input class="form-control" type="number" name="amount" />
+    </div>
   </div>
-  <div class="col-sm-2 input-group input-group-sm">
-    <select class="form-control" name="period"></select>
+  <div class="col-sm-2">
+    <div class="input-group input-group-sm">
+      <select class="form-control" name="period"></select>
+    </div>
   </div>
   <div class="col-sm-2"><%= monthAmount() %></div>
 </div>
