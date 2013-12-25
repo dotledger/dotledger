@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 
 gem 'pg'
 
@@ -26,7 +26,7 @@ gem 'active_model_serializers'
 
 gem 'ice_cube'
 
-gem 'bootstrap-sass', '~> 3.0.0.0.rc2'
+gem 'bootstrap-sass', '~> 3.0'
 
 group :development, :test do
   gem 'rspec-rails'
