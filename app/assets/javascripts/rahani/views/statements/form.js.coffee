@@ -4,6 +4,7 @@ Rahani.module 'Views.Statements', ->
 
     ui:
       file: 'input[name=file]'
+      button: 'button'
 
     events:
       'click button.save': 'save'
@@ -17,6 +18,8 @@ Rahani.module 'Views.Statements', ->
       accountId: @options.account.get('id')
 
     save: ->
+      @ui.button.button('loading')
+
       # FIXME: this is a bit hacky
 
       data = new FormData()
@@ -34,9 +37,11 @@ Rahani.module 'Views.Statements', ->
         type: 'POST'
         success: =>
           @trigger 'save'
+          @ui.button.button('reset')
 
         error: (resp)=>
           if resp.status == 422
+            @ui.button.button('reset')
             errors = JSON.parse(resp.responseText).errors
             @model.validationError = errors
             @model.trigger "invalid", @model, errors, {validationError: errors}

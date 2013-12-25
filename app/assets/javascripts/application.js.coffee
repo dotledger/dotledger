@@ -1,8 +1,9 @@
 #= require pace
 #= require jquery
+#= require bootstrap/button
 #= require bootstrap/dropdown
-#= require bootstrap/tab
 #= require bootstrap/modal
+#= require bootstrap/tab
 #= require moment
 #= require accounting
 #= require underscore
