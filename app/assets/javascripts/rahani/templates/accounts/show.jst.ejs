@@ -12,8 +12,8 @@
     </div>
 
   </div>
-  <h1><%- name %> <small><%= type %></small></h1>
-  <small><%= number %></small>
+  <h1><%- name %> <small><%= accounting.formatMoney(balance) %></small></h1>
+  <small><%= type %> &mdash; <%= number %></small>
 </div>
 
 <ul class="nav nav-tabs nav-justified">

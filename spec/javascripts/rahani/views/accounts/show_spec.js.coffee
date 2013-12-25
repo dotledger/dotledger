@@ -8,6 +8,7 @@ describe "Rahani.Views.Accounts.Show", ->
       unsorted_transaction_count: 5
       sorted_transaction_count: 10
       review_transaction_count: 15
+      balance: 123.45
 
     view = new Rahani.Views.Accounts.Show
       model: model
@@ -34,6 +35,10 @@ describe "Rahani.Views.Accounts.Show", ->
   it "renders the account number", ->
     view = createView().render()
     expect(view.$el).toHaveText(/123/)
+
+  it "renders the account balance", ->
+    view = createView().render()
+    expect(view.$el).toHaveText(/\$123.45/)
 
   it "renders the account edit link", ->
     view = createView().render()
