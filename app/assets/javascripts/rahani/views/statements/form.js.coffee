@@ -28,22 +28,22 @@ Rahani.module 'Views.Statements', ->
         data.append('file', files[0])
       data.append('account_id', @options.account.get('id'))
 
-      $.ajax
-        url: '/api/statements'
-        data: data
-        cache: false
-        contentType: false
-        processData: false
-        type: 'POST'
-        success: =>
-          @trigger 'save'
-          @ui.button.button('reset')
-
-        error: (resp)=>
-          if resp.status == 422
+      Pace.track =>
+        $.ajax
+          url: '/api/statements'
+          data: data
+          cache: false
+          contentType: false
+          processData: false
+          type: 'POST'
+          success: =>
+            @trigger 'save'
             @ui.button.button('reset')
-            errors = JSON.parse(resp.responseText).errors
-            @model.validationError = errors
-            @model.trigger "invalid", @model, errors, {validationError: errors}
+          error: (resp)=>
+            if resp.status == 422
+              @ui.button.button('reset')
+              errors = JSON.parse(resp.responseText).errors
+              @model.validationError = errors
+              @model.trigger "invalid", @model, errors, {validationError: errors}
 
       false
