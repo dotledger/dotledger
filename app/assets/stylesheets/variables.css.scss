@@ -11,6 +11,10 @@ $navbar-default-link-active-color: #fff;
 $navbar-default-brand-color: #fff;
 $navbar-default-brand-hover-color: #fff;
 
+$navbar-default-toggle-border-color: darken($navbar-default-bg, 15%);
+$navbar-default-toggle-icon-bar-bg: $navbar-default-toggle-border-color;
+$navbar-default-toggle-hover-bg: lighten($navbar-default-bg, 10%);
+
 $progress-bar-height: 6px;
 $progress-bar-bg: #ddd;
 $progress-activity-size: $navbar-height / 2;

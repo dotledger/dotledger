@@ -1,18 +1,32 @@
 <div class="container">
-  <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-credit-card"></span> RAHANI</a>
-  <ul class="nav navbar-nav">
-  <li class="<%= activeClass('root') %>"><a href="/">Dashboard</a></li>
-  <li class="dropdown <%= activeClass('showAccount', 'newAccount', 'editAccount', 'importStatement') %>">
-    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts</a>
-      <ul class="dropdown-menu">
-        <% accounts().each(function(account) { %>
-          <li><a href="/accounts/<%= account.get('id') %>"><%- account.get('name') %></a></li>
-        <% }) %>
-      </ul> 
-    </li>
-  </li>
-  <li class="<%= activeClass('listGoals') %>"><a href="/goals">Goals</a></li>
-  <li class="<%= activeClass('listPayments', 'newPayment', 'editPayment') %>"><a href="/payments">Payments</a></li>
-  <li class="<%= activeClass('listCategories', 'newCategory', 'editCategory') %>"><a href="/categories">Categories</a></li>
-  <li class="<%= activeClass('listSortingRules', 'newSortingRule', 'editSortingRule') %>"><a href="/sorting-rules">Sorting Rules</a></li>
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-menu">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-credit-card"></span> RAHANI</a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="main-nav-menu">
+    <ul class="nav navbar-nav">
+      <li class="<%= activeClass('root') %>"><a href="/">Dashboard</a></li>
+      <li class="dropdown <%= activeClass('showAccount', 'newAccount', 'editAccount', 'importStatement') %>">
+        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts</a>
+          <ul class="dropdown-menu">
+            <% accounts().each(function(account) { %>
+              <li><a href="/accounts/<%= account.get('id') %>"><%- account.get('name') %></a></li>
+            <% }) %>
+          </ul> 
+        </li>
+      </li>
+      <li class="<%= activeClass('listGoals') %>"><a href="/goals">Goals</a></li>
+      <li class="<%= activeClass('listPayments', 'newPayment', 'editPayment') %>"><a href="/payments">Payments</a></li>
+      <li class="<%= activeClass('listCategories', 'newCategory', 'editCategory') %>"><a href="/categories">Categories</a></li>
+      <li class="<%= activeClass('listSortingRules', 'newSortingRule', 'editSortingRule') %>"><a href="/sorting-rules">Sorting Rules</a></li>
+    </ul>
+  </div>
 </div>
