@@ -9,7 +9,7 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Rahani::Application.config.secret_key_base = if ENV.has_key? 'SECRET_TOKEN'
+DotLedger::Application.config.secret_key_base = if ENV.has_key? 'SECRET_TOKEN'
   ENV['SECRET_TOKEN']
 else
   ('x' * 30)

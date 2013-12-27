@@ -17,9 +17,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: rahani_development
+  database: dot_ledger_development
   pool: 5
-  username: rahani
+  username: dot_ledger
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -46,15 +46,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: rahani_test
+  database: dot_ledger_test
   pool: 5
-  username: rahani
+  username: dot_ledger
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: rahani_production
+  database: dot_ledger_production
   pool: 5
-  username: rahani
+  username: dot_ledger
   password:

@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Rahani::Application.load_tasks
+DotLedger::Application.load_tasks

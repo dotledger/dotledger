@@ -1,7 +1,7 @@
 test:
   adapter: postgresql
   encoding: unicode
-  database: rahani_test
+  database: dot_ledger_test
   pool: 5
   username: postgres
   password:
