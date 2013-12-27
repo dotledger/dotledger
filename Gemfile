@@ -28,6 +28,8 @@ gem 'ice_cube'
 
 gem 'bootstrap-sass', '~> 3.0'
 
+gem 'font-awesome-rails'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
