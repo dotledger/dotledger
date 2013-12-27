@@ -40,5 +40,3 @@ group :development, :test do
   gem 'poltergeist'
   gem 'database_cleaner'
 end
-
-gem 'coveralls', :require => false

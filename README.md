@@ -1,4 +1,4 @@
-Dot Ledger [![Build Status](https://travis-ci.org/dotledger/dotledger.png?branch=master)](https://travis-ci.org/dotledger/dotledger) [![Code Climate](https://codeclimate.com/github/dotledger/dotledger.png)](https://codeclimate.com/github/dotledger/dotledger) [![Coverage Status](https://coveralls.io/repos/dotledger/dotledger/badge.png?branch=master)](https://coveralls.io/r/dotledger/dotledger?branch=master)
+Dot Ledger [![Build Status](https://travis-ci.org/dotledger/dotledger.png?branch=master)](https://travis-ci.org/dotledger/dotledger) [![Code Climate](https://codeclimate.com/github/dotledger/dotledger.png)](https://codeclimate.com/github/dotledger/dotledger)
 ==========
 
 **Dot Ledger** is a Free and Open Source personal finance management tool.
