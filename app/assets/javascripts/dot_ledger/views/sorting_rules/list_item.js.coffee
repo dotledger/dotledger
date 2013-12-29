@@ -7,3 +7,5 @@ DotLedger.module 'Views.SortingRules', ->
       flag: =>
         if @model.get('review')
           'Review'
+        else
+          ''
