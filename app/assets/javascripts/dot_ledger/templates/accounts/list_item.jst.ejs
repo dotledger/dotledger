@@ -2,6 +2,8 @@
   <strong><%= accounting.formatMoney(balance) %></strong>
   <% if (unsorted_transaction_count) { %>
     <div class="text-muted"><small><a href="/accounts/<%= id %>/unsorted"><%= unsorted_transaction_count %> unsorted</a></small></div>
+  <% } else { %>
+    <div class="text-success"><small>sorted! <span class="fa fa-check-circle"></span></small></div>
   <% } %>
 </span>
 <h4 class="list-group-item-heading"><a href="/accounts/<%= id %>"><%- name %></a></h4>
