@@ -18,31 +18,33 @@
   vertical-align: top;
 }
 
-table {
-  tr {
-    .edit-payment,
-    .edit-sorting-rule {
-      visibility: hidden;
-    }
-
-    &:hover {
+@media (min-width: $grid-float-breakpoint) {
+  table {
+    tr {
       .edit-payment,
       .edit-sorting-rule {
-        visibility: visible;
+        visibility: hidden;
+      }
+
+      &:hover {
+        .edit-payment,
+        .edit-sorting-rule {
+          visibility: visible;
+        }
       }
     }
   }
-}
 
-.list-group-item  {
-  .edit-category {
-    visibility: hidden;
-
-  }
-
-  &:hover {
+  .list-group-item  {
     .edit-category {
-      visibility: visible;
+      visibility: hidden;
+
+    }
+
+    &:hover {
+      .edit-category {
+        visibility: visible;
+      }
     }
   }
 }
