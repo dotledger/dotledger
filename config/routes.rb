@@ -8,6 +8,8 @@ DotLedger::Application.routes.draw do
     resources :statements, :only => [:index, :show, :create, :destroy]
     resources :transactions
     resources :payments
+
+    get 'statistics/activity_per_category'
   end
 
   if Rails.env.development? || Rails.env.test?

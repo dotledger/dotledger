@@ -30,15 +30,26 @@ DotLedger.module 'Routers', ->
       'payments/:id/edit': 'editPayment'
 
     root: ->
-      accounts = new DotLedger.Collections.Accounts()
       dashboard = new DotLedger.Views.Application.Dashboard()
 
+      DotLedger.mainRegion.show(dashboard)
+
+      category_statistics = new (Backbone.Collection.extend({
+        url: '/api/statistics/activity_per_category'
+      }))
+
+      category_statistics.fetch
+        success: ->
+          activity = new DotLedger.Views.Statistics.ActivityPerCategory.List(
+            collection: category_statistics
+          )
+          dashboard.panelB.show(activity)
+
+      accounts = new DotLedger.Collections.Accounts()
       accounts.fetch
         success: ->
           accounts_list = new DotLedger.Views.Accounts.List(collection: accounts)
           dashboard.panelA.show(accounts_list)
-
-      DotLedger.mainRegion.show(dashboard)
 
     showAccount: (account_id, tab = 'sorted')->
       account = new DotLedger.Models.Account(id: account_id)
