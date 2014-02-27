@@ -13,4 +13,10 @@
 #= require backbone.babysitter
 #= require backbone.wreqr
 #= require backbone.marionette
+#= require jsurl
 #= require dot_ledger
+
+_.mixin compactObject: (object) ->
+    _.each object, (v, k) ->
+      delete object[k] if _.isEmpty(object[k])
+    object

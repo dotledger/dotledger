@@ -29,6 +29,10 @@ DotLedger.module 'Routers', ->
       'payments/new': 'newPayment'
       'payments/:id/edit': 'editPayment'
 
+      # Search
+      'search/:params': 'search'
+      'search': 'search'
+
     root: ->
       dashboard = new DotLedger.Views.Application.Dashboard()
 
@@ -243,3 +247,36 @@ DotLedger.module 'Routers', ->
 
       form.on 'save', ->
         Backbone.history.navigate("/payments", trigger: true)
+
+    search: (params)->
+      search = new Backbone.Model(JSURL.parse(params))
+      categories = new DotLedger.Collections.Categories()
+      categories.fetch()
+
+      searchLayout = new DotLedger.Views.Search.Search()
+
+      searchFilters = new DotLedger.Views.Search.FilterForm
+        model: search
+        categories: categories
+
+      transactions = new DotLedger.Collections.Transactions()
+
+      searchSummary = new DotLedger.Views.Search.Summary(
+        collection: transactions
+      )
+
+      updateTransactions = (model)->
+        transactions.fetch(data: model.attributes)
+
+      searchFilters.on('search', updateTransactions)
+
+      updateTransactions(search)
+
+      searchResults = new DotLedger.Views.Transactions.Table(
+        collection: transactions
+      )
+
+      DotLedger.mainRegion.show(searchLayout)
+      searchLayout.searchFilters.show(searchFilters)
+      searchLayout.searchSummary.show(searchSummary)
+      searchLayout.searchResults.show(searchResults)

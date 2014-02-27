@@ -13,6 +13,10 @@ module Api
       params[:page]
     end
 
+    def set_metadata_header(metadata)
+      headers['X-Metadata'] = metadata.to_json
+    end
+
     def set_pagination_header(collection)
       first_page = collection.current_page == 1
       last_page = collection.current_page == collection.total_pages

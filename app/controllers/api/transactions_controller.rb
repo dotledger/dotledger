@@ -23,11 +23,30 @@ module Api
         @transactions = @transactions.not_for_review
       end
 
+      if filter_search_query
+        @transactions = @transactions.search_query(params[:query])
+      end
+
+      if filter_with_category
+        @transactions = @transactions.with_category(params[:category_id])
+      end
+
+      if filter_between_dates
+        @transactions = @transactions.between_dates(params[:date_from], params[:date_to])
+      end
+
       @transactions = @transactions.order(:posted_at => :desc)
 
       @transactions = @transactions.page(page_number)
 
       set_pagination_header(@transactions)
+
+      unpaged_transactions = @transactions.limit(nil).offset(nil)
+
+      set_metadata_header({
+        total_spent: -1 * unpaged_transactions.where(['amount < 0']).sum(:amount),
+        total_received: unpaged_transactions.where(['amount > 0']).sum(:amount)
+      })
 
       respond_with @transactions
     end
@@ -86,6 +105,28 @@ module Api
 
     def filter_not_for_review
       !!(params[:review].to_s =~ /false/i)
+    end
+
+    def filter_search_query
+      params.has_key?(:query)
+    end
+
+    def filter_with_category
+      params.has_key?(:category_id)
+    end
+
+    # FIXME: Yuck.
+    def filter_between_dates
+      if params.has_key?(:date_from) && params.has_key?(:date_to)
+        begin
+          Date.parse(params[:date_from])
+          Date.parse(params[:date_to])
+          return true
+        rescue ArgumentError
+          return false
+        end
+      end
+      false
     end
 
     def transaction_params
