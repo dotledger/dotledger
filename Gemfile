@@ -26,7 +26,7 @@ gem 'active_model_serializers'
 
 gem 'ice_cube'
 
-gem 'bootstrap-sass', '~> 3.0'
+gem 'bootstrap-sass'
 
 gem 'font-awesome-rails'
 
