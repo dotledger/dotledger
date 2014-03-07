@@ -10,6 +10,8 @@ DotLedger.module 'Collections', ->
       response
 
     nextPage: ->
+      @trigger 'page:change', @pagination.next_page
+
       if @pagination && @pagination.next_page?
         data = _.extend(
           @_fetch_options_data,
@@ -19,8 +21,10 @@ DotLedger.module 'Collections', ->
         @fetch
           reset: true
           data: data
-    
+
     previousPage: ->
+      @trigger 'page:change', @pagination.previous_page
+
       if @pagination && @pagination.previous_page?
         data = _.extend(
           @_fetch_options_data,

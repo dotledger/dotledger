@@ -69,14 +69,14 @@ describe "DotLedger.Views.Search.FilterForm", ->
     expect(model.set).toHaveBeenCalledWith
       query: 'coffee'
 
-  it "should navigate to the search page", ->
+  it "should trigger a search event", ->
     model = new Backbone.Model()
     view = createView(model).render()
 
     view.$el.find('input[name=query]').val('coffee')
 
-    spyOn(Backbone.history, 'navigate')
+    spyOn(view, 'trigger')
 
     view.search()
 
-    expect(Backbone.history.navigate).toHaveBeenCalledWith("/search/~(query~'coffee)")
+    expect(view.trigger).toHaveBeenCalledWith('search', model, 1)

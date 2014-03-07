@@ -42,8 +42,8 @@ DotLedger.module 'Views.Search', ->
       @model.clear()
       @model.set(_.compactObject(data))
 
-      @trigger 'search', @model
-
-      Backbone.history.navigate("/search/#{JSURL.stringify(@model.attributes)}")
+      # Note: The last argument, 1, is the page number.
+      # We want to jump back to the first page when we perform a new search.
+      @trigger 'search', @model, 1
 
       return false

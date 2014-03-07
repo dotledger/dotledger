@@ -44,4 +44,4 @@ describe "DotLedger.Views.Search.NavForm", ->
 
     view.search()
 
-    expect(Backbone.history.navigate).toHaveBeenCalledWith("/search/~(query~'coffee)", { trigger: true })
+    expect(Backbone.history.navigate).toHaveBeenCalledWith("/search/~(query~'coffee)/page-1", { trigger: true })

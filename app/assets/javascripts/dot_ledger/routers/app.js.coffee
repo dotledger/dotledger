@@ -10,6 +10,7 @@ DotLedger.module 'Routers', ->
       'accounts/:account_id/import': 'newStatement'
       'accounts/:account_id': 'showAccount'
       'accounts/:account_id/:tab': 'showAccount'
+      'accounts/:account_id/:tab/page-:page_number': 'showAccount'
 
       # Categories
       'categories': 'listCategories'
@@ -18,6 +19,7 @@ DotLedger.module 'Routers', ->
 
       # Sorting Rules
       'sorting-rules': 'listSortingRules'
+      'sorting-rules/page-:page_number': 'listSortingRules'
       'sorting-rules/new': 'newSortingRule'
       'sorting-rules/:id/edit': 'editSortingRule'
 
@@ -31,6 +33,7 @@ DotLedger.module 'Routers', ->
 
       # Search
       'search/:params': 'search'
+      'search/:params/page-:page_number': 'search'
       'search': 'search'
 
     root: ->
@@ -55,9 +58,14 @@ DotLedger.module 'Routers', ->
           accounts_list = new DotLedger.Views.Accounts.List(collection: accounts)
           dashboard.panelA.show(accounts_list)
 
-    showAccount: (account_id, tab = 'sorted')->
+    showAccount: (account_id, tab = 'sorted', page_number = 1)->
       account = new DotLedger.Models.Account(id: account_id)
       transactions = new DotLedger.Collections.Transactions()
+
+      Backbone.history.navigate("/accounts/#{account_id}/#{tab}/page-#{page_number}")
+
+      transactions.on 'page:change', (page)->
+        Backbone.history.navigate("/accounts/#{account_id}/#{tab}/page-#{page}")
 
       switch tab
         when 'sorted'
@@ -66,18 +74,21 @@ DotLedger.module 'Routers', ->
               account_id: account_id
               sorted: true
               review: false
+              page: page_number
 
         when 'review'
           transactions.fetch
             data:
               account_id: account_id
               review: true
+              page: page_number
 
         when 'unsorted'
           transactions.fetch
             data:
               account_id: account_id
               unsorted: true
+              page: page_number
 
       show = new DotLedger.Views.Accounts.Show
         model: account
@@ -127,7 +138,7 @@ DotLedger.module 'Routers', ->
       form.on 'save', ->
         Backbone.history.navigate("/accounts/#{account_id}", trigger: true)
 
-    listCategories: ->
+    listCategories: (page_number = 1) ->
       categories = new DotLedger.Collections.Categories()
       categories.fetch
         success: ->
@@ -156,14 +167,21 @@ DotLedger.module 'Routers', ->
         success: ->
           DotLedger.mainRegion.show(form)
 
-    listSortingRules: ->
+    listSortingRules: (page_number = 1)->
       sorting_rules = new DotLedger.Collections.SortingRules()
       sorting_rules.fetch
+        data:
+          page: page_number
         success: ->
           list = new DotLedger.Views.SortingRules.List
             collection: sorting_rules
 
           DotLedger.mainRegion.show(list)
+
+      Backbone.history.navigate("/sorting-rules/page-#{page_number}")
+
+      sorting_rules.on 'page:change', (page)->
+        Backbone.history.navigate("/sorting-rules/page-#{page}")
 
     newSortingRule: ->
       sorting_rule = new DotLedger.Models.SortingRule()
@@ -248,7 +266,7 @@ DotLedger.module 'Routers', ->
       form.on 'save', ->
         Backbone.history.navigate("/payments", trigger: true)
 
-    search: (params)->
+    search: (params = JSURL.stringify({}), page_number = 1)->
       search = new Backbone.Model(JSURL.parse(params))
       categories = new DotLedger.Collections.Categories()
       categories.fetch()
@@ -261,12 +279,19 @@ DotLedger.module 'Routers', ->
 
       transactions = new DotLedger.Collections.Transactions()
 
+      Backbone.history.navigate("/search/#{params}/page-#{page_number}")
+
+      transactions.on 'page:change', (page)->
+        Backbone.history.navigate("/search/#{params}/page-#{page}")
+
       searchSummary = new DotLedger.Views.Search.Summary(
         collection: transactions
       )
 
-      updateTransactions = (model)->
-        transactions.fetch(data: model.attributes)
+      updateTransactions = (model, page = page_number)->
+        params = JSURL.stringify(model.attributes)
+        Backbone.history.navigate("/search/#{params}/page-#{page}")
+        transactions.fetch(data: _.extend(model.attributes, page: page))
 
       searchFilters.on('search', updateTransactions)
 

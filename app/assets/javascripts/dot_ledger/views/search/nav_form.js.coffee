@@ -19,6 +19,7 @@ DotLedger.module 'Views.Search', ->
 
         @trigger 'search', @model
 
-        Backbone.history.navigate("/search/#{JSURL.stringify(@model.attributes)}", trigger: true)
+        # FIXME: This is yuck.
+        Backbone.history.navigate("/search/#{JSURL.stringify(@model.attributes)}/page-1", trigger: true)
 
       return false
