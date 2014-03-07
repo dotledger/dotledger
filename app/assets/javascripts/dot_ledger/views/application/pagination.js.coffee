@@ -5,10 +5,14 @@ DotLedger.module 'Views.Application', ->
 
     events:
       'click .next': ->
-        @collection.nextPage()
+        if @collection.pagination && @collection.pagination.next_page?
+          @collection.nextPage()
+        false
 
       'click .previous': ->
-        @collection.previousPage()
+        if @collection.pagination && @collection.pagination.previous_page?
+          @collection.previousPage()
+        false
 
     initialize: ->
       @collection.on 'reset sync', =>
