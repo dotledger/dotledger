@@ -56,6 +56,7 @@ describe "DotLedger.Views.SortedTransactions.Form", ->
     expect(view.$el).toContain('optgroup[label=Flexible]')
     expect(view.$el).toContain('optgroup[label=Income]')
     expect(view.$el).toContain('optgroup[label=Transfer]')
+    expect(view.$el).toContain('input[name=tags]')
 
   it "renders the heading", ->
     view = createView().render()
@@ -67,6 +68,7 @@ describe "DotLedger.Views.SortedTransactions.Form", ->
 
     view.$el.find('input[name=name]').val('New Name')
     view.$el.find('select[name=category]').val('11')
+    view.$el.find('input[name=tags]').val('Foo, Bar, Baz')
 
     spyOn(model, 'set')
 
@@ -77,13 +79,16 @@ describe "DotLedger.Views.SortedTransactions.Form", ->
       category_id: '11'
       account_id: 123
       transaction_id: 345
+      tags: 'Foo, Bar, Baz'
 
   it "renders the form fields with the model values", ->
     model = new DotLedger.Models.SortingRule
       name: 'Foobar'
       category_id: '22'
+      tag_list: 'Foo, Bar, Baz'
 
     view = createView(model).render()
 
     expect(view.$el.find('input[name=name]')).toHaveValue('Foobar')
     expect(view.$el.find('select[name=category]')).toHaveValue('22')
+    expect(view.$el.find('input[name=tags]')).toHaveValue('Foo, Bar, Baz')
