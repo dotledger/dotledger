@@ -17,5 +17,6 @@ Backbone.Marionette.Renderer.render = (template, data)->
 
 DotLedger.addRegions
   headerRegion: "header",
+  notificationsRegion: "#notifications",
   mainRegion: "#main"
   footerRegion: "footer"
