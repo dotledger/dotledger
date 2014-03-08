@@ -21,6 +21,9 @@ DotLedger.module 'Views.Search', ->
       @ui.query.val(@model.get('query'))
       @ui.date_from.val(@model.get('date_from'))
       @ui.date_to.val(@model.get('date_to'))
+      @ui.date_from.datepicker(format: 'yyyy-mm-dd')
+      @ui.date_to.datepicker(format: 'yyyy-mm-dd')
+
       @renderCategories()
       @renderTags()
 

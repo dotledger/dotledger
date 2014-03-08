@@ -5,6 +5,7 @@
 #= require bootstrap/dropdown
 #= require bootstrap/modal
 #= require bootstrap/tab
+#= require bootstrap-datepicker
 #= require moment
 #= require accounting
 #= require underscore

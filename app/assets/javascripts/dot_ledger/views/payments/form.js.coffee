@@ -28,6 +28,7 @@ DotLedger.module 'Views.Payments', ->
       @ui.name.val(@model.get('name'))
       @ui.amount.val(@model.get('amount'))
       @ui.date.val(@model.get('date'))
+      @ui.date.datepicker(format: 'yyyy-mm-dd')
       @ui.repeat.prop('checked', @model.get('repeat'))
       @ui.repeat_interval.val(@model.get('repeat_interval'))
       @ui.repeat_period.val(@model.get('repeat_period'))
