@@ -8,6 +8,7 @@ DotLedger::Application.routes.draw do
     resources :statements, :only => [:index, :show, :create, :destroy]
     resources :transactions
     resources :payments
+    resources :tags, :only => [:index]
 
     get 'statistics/activity_per_category'
   end
