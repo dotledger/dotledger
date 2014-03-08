@@ -22,9 +22,25 @@ describe "DotLedger.Views.Search.FilterForm", ->
         type: 'Transfer'
       }
     ]
+
+    tags = new DotLedger.Collections.Tags [
+      {
+        id: 55
+        name: 'Tag One'
+      }
+      {
+        id: 66
+        name: 'Tag Two'
+      }
+      {
+        id: 77
+        name: 'Tag Three'
+      }
+    ]
     view = new DotLedger.Views.Search.FilterForm
       model: model
       categories: categories
+      tags: tags
 
     view
 
@@ -52,6 +68,10 @@ describe "DotLedger.Views.Search.FilterForm", ->
     expect(view.$el).toContain('optgroup[label=Flexible]')
     expect(view.$el).toContain('optgroup[label=Income]')
     expect(view.$el).toContain('optgroup[label=Transfer]')
+    expect(view.$el).toContain('select[name=tags]')
+    expect(view.$el).toContain('option[value=55]')
+    expect(view.$el).toContain('option[value=66]')
+    expect(view.$el).toContain('option[value=77]')
     expect(view.$el).toContain('button.search')
 
   it "should clear the model and set the query", ->

@@ -35,6 +35,10 @@ module Api
         @transactions = @transactions.between_dates(params[:date_from], params[:date_to])
       end
 
+      if filter_with_tags
+        @transactions = @transactions.with_tags(params[:tag_ids])
+      end
+
       @transactions = @transactions.order(:posted_at => :desc)
 
       @transactions = @transactions.page(page_number)
@@ -113,6 +117,10 @@ module Api
 
     def filter_with_category
       params.has_key?(:category_id)
+    end
+
+    def filter_with_tags
+      params.has_key?(:tag_ids)
     end
 
     # FIXME: Yuck.

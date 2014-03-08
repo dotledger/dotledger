@@ -54,6 +54,12 @@ class Transaction < ActiveRecord::Base
     includes(:sorted_transaction).where(:posted_at => (Date.parse(date_from)..Date.parse(date_to)))
   }
 
+  scope :with_tags, proc {|tag_ids|
+    tag_ids = Array(tag_ids).flatten.map(&:to_i)
+    includes(:sorted_transaction).
+    where([tag_ids.map { "? = ANY(sorted_transactions.tag_ids)" }.join(' OR '), *tag_ids])
+  }
+
   private
 
   def set_search

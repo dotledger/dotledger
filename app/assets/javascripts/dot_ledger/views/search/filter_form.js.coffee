@@ -7,6 +7,7 @@ DotLedger.module 'Views.Search', ->
       category: 'select[name=category]'
       date_from: 'input[name=date_from]'
       date_to: 'input[name=date_to]'
+      tags: 'select[name=tags]'
 
     events:
       'click button.search': 'search'
@@ -15,10 +16,13 @@ DotLedger.module 'Views.Search', ->
     onRender: ->
       @options.categories.on 'all', =>
         @renderCategories()
+      @options.tags.on 'all', =>
+        @renderTags()
       @ui.query.val(@model.get('query'))
       @ui.date_from.val(@model.get('date_from'))
       @ui.date_to.val(@model.get('date_to'))
       @renderCategories()
+      @renderTags()
 
     renderCategories: ->
       @ui.category.empty()
@@ -32,12 +36,22 @@ DotLedger.module 'Views.Search', ->
 
       @ui.category.val(@model.get('category_id'))
 
+    renderTags: ->
+      @ui.tags.empty()
+      @ui.tags.append('<option value="">Any</option>')
+      @options.tags.each (tag) =>
+        $option = $("<option value='#{tag.get('id')}'>#{tag.get('name')}</option>")
+        @ui.tags.append($option)
+
+      @ui.tags.val(@model.get('tag_ids'))
+
     search: ->
       data = {}
       data['query'] = @ui.query.val()
       data['category_id'] = @ui.category.val()
       data['date_from'] = @ui.date_from.val()
       data['date_to'] = @ui.date_to.val()
+      data['tag_ids'] = @ui.tags.val()
 
       @model.clear()
       @model.set(_.compactObject(data))
