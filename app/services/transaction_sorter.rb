@@ -11,7 +11,8 @@ class TransactionSorter
         :name => name,
         :category_id => rule.category_id,
         :account_id => @transaction.account_id,
-        :review => rule.review
+        :review => rule.review,
+        :tag_ids => rule.tag_ids
       )
     end
   end

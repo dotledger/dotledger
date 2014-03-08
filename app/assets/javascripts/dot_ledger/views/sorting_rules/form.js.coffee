@@ -8,6 +8,7 @@ DotLedger.module 'Views.SortingRules', ->
       contains: 'input[name=contains]'
       category: 'select[name=category]'
       review: 'select[name=review]'
+      tags: 'input[name=tags]'
 
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
@@ -18,6 +19,7 @@ DotLedger.module 'Views.SortingRules', ->
       @ui.name.val(@model.get('name'))
       @ui.contains.val(@model.get('contains'))
       @ui.review.val(@model.get('review')).change()
+      @ui.tags.val(@model.get('tag_list'))
       @renderCategories()
 
     renderCategories: ->
@@ -48,6 +50,7 @@ DotLedger.module 'Views.SortingRules', ->
         contains: @ui.contains.val()
         category_id: @ui.category.val()
         review: @ui.review.val()
+        tags: @ui.tags.val()
 
       @model.set(data)
 
