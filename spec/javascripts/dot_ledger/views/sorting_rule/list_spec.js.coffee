@@ -9,6 +9,7 @@ describe "DotLedger.Views.SortingRules.List", ->
           category_id: 1
           category_name: 'Some Category'
           review: true
+          tag_list: 'Foo, Bar'
         }
         {
           id: 2
@@ -17,6 +18,7 @@ describe "DotLedger.Views.SortingRules.List", ->
           category_id: 2
           category_name: 'Some Other Category'
           review: false
+          tag_list: 'Thing, Other'
         }
       ]
     )
@@ -52,6 +54,11 @@ describe "DotLedger.Views.SortingRules.List", ->
   it "renders review", ->
     view = createView().render()
     expect(view.$el).toHaveText(/Review/)
+
+  it "renders the tags", ->
+    view = createView().render()
+    expect(view.$el).toHaveText(/Foo, Bar/)
+    expect(view.$el).toHaveText(/Thing, Other/)
 
   it "renders the heading", ->
     view = createView().render()

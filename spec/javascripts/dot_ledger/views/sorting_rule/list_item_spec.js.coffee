@@ -7,6 +7,7 @@ describe "DotLedger.Views.SortingRules.ListItem", ->
       category_id: 1
       review: true
       id: 1
+      tag_list: 'Foo, Bar, Baz'
 
     view = new DotLedger.Views.SortingRules.ListItem
       model: model
@@ -37,3 +38,7 @@ describe "DotLedger.Views.SortingRules.ListItem", ->
   it "renders review", ->
     view = createView().render()
     expect(view.$el).toHaveText(/Review/)
+
+  it "renders the tag list", ->
+    view = createView().render()
+    expect(view.$el).toHaveText(/Foo, Bar, Baz/)
