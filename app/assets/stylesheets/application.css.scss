@@ -7,8 +7,8 @@
 @import "pace";
 @import "theme";
 
-#main {
-  margin-top: $navbar-height + 10px;
+#notifications {
+  padding-top: $navbar-height + 20px;
 }
 
 .form-horizontal input[type=file] {

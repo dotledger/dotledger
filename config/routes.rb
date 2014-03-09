@@ -6,7 +6,11 @@ DotLedger::Application.routes.draw do
     resources :sorted_transactions
     resources :sorting_rules
     resources :statements, :only => [:index, :show, :create, :destroy]
-    resources :transactions
+    resources :transactions do
+      collection do
+        post :sort
+      end
+    end
     resources :payments
     resources :tags, :only => [:index]
 

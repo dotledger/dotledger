@@ -119,7 +119,7 @@ describe Api::TransactionsController do
 
   describe "POST create" do
     def valid_request
-      attributes = FactoryGirl.attributes_for(:transaction) 
+      attributes = FactoryGirl.attributes_for(:transaction)
       attributes.merge!(:account_id => account.id)
       post :create, attributes
     end
@@ -170,6 +170,23 @@ describe Api::TransactionsController do
       expect {
         valid_request
       }.to change(Transaction, :count).by(-1)
+    end
+  end
+
+  describe "POST sort" do
+    # FIXME: this needs more tests
+
+    it "should respond with 200" do
+      post :sort
+      expect(subject).to respond_with(:success)
+    end
+
+    context "with account_id" do
+      let(:account) { FactoryGirl.create :account }
+      it "should respond with 200" do
+        post :sort, :account_id => account.id
+        expect(subject).to respond_with(:success)
+      end
     end
   end
 end

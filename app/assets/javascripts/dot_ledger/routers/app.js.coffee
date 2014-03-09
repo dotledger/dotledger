@@ -6,6 +6,7 @@ DotLedger.module 'Routers', ->
 
       # Accounts
       'accounts/new': 'newAccount'
+      'accounts/:account_id/sort': 'sortAccount'
       'accounts/:account_id/edit': 'editAccount'
       'accounts/:account_id/import': 'newStatement'
       'accounts/:account_id': 'showAccount'
@@ -113,6 +114,16 @@ DotLedger.module 'Routers', ->
         Backbone.history.navigate("/accounts/#{model.get('id')}", trigger: true)
 
       DotLedger.mainRegion.show(form)
+
+    sortAccount: (account_id)->
+      $.ajax
+        url: "/api/transactions/sort"
+        data:
+          account_id: account_id
+        type: 'POST'
+        success: (response)=>
+          DotLedger.Helpers.Notification.success(response.message)
+          @showAccount(account_id)
 
     editAccount: (account_id)->
       account = new DotLedger.Models.Account(id: account_id)

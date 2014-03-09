@@ -85,6 +85,16 @@ module Api
       respond_with @transaction
     end
 
+    def sort
+      sorted_transactions = sort_base.select do |t|
+        sorter = TransactionSorter.new(t)
+        sorter.sort
+        sorter.sorted_transaction.present?
+      end
+
+      respond_with message: "Sorted #{sorted_transactions.size} transactions."
+    end
+
     private
 
     def transaction_id
@@ -139,6 +149,14 @@ module Api
 
     def transaction_params
       params.permit(:amount, :fit_id, :memo, :name, :payee, :posted_at, :ref_number, :type, :account_id)
+    end
+
+    def sort_base
+      if params.has_key?(:account_id)
+        Account.find(params[:account_id]).transactions.unsorted
+      else
+        Transaction.unsorted
+      end
     end
   end
 end
