@@ -7,6 +7,9 @@ DotLedger.module 'Views.Application', ->
       nav_search: '#nav-search'
 
     initialize: ->
+      @options.accounts.on 'all', =>
+        @render()
+
       @active = 'root'
       Backbone.history.on 'route', (app, route, args)=>
         @active = route
