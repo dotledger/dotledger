@@ -15,6 +15,13 @@ DotLedger::Application.routes.draw do
     resources :tags, :only => [:index]
 
     get 'statistics/activity_per_category'
+
+    get 'options' => 'options#options'
+    get 'options/account_types'
+    get 'options/category_types'
+    get 'options/goal_periods'
+    get 'options/payment_types'
+    get 'options/payment_periods'
   end
 
   if Rails.env.development? || Rails.env.test?

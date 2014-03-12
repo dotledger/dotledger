@@ -8,8 +8,7 @@
 #= require_tree ./views
 #= require_tree ./initializers
 
-# Add `loading` class to the body if ajax requests take longer than 150ms
-
+@DotLedgerData = {}
 @DotLedger = new Marionette.Application()
 
 Backbone.Marionette.Renderer.render = (template, data)->
