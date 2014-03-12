@@ -14,16 +14,12 @@ DotLedger.module 'Views.Payments', ->
 
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
+
       @options.categories.on 'all', =>
         @renderCategories()
 
-      _.each DotLedgerData.payment_types, (option)=>
-        $option = $("<option value='#{option}'>#{option}</option>")
-        @ui.type.append($option)
-
-      _.each DotLedgerData.payment_periods, (option)=>
-        $option = $("<option value='#{option}'>#{option}(s)</option>")
-        @ui.repeat_period.append($option)
+      DotLedger.on 'options:change', @renderPaymentTypes, this
+      DotLedger.on 'options:change', @renderPaymentPeriods, this
 
       @ui.name.val(@model.get('name'))
       @ui.amount.val(@model.get('amount'))
@@ -32,9 +28,25 @@ DotLedger.module 'Views.Payments', ->
       @ui.repeat.prop('checked', @model.get('repeat'))
       @ui.repeat_interval.val(@model.get('repeat_interval'))
       @ui.repeat_period.val(@model.get('repeat_period'))
-      @ui.type.val(@model.get('type'))
+
+      @renderPaymentTypes()
+      @renderPaymentPeriods()
       @renderCategories()
       @toggleRepeat()
+
+    renderPaymentTypes: (data = DotLedgerData)->
+      @ui.type.empty()
+      _.each data.payment_types, (option)=>
+        $option = $("<option value='#{option}'>#{option}</option>")
+        @ui.type.append($option)
+      @ui.type.val(@model.get('type'))
+
+    renderPaymentPeriods: (data = DotLedgerData)->
+      @ui.repeat_period.empty()
+      _.each data.payment_periods, (option)=>
+        $option = $("<option value='#{option}'>#{option}(s)</option>")
+        @ui.repeat_period.append($option)
+      @ui.repeat_period.val(@model.get('repeat_period'))
 
     renderCategories: ->
       @ui.category.empty()

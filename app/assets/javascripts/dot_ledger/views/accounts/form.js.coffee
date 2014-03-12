@@ -9,12 +9,18 @@ DotLedger.module 'Views.Accounts', ->
 
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
-      _.each DotLedgerData.account_types, (option)=>
-        $option = $("<option value='#{option}'>#{option}</option>")
-        @ui.type.append($option)
+
+      DotLedger.on 'options:change', @renderAccountTypes, this
 
       @ui.name.val(@model.get('name'))
       @ui.number.val(@model.get('number'))
+      @renderAccountTypes()
+
+    renderAccountTypes: (data = DotLedgerData)->
+      @ui.type.empty()
+      _.each data.account_types, (option)=>
+        $option = $("<option value='#{option}'>#{option}</option>")
+        @ui.type.append($option)
       @ui.type.val(@model.get('type'))
 
     events:
@@ -31,7 +37,7 @@ DotLedger.module 'Views.Accounts', ->
         if @model.get('id')
           "/accounts/#{@model.get('id')}"
         else
-          "/" 
+          "/"
 
     update: ->
       data =

@@ -8,11 +8,18 @@ DotLedger.module 'Views.Categories', ->
 
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
-      _.each DotLedgerData.category_types, (option)=>
-        $option = $("<option value='#{option}'>#{option}</option>")
-        @ui.type.append($option)
+
+      DotLedger.on 'options:change', @renderCategoryTypes, this
 
       @ui.name.val(@model.get('name'))
+
+      @renderCategoryTypes()
+
+    renderCategoryTypes: (data = DotLedgerData)->
+      @ui.type.empty()
+      _.each data.category_types, (option)=>
+        $option = $("<option value='#{option}'>#{option}</option>")
+        @ui.type.append($option)
       @ui.type.val(@model.get('type'))
 
     events:

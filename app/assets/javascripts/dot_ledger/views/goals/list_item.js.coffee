@@ -13,11 +13,18 @@ DotLedger.module 'Views.Goals', ->
 
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
-      _.each DotLedgerData.goal_periods, (option)=>
-        $option = $("<option value='#{option}'>#{option}</option>")
-        @ui.period.append($option)
+
+      DotLedger.on 'options:change', @renderGoalPeriods, this
 
       @ui.amount.val(@model.get('amount'))
+
+      @renderGoalPeriods()
+
+    renderGoalPeriods: (data = DotLedgerData)->
+      @ui.period.empty()
+      _.each data.goal_periods, (option)=>
+        $option = $("<option value='#{option}'>#{option}</option>")
+        @ui.period.append($option)
       @ui.period.val(@model.get('period'))
 
     events:
