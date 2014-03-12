@@ -61,9 +61,6 @@ GEM
       railties (>= 3.0.0)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
-    gon (5.0.4)
-      actionpack (>= 2.3.0)
-      json
     hike (1.2.3)
     i18n (0.6.9)
     ice_cube (0.11.1)
@@ -180,7 +177,6 @@ DEPENDENCIES
   ejs
   factory_girl_rails
   font-awesome-rails
-  gon
   ice_cube
   jasmine-rails
   jquery-rails

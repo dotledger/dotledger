@@ -18,8 +18,6 @@ gem 'virtus', '~> 0.5'
 
 gem 'ejs'
 
-gem 'gon'
-
 gem 'kaminari'
 
 gem 'active_model_serializers'

@@ -4,11 +4,5 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def boot
-    gon.accounts = Account.order(:name)
-    gon.account_types = Account::ACCOUNT_TYPES
-    gon.category_types = Category::CATEGORY_TYPES
-    gon.goal_periods = Goal::GOAL_PERIODS
-    gon.payment_types = Payment::PAYMENT_TYPES
-    gon.payment_periods = Payment::PAYMENT_PERIODS
   end
 end
