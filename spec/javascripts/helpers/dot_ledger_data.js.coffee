@@ -3,3 +3,5 @@
   category_types: ['Essential', 'Flexible', 'Income', 'Transfer']
   payment_types: ['Spend', 'Receive']
   payment_periods: ['Day', 'Week', 'Month']
+
+@DotLedger.trigger 'options:change', @DotLedgerData
