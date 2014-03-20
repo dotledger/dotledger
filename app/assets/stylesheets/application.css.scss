@@ -83,3 +83,16 @@ footer {
     }
   }
 }
+
+div.balance {
+  div.graph {
+    width: 100%;
+    height: 150px;
+  }
+
+  div.tooltip {
+    div.tooltip-inner {
+      width: 80px;
+    }
+  }
+}
