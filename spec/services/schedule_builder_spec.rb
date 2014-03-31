@@ -115,5 +115,5 @@ describe ScheduleBuilder do
         expect(subject.occurrences_between(year_start, year_end).size).to eq 366
       end
     end
- end
+  end
 end

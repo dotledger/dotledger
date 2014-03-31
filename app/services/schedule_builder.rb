@@ -32,14 +32,15 @@ class ScheduleBuilder
   end
 
   def set_recurrence_rules!
-    rule = case params[:repeat_period].to_s
-    when 'Day'
-      IceCube::DailyRule.new(repeat_interval)
-    when 'Week'
-      IceCube::WeeklyRule.new(repeat_interval)
-    when 'Month'
-      IceCube::MonthlyRule.new(repeat_interval)
-    end
+    rule =
+      case params[:repeat_period].to_s
+      when 'Day'
+        IceCube::DailyRule.new(repeat_interval)
+      when 'Week'
+        IceCube::WeeklyRule.new(repeat_interval)
+      when 'Month'
+        IceCube::MonthlyRule.new(repeat_interval)
+      end
 
     schedule.add_recurrence_rule(rule)
   end

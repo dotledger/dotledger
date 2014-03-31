@@ -47,10 +47,10 @@ module Api
 
       unpaged_transactions = @transactions.limit(nil).offset(nil)
 
-      set_metadata_header({
+      set_metadata_header(
         total_spent: -1 * unpaged_transactions.where(['amount < 0']).sum(:amount),
         total_received: unpaged_transactions.where(['amount > 0']).sum(:amount)
-      })
+      )
 
       respond_with @transactions
     end

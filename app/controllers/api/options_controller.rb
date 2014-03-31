@@ -1,13 +1,13 @@
 module Api
   class OptionsController < BaseController
     def options
-      respond_with({
+      respond_with(
         account_types: Account::ACCOUNT_TYPES,
         category_types: Category::CATEGORY_TYPES,
         goal_periods: Goal::GOAL_PERIODS,
         payment_types: Payment::PAYMENT_TYPES,
         payment_periods: Payment::PAYMENT_PERIODS
-      })
+      )
     end
 
     def account_types
