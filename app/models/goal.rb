@@ -16,13 +16,13 @@ class Goal < ActiveRecord::Base
   delegate :name, :type, to: :category, prefix: true
 
   def month_amount
-    case self.period
+    case period
     when 'Month'
-      self.amount
+      amount
     when 'Fortnight'
-      self.amount * FORTNIGHT_MULTIPLIER
+      amount * FORTNIGHT_MULTIPLIER
     when 'Week'
-      self.amount * WEEK_MULTIPLIER
+      amount * WEEK_MULTIPLIER
     end
   end
 end

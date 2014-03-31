@@ -30,7 +30,7 @@ class StatementCreator
   def file_can_be_parsed
     if file.present?
       begin
-        OFX::Parser::Base.new(self.file)
+        OFX::Parser::Base.new(file)
       rescue StandardError => e
         errors.add(:file, "could not be parsed")
       end
@@ -50,7 +50,7 @@ class StatementCreator
         end
       end
 
-      if self.statement.transactions.empty?
+      if statement.transactions.empty?
         raise ActiveRecord::Rollback
       end
 
@@ -58,7 +58,7 @@ class StatementCreator
 
       set_account_balance!
 
-      self.statement
+      statement
     end
   end
 
@@ -75,8 +75,8 @@ class StatementCreator
     ).first_or_initialize
 
     if new_transaction.new_record?
-      new_transaction.account = self.account
-      new_transaction.statement = self.statement
+      new_transaction.account = account
+      new_transaction.statement = statement
 
       new_transaction.save!
       new_transaction
@@ -88,30 +88,30 @@ class StatementCreator
   def create_statement!
     @statement = Statement.create!(
       balance: parser.account.balance.amount,
-      account: self.account
+      account: account
     )
   end
 
   def set_statement_dates!
     from_date = sorted_transactions.first.posted_at
     to_date = sorted_transactions.last.posted_at
-    self.statement.update!(
+    statement.update!(
       from_date: from_date,
       to_date: to_date
     )
   end
 
   def parser
-    @parser ||= OFX::Parser::Base.new(self.file).parser
+    @parser ||= OFX::Parser::Base.new(file).parser
   end
 
   def sorted_transactions
-    self.statement.transactions.order(:posted_at)
+    statement.transactions.order(:posted_at)
   end
 
   def set_account_balance!
-    if self.account.statements.order(:to_date).last == self.statement
-      self.account.update!(balance: self.statement.balance)
+    if account.statements.order(:to_date).last == statement
+      account.update!(balance: statement.balance)
     end
   end
 
