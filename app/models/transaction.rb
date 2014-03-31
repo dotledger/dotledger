@@ -7,30 +7,30 @@ class Transaction < ActiveRecord::Base
 
   has_one :sorted_transaction
 
-  validates :amount, :presence => true
+  validates :amount, presence: true
 
-  validates :fit_id, :presence => true
+  validates :fit_id, presence: true
 
-  validates :account, :presence => true
+  validates :account, presence: true
 
-  validates :search, :presence => true
+  validates :search, presence: true
 
   before_validation :set_search
 
   scope :unsorted, proc {
-    includes(:sorted_transaction).where(:sorted_transactions => {:id => nil})
+    includes(:sorted_transaction).where(sorted_transactions: {id: nil})
   }
 
   scope :sorted, proc {
-    includes(:sorted_transaction).where.not(:sorted_transactions => {:id => nil}).references(:sorted_transactions)
+    includes(:sorted_transaction).where.not(sorted_transactions: {id: nil}).references(:sorted_transactions)
   }
 
   scope :for_review, proc {
-    includes(:sorted_transaction).where(:sorted_transactions => {:review => true})
+    includes(:sorted_transaction).where(sorted_transactions: {review: true})
   }
 
   scope :not_for_review, proc {
-    includes(:sorted_transaction).where(:sorted_transactions => {:review => false})
+    includes(:sorted_transaction).where(sorted_transactions: {review: false})
   }
 
   # FIXME: Solr, Sphinx, ElasticSearch...?
@@ -47,11 +47,11 @@ class Transaction < ActiveRecord::Base
   }
 
   scope :with_category, proc {|category_id|
-    includes(:sorted_transaction).where(:sorted_transactions => {:category_id => category_id})
+    includes(:sorted_transaction).where(sorted_transactions: {category_id: category_id})
   }
 
   scope :between_dates, proc {|date_from, date_to|
-    includes(:sorted_transaction).where(:posted_at => (Date.parse(date_from)..Date.parse(date_to)))
+    includes(:sorted_transaction).where(posted_at: (Date.parse(date_from)..Date.parse(date_to)))
   }
 
   scope :with_tags, proc {|tag_ids|

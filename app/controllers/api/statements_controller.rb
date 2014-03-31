@@ -15,7 +15,7 @@ module Api
     def create
       @account = Account.find(account_id)
 
-      @statement = StatementCreator.new(:account => @account, :file => file)
+      @statement = StatementCreator.new(account: @account, file: file)
 
       @statement.save
 

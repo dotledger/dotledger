@@ -8,7 +8,7 @@ module Api
         date_to: date_range.last
       )
       @activity_per_category = Statistics::ActivityPerCategory.new(date_range)
-      render :json => @activity_per_category
+      render json: @activity_per_category
     end
 
     private

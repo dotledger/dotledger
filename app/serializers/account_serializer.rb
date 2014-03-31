@@ -22,7 +22,7 @@ class AccountSerializer < ActiveModel::Serializer
 
     {}.tap do |output|
       (90.days.ago.to_date..starting_date.to_date).each do |date|
-        output[date] = starting_balance - (object.transactions.where(:posted_at => date..starting_date).sum(:amount))
+        output[date] = starting_balance - (object.transactions.where(posted_at: date..starting_date).sum(:amount))
       end
     end
   end

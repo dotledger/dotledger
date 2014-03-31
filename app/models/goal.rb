@@ -7,13 +7,13 @@ class Goal < ActiveRecord::Base
 
   belongs_to :category
 
-  validates :category, :presence => true
+  validates :category, presence: true
 
-  validates :amount, :presence => true
+  validates :amount, presence: true
 
-  validates :period, :presence => true, :inclusion => GOAL_PERIODS
+  validates :period, presence: true, inclusion: GOAL_PERIODS
 
-  delegate :name, :type, :to => :category, :prefix => true
+  delegate :name, :type, to: :category, prefix: true
 
   def month_amount
     case self.period

@@ -1,11 +1,11 @@
 class SortingRule < ActiveRecord::Base
   belongs_to :category
 
-  validates :contains, :presence => true
+  validates :contains, presence: true
 
-  validates :category, :presence => true
+  validates :category, presence: true
 
-  delegate :name, :to => :category, :prefix => true
+  delegate :name, to: :category, prefix: true
 
   def tags
     Tag.where(id: tag_ids)

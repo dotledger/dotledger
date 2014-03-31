@@ -6,8 +6,8 @@ class StatementCreator
   attribute :file
   attribute :account
 
-  validates :file, :presence => true
-  validates :account, :presence => true
+  validates :file, presence: true
+  validates :account, presence: true
   validate :file_can_be_parsed
 
   attr_accessor :statement
@@ -64,14 +64,14 @@ class StatementCreator
 
   def create_transaction!(t)
     new_transaction = Transaction.where(
-      :amount => t.amount,
-      :memo => t.memo,
-      :name => t.name,
-      :payee => t.payee,
-      :posted_at => t.posted_at,
-      :ref_number => t.ref_number,
-      :type => t.type,
-      :fit_id => t.fit_id
+      amount: t.amount,
+      memo: t.memo,
+      name: t.name,
+      payee: t.payee,
+      posted_at: t.posted_at,
+      ref_number: t.ref_number,
+      type: t.type,
+      fit_id: t.fit_id
     ).first_or_initialize
 
     if new_transaction.new_record?
@@ -87,8 +87,8 @@ class StatementCreator
 
   def create_statement!
     @statement = Statement.create!(
-      :balance => parser.account.balance.amount,
-      :account => self.account
+      balance: parser.account.balance.amount,
+      account: self.account
     )
   end
 
@@ -96,8 +96,8 @@ class StatementCreator
     from_date = sorted_transactions.first.posted_at
     to_date = sorted_transactions.last.posted_at
     self.statement.update!(
-      :from_date => from_date,
-      :to_date => to_date,
+      from_date: from_date,
+      to_date: to_date
     )
   end
 
@@ -111,7 +111,7 @@ class StatementCreator
 
   def set_account_balance!
     if self.account.statements.order(:to_date).last == self.statement
-      self.account.update!(:balance => self.statement.balance)
+      self.account.update!(balance: self.statement.balance)
     end
   end
 

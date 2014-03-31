@@ -1,10 +1,10 @@
 module Api
   class TransactionsController < BaseController
     def index
-      @transactions = Transaction.includes(:sorted_transaction => :category)
+      @transactions = Transaction.includes(sorted_transaction: :category)
 
       if account_id.present?
-        @transactions = @transactions.where(:account_id => account_id)
+        @transactions = @transactions.where(account_id: account_id)
       end
 
       if filter_sorted
@@ -39,7 +39,7 @@ module Api
         @transactions = @transactions.with_tags(params[:tag_ids])
       end
 
-      @transactions = @transactions.order(:posted_at => :desc)
+      @transactions = @transactions.order(posted_at: :desc)
 
       @transactions = @transactions.page(page_number)
 

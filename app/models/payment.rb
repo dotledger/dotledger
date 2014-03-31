@@ -11,17 +11,17 @@ class Payment < ActiveRecord::Base
 
   PAYMENT_PERIODS = ['Day', 'Week', 'Month']
 
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, presence: true, uniqueness: true
 
-  validates :category, :presence => true
+  validates :category, presence: true
 
-  validates :amount, :presence => true
+  validates :amount, presence: true
 
-  validates :schedule, :presence => true
+  validates :schedule, presence: true
 
-  validates :type, :presence => true, :inclusion => { :in => PAYMENT_TYPES }
+  validates :type, presence: true, inclusion: { in: PAYMENT_TYPES }
 
-  delegate :name, :type, :to => :category, :prefix => true
+  delegate :name, :type, to: :category, prefix: true
 
   serialize :schedule, ScheduleSerializer.new
 end

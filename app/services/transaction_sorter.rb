@@ -8,11 +8,11 @@ class TransactionSorter
   def sort
     if rule.present?
       @sorted_transaction = @transaction.create_sorted_transaction!(
-        :name => name,
-        :category_id => rule.category_id,
-        :account_id => @transaction.account_id,
-        :review => rule.review,
-        :tag_ids => rule.tag_ids
+        name: name,
+        category_id: rule.category_id,
+        account_id: @transaction.account_id,
+        review: rule.review,
+        tag_ids: rule.tag_ids
       )
     end
   end

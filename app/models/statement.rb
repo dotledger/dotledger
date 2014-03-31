@@ -3,7 +3,7 @@ class Statement < ActiveRecord::Base
 
   has_many :transactions
 
-  validates :balance, :presence => true
+  validates :balance, presence: true
 
-  validates :account, :presence => true
+  validates :account, presence: true
 end

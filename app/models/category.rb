@@ -11,9 +11,9 @@ class Category < ActiveRecord::Base
 
   CATEGORY_TYPES = ['Flexible', 'Essential', 'Income', 'Transfer']
 
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, presence: true, uniqueness: true
 
-  validates :type, :presence => true, :inclusion => {:in => CATEGORY_TYPES}
+  validates :type, presence: true, inclusion: {in: CATEGORY_TYPES}
 
   after_create :create_default_goal
 
@@ -21,7 +21,7 @@ class Category < ActiveRecord::Base
 
   def create_default_goal
     if self.goal.nil?
-      self.create_goal(:amount => 0.0, :period => 'Month')
+      self.create_goal(amount: 0.0, period: 'Month')
     end
   end
 end

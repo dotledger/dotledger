@@ -36,8 +36,8 @@ module Statistics
     end
 
     def query
-      @query ||= Category.joins(:goal, :sorted_transactions => :transaction).
-        where(:transactions => {:posted_at => self.date_range}).
+      @query ||= Category.joins(:goal, sorted_transactions: :transaction).
+        where(transactions: {posted_at: self.date_range}).
         select(select_list).
         group('categories.id, categories.name, categories.type, goals.amount, goals.period').
         order(:name)
