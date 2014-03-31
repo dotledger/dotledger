@@ -1,7 +1,7 @@
 module Api
   class BaseController < ApplicationController
-    skip_before_filter :verify_authenticity_token
-    before_filter :default_format_json
+    skip_before_action :verify_authenticity_token
+    before_action :default_format_json
     respond_to :json
 
     def self.responder
