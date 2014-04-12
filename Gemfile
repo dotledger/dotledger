@@ -14,7 +14,7 @@ gem 'jquery-rails'
 
 gem 'ofx'
 
-gem 'virtus', '~> 0.5'
+gem 'virtus'
 
 gem 'ejs'
 

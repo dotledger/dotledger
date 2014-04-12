@@ -1,10 +1,10 @@
 class StatementCreator
-  include Virtus
+  include Virtus.model
 
   include ActiveModel::Validations
 
-  attribute :file, File
-  attribute :account, Account
+  attribute :file
+  attribute :account
 
   validates :file, :presence => true
   validates :account, :presence => true
