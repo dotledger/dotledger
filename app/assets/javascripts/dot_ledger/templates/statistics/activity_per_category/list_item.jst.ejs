@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-3">
-    <strong><%= name %></strong>
+    <strong class="name"><a href="#"><%= name %></a></strong>
   </div>
   <div class="col-md-9">
     <div class="progress">
@@ -14,9 +14,7 @@
     <small>Spent: <strong><%= accounting.formatMoney(spent) %></strong></small>
   </div>
   <div class="col-xs-4 text-muted">
-    <small>Goal: <strong title="<%= accounting.formatMoney(goal_amount) %> per <%= goal_period %>"><%= accounting.formatMoney(goal) %></strong>
-        
-    </small>
+    <small>Goal: <strong title="<%= accounting.formatMoney(goal_amount) %> per <%= goal_period %>"><%= accounting.formatMoney(goal) %></strong></small>
   </div>
   <% if (overGoal()) { %>
   <div class="col-xs-4 text-danger">

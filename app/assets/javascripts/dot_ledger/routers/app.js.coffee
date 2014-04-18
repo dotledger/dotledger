@@ -42,7 +42,7 @@ DotLedger.module 'Routers', ->
 
       DotLedger.mainRegion.show(dashboard)
 
-      category_statistics = new (Backbone.Collection.extend({
+      category_statistics = new (DotLedger.Collections.Base.extend({
         url: '/api/statistics/activity_per_category'
       }))
 
