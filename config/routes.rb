@@ -25,10 +25,10 @@ DotLedger::Application.routes.draw do
   end
 
   if Rails.env.development? || Rails.env.test?
-    mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
+    mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   end
 
-  get "*page" => "application#boot", as: :boot
+  get '*page' => 'application#boot', as: :boot
 
   root 'application#boot'
 end

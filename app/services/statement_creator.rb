@@ -32,7 +32,7 @@ class StatementCreator
       begin
         OFX::Parser::Base.new(file)
       rescue StandardError => e
-        errors.add(:file, "could not be parsed")
+        errors.add(:file, 'could not be parsed')
       end
     end
   end
