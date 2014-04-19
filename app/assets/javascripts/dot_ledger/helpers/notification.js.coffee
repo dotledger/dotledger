@@ -1,5 +1,5 @@
 DotLedger.module 'Helpers', ->
-  notificationView = (message, class_name)-> 
+  notificationView = (message, class_name)->
     model = new Backbone.Model(message: message)
     new DotLedger.Views.Application.Notification(model: model, className: "alert alert-#{class_name} alert-dismissable")
 

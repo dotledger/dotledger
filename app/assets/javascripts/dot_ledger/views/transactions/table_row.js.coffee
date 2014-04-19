@@ -74,4 +74,4 @@ DotLedger.module 'Views.Transactions', ->
           else
             '<a href="#" class="edit-transaction btn-xs btn btn-default" title="Sort transaction">Edit</a>'
         else
-            '<a href="#" class="sort-transaction btn-xs btn btn-default" title="Sort transaction">Sort</a>'
+          '<a href="#" class="sort-transaction btn-xs btn btn-default" title="Sort transaction">Sort</a>'
