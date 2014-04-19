@@ -13,7 +13,7 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  validates :type, presence: true, inclusion: {in: CATEGORY_TYPES}
+  validates :type, presence: true, inclusion: { in: CATEGORY_TYPES }
 
   after_create :create_default_goal
 

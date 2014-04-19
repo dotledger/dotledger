@@ -21,12 +21,12 @@ module Statistics
       THEN goals.amount * #{Goal::FORTNIGHT_MULTIPLIER}
       ELSE goals.amount
       END) AS goal,
-      SUM(CASE 
+      SUM(CASE
         WHEN transactions.amount > 0
         THEN transactions.amount
         ELSE 0.0
         END) AS received,
-      SUM(CASE 
+      SUM(CASE
         WHEN transactions.amount < 0
         THEN transactions.amount
         ELSE 0.0
@@ -37,7 +37,7 @@ module Statistics
 
     def query
       @query ||= Category.joins(:goal, sorted_transactions: :transaction).
-        where(transactions: {posted_at: date_range}).
+        where(transactions: { posted_at: date_range }).
         select(select_list).
         group('categories.id, categories.name, categories.type, goals.amount, goals.period').
         order(:name)

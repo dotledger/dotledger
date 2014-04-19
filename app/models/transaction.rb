@@ -18,19 +18,19 @@ class Transaction < ActiveRecord::Base
   before_validation :set_search
 
   scope :unsorted, proc {
-    includes(:sorted_transaction).where(sorted_transactions: {id: nil})
+    includes(:sorted_transaction).where(sorted_transactions: { id: nil })
   }
 
   scope :sorted, proc {
-    includes(:sorted_transaction).where.not(sorted_transactions: {id: nil}).references(:sorted_transactions)
+    includes(:sorted_transaction).where.not(sorted_transactions: { id: nil }).references(:sorted_transactions)
   }
 
   scope :for_review, proc {
-    includes(:sorted_transaction).where(sorted_transactions: {review: true})
+    includes(:sorted_transaction).where(sorted_transactions: { review: true })
   }
 
   scope :not_for_review, proc {
-    includes(:sorted_transaction).where(sorted_transactions: {review: false})
+    includes(:sorted_transaction).where(sorted_transactions: { review: false })
   }
 
   # FIXME: Solr, Sphinx, ElasticSearch...?
@@ -47,7 +47,7 @@ class Transaction < ActiveRecord::Base
   }
 
   scope :with_category, proc {|category_id|
-    includes(:sorted_transaction).where(sorted_transactions: {category_id: category_id})
+    includes(:sorted_transaction).where(sorted_transactions: { category_id: category_id })
   }
 
   scope :between_dates, proc {|date_from, date_to|

@@ -1,5 +1,5 @@
 DotLedger::Application.routes.draw do
-  namespace :api, except: [:edit, :new], defaults: {format: :json} do
+  namespace :api, except: [:edit, :new], defaults: { format: :json } do
     resources :accounts
     resources :categories
     resources :goals

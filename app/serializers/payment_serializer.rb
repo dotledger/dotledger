@@ -31,6 +31,7 @@ class PaymentSerializer < ActiveModel::Serializer
   end
 
   private
+
   def first_rule
     schedule.recurrence_rules.first
   end

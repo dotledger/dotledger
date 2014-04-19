@@ -25,6 +25,7 @@ class TransactionSorter
   end
 
   private
+
   def name
     if rule.present? && rule.name.present?
       rule.name

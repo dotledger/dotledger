@@ -13,5 +13,5 @@ class Account < ActiveRecord::Base
 
   validates :number, presence: true, uniqueness: true
 
-  validates :type, presence: true, inclusion: {in: ACCOUNT_TYPES}
+  validates :type, presence: true, inclusion: { in: ACCOUNT_TYPES }
 end

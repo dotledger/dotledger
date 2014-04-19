@@ -12,6 +12,7 @@ module Api
     end
 
     private
+
     def date
       Date.parse(params[:date].to_s)
     rescue ArgumentError
