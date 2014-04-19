@@ -39,10 +39,10 @@ class Transaction < ActiveRecord::Base
     sorted_transactions = SortedTransaction.arel_table
     wildcard_search_query = "%#{search_query}%"
     #includes(:sorted_transaction).where(['sorted_transactions.name ILIKE ?', "%#{search_query}%"])
-    includes(:sorted_transaction).
-      where(
-        transactions[:name].matches(wildcard_search_query).
-        or(sorted_transactions[:name].matches(wildcard_search_query))
+    includes(:sorted_transaction)
+      .where(
+        transactions[:name].matches(wildcard_search_query)
+        .or(sorted_transactions[:name].matches(wildcard_search_query))
       )
   }
 
@@ -56,8 +56,8 @@ class Transaction < ActiveRecord::Base
 
   scope :with_tags, proc {|tag_ids|
     tag_ids = Array(tag_ids).flatten.map(&:to_i)
-    includes(:sorted_transaction).
-    where([tag_ids.map { '? = ANY(sorted_transactions.tag_ids)' }.join(' OR '), *tag_ids])
+    includes(:sorted_transaction)
+    .where([tag_ids.map { '? = ANY(sorted_transactions.tag_ids)' }.join(' OR '), *tag_ids])
   }
 
   private
