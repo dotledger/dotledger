@@ -4,7 +4,7 @@
 DotLedger.module 'Collections', ->
   class @Base extends Backbone.Collection
     parse: (response, options)->
-      @_fetch_options_data = options.data || {};
+      @_fetch_options_data = options.data || {}
       @pagination = JSON.parse options.xhr.getResponseHeader('X-Pagination')
       @metadata = JSON.parse options.xhr.getResponseHeader('X-Metadata')
       response
