@@ -38,7 +38,6 @@ class Transaction < ActiveRecord::Base
     transactions = Transaction.arel_table
     sorted_transactions = SortedTransaction.arel_table
     wildcard_search_query = "%#{search_query}%"
-    #includes(:sorted_transaction).where(['sorted_transactions.name ILIKE ?', "%#{search_query}%"])
     includes(:sorted_transaction)
       .where(
         transactions[:name].matches(wildcard_search_query)
