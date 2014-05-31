@@ -16,13 +16,13 @@ describe "DotLedger.Views.Accounts.Form", ->
 
   it "renders the form fields", ->
     view = createView().render()
-    expect(view.$el).toContain('input[name=name]')
-    expect(view.$el).toContain('input[name=number]')
-    expect(view.$el).toContain('select[name=type]')
-    expect(view.$el).toContain('option[value=Cheque]')
-    expect(view.$el).toContain('option[value=Savings]')
-    expect(view.$el).toContain('option[value="Credit Card"]')
-    expect(view.$el).toContain('option[value=Other]')
+    expect(view.$el).toContainElement('input[name=name]')
+    expect(view.$el).toContainElement('input[name=number]')
+    expect(view.$el).toContainElement('select[name=type]')
+    expect(view.$el).toContainElement('option[value=Cheque]')
+    expect(view.$el).toContainElement('option[value=Savings]')
+    expect(view.$el).toContainElement('option[value="Credit Card"]')
+    expect(view.$el).toContainElement('option[value=Other]')
 
   it "renders the heading for new account", ->
     view = createView().render()
@@ -36,13 +36,13 @@ describe "DotLedger.Views.Accounts.Form", ->
 
   it "renders the cancel link for new account", ->
     view = createView().render()
-    expect(view.$el).toContain('a[href="/"]')
+    expect(view.$el).toContainElement('a[href="/"]')
 
   it "renders the cancel link for existing account", ->
     model = new DotLedger.Models.Account
       id: 123
     view = createView(model).render()
-    expect(view.$el).toContain('a[href="/accounts/123"]')
+    expect(view.$el).toContainElement('a[href="/accounts/123"]')
 
   it "should set the values on the model when update is called", ->
     model = new DotLedger.Models.Account()

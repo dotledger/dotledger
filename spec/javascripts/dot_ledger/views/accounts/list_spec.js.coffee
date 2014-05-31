@@ -47,15 +47,15 @@ describe "DotLedger.Views.Accounts.List", ->
 
   it "renders the account links", ->
     view = createView().render()
-    expect(view.$el).toContain('a[href="/accounts/1"]')
-    expect(view.$el).toContain('a[href="/accounts/2"]')
-    expect(view.$el).toContain('a[href="/accounts/3"]')
+    expect(view.$el).toContainElement('a[href="/accounts/1"]')
+    expect(view.$el).toContainElement('a[href="/accounts/2"]')
+    expect(view.$el).toContainElement('a[href="/accounts/3"]')
 
   it "renders the udated at times", ->
     view = createView().render()
-    expect(view.$el).toContain('time[datetime="2013-01-01T01:00:00Z"]')
-    expect(view.$el).toContain('time[datetime="2013-01-02T01:00:00Z"]')
-    expect(view.$el).toContain('time[datetime="2013-01-03T01:00:00Z"]')
+    expect(view.$el).toContainElement('time[datetime="2013-01-01T01:00:00Z"]')
+    expect(view.$el).toContainElement('time[datetime="2013-01-02T01:00:00Z"]')
+    expect(view.$el).toContainElement('time[datetime="2013-01-03T01:00:00Z"]')
 
 
   it "render the unsorted transaction counts", ->

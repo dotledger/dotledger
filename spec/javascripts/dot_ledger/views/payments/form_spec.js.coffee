@@ -39,23 +39,23 @@ describe "DotLedger.Views.Payments.Form", ->
 
   it "renders the form fields", ->
     view = createView().render()
-    expect(view.$el).toContain('input[name=name]')
-    expect(view.$el).toContain('input[name=amount]')
-    expect(view.$el).toContain('select[name=category]')
-    expect(view.$el).toContain('option[value=11]')
-    expect(view.$el).toContain('option[value=22]')
-    expect(view.$el).toContain('option[value=33]')
-    expect(view.$el).toContain('option[value=44]')
-    expect(view.$el).toContain('input[name=date]')
-    expect(view.$el).toContain('input[name=repeat]')
-    expect(view.$el).toContain('input[name=repeat_interval]')
-    expect(view.$el).toContain('select[name=repeat_period]')
-    expect(view.$el).toContain('option[value=Day]')
-    expect(view.$el).toContain('option[value=Week]')
-    expect(view.$el).toContain('option[value=Month]')
-    expect(view.$el).toContain('select[name=type]')
-    expect(view.$el).toContain('option[value=Spend]')
-    expect(view.$el).toContain('option[value=Receive]')
+    expect(view.$el).toContainElement('input[name=name]')
+    expect(view.$el).toContainElement('input[name=amount]')
+    expect(view.$el).toContainElement('select[name=category]')
+    expect(view.$el).toContainElement('option[value=11]')
+    expect(view.$el).toContainElement('option[value=22]')
+    expect(view.$el).toContainElement('option[value=33]')
+    expect(view.$el).toContainElement('option[value=44]')
+    expect(view.$el).toContainElement('input[name=date]')
+    expect(view.$el).toContainElement('input[name=repeat]')
+    expect(view.$el).toContainElement('input[name=repeat_interval]')
+    expect(view.$el).toContainElement('select[name=repeat_period]')
+    expect(view.$el).toContainElement('option[value=Day]')
+    expect(view.$el).toContainElement('option[value=Week]')
+    expect(view.$el).toContainElement('option[value=Month]')
+    expect(view.$el).toContainElement('select[name=type]')
+    expect(view.$el).toContainElement('option[value=Spend]')
+    expect(view.$el).toContainElement('option[value=Receive]')
 
   it "renders the heading for new payment", ->
     view = createView().render()
@@ -69,7 +69,7 @@ describe "DotLedger.Views.Payments.Form", ->
 
   it "renders the cancel link", ->
     view = createView().render()
-    expect(view.$el).toContain('a[href="/payments"]')
+    expect(view.$el).toContainElement('a[href="/payments"]')
 
   it "should set the values on the model when update is called", ->
     model = new DotLedger.Models.Payment()

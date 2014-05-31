@@ -16,8 +16,8 @@ describe "DotLedger.Views.Search.NavForm", ->
 
   it "renders the form fields", ->
     view = createView().render()
-    expect(view.$el).toContain('input[name=query]')
-    expect(view.$el).toContain('button.search')
+    expect(view.$el).toContainElement('input[name=query]')
+    expect(view.$el).toContainElement('button.search')
 
   it "should clear the model and set the query", ->
     model = new Backbone.Model()

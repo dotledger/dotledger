@@ -77,6 +77,6 @@ describe "DotLedger.Views.Accounts.List", ->
 
   it "renders the progress bars", ->
     view = createView().render()
-    expect(view.$el.find('.list-group-item:eq(0)')).toContain(".progress-bar.progress-bar-success")
-    expect(view.$el.find('.list-group-item:eq(1)')).toContain(".progress-bar.progress-bar-danger")
-    expect(view.$el.find('.list-group-item:eq(2)')).toContain(".progress-bar.progress-bar-success")
+    expect(view.$el.find('.list-group-item:eq(0)')).toContainElement(".progress-bar.progress-bar-success")
+    expect(view.$el.find('.list-group-item:eq(1)')).toContainElement(".progress-bar.progress-bar-danger")
+    expect(view.$el.find('.list-group-item:eq(2)')).toContainElement(".progress-bar.progress-bar-success")

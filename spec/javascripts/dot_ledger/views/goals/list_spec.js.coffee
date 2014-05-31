@@ -20,5 +20,5 @@ describe "DotLedger.Views.Goals.List", ->
 
   it "renders the save button", ->
     view = createView().render()
-    expect(view.$el).toContain('button.save-all')
+    expect(view.$el).toContainElement('button.save-all')
     expect(view.$el.find('button.save-all')).toContainText('Save')

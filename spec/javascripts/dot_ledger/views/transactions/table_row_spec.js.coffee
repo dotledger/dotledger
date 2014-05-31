@@ -44,12 +44,12 @@ describe "DotLedger.Views.Transactions.TableRow", ->
 
   it "renders the posted at date", ->
     view = createView().render()
-    expect(view.$el).toContain('time[datetime="2013-01-01"]')
+    expect(view.$el).toContainElement('time[datetime="2013-01-01"]')
 
   describe "transaction unsorted", ->
     it "renders sort button", ->
       view = createView().render()
-      expect(view.$el).toContain('a.sort-transaction')
+      expect(view.$el).toContainElement('a.sort-transaction')
 
     it "renders the search", ->
       view = createView().render()
@@ -62,18 +62,18 @@ describe "DotLedger.Views.Transactions.TableRow", ->
   describe "transaction flagged for review", ->
     it "renders sort button", ->
       view = createView(sortedForReviewTransaction()).render()
-      expect(view.$el).toContain('a.sort-transaction')
+      expect(view.$el).toContainElement('a.sort-transaction')
       expect(view.$el.find('a.sort-transaction')).toHaveText('Edit')
 
     it "renders ok button", ->
       view = createView(sortedForReviewTransaction()).render()
-      expect(view.$el).toContain('a.review-okay-transaction')
+      expect(view.$el).toContainElement('a.review-okay-transaction')
       expect(view.$el.find('a.review-okay-transaction')).toHaveText('Ok')
 
   describe "transaction sorted", ->
     it "renders sort button", ->
       view = createView(sortedTransaction()).render()
-      expect(view.$el).toContain('a.edit-transaction')
+      expect(view.$el).toContainElement('a.edit-transaction')
       expect(view.$el.find('a.edit-transaction')).toHaveText('Edit')
 
     it "renders category name", ->

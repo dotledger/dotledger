@@ -23,11 +23,11 @@ describe "DotLedger.Views.Goals.ListItem", ->
 
   it "renders the amount field", ->
     view = createView().render()
-    expect(view.$el).toContain('input[name=amount]')
+    expect(view.$el).toContainElement('input[name=amount]')
 
   it "renders the period select", ->
     view = createView().render()
-    expect(view.$el).toContain('select[name=period]')
+    expect(view.$el).toContainElement('select[name=period]')
 
   it "renders the category name", ->
     view = createView().render()

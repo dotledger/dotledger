@@ -18,7 +18,7 @@ describe "DotLedger.Views.Statements.Form", ->
 
   it "renders the form fields", ->
     view = createView().render()
-    expect(view.$el).toContain('input[name=file]')
+    expect(view.$el).toContainElement('input[name=file]')
 
   it "renders the heading", ->
     view = createView().render()
@@ -30,4 +30,4 @@ describe "DotLedger.Views.Statements.Form", ->
 
   it "renders the cancel link for existing account", ->
     view = createView().render()
-    expect(view.$el).toContain('a[href="/accounts/1"]')
+    expect(view.$el).toContainElement('a[href="/accounts/1"]')

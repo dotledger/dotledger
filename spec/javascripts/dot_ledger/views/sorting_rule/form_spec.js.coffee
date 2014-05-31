@@ -39,21 +39,21 @@ describe "DotLedger.Views.SortingRules.Form", ->
 
   it "renders the form fields", ->
     view = createView().render()
-    expect(view.$el).toContain('input[name=name]')
-    expect(view.$el).toContain('input[name=contains]')
-    expect(view.$el).toContain('select[name=category]')
-    expect(view.$el).toContain('option[value=11]')
-    expect(view.$el).toContain('option[value=22]')
-    expect(view.$el).toContain('option[value=33]')
-    expect(view.$el).toContain('option[value=44]')
-    expect(view.$el).toContain('optgroup[label=Essential]')
-    expect(view.$el).toContain('optgroup[label=Flexible]')
-    expect(view.$el).toContain('optgroup[label=Income]')
-    expect(view.$el).toContain('optgroup[label=Transfer]')
-    expect(view.$el).toContain('select[name=review]')
-    expect(view.$el).toContain('option[value=true]')
-    expect(view.$el).toContain('option[value=false]')
-    expect(view.$el).toContain('input[name=tags]')
+    expect(view.$el).toContainElement('input[name=name]')
+    expect(view.$el).toContainElement('input[name=contains]')
+    expect(view.$el).toContainElement('select[name=category]')
+    expect(view.$el).toContainElement('option[value=11]')
+    expect(view.$el).toContainElement('option[value=22]')
+    expect(view.$el).toContainElement('option[value=33]')
+    expect(view.$el).toContainElement('option[value=44]')
+    expect(view.$el).toContainElement('optgroup[label=Essential]')
+    expect(view.$el).toContainElement('optgroup[label=Flexible]')
+    expect(view.$el).toContainElement('optgroup[label=Income]')
+    expect(view.$el).toContainElement('optgroup[label=Transfer]')
+    expect(view.$el).toContainElement('select[name=review]')
+    expect(view.$el).toContainElement('option[value=true]')
+    expect(view.$el).toContainElement('option[value=false]')
+    expect(view.$el).toContainElement('input[name=tags]')
 
   it "renders the heading for new sorting_rule", ->
     view = createView().render()
@@ -67,7 +67,7 @@ describe "DotLedger.Views.SortingRules.Form", ->
 
   it "renders the cancel link", ->
     view = createView().render()
-    expect(view.$el).toContain('a[href="/sorting-rules"]')
+    expect(view.$el).toContainElement('a[href="/sorting-rules"]')
 
 
   it "should set the values on the model when update is called", ->

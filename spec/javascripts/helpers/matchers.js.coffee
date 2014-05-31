@@ -1,6 +1,8 @@
 beforeEach ->
-  @addMatchers
-    toUseTemplate: (template) ->
-      templateExists = _.has JST, "dot_ledger/templates/#{template}"
-      templateSetCorrectly = @actual::template == template
-      return templateExists && templateSetCorrectly
+  jasmine.addMatchers
+    toUseTemplate: (util, customEqualityTesters)->
+        compare: (actual, expected)->
+          templateExists = _.has JST, "dot_ledger/templates/#{expected}"
+          templateSetCorrectly = actual::template == expected
+
+          pass: templateExists && templateSetCorrectly

@@ -36,4 +36,4 @@ describe "DotLedger.Views.Payments.ListItem", ->
   it "renders the edit button", ->
     view = createView().render()
     expect(view.$el).toContainText('Edit')
-    expect(view.$el).toContain('a[href="/payments/1/edit"]')
+    expect(view.$el).toContainElement('a[href="/payments/1/edit"]')

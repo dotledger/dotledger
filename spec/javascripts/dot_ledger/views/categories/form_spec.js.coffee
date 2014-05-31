@@ -16,12 +16,12 @@ describe "DotLedger.Views.Categories.Form", ->
 
   it "renders the form fields", ->
     view = createView().render()
-    expect(view.$el).toContain('input[name=name]')
-    expect(view.$el).toContain('select[name=type]')
-    expect(view.$el).toContain('option[value=Flexible]')
-    expect(view.$el).toContain('option[value=Essential]')
-    expect(view.$el).toContain('option[value=Income]')
-    expect(view.$el).toContain('option[value=Transfer]')
+    expect(view.$el).toContainElement('input[name=name]')
+    expect(view.$el).toContainElement('select[name=type]')
+    expect(view.$el).toContainElement('option[value=Flexible]')
+    expect(view.$el).toContainElement('option[value=Essential]')
+    expect(view.$el).toContainElement('option[value=Income]')
+    expect(view.$el).toContainElement('option[value=Transfer]')
 
   it "renders the heading for new category", ->
     view = createView().render()
@@ -35,7 +35,7 @@ describe "DotLedger.Views.Categories.Form", ->
 
   it "renders the cancel link", ->
     view = createView().render()
-    expect(view.$el).toContain('a[href="/categories"]')
+    expect(view.$el).toContainElement('a[href="/categories"]')
 
   it "should set the values on the model when update is called", ->
     model = new DotLedger.Models.Category()

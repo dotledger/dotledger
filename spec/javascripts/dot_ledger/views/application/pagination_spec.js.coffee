@@ -29,7 +29,7 @@ describe "DotLedger.Views.Application.Pagination", ->
 
     view.render()
 
-    expect(view.$el).toContain('.disabled .next')
+    expect(view.$el).toContainElement('.disabled .next')
 
   it "renders the previous link disabled if there is no previous page", ->
     collection = new DotLedger.Collections.Base()
@@ -42,7 +42,7 @@ describe "DotLedger.Views.Application.Pagination", ->
 
     view.render()
 
-    expect(view.$el).toContain('.disabled .previous')
+    expect(view.$el).toContainElement('.disabled .previous')
 
   it "fetches the next page when the next link is clicked", ->
     collection = new DotLedger.Collections.Base()
