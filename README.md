@@ -6,6 +6,31 @@ Dot Ledger [![Build Status](https://travis-ci.org/dotledger/dotledger.png?branch
 The aim of this project is to create a stable, FOSS alternative to [Xero Personal](https://www.xero.com/personal/)
 which is being [shut down](http://blog.xero.com/2013/08/winding-down-xero-personal-in-november-2014/) in November 2014.
 
+Setup
+-----
+
+Dot Ledger requires:
+
+- [PostgeSQL](http://www.postgresql.org/) (>= 9.1)
+- [Ruby](https://www.ruby-lang.org/) (>= 2.0)
+- [RubyGems](http://rubygems.org/)
+- [Ruby on Rails](http://rubyonrails.org/)
+- [Bundler](http://bundler.io/)
+- [Git](http://git-scm.com/)
+
+The basic setup steps are:
+
+- `git clone https://github.com/dotledger/dotledger.git`
+- `cd dotledger`
+- `cp config/database.yml.example config/database.yml`
+
+You'll have to modify the postgres username and password in `config/database.yml`.
+
+- `bundle install`
+- `bundle exec rake db:setup`
+- `bundle exec rails server`
+
+
 Screenshots
 -----------
 
