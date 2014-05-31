@@ -43,6 +43,7 @@ class Transaction < ActiveRecord::Base
         transactions[:name].matches(wildcard_search_query)
         .or(sorted_transactions[:name].matches(wildcard_search_query))
       )
+      .references(:sorted_transactions)
   }
 
   scope :with_category, proc {|category_id|
