@@ -1,5 +1,5 @@
 class SortedTransaction < ActiveRecord::Base
-  belongs_to :transaction
+  belongs_to :account_transaction, class_name: 'Transaction', foreign_key: 'transaction_id'
 
   belongs_to :category
 
@@ -9,7 +9,7 @@ class SortedTransaction < ActiveRecord::Base
 
   validates :account, presence: true
 
-  validates :transaction, presence: true
+  validates :account_transaction, presence: true
 
   validates :category, presence: true
 

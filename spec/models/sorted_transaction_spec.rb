@@ -16,7 +16,7 @@ describe SortedTransaction do
 
   it { should validate_presence_of :account }
 
-  it { should validate_presence_of :transaction }
+  it { should validate_presence_of :account_transaction }
 
   it { should validate_presence_of :name }
 
@@ -24,7 +24,7 @@ describe SortedTransaction do
 
   it { should belong_to :account }
 
-  it { should belong_to :transaction }
+  it { should belong_to :account_transaction }
 
   describe "tags" do
     let!(:tag1) { FactoryGirl.create :tag, :name => 'First Tag' }

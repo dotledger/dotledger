@@ -13,7 +13,7 @@ FactoryGirl.define do
     factory :transaction_sorted do
       after(:create) do |transaction|
         FactoryGirl.create :sorted_transaction,
-          :transaction => transaction,
+          :account_transaction => transaction,
           :name => transaction.search
       end
     end
@@ -22,7 +22,7 @@ FactoryGirl.define do
       after(:create) do |transaction|
         FactoryGirl.create :sorted_transaction,
           :review => true,
-          :transaction => transaction,
+          :account_transaction => transaction,
           :name => transaction.search
       end
     end

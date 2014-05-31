@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :sorted_transaction do
     name "MyString"
-    transaction
+    account_transaction { FactoryGirl.create :transaction }
     category
     account
   end

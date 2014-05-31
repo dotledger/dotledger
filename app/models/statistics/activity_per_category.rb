@@ -36,7 +36,7 @@ module Statistics
     end
 
     def query
-      @query ||= Category.joins(:goal, sorted_transactions: :transaction)
+      @query ||= Category.joins(:goal, sorted_transactions: :account_transaction)
         .where(transactions: { posted_at: date_range })
         .select(select_list)
         .group('categories.id, categories.name, categories.type, goals.amount, goals.period')
