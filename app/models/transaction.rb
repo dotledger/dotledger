@@ -58,6 +58,7 @@ class Transaction < ActiveRecord::Base
     tag_ids = Array(tag_ids).flatten.map(&:to_i)
     includes(:sorted_transaction)
     .where([tag_ids.map { '? = ANY(sorted_transactions.tag_ids)' }.join(' OR '), *tag_ids])
+    .references(:sorted_transactions)
   }
 
   private
