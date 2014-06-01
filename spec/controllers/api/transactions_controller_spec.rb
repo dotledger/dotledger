@@ -10,18 +10,29 @@ describe Api::TransactionsController do
     let!(:sorted_transactions) { FactoryGirl.create_list :transaction, 2 }
     let!(:transactions_for_review) { FactoryGirl.create_list :transaction, 2 }
     let!(:all_transactions) {
-      [transaction, account_transactions, other_transactions, sorted_transactions, transactions_for_review].flatten
+      [
+        transaction,
+        account_transactions,
+        other_transactions,
+        sorted_transactions,
+        transactions_for_review
+      ].flatten
     }
-    let!(:unsorted_transactions) { [transaction, account_transactions, other_transactions].flatten }
+    let!(:unsorted_transactions) {
+      [
+        transaction,
+        account_transactions,
+        other_transactions
+      ].flatten
+    }
+    let!(:category) { FactoryGirl.create :category }
 
     before do
-      category = FactoryGirl.create :category
-
       sorted_transactions.each do |t|
         t.create_sorted_transaction(
           :account => t.account,
           :category => category,
-          :name => t.search,
+          :name => 'Test',
           :review => false
         )
       end
@@ -103,6 +114,60 @@ describe Api::TransactionsController do
 
       it "should return transactions not flagged for review" do
         expect(assigns(:transactions)).to match_array sorted_transactions
+      end
+    end
+
+    context "filter search query" do
+      before do
+        get :index, :query => 'test'
+      end
+
+      it { should respond_with :success }
+
+      it "should filter transactions by search query" do
+        expect(assigns(:transactions)).to match_array sorted_transactions
+      end
+    end
+
+    context "filter with category" do
+      before do
+        get :index, :category_id => category.id
+      end
+
+      it { should respond_with :success }
+
+      it "should filter transactions by category_id" do
+        expect(assigns(:transactions)).to match_array [sorted_transactions, transactions_for_review].flatten
+      end
+    end
+
+    context "filter between dates" do
+      let!(:transaction_during) { FactoryGirl.create :transaction, posted_at: Date.parse('2012-04-10') }
+
+      before do
+        get :index, :date_from => '2012-04-01', :date_to => '2012-04-30'
+      end
+
+      it { should respond_with :success }
+
+      it "should filter transactions between dates" do
+        expect(assigns(:transactions)).to match_array [transaction_during]
+      end
+    end
+
+    context "filter with tags" do
+      let!(:tag) { FactoryGirl.create :tag }
+      let!(:transaction_match_1) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, tag_ids: [tag.id]) }
+      let!(:transaction_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, tag_ids: [tag.id]) }
+
+      before do
+        get :index, :tag_ids => tag.id
+      end
+
+      it { should respond_with :success }
+
+      it "should filter transactions by tag id" do
+        expect(assigns(:transactions)).to match_array [transaction_match_1, transaction_match_2]
       end
     end
   end
