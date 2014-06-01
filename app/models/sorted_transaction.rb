@@ -1,4 +1,6 @@
 class SortedTransaction < ActiveRecord::Base
+  include Taggable
+
   belongs_to :account_transaction, class_name: 'Transaction', foreign_key: 'transaction_id'
 
   belongs_to :category
@@ -14,18 +16,4 @@ class SortedTransaction < ActiveRecord::Base
   validates :category, presence: true
 
   delegate :name, to: :category, prefix: true
-
-  def tags
-    Tag.where(id: tag_ids)
-  end
-
-  def tags=(tag_list)
-    if tag_list.is_a? Array
-      self.tag_ids = tag_list.map(&:id)
-    elsif tag_list.is_a? String
-      self.tag_ids = Tag.tags_from_string(tag_list).map(&:id)
-    else
-      raise StandardError.new 'unknown tag list'
-    end
-  end
 end
