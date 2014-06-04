@@ -30,6 +30,26 @@ You'll have to modify the postgres username and password in `config/database.yml
 - `bundle exec rake db:setup`
 - `bundle exec rails server`
 
+Tests
+-----
+
+**Run all tests**
+
+```
+bundle exec rake spec spec:javascript
+```
+
+**Run ruby tests ([RSpec](http://rspec.info/))**
+
+```
+bundle exec rake spec
+```
+
+**Run javascript tests ([Jasmine](http://jasmine.github.io/))**
+
+```
+bundle exec rake spec:javascript
+```
 
 Screenshots
 -----------
