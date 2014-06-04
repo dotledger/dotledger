@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::TransactionsController do
   let!(:transaction) { FactoryGirl.create :transaction, :name => 'Transaction Name' }

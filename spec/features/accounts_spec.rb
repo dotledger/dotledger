@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature "Accounts", :truncate => true, :js => true do
   describe "Show" do

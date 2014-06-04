@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SortingRule do
   it { should have_db_column(:contains).of_type(:string).with_options(:null => false) }

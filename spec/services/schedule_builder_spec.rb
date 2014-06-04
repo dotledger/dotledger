@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ScheduleBuilder do
   subject { ScheduleBuilder.new(params).build }

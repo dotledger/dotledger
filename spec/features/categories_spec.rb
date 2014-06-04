@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature "Categories", :truncate => true, :js => true do
   let!(:category1) do

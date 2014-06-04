@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Statement do
   it { should have_db_column(:balance).of_type(:decimal).with_options(:null => false, :precision => 10, :scale => 2) }

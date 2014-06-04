@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature "Dashboard", :truncate => true, :js => true do
   let!(:account_1) { FactoryGirl.create :account, :name => "Test Account 1", :balance => 2000.00 }

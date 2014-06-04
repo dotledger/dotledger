@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::StatisticsController do
   describe "GET activity_per_category" do

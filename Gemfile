@@ -30,6 +30,7 @@ gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'pry-rails'

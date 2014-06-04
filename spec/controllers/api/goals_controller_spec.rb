@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::GoalsController do
   let!(:category) { FactoryGirl.create :category }

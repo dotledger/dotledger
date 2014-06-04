@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::SortedTransactionsController do
   let!(:sorted_transaction) { FactoryGirl.create :sorted_transaction, :name => 'Sorted Transaction Name' }

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::SortingRulesController do
   let!(:sorting_rule) { FactoryGirl.create :sorting_rule, :name => 'Some Name' }

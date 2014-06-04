@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Statistics::ActivityPerCategory do
   let(:date_range) { (Date.parse('2011-01-01')..Date.parse('2011-02-01')) }

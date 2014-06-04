@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Transaction do
   it { should have_db_column(:amount).of_type(:decimal).with_options(:null => false, :precision => 10, :scale => 2) }

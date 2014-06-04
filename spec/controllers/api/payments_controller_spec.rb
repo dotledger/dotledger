@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::PaymentsController do
   let!(:category) { FactoryGirl.create :category }

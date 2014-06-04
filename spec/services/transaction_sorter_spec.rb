@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe TransactionSorter do
   let!(:transaction) { FactoryGirl.create :transaction, :name => "Some Transaction Foobar" }

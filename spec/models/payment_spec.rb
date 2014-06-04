@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Payment do
   before { FactoryGirl.create :payment }

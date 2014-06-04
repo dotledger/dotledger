@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::AccountsController do
   let!(:account) { FactoryGirl.create :account, :name => 'Account Name' }

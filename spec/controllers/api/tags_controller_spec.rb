@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::TagsController do
   let!(:tag1) { FactoryGirl.create :tag, :name => 'Tag A' }
