@@ -17,9 +17,8 @@ DotLedger.module 'Views.Accounts', ->
       [
         {
           color: 'rgb(111, 202, 194)'
-          data:_.map(@model.get("balances"), (balance, date) ->
-            [moment(date).toDate().getTime(), balance]
-          )
+          data: @options.balances.map (balance) ->
+            [moment(balance.get('date')).toDate().getTime(), balance.get('balance')]
         }
       ]
 
@@ -59,4 +58,8 @@ DotLedger.module 'Views.Accounts', ->
 
     onRender: ->
       @$el.find("a[data-tab-id='#{@tab}-transactions']").parent().addClass('active')
+
+      @options.balances.on 'all', =>
+        @renderBalanceGraph()
+
       _.defer(=> @renderBalanceGraph())

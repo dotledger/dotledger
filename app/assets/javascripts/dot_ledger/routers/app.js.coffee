@@ -63,6 +63,11 @@ DotLedger.module 'Routers', ->
       account = new DotLedger.Models.Account(id: account_id)
       transactions = new DotLedger.Collections.Transactions()
 
+      balances = new DotLedger.Collections.Balances()
+      balances.fetch
+        data:
+          account_id: account_id
+
       Backbone.history.navigate("/accounts/#{account_id}/#{tab}/page-#{page_number}")
 
       transactions.on 'page:change', (page)->
@@ -93,6 +98,7 @@ DotLedger.module 'Routers', ->
 
       show = new DotLedger.Views.Accounts.Show
         model: account
+        balances: balances
         tab: tab
 
       account.fetch

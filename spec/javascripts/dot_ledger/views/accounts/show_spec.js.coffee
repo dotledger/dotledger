@@ -2,6 +2,7 @@ $.plot = $.noop
 
 describe "DotLedger.Views.Accounts.Show", ->
   createView = ->
+    balances = new DotLedger.Collections.Balances
     model =  new DotLedger.Models.Account
       name: 'Some Account'
       type: 'Savings'
@@ -14,6 +15,7 @@ describe "DotLedger.Views.Accounts.Show", ->
 
     view = new DotLedger.Views.Accounts.Show
       model: model
+      balances: balances
     view
 
   it "should be defined", ->
