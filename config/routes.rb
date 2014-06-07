@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     resources :payments
     resources :tags, only: [:index]
+    resources :balances, only: [:index]
 
     get 'statistics/activity_per_category'
 
