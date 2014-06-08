@@ -37,6 +37,9 @@ DotLedger.module 'Routers', ->
       'search/:params/page-:page_number': 'search'
       'search': 'search'
 
+      # Not Found
+      '*path': 'notFound'
+
     root: ->
       dashboard = new DotLedger.Views.Application.Dashboard()
 
@@ -58,6 +61,13 @@ DotLedger.module 'Routers', ->
         success: ->
           accounts_list = new DotLedger.Views.Accounts.List(collection: accounts)
           dashboard.panelA.show(accounts_list)
+
+    notFound: (path)->
+      model = new DotLedger.Models.Base
+        path: path
+      notFoundView = new DotLedger.Views.Application.NotFound
+        model: model
+      DotLedger.mainRegion.show(notFoundView)
 
     showAccount: (account_id, tab = 'sorted', page_number = 1)->
       account = new DotLedger.Models.Account(id: account_id)
