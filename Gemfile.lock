@@ -133,7 +133,7 @@ GEM
     rake (10.3.2)
     rspec-collection_matchers (1.0.0)
       rspec-expectations (>= 2.99.0.beta1)
-    rspec-core (3.0.0)
+    rspec-core (3.0.1)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.1)
       diff-lcs (>= 1.2.0, < 2.0)
