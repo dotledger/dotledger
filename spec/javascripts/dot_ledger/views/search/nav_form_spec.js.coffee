@@ -34,7 +34,7 @@ describe "DotLedger.Views.Search.NavForm", ->
     expect(model.set).toHaveBeenCalledWith
       query: 'coffee'
 
-  it "should navigate to the search page", ->
+  it "should navigate to the search page with a query", ->
     model = new Backbone.Model()
     view = createView(model).render()
 
@@ -45,3 +45,15 @@ describe "DotLedger.Views.Search.NavForm", ->
     view.search()
 
     expect(Backbone.history.navigate).toHaveBeenCalledWith("/search/~(query~'coffee)/page-1", { trigger: true })
+
+  it "should navigate to the search page without a query", ->
+    model = new Backbone.Model()
+    view = createView(model).render()
+
+    view.$el.find('input[name=query]').val('')
+
+    spyOn(Backbone.history, 'navigate')
+
+    view.search()
+
+    expect(Backbone.history.navigate).toHaveBeenCalledWith("/search/~()/page-1", { trigger: true })

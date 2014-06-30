@@ -10,16 +10,16 @@ DotLedger.module 'Views.Search', ->
       'submit form': 'search'
 
     search: ->
+      data = {}
       if @ui.query.val() != ''
-        data = {}
         data['query'] = @ui.query.val()
 
-        @model.clear()
-        @model.set(data)
+      @model.clear()
+      @model.set(data)
 
-        @trigger 'search', @model
+      @trigger 'search', @model
 
-        # FIXME: This is yuck.
-        Backbone.history.navigate("/search/#{JSURL.stringify(@model.attributes)}/page-1", trigger: true)
+      # FIXME: This is yuck.
+      Backbone.history.navigate("/search/#{JSURL.stringify(@model.attributes)}/page-1", trigger: true)
 
       return false
