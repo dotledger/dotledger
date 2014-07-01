@@ -13,7 +13,7 @@
     </div>
 
   </div>
-  <h1><%- name %> <small><%= accounting.formatMoney(balance) %></small></h1>
+  <h1><%- name %> <small><%= DotLedger.Helpers.Format.money(balance) %></small></h1>
   <small><%= type %> &mdash; <%= number %></small>
 </div>
 

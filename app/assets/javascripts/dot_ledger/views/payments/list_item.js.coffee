@@ -5,7 +5,7 @@ DotLedger.module 'Views.Payments', ->
     templateHelpers: ->
       spendAmount: =>
         if @model.get('type') == 'Spend'
-          accounting.formatMoney(@model.get('amount'))
+          DotLedger.Helpers.Format.money(@model.get('amount'))
       receiveAmount: =>
         if @model.get('type') == 'Receive'
-          accounting.formatMoney(@model.get('amount'))
+          DotLedger.Helpers.Format.money(@model.get('amount'))

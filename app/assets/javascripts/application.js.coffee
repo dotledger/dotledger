@@ -9,7 +9,6 @@
 #= require jquery.flot
 #= require jquery.flot.time
 #= require moment
-#= require accounting
 #= require underscore
 #= require underscore.string
 #= require backbone

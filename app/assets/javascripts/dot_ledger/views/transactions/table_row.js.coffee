@@ -58,10 +58,10 @@ DotLedger.module 'Views.Transactions', ->
           '<span class="text-muted">Unsorted</span>'
       spentAmount: =>
         if @model.get('amount') < 0
-          accounting.formatMoney(-@model.get('amount'))
+          DotLedger.Helpers.Format.money(-@model.get('amount'))
       receivedAmount: =>
         if @model.get('amount') > 0
-          accounting.formatMoney(@model.get('amount'))
+          DotLedger.Helpers.Format.money(@model.get('amount'))
       editSortReview: =>
         if @model.has('sorted_transaction')
           sorted_transaction = @model.get('sorted_transaction')

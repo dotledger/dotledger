@@ -10,13 +10,13 @@
 <div class="panel-body">
   <div class="row text-muted">
     <div class="col-xs-4 text-left">
-      <small>Total cash: <strong><%= accounting.formatMoney(totalCash()) %></strong></small>
+      <small>Total cash: <strong><%= DotLedger.Helpers.Format.money(totalCash()) %></strong></small>
     </div>
     <div class="col-xs-4 text-center">
-      <small>Total debt: <strong><%= accounting.formatMoney(totalDebt()) %></strong></small>
+      <small>Total debt: <strong><%= DotLedger.Helpers.Format.money(totalDebt()) %></strong></small>
     </div>
     <div class="col-xs-4 text-right">
-      <small>Difference: <strong><%= accounting.formatMoney(totalCash() - totalDebt()) %></strong></small>
+      <small>Difference: <strong><%= DotLedger.Helpers.Format.money(totalCash() - totalDebt()) %></strong></small>
     </div>
   </div>
 

@@ -47,7 +47,7 @@ DotLedger.module 'Views.Accounts', ->
 
       @ui.balanceGraph.bind "plothover", (event, pos, item) =>
         if item
-          balance = accounting.formatMoney(item.datapoint[1])
+          balance = DotLedger.Helpers.Format.money(item.datapoint[1])
           @ui.balanceTooltipInner.html(balance)
           @ui.balanceTooltip.css(
             top: item.pageY - 35

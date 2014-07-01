@@ -1,1 +1,1 @@
-<p><%= totalCount() %> matching transactions. Total spent: <%= accounting.formatMoney(totalSpent()) %> Total received:<%= accounting.formatMoney(totalReceived()) %></p>
+<p><%= totalCount() %> matching transactions. Total spent: <%= DotLedger.Helpers.Format.money(totalSpent()) %> Total received:<%= DotLedger.Helpers.Format.money(totalReceived()) %></p>

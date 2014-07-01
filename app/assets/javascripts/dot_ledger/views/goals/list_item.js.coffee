@@ -67,4 +67,4 @@ DotLedger.module 'Views.Goals', ->
           when 'Week'
             1 * @model.get('amount') * 13.0/3
 
-        accounting.formatMoney(amount)
+        DotLedger.Helpers.Format.money(amount)
