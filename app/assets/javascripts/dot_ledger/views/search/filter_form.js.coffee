@@ -30,6 +30,7 @@ DotLedger.module 'Views.Search', ->
     renderCategories: ->
       @ui.category.empty()
       @ui.category.append('<option value="">Any</option>')
+      @ui.category.append('<option value="-1">None</option>')
       _.each @options.categories.groupBy('type'), (categories, label) =>
         $optgroup = $("<optgroup label='#{label}'></optgroup>")
         _.each categories, (category) =>
@@ -51,7 +52,12 @@ DotLedger.module 'Views.Search', ->
     search: ->
       data = {}
       data['query'] = @ui.query.val()
-      data['category_id'] = @ui.category.val()
+      if @ui.category.val()
+        if @ui.category.val() > 0
+          data['category_id'] = @ui.category.val()
+        else
+          data['unsorted'] = 'true'
+
       data['date_from'] = @ui.date_from.val()
       data['date_to'] = @ui.date_to.val()
       data['tag_ids'] = @ui.tags.val()

@@ -89,6 +89,21 @@ describe "DotLedger.Views.Search.FilterForm", ->
     expect(model.set).toHaveBeenCalledWith
       query: 'coffee'
 
+  it "should search unsorted transactions", ->
+    model = new Backbone.Model()
+    view = createView(model).render()
+
+    view.$el.find('select[name=category]').val('-1')
+
+    spyOn(model, 'clear')
+    spyOn(model, 'set')
+
+    view.search()
+
+    expect(model.clear).toHaveBeenCalled
+    expect(model.set).toHaveBeenCalledWith
+      unsorted: 'true'
+
   it "should trigger a search event", ->
     model = new Backbone.Model()
     view = createView(model).render()
