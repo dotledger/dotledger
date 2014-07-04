@@ -18,6 +18,10 @@ feature "Categories", :truncate => true, :js => true do
       visit "/categories"
     end
 
+    it "sets the correct page title" do
+      expect_page_title_to_be 'Categories'
+    end
+
     it "shows the heading" do
       expect(page).to have_content "Categories"
     end
@@ -34,6 +38,10 @@ feature "Categories", :truncate => true, :js => true do
   describe "Create" do
     before do
       visit "/categories/new"
+    end
+
+    it "sets the correct page title" do
+      expect_page_title_to_be 'New Category'
     end
 
     it "shows the heading" do
@@ -62,6 +70,10 @@ feature "Categories", :truncate => true, :js => true do
   describe "Update" do
     before do
       visit "/categories/#{category1.id}/edit"
+    end
+
+    it "sets the correct page title" do
+      expect_page_title_to_be 'Edit Category', 'Test Category 1'
     end
 
     it "shows the heading" do

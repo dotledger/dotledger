@@ -22,6 +22,10 @@ feature "Goals", :truncate => true, :js => true do
       visit "/goals"
     end
 
+    it "sets the correct page title" do
+      expect_page_title_to_be 'Goals'
+    end
+
     it "shows the heading" do
       expect(page).to have_content "Goals"
     end

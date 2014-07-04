@@ -41,6 +41,8 @@ DotLedger.module 'Routers', ->
       '*path': 'notFound'
 
     root: ->
+      DotLedger.title 'Dashboard'
+
       dashboard = new DotLedger.Views.Application.Dashboard()
 
       DotLedger.mainRegion.show(dashboard)
@@ -113,6 +115,7 @@ DotLedger.module 'Routers', ->
 
       account.fetch
         success: ->
+          DotLedger.title 'Accounts', account.get('name')
 
           DotLedger.mainRegion.show(show)
 
@@ -128,6 +131,8 @@ DotLedger.module 'Routers', ->
 
       form.on 'save', (model)->
         Backbone.history.navigate("/accounts/#{model.get('id')}", trigger: true)
+
+      DotLedger.title 'New Account'
 
       DotLedger.mainRegion.show(form)
 
@@ -147,6 +152,8 @@ DotLedger.module 'Routers', ->
 
       account.fetch(
         success: ->
+          DotLedger.title 'Edit Account', account.get('name')
+
           DotLedger.mainRegion.show(form)
       )
 
@@ -160,6 +167,8 @@ DotLedger.module 'Routers', ->
 
       account.fetch
         success: ->
+          DotLedger.title 'New Statement', account.get('name')
+
           DotLedger.mainRegion.show(form)
 
       form.on 'save', ->
@@ -167,6 +176,9 @@ DotLedger.module 'Routers', ->
 
     listCategories: (page_number = 1) ->
       categories = new DotLedger.Collections.Categories()
+
+      DotLedger.title 'Categories'
+
       categories.fetch
         success: ->
           list = new DotLedger.Views.Categories.List
@@ -177,6 +189,8 @@ DotLedger.module 'Routers', ->
     newCategory: ->
       category = new DotLedger.Models.Category()
       form = new DotLedger.Views.Categories.Form(model: category)
+
+      DotLedger.title 'New Category'
 
       form.on 'save', (model)->
         Backbone.history.navigate("/categories", trigger: true)
@@ -192,10 +206,14 @@ DotLedger.module 'Routers', ->
 
       category.fetch
         success: ->
+          DotLedger.title 'Edit Category', category.get('name')
           DotLedger.mainRegion.show(form)
 
     listSortingRules: (page_number = 1)->
       sorting_rules = new DotLedger.Collections.SortingRules()
+
+      DotLedger.title 'Sorting Rules'
+
       sorting_rules.fetch
         data:
           page: page_number
@@ -213,6 +231,8 @@ DotLedger.module 'Routers', ->
     newSortingRule: ->
       sorting_rule = new DotLedger.Models.SortingRule()
       categories = new DotLedger.Collections.Categories()
+
+      DotLedger.title 'New Sorting Rule'
 
       categories.fetch()
 
@@ -240,10 +260,15 @@ DotLedger.module 'Routers', ->
 
       sorting_rule.fetch
         success: ->
+          DotLedger.title 'Edit Sorting Rule', sorting_rule.get('contains')
+
           DotLedger.mainRegion.show(form)
 
     listGoals: ->
       goals = new DotLedger.Collections.Goals()
+
+      DotLedger.title 'Goals'
+
       goals.fetch
         success: ->
           list = new DotLedger.Views.Goals.List
@@ -253,6 +278,9 @@ DotLedger.module 'Routers', ->
 
     listPayments: ->
       payments = new DotLedger.Collections.Payments()
+
+      DotLedger.title 'Payments'
+
       payments.fetch
         success: ->
           list = new DotLedger.Views.Payments.List
@@ -263,6 +291,8 @@ DotLedger.module 'Routers', ->
     newPayment: ->
       payment = new DotLedger.Models.Payment()
       categories = new DotLedger.Collections.Categories()
+
+      DotLedger.title 'New Payment'
 
       categories.fetch()
 
@@ -287,6 +317,8 @@ DotLedger.module 'Routers', ->
 
       payment.fetch(
         success: ->
+          DotLedger.title 'Edit Payment', payment.get('name')
+
           DotLedger.mainRegion.show(form)
       )
 
@@ -297,6 +329,11 @@ DotLedger.module 'Routers', ->
       search = new Backbone.Model(JSURL.parse(params))
       categories = new DotLedger.Collections.Categories()
       categories.fetch()
+
+      if search.get('query')
+        DotLedger.title 'Search', search.get('query')
+      else
+        DotLedger.title 'Search'
 
       tags = new DotLedger.Collections.Tags()
       tags.fetch()

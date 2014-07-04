@@ -34,6 +34,10 @@ feature "Accounts", :truncate => true, :js => true do
       visit "/accounts/#{account.id}"
     end
 
+    it "sets the correct page title" do
+      expect_page_title_to_be 'Accounts', 'Test Account 1'
+    end
+
     it "shows the account name" do
       expect(page).to have_content "Test Account 1"
     end
@@ -118,6 +122,10 @@ feature "Accounts", :truncate => true, :js => true do
       visit "/accounts/new"
     end
 
+    it "sets the correct page title" do
+      expect_page_title_to_be 'New Account'
+    end
+
     it "shows the heading" do
       expect(page).to have_content "New Account"
     end
@@ -154,6 +162,10 @@ feature "Accounts", :truncate => true, :js => true do
 
     before do
       visit "/accounts/#{account.id}/edit"
+    end
+
+    it "sets the correct page title" do
+      expect_page_title_to_be 'Edit Account', 'Test Account'
     end
 
     it "shows the heading" do

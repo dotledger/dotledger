@@ -14,6 +14,10 @@ feature "Statements", :truncate => true, :js => true do
       visit "/accounts/#{account.id}/import"
     end
 
+    it "sets the correct page title" do
+      expect_page_title_to_be 'New Statement', 'Test Account 1'
+    end
+
     it "shows the heading" do
       expect(page).to have_content "Import Statement"
     end

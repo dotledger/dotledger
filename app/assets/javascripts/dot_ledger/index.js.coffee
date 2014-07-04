@@ -11,6 +11,9 @@
 @DotLedgerData = {}
 @DotLedger = new Marionette.Application()
 
+DotLedger.title = (title_parts...)->
+  DotLedger.trigger 'document:title', title_parts
+
 Backbone.Marionette.Renderer.render = (template, data)->
   JST["dot_ledger/templates/#{template}"](data)
 

@@ -27,6 +27,10 @@ feature "Sorting Rules", :truncate => true, :js => true do
       visit "/sorting-rules"
     end
 
+    it "sets the correct page title" do
+      expect_page_title_to_be 'Sorting Rules'
+    end
+
     it "shows the heading" do
       expect(page).to have_content "Sorting Rules"
     end
@@ -45,6 +49,10 @@ feature "Sorting Rules", :truncate => true, :js => true do
   describe "Create" do
     before do
       visit "/sorting-rules/new"
+    end
+
+    it "sets the correct page title" do
+      expect_page_title_to_be 'New Sorting Rule'
     end
 
     it "shows the heading" do
@@ -78,6 +86,10 @@ feature "Sorting Rules", :truncate => true, :js => true do
   describe "Update" do
     before do
       visit "/sorting-rules/#{sorting_rule1.id}/edit"
+    end
+
+    it "sets the correct page title" do
+      expect_page_title_to_be 'Edit Sorting Rule', 'foo'
     end
 
     it "shows the heading" do

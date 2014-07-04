@@ -24,6 +24,10 @@ feature "Payments", :truncate => true, :js => true do
       visit "/payments"
     end
 
+    it "sets the correct page title" do
+      expect_page_title_to_be 'Payments'
+    end
+
     it "shows the heading" do
       expect(page).to have_content "Payments"
     end
@@ -48,6 +52,10 @@ feature "Payments", :truncate => true, :js => true do
 
     before do
       visit "/payments/new"
+    end
+
+    it "sets the correct page title" do
+      expect_page_title_to_be 'New Payment'
     end
 
     it "shows the heading" do
@@ -82,6 +90,10 @@ feature "Payments", :truncate => true, :js => true do
   describe "Update" do
     before do
       visit "/payments/#{payment.id}/edit"
+    end
+
+    it "sets the correct page title" do
+      expect_page_title_to_be 'Edit Payment', 'Foobar Wages'
     end
 
     it "shows the heading" do
