@@ -23,10 +23,6 @@
   margin-top: 6px;
 }
 
-.navbar-brand .glyphicon {
-  vertical-align: top;
-}
-
 .modal-dialog .modal-body .form-horizontal {
   margin: 0 20px;
 }
@@ -51,9 +47,6 @@ footer {
 
   a {
     color: $text-muted;
-    .glyphicon {
-      vertical-align: text-top;
-    }
 
     &:hover {
       color: darken($text-muted, 10%);
