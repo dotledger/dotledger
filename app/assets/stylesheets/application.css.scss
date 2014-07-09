@@ -27,37 +27,6 @@
   vertical-align: top;
 }
 
-@media (min-width: $grid-float-breakpoint) {
-  table {
-    tr {
-      .edit-payment,
-      .edit-sorting-rule {
-        visibility: hidden;
-      }
-
-      &:hover {
-        .edit-payment,
-        .edit-sorting-rule {
-          visibility: visible;
-        }
-      }
-    }
-  }
-
-  .list-group-item  {
-    .edit-category {
-      visibility: hidden;
-
-    }
-
-    &:hover {
-      .edit-category {
-        visibility: visible;
-      }
-    }
-  }
-}
-
 .modal-dialog .modal-body .form-horizontal {
   margin: 0 20px;
 }
