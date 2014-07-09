@@ -7,6 +7,14 @@
 @import "pace";
 @import "theme";
 
+.page-header {
+  margin-top: 10px;
+
+  h1 {
+    margin-top: 0;
+  }
+}
+
 #notifications {
   padding-top: $navbar-height + 20px;
 }
