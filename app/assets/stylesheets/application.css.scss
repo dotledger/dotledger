@@ -15,6 +15,12 @@
   }
 }
 
+@media (max-width: $screen-sm-max) {
+  #nav-search {
+    margin: 0 -15px;
+  }
+}
+
 #notifications {
   padding-top: $navbar-height + 20px;
 }
