@@ -29,6 +29,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
 group :development, :test do
+  gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'
   gem 'shoulda-matchers'
