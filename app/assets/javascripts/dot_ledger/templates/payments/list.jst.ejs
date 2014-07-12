@@ -11,7 +11,7 @@
 <% _.each(paymentDates(), function(date) { %>
   <h4><%= moment(date).format('LL') %></h4>
 
-  <table class="table payments" id="payment-date-<%= moment(date).format('X') %>">
+  <table class="table table-bordered payments" id="payment-date-<%= moment(date).format('X') %>">
     <thead>
       <tr>
         <th>Name</th>
