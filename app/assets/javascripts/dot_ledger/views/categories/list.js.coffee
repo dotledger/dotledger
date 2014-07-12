@@ -6,8 +6,8 @@ DotLedger.module 'Views.Categories', ->
       categoryTypes: =>
         types = _.uniq(@collection.pluck('type'))
         _.map types, (type)->
-            label: type
-            id: "category-type-#{_.string.underscored(type)}"
+          label: type
+          id: "category-type-#{_.string.underscored(type)}"
 
     appendHtml: (collectionView, itemView, index)->
       list_id =  "category-type-#{_.string.underscored(itemView.model.get('type'))}"
