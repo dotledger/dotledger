@@ -16,7 +16,7 @@ DotLedger.module 'Views.SortedTransactions', ->
 
       _.each @options.categories.groupBy('type'), (categories, label) =>
         $optgroup = $("<optgroup label='#{label}'></optgroup>")
-        _.each categories, (category) =>
+        _.each categories, (category) ->
           $option = $("<option value='#{category.get('id')}'>#{category.get('name')}</option>")
           $optgroup.append($option)
         @ui.category.append($optgroup)

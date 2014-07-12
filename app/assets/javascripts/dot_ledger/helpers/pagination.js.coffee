@@ -3,7 +3,7 @@ DotLedger.module 'Helpers', ->
     paginationView = new DotLedger.Views.Application.Pagination
       collection: collection
 
-    renderPagination = =>
+    renderPagination = ->
       view.$el.find(selector).html(paginationView.render().el)
 
     view.on 'render', renderPagination

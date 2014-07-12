@@ -14,7 +14,7 @@ DotLedger.module 'Views.Transactions', ->
 
     showEditForm: ->
       form = @sortedTransactionForm()
-      form.on 'save', =>
+      form.on 'save', ->
         form.close()
 
     reviewOkay: ->
