@@ -1,34 +1,34 @@
 class BalanceCalculator
-  attr_reader :account, :number_of_days, :starting_date
+  attr_reader :account, :date_from, :date_to, :date_range
 
   def initialize(options)
-    @number_of_days = options.fetch(:number_of_days)
     @account = options.fetch(:account)
-    @starting_date = DateTime.now
+    @date_from = options.fetch(:date_from)
+    @date_to = options.fetch(:date_to)
+    @date_range = date_from..date_to
   end
 
-  def current_balance
-    account.balance
+  def closing_balance
+    account.balance - account.transactions.where(['posted_at > ?', date_to]).sum(:amount)
   end
 
   def balances
-    @balances ||= [].tap do |output|
-      date_range.each do |date|
-        balance = current_balance - subsequent_transaction_total(date)
-        output << Balance.new(date: date, balance: balance, account_id: account.id)
-      end
+    @balances ||= date_range.map do |date|
+      Balance.new(date: date, balance: balance_for(date), account_id: account.id)
     end
-  end
-
-  def date_range
-    (starting_date.to_date - number_of_days.days)..starting_date.to_date
-  end
-
-  def subsequent_transaction_total(date)
-    account.transactions.where(posted_at: date..starting_date).sum(:amount)
   end
 
   def as_json(options = {})
     ActiveModel::ArraySerializer.new balances, options
+  end
+
+  private
+
+  def balance_for(date)
+    closing_balance - subsequent_transaction_total(date)
+  end
+
+  def subsequent_transaction_total(date)
+    account.transactions.where(posted_at: date..date_to).sum(:amount)
   end
 end
