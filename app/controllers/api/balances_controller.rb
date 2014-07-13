@@ -5,6 +5,12 @@ module Api
     def index
       begin
         account = Account.find(params[:account_id])
+
+        set_metadata_header(
+          date_from: date_range.first,
+          date_to: date_range.last
+        )
+
         @balances = BalanceCalculator.new(
           date_from: date_range.first,
           date_to: date_range.last,
