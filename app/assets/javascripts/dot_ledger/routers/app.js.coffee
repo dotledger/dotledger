@@ -79,6 +79,8 @@ DotLedger.module 'Routers', ->
       balances.fetch
         data:
           account_id: account_id
+          date_from: moment().subtract('days', 90).format('YYYY-MM-DD')
+          date_to: moment().format('YYYY-MM-DD')
 
       Backbone.history.navigate("/accounts/#{account_id}/#{tab}/page-#{page_number}")
 
