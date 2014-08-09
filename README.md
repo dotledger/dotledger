@@ -59,6 +59,6 @@ See [the screenshots section](http://www.dotledger.com/#screenshots) of the [Dot
 License
 -------
 
-Copyright 2013 - 2014, Kale Worsley.
+Copyright 2013 - 2014, Kale Worsley, BitBot Limited.
 
 Dot Ledger is made available under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
