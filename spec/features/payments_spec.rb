@@ -33,7 +33,7 @@ feature "Payments", :truncate => true, :js => true do
     end
 
     it "shows the payment date" do
-      expect(page).to have_content date.strftime("%B %e %Y")
+      expect(page).to have_content date.strftime("%B %e, %Y")
     end
 
     it "shows the payment name" do
