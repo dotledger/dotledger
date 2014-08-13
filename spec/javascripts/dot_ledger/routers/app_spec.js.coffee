@@ -26,32 +26,32 @@ describe "DotLedger.Routers.App", ->
     it "routes to sortAccount", ->
       router = createRouter('sortAccount')
       router.navigate('/accounts/42/sort', navigateOptions)
-      expect(router.sortAccount).toHaveBeenCalledWith('42')
+      expect(router.sortAccount).toHaveBeenCalledWith('42', null)
 
     it "routes to editAccount", ->
       router = createRouter('editAccount')
       router.navigate('/accounts/42/edit', navigateOptions)
-      expect(router.editAccount).toHaveBeenCalledWith('42')
+      expect(router.editAccount).toHaveBeenCalledWith('42', null)
 
     it "routes to importAccount", ->
       router = createRouter('newStatement')
       router.navigate('/accounts/42/import', navigateOptions)
-      expect(router.newStatement).toHaveBeenCalledWith('42')
+      expect(router.newStatement).toHaveBeenCalledWith('42', null)
 
     it "routes to showAccout", ->
       router = createRouter('showAccount')
       router.navigate('/accounts/42', navigateOptions)
-      expect(router.showAccount).toHaveBeenCalledWith('42')
+      expect(router.showAccount).toHaveBeenCalledWith('42', null)
 
     it "routes to showAccout with a tab", ->
       router = createRouter('showAccount')
       router.navigate('/accounts/42/sorted', navigateOptions)
-      expect(router.showAccount).toHaveBeenCalledWith('42', 'sorted')
+      expect(router.showAccount).toHaveBeenCalledWith('42', 'sorted', null)
 
     it "routes to showAccout with a tab and page number", ->
       router = createRouter('showAccount')
       router.navigate('/accounts/42/sorted/page-13', navigateOptions)
-      expect(router.showAccount).toHaveBeenCalledWith('42', 'sorted', '13')
+      expect(router.showAccount).toHaveBeenCalledWith('42', 'sorted', '13', null)
 
   describe 'Categories', ->
     it "routes to listCategories", ->
@@ -67,7 +67,7 @@ describe "DotLedger.Routers.App", ->
     it "routes to editCategory", ->
       router = createRouter('editCategory')
       router.navigate('/categories/42/edit', navigateOptions)
-      expect(router.editCategory).toHaveBeenCalledWith('42')
+      expect(router.editCategory).toHaveBeenCalledWith('42', null)
 
   describe 'SortingRules', ->
     it "routes to listSortingRules", ->
@@ -78,7 +78,7 @@ describe "DotLedger.Routers.App", ->
     it "routes to listSortingRules with page number", ->
       router = createRouter('listSortingRules')
       router.navigate('/sorting-rules/page-13', navigateOptions)
-      expect(router.listSortingRules).toHaveBeenCalledWith('13')
+      expect(router.listSortingRules).toHaveBeenCalledWith('13', null)
 
     it "routes to newSortingRule", ->
       router = createRouter('newSortingRule')
@@ -88,7 +88,7 @@ describe "DotLedger.Routers.App", ->
     it "routes to editSortingRule", ->
       router = createRouter('editSortingRule')
       router.navigate('/sorting-rules/42/edit', navigateOptions)
-      expect(router.editSortingRule).toHaveBeenCalledWith('42')
+      expect(router.editSortingRule).toHaveBeenCalledWith('42', null)
 
   describe 'Goals', ->
     it "routes to listGoals", ->
@@ -110,7 +110,7 @@ describe "DotLedger.Routers.App", ->
     it "routes to editPayment", ->
       router = createRouter('editPayment')
       router.navigate('/payments/42/edit', navigateOptions)
-      expect(router.editPayment).toHaveBeenCalledWith('42')
+      expect(router.editPayment).toHaveBeenCalledWith('42', null)
 
   describe 'Search', ->
     it "routes to search", ->
@@ -121,9 +121,9 @@ describe "DotLedger.Routers.App", ->
     it "routes to search with params", ->
       router = createRouter('search')
       router.navigate("/search/~(foo~'bar~baz~42)", navigateOptions)
-      expect(router.search).toHaveBeenCalledWith("~(foo~'bar~baz~42)")
+      expect(router.search).toHaveBeenCalledWith("~(foo~'bar~baz~42)", null)
 
     it "routes to search with params and page number", ->
       router = createRouter('search')
       router.navigate("/search/~(foo~'bar~baz~42)/page-13", navigateOptions)
-      expect(router.search).toHaveBeenCalledWith("~(foo~'bar~baz~42)", '13')
+      expect(router.search).toHaveBeenCalledWith("~(foo~'bar~baz~42)", '13', null)
