@@ -1,5 +1,5 @@
 DotLedger.module 'Views.Application', ->
-  class @Notification extends Backbone.Marionette.Layout
+  class @Notification extends Backbone.Marionette.LayoutView
     template: 'application/notification'
 
     ui:

@@ -9,13 +9,13 @@ DotLedger.module 'Views.Transactions', ->
     showSortForm: ->
       form = @sortedTransactionForm()
       form.on 'save', =>
-        form.close()
+        form.destroy()
         @remove()
 
     showEditForm: ->
       form = @sortedTransactionForm()
       form.on 'save', ->
-        form.close()
+        form.destroy()
 
     reviewOkay: ->
       sorted_transaction = new DotLedger.Models.SortedTransaction(

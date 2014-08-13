@@ -1,5 +1,5 @@
 DotLedger.module 'Views.Search', ->
-  class @Search extends Backbone.Marionette.Layout
+  class @Search extends Backbone.Marionette.LayoutView
     template: 'search/search'
     regions:
       searchFilters: '#search-filters'

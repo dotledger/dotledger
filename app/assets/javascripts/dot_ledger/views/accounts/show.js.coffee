@@ -1,5 +1,5 @@
 DotLedger.module 'Views.Accounts', ->
-  class @Show extends Backbone.Marionette.Layout
+  class @Show extends Backbone.Marionette.LayoutView
     initialize: (options)->
       @tab = options.tab
 

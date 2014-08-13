@@ -3,7 +3,7 @@ DotLedger.module 'Regions', ->
     onShow: (view) ->
       view.$el.modal "show"
       #view.$el.attr 'role', 'dialog'
-      @listenTo view, "before:close", @closeModal, this
+      @listenTo view, "before:destroy", @closeModal, this
 
     closeModal: ->
       if @currentView

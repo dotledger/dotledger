@@ -1,5 +1,5 @@
 DotLedger.module 'Views.Application', ->
-  class @Dashboard extends Backbone.Marionette.Layout
+  class @Dashboard extends Backbone.Marionette.LayoutView
     template: 'application/dashboard'
     regions:
       panelA: '#panel-a'

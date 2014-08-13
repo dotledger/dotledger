@@ -2,8 +2,8 @@ DotLedger.module 'Views.Accounts', ->
   class @List extends Backbone.Marionette.CompositeView
     className: 'panel panel-default'
     template: 'accounts/list'
-    getItemView: -> DotLedger.Views.Accounts.ListItem
-    itemViewContainer: '.list-group'
+    getChildView: -> DotLedger.Views.Accounts.ListItem
+    childViewContainer: '.list-group'
     templateHelpers: ->
       totalCash: =>
         balances = @collection.map (account)->

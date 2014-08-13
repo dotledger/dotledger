@@ -1,7 +1,7 @@
 DotLedger.module 'Views.Goals', ->
   class @List extends Backbone.Marionette.CompositeView
     template: 'goals/list'
-    getItemView: -> DotLedger.Views.Goals.ListItem
+    getChildView: -> DotLedger.Views.Goals.ListItem
     events:
       'click button.save-all': 'saveAll'
     templateHelpers: ->
@@ -11,9 +11,9 @@ DotLedger.module 'Views.Goals', ->
           label: type
           id: "category-type-#{_.string.underscored(type)}"
 
-    appendHtml: (collectionView, itemView, index)->
-      list_id =  "category-type-#{_.string.underscored(itemView.model.get('category_type'))}"
-      collectionView.$("div##{list_id}").append(itemView.el)
+    attachHtml: (collectionView, childView, index)->
+      list_id =  "category-type-#{_.string.underscored(childView.model.get('category_type'))}"
+      collectionView.$("div##{list_id}").append(childView.el)
 
     saveAll: ->
       @children.call('save')

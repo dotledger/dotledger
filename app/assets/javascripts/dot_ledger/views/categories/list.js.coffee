@@ -1,7 +1,7 @@
 DotLedger.module 'Views.Categories', ->
   class @List extends Backbone.Marionette.CompositeView
     template: 'categories/list'
-    getItemView: -> DotLedger.Views.Categories.ListItem
+    getChildView: -> DotLedger.Views.Categories.ListItem
     templateHelpers: ->
       categoryTypes: =>
         types = _.uniq(@collection.pluck('type'))
@@ -9,6 +9,6 @@ DotLedger.module 'Views.Categories', ->
           label: type
           id: "category-type-#{_.string.underscored(type)}"
 
-    appendHtml: (collectionView, itemView, index)->
-      list_id =  "category-type-#{_.string.underscored(itemView.model.get('type'))}"
-      collectionView.$("div##{list_id}").append(itemView.el)
+    attachHtml: (collectionView, childView, index)->
+      list_id =  "category-type-#{_.string.underscored(childView.model.get('type'))}"
+      collectionView.$("div##{list_id}").append(childView.el)
