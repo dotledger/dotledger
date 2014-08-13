@@ -4,7 +4,7 @@ before_script:
   - "cp ./config/database.yml.travis ./config/database.yml"
   - "bundle exec rake db:setup"
 rvm:
-  - 2.0.0
+  - 2.1.2
 script:
   - "bundle exec rake spec"
   - "bundle exec rake spec:javascript"
