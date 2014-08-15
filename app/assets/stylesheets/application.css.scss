@@ -72,3 +72,35 @@ div.balance {
     }
   }
 }
+
+.panel-heading {
+  .nav-pills {
+    > li {
+      > a {
+        color: $brand-primary;
+        &:hover,
+        &:focus {
+          background-color: $component-active-color;
+        }
+
+        .badge {
+          background-color: $brand-primary;
+        } 
+      }
+
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: $brand-primary;
+          color: $component-active-color;
+
+          .badge {
+            color: $brand-primary;
+          } 
+        }
+      }
+    }
+  }
+}
+

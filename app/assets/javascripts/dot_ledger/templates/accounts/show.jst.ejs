@@ -27,12 +27,18 @@
   </div>
 </div>
 
-<ul class="nav nav-tabs nav-justified">
-  <li><a href="/accounts/<%= id %>/sorted" data-tab-id="sorted-transactions">Sorted <span class="badge pull-right"><%= sorted_transaction_count %></span></a></li>
-  <li><a href="/accounts/<%= id %>/review" data-tab-id="review-transactions">Review <span class="badge pull-right"><%= review_transaction_count %></span></a></li>
-  <li><a href="/accounts/<%= id %>/unsorted" data-tab-id="unsorted-transactions">Unsorted <span class="badge pull-right"><%= unsorted_transaction_count %></span></a></li>
-</ul>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <ul class="nav nav-pills nav-justified">
+      <li><a href="/accounts/<%= id %>/sorted" data-tab-id="sorted-transactions">Sorted <span class="badge pull-right"><%= sorted_transaction_count %></span></a></li>
+      <li><a href="/accounts/<%= id %>/review" data-tab-id="review-transactions">Review <span class="badge pull-right"><%= review_transaction_count %></span></a></li>
+      <li><a href="/accounts/<%= id %>/unsorted" data-tab-id="unsorted-transactions">Unsorted <span class="badge pull-right"><%= unsorted_transaction_count %></span></a></li>
+    </ul>
+  </div>
 
-<div class="tab-content">
-  <div class="tab-pane active" id="transactions"></div>
+  <div class="panel-body">
+    <div class="tab-content">
+      <div class="tab-pane active" id="transactions"></div>
+    </div>
+  </div>
 </div>
