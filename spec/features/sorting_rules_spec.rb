@@ -100,6 +100,7 @@ feature "Sorting Rules", :truncate => true, :js => true do
       expect(find_field("Contains").value).to eq "foo"
       expect(find_field("Name").value).to eq "Foobar"
       expect(find_field("Category").value).to eq category.id.to_s
+      expect(find_field("Flag matches for review").value).to eq "true"
       expect(page).to have_button "Save"
       expect(page).to have_link "Cancel", :href => "/sorting-rules"
     end
