@@ -332,10 +332,13 @@ DotLedger.module 'Routers', ->
       categories = new DotLedger.Collections.Categories()
       categories.fetch()
 
-      if search.get('query')
-        DotLedger.title 'Search', search.get('query')
-      else
-        DotLedger.title 'Search'
+      search.on 'change', ->
+        if search.has('query')
+          DotLedger.title 'Search', search.get('query')
+        else
+          DotLedger.title 'Search'
+
+      search.trigger 'change'
 
       tags = new DotLedger.Collections.Tags()
       tags.fetch()

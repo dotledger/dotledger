@@ -26,6 +26,15 @@ feature "Search", :truncate => true, :js => true do
         expect(page).to have_content 'Another Foobar'
         expect(page).to_not have_content 'Blah'
       end
+
+      context 'with new query' do
+        it "sets the new page title" do
+          expect_page_title_to_be 'Search', 'Foobar'
+          fill_in "Search for", :with => 'Bazbar'
+          click_on "Search"
+          expect_page_title_to_be 'Search', 'Bazbar'
+        end
+      end
     end
 
     context 'without query' do
@@ -45,6 +54,15 @@ feature "Search", :truncate => true, :js => true do
         expect(page).to have_content 'Foobar Something'
         expect(page).to have_content 'Another Foobar'
         expect(page).to have_content 'Blah'
+      end
+
+      context 'with new query' do
+        it "sets the new page title" do
+          expect_page_title_to_be 'Search'
+          fill_in "Search for", :with => 'Bazbar'
+          click_on "Search"
+          expect_page_title_to_be 'Search', 'Bazbar'
+        end
       end
     end
   end
