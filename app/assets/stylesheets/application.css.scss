@@ -104,3 +104,10 @@ div.balance {
   }
 }
 
+.panel-body.has-table {
+  padding: 0;
+
+  table {
+    margin-bottom: 0;
+  }
+}
