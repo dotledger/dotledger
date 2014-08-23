@@ -9,20 +9,23 @@
 </div>
 
 <% _.each(paymentDates(), function(date) { %>
-  <h4><%= moment(date).format('LL') %></h4>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%= moment(date).format('LL') %></div>
+    <div class="panel-body has-table">
+      <table class="table payments" id="payment-date-<%= moment(date).format('X') %>">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th class="amount">Spend</th>
+            <th class="amount">Receive</th>
+            <th class="edit"></th>
+          </tr>
+        </thead>
 
-  <table class="table table-bordered payments" id="payment-date-<%= moment(date).format('X') %>">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th class="amount">Spend</th>
-        <th class="amount">Receive</th>
-        <th class="edit"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-    </tbody>
-  </table>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
 <% }) %>
