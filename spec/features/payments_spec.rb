@@ -80,7 +80,8 @@ feature "Payments", :truncate => true, :js => true do
         fill_in "Amount", :with => 100
         fill_in "Date", :with => date.strftime("%Y-%m-%d")
 
-        click_button "Save"
+        # FIXME: the datepicker seems to be overlapping the save button
+        find_button("Save").trigger('click')
 
         expect(page).to have_content "Some Payment"
       }.to change { Payment.count }.by(1)
