@@ -10,7 +10,9 @@
 
 <% _.each(paymentDates(), function(date) { %>
   <div class="panel panel-default">
-    <div class="panel-heading"><%= moment(date).format('LL') %></div>
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= moment(date).format('LL') %></h3>
+    </div>
     <div class="panel-body has-table">
       <table class="table payments" id="payment-date-<%= moment(date).format('X') %>">
         <thead>
