@@ -3,8 +3,11 @@
 </div>
 
 <% _.each(categoryTypes(), function(type) { %>
-  <h4><%- type.label %></h4>
-  <div class="list-group" id="<%= type.id %>"></div>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%- type.label %></div>
+    <div class="list-group" id="<%= type.id %>"></div>
+    </div>
+  </div>
 <% }) %>
 
 <div class="form-group">
