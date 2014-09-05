@@ -13,7 +13,7 @@ describe Goal do
 
   it { should validate_presence_of :period }
 
-  it { should ensure_inclusion_of(:period).in_array(['Month', 'Fortnight', 'Week']) }
+  it { should validate_inclusion_of(:period).in_array(['Month', 'Fortnight', 'Week']) }
 
   it { should belong_to :category }
 

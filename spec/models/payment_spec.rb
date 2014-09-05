@@ -25,7 +25,7 @@ describe Payment do
 
   it { should validate_presence_of :type }
 
-  it { should ensure_inclusion_of(:type).in_array(['Spend', 'Receive']) }
+  it { should validate_inclusion_of(:type).in_array(['Spend', 'Receive']) }
 
   it { should serialize(:schedule).as_instance_of(ScheduleSerializer) }
 end
