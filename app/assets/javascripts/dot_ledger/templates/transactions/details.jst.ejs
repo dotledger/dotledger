@@ -1,0 +1,35 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title">Transaction Details</h4>
+    </div>
+    <div class="modal-body">
+      <dl class="dl-horizontal">
+        <dt>Amount</dt>
+        <dd><%- amount %></dd>
+
+        <dt>Memo</dt>
+        <dd><%- memo %></dd>
+
+        <dt>Fit ID</dt>
+        <dd><%- fit_id %></dd>
+
+        <dt>Name</dt>
+        <dd><%- name %></dd>
+
+        <dt>Payee</dt>
+        <dd><%- payee %></dd>
+
+        <dt>Ref number</dt>
+        <dd><%- ref_number %></dd>
+
+        <dt>Type</dt>
+        <dd><%- type %></dd>
+
+        <dt>Date</dt>
+        <dd><time datetime="<%- posted_at %>"><%= moment(posted_at).format("D MMM YYYY") %></time></dd>
+      </dl>
+    </div>
+  </div>
+</div>

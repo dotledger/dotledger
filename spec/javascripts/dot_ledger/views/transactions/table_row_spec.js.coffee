@@ -53,7 +53,7 @@ describe "DotLedger.Views.Transactions.TableRow", ->
 
     it "renders the search", ->
       view = createView().render()
-      expect(view.$el).toContainText('Some Name')
+      expect(view.$el.find('.transaction-details')).toContainText('Some Name')
 
     it "renders unsorted", ->
       view = createView().render()

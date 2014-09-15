@@ -100,7 +100,9 @@ feature 'Accounts', truncate: true, js: true do
 
     describe 'Sorted Transactions' do
       before do
-        click_on 'Sorted'
+        within '.panel-heading .nav' do
+          click_on 'Sorted'
+        end
       end
 
       it 'shows the transaction name' do

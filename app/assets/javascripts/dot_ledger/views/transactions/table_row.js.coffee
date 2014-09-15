@@ -3,9 +3,16 @@ DotLedger.module 'Views.Transactions', ->
     tagName: 'tr'
     template: 'transactions/table_row'
     events:
+      'click .transaction-details': 'showDetails'
       'click .sort-transaction': 'showSortForm'
       'click .edit-transaction': 'showEditForm'
       'click .review-okay-transaction': 'reviewOkay'
+
+    showDetails: ->
+      details = new DotLedger.Views.Transactions.Details
+        model: @model
+      DotLedger.modalRegion.show(details)
+
     showSortForm: ->
       form = @sortedTransactionForm()
       form.on 'save', =>
