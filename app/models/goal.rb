@@ -1,5 +1,5 @@
 class Goal < ActiveRecord::Base
-  GOAL_PERIODS = ['Month', 'Fortnight', 'Week']
+  GOAL_PERIODS = %w(Month Fortnight Week)
 
   FORTNIGHT_MULTIPLIER = 13.0 / 6
 

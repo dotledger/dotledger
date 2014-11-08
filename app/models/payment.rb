@@ -7,9 +7,9 @@ class Payment < ActiveRecord::Base
 
   belongs_to :category
 
-  PAYMENT_TYPES = ['Spend', 'Receive']
+  PAYMENT_TYPES = %w(Spend Receive)
 
-  PAYMENT_PERIODS = ['Day', 'Week', 'Month']
+  PAYMENT_PERIODS = %w(Day Week Month)
 
   validates :name, presence: true, uniqueness: true
 

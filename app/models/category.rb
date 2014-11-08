@@ -9,7 +9,7 @@ class Category < ActiveRecord::Base
 
   has_one :goal
 
-  CATEGORY_TYPES = ['Flexible', 'Essential', 'Income', 'Transfer']
+  CATEGORY_TYPES = %w(Flexible Essential Income Transfer)
 
   validates :name, presence: true, uniqueness: true
 
