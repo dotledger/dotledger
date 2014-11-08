@@ -17,20 +17,20 @@ describe Goal do
 
   it { should belong_to :category }
 
-  describe ".month_amount" do
-    context "month period" do
+  describe '.month_amount' do
+    context 'month period' do
       let(:goal) { FactoryGirl.create :goal, amount: 1000.00, period: 'Month' }
 
       specify { expect(goal.month_amount).to be_within(0.1).of(1000.00) }
     end
 
-    context "fortnight period" do
+    context 'fortnight period' do
       let(:goal) { FactoryGirl.create :goal, amount: 1000.00, period: 'Fortnight' }
 
       specify { expect(goal.month_amount).to be_within(0.1).of(2166.67) }
     end
 
-    context "week period" do
+    context 'week period' do
       let(:goal) { FactoryGirl.create :goal, amount: 1000.00, period: 'Week' }
 
       specify { expect(goal.month_amount).to be_within(0.1).of(4333.33) }

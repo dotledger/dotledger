@@ -5,6 +5,6 @@ FactoryGirl.define do
     sequence(:name) {|n| "MyString #{n}" }
     category
     amount 9.99
-    type "Spend"
+    type 'Spend'
   end
 end

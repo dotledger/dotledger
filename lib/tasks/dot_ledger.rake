@@ -1,5 +1,5 @@
 namespace :dot_ledger do
-  desc "Import transactions from an OFX file"
+  desc 'Import transactions from an OFX file'
   task :import, [:account_id, :file] => :environment do |t, args|
     begin
       account = Account.find(args[:account_id])
@@ -19,7 +19,7 @@ namespace :dot_ledger do
     end
   end
 
-  desc "Re-run sorting rules on unsorted transactions"
+  desc 'Re-run sorting rules on unsorted transactions'
   task sort: :environment do
     count = 0
     Transaction.unsorted.each do |t|
@@ -32,7 +32,7 @@ namespace :dot_ledger do
     puts "Sorted #{count} transactions."
   end
 
-  desc "Export data to a YAML file"
+  desc 'Export data to a YAML file'
   task :export_yaml, [:file] => :environment do |t, args|
     begin
       data = {}
@@ -54,8 +54,8 @@ namespace :dot_ledger do
           f.write(data.to_yaml)
         end
 
-        puts "Exported"
-        puts "--------"
+        puts 'Exported'
+        puts '--------'
         data.each do |label, elements|
           puts "#{label}: #{elements.count}"
         end
@@ -68,7 +68,7 @@ namespace :dot_ledger do
     end
   end
 
-  desc "Import data from a YAML file"
+  desc 'Import data from a YAML file'
   task :import_yaml, [:file] => :environment do |t, args|
     begin
       counts = {
@@ -105,8 +105,8 @@ namespace :dot_ledger do
         end
       end
 
-      puts "Imported"
-      puts "--------"
+      puts 'Imported'
+      puts '--------'
       counts.each do |label, count|
         puts "#{label}: #{count}"
       end

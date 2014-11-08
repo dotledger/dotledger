@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :account do
-    name "Eftpos"
+    name 'Eftpos'
     sequence(:number) {|n| "121234123456712#{n}" }
-    type "Cheque"
+    type 'Cheque'
   end
 end

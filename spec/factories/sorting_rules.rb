@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :sorting_rule do
-    contains "MyString"
-    name "MyString"
+    contains 'MyString'
+    name 'MyString'
     category
   end
 end

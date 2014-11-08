@@ -19,12 +19,12 @@ describe SortingRule do
 
   it { should belong_to :category }
 
-  describe "tags" do
+  describe 'tags' do
     let!(:tag1) { FactoryGirl.create :tag, name: 'First Tag' }
 
     let!(:tag2) { FactoryGirl.create :tag , name: 'Second Tag'}
 
-    describe ".tags" do
+    describe '.tags' do
       subject { FactoryGirl.build :sorting_rule, tag_ids: [tag1.id, tag2.id] }
 
       specify do
@@ -32,10 +32,10 @@ describe SortingRule do
       end
     end
 
-    describe ".tags=" do
+    describe '.tags=' do
       subject { FactoryGirl.build :sorting_rule, tag_ids: [] }
 
-      context "a list of tag models" do
+      context 'a list of tag models' do
         before do
           subject.tags = [tag1, tag2]
         end
@@ -45,7 +45,7 @@ describe SortingRule do
         end
       end
 
-      context "a string of tag names" do
+      context 'a string of tag names' do
         before do
           subject.tags = 'First Tag, Second Tag'
         end
@@ -55,7 +55,7 @@ describe SortingRule do
         end
       end
 
-      context "an unexpected type" do
+      context 'an unexpected type' do
         specify do
           expect {
             subject.tags = {foo: 'bar'}

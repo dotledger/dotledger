@@ -19,7 +19,7 @@ describe BalanceCalculator do
     FactoryGirl.create(:transaction, account: account, amount: 2.0, posted_at: Date.parse('2014-03-14'))
   end
 
-  context "to the present balance" do
+  context 'to the present balance' do
     subject do
       BalanceCalculator.new(
         account: account,
@@ -28,28 +28,28 @@ describe BalanceCalculator do
       )
     end
 
-    describe ".balances" do
-      it "returns the correct number of balances" do
+    describe '.balances' do
+      it 'returns the correct number of balances' do
         expect(subject.balances.length).to eq 10
       end
 
-      it "returns the closing balance for the last balance" do
+      it 'returns the closing balance for the last balance' do
         expect(subject.balances.last.balance).to eq subject.closing_balance
       end
 
-      it "returns the correct balances" do
+      it 'returns the correct balances' do
         expect(subject.balances.map(&:balance).map(&:to_f)).to eq [91.99, 91.99, 93.99, 93.99, 85.0, 85.0, 90.0, 90.0, 100.0, 100.0]
       end
     end
 
-    describe ".closing_balance" do
-      it "returns the correct closing balance" do
+    describe '.closing_balance' do
+      it 'returns the correct closing balance' do
         expect(subject.closing_balance).to eq 100.0
       end
     end
   end
 
-  context "historical" do
+  context 'historical' do
     subject do
       BalanceCalculator.new(
         account: account,
@@ -58,22 +58,22 @@ describe BalanceCalculator do
       )
     end
 
-    describe ".balances" do
-      it "returns the correct number of balances" do
+    describe '.balances' do
+      it 'returns the correct number of balances' do
         expect(subject.balances.length).to eq 8
       end
 
-      it "returns the closing balance for the last balance" do
+      it 'returns the closing balance for the last balance' do
         expect(subject.balances.last.balance).to eq subject.closing_balance
       end
 
-      it "returns the correct balances" do
+      it 'returns the correct balances' do
         expect(subject.balances.map(&:balance).map(&:to_f)).to eq [91.99, 91.99, 91.99, 91.99, 91.99, 93.99, 93.99, 85.0]
       end
     end
 
-    describe ".closing_balance" do
-      it "returns the correct closing balance" do
+    describe '.closing_balance' do
+      it 'returns the correct closing balance' do
         expect(subject.closing_balance).to eq 85.0
       end
     end

@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :goal do
     category
     amount 1000
-    period "Month"
+    period 'Month'
   end
 end
