@@ -5,9 +5,9 @@ describe Category do
     FactoryGirl.create :category
   end
 
-  it { should have_db_column(:name).of_type(:string).with_options(:null => false) }
+  it { should have_db_column(:name).of_type(:string).with_options(null: false) }
 
-  it { should have_db_column(:type).of_type(:string).with_options(:null => false) }
+  it { should have_db_column(:type).of_type(:string).with_options(null: false) }
 
   it { should have_db_index(:name).unique(:true) }
 

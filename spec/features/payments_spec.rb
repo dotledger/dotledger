@@ -1,21 +1,21 @@
 require 'rails_helper'
 
-feature "Payments", :truncate => true, :js => true do
+feature "Payments", truncate: true, js: true do
   include ActionView::Helpers::NumberHelper
 
   let(:date) { Time.now + 4.days }
 
   let!(:category) do
-    FactoryGirl.create :category, :type => 'Income', :name => "Salary & Wages"
+    FactoryGirl.create :category, type: 'Income', name: "Salary & Wages"
   end
 
   let!(:payment) do
     FactoryGirl.create :payment,
-      :category => category,
-      :name => "Foobar Wages",
-      :amount => 5000,
-      :type => 'Receive',
-      :schedule => IceCube::Schedule.new(date)
+      category: category,
+      name: "Foobar Wages",
+      amount: 5000,
+      type: 'Receive',
+      schedule: IceCube::Schedule.new(date)
   end
 
   describe "Index" do
@@ -69,16 +69,16 @@ feature "Payments", :truncate => true, :js => true do
       expect(page).to have_field "Category"
       expect(page).to have_field "Date"
       expect(page).to have_button "Save"
-      expect(page).to have_link "Cancel", :href => "/payments"
+      expect(page).to have_link "Cancel", href: "/payments"
     end
 
     it "creates a new payment" do
       expect {
-        fill_in "Name", :with => "Some Payment"
-        select "Spend", :from => "Type"
-        select category.name, :from => "Category"
-        fill_in "Amount", :with => 100
-        fill_in "Date", :with => date.strftime("%Y-%m-%d")
+        fill_in "Name", with: "Some Payment"
+        select "Spend", from: "Type"
+        select category.name, from: "Category"
+        fill_in "Amount", with: 100
+        fill_in "Date", with: date.strftime("%Y-%m-%d")
 
         # FIXME: the datepicker seems to be overlapping the save button
         find_button("Save").trigger('click')
@@ -111,7 +111,7 @@ feature "Payments", :truncate => true, :js => true do
 
     it "updates an existing payment" do
       expect {
-        fill_in "Name", :with => "Foobar Salary"
+        fill_in "Name", with: "Foobar Salary"
 
         click_button "Save"
 

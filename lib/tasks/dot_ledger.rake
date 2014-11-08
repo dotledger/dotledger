@@ -5,7 +5,7 @@ namespace :dot_ledger do
       account = Account.find(args[:account_id])
       ofx_file = File.open(args[:file])
 
-      creator = StatementCreator.new(:account => account, :file => ofx_file)
+      creator = StatementCreator.new(account: account, file: ofx_file)
 
       if creator.save
         puts "Imported #{creator.statement.transactions.count} transactions into #{account.name}."
@@ -20,7 +20,7 @@ namespace :dot_ledger do
   end
 
   desc "Re-run sorting rules on unsorted transactions"
-  task :sort => :environment do
+  task sort: :environment do
     count = 0
     Transaction.unsorted.each do |t|
       sorter = TransactionSorter.new(t)
@@ -96,9 +96,9 @@ namespace :dot_ledger do
 
       if data['SortingRules']
         data['SortingRules'].map do |sorting_rule|
-          category = Category.where(:name => sorting_rule.delete('category_name')).first
+          category = Category.where(name: sorting_rule.delete('category_name')).first
           new_sorting_rule = SortingRule.where(
-            sorting_rule.merge(:category_id => category.id)
+            sorting_rule.merge(category_id: category.id)
           ).first_or_initialize
           counts['SortingRules'] += 1 if new_sorting_rule.new_record?
           new_sorting_rule.save!

@@ -6,7 +6,7 @@ describe StatementCreator do
   let(:blank_file) { File.open("#{fixture_path}/blank.txt") }
 
   describe "valid" do
-    let(:statement_creator) { StatementCreator.new(:account => account, :file => file) }
+    let(:statement_creator) { StatementCreator.new(account: account, file: file) }
 
     it "should create a statement" do
       expect {
@@ -40,10 +40,10 @@ describe StatementCreator do
       context "latest statement" do
         before do
           FactoryGirl.create :statement,
-            :to_date => Date.parse('2012-12-01'),
-            :balance => 10.00,
-            :account => account
-          account.update(:balance => 10.00)
+            to_date: Date.parse('2012-12-01'),
+            balance: 10.00,
+            account: account
+          account.update(balance: 10.00)
         end
 
         it "should update the account balance" do
@@ -56,10 +56,10 @@ describe StatementCreator do
       context "older statement" do
         before do
           FactoryGirl.create :statement,
-            :to_date => Date.parse('2013-03-01'),
-            :balance => 10.00,
-            :account => account
-          account.update(:balance => 10.00)
+            to_date: Date.parse('2013-03-01'),
+            balance: 10.00,
+            account: account
+          account.update(balance: 10.00)
         end
 
         it "should update the account balance" do
@@ -72,7 +72,7 @@ describe StatementCreator do
   end
 
   describe "missing account" do
-    let(:statement_creator) { StatementCreator.new(:file => file) }
+    let(:statement_creator) { StatementCreator.new(file: file) }
 
     it "should have an error on account" do
       expect(statement_creator).to have(1).error_on(:account)
@@ -80,7 +80,7 @@ describe StatementCreator do
   end
 
   describe "missing file" do
-    let(:statement_creator) { StatementCreator.new(:account => account) }
+    let(:statement_creator) { StatementCreator.new(account: account) }
 
     it "should have an error on file" do
       expect(statement_creator).to have(1).error_on(:file)
@@ -88,7 +88,7 @@ describe StatementCreator do
   end
 
   describe "invalid file" do
-    let(:statement_creator) { StatementCreator.new(:account => account, :file => blank_file) }
+    let(:statement_creator) { StatementCreator.new(account: account, file: blank_file) }
 
     it "should have an error on file" do
       expect(statement_creator).to have(1).error_on(:file)

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::CategoriesController do
-  let!(:category) { FactoryGirl.create :category, :name => 'Category' }
+  let!(:category) { FactoryGirl.create :category, name: 'Category' }
 
   describe "GET index" do
     before { get :index }
@@ -14,7 +14,7 @@ describe Api::CategoriesController do
   end
 
   describe "GET show" do
-    before { get :show, :id => category.id }
+    before { get :show, id: category.id }
 
     it { should respond_with :success }
 
@@ -26,8 +26,8 @@ describe Api::CategoriesController do
   describe "POST create" do
     def valid_request
       post :create,
-        :name => 'Category Name',
-        :type => 'Essential'
+        name: 'Category Name',
+        type: 'Essential'
     end
 
     it "should respond with 200" do
@@ -45,8 +45,8 @@ describe Api::CategoriesController do
   describe "PUT update" do
     def valid_request
       put :update,
-        :id => category.id,
-        :name => 'New Category Name'
+        id: category.id,
+        name: 'New Category Name'
     end
 
     it "should respond with 200" do
@@ -64,7 +64,7 @@ describe Api::CategoriesController do
   describe "DELETE destroy" do
     def valid_request
       delete :destroy,
-        :id => category.id
+        id: category.id
     end
 
     it "should respond with 204" do

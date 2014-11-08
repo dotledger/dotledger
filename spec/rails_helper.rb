@@ -18,7 +18,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, {
-    :phantomjs_logger => PoltergeistLogger
+    phantomjs_logger: PoltergeistLogger
   })
 end
 
@@ -52,7 +52,7 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
 
-  config.include PageTitleHelper, :type => :feature
+  config.include PageTitleHelper, type: :feature
   
   config.infer_spec_type_from_file_location!
 
@@ -64,11 +64,11 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.before(:each, :js => true) do
+  config.before(:each, js: true) do
     DatabaseCleaner.strategy = :truncation
   end
 
-  config.before(:each, :truncate => true) do
+  config.before(:each, truncate: true) do
     DatabaseCleaner.strategy = :truncation
   end
 

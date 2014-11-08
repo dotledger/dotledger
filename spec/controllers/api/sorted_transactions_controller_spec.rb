@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Api::SortedTransactionsController do
-  let!(:sorted_transaction) { FactoryGirl.create :sorted_transaction, :name => 'Sorted Transaction Name' }
+  let!(:sorted_transaction) { FactoryGirl.create :sorted_transaction, name: 'Sorted Transaction Name' }
   let!(:account) { FactoryGirl.create :account }
-  let!(:transaction) { FactoryGirl.create :transaction, :account => account }
+  let!(:transaction) { FactoryGirl.create :transaction, account: account }
   let!(:category) { FactoryGirl.create :category }
 
   describe "GET index" do
@@ -17,7 +17,7 @@ describe Api::SortedTransactionsController do
   end
 
   describe "GET show" do
-    before { get :show, :id => sorted_transaction.id }
+    before { get :show, id: sorted_transaction.id }
 
     it { should respond_with :success }
 
@@ -29,9 +29,9 @@ describe Api::SortedTransactionsController do
   describe "POST create" do
     def valid_request
       attributes = FactoryGirl.attributes_for(:sorted_transaction) 
-      attributes.merge!(:account_id => account.id)
-      attributes.merge!(:transaction_id => transaction.id)
-      attributes.merge!(:category_id => category.id)
+      attributes.merge!(account_id: account.id)
+      attributes.merge!(transaction_id: transaction.id)
+      attributes.merge!(category_id: category.id)
       post :create, attributes
     end
 
@@ -50,8 +50,8 @@ describe Api::SortedTransactionsController do
   describe "PUT update" do
     def valid_request
       put :update,
-        :id => sorted_transaction.id,
-        :name => 'New Sorted Transaction Name'
+        id: sorted_transaction.id,
+        name: 'New Sorted Transaction Name'
     end
 
     it "should respond with 200" do
@@ -69,7 +69,7 @@ describe Api::SortedTransactionsController do
   describe "DELETE destroy" do
     def valid_request
       delete :destroy,
-        :id => sorted_transaction.id
+        id: sorted_transaction.id
     end
 
     it "should respond with 204" do

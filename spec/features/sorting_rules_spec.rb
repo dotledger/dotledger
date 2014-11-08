@@ -1,25 +1,25 @@
 require 'rails_helper'
 
-feature "Sorting Rules", :truncate => true, :js => true do
+feature "Sorting Rules", truncate: true, js: true do
   let!(:category) do
     FactoryGirl.create :category,
-      :name => 'Test Category'
+      name: 'Test Category'
   end
 
   let!(:sorting_rule1) do
     FactoryGirl.create :sorting_rule,
-      :contains => 'foo',
-      :name => 'Foobar',
-      :category => category,
-      :review => true
+      contains: 'foo',
+      name: 'Foobar',
+      category: category,
+      review: true
   end
 
   let!(:sorting_rule2) do
     FactoryGirl.create :sorting_rule,
-      :contains => 'baz',
-      :name => 'Bazbar',
-      :category => category,
-      :review => false
+      contains: 'baz',
+      name: 'Bazbar',
+      category: category,
+      review: false
   end
 
   describe "Index" do
@@ -38,11 +38,11 @@ feature "Sorting Rules", :truncate => true, :js => true do
     it "shows the sorting-rules" do
       expect(page).to have_content "foo"
       expect(page).to have_content "Foobar"
-      expect(page).to have_link "Edit", :href => "/sorting-rules/#{sorting_rule1.id}/edit"
+      expect(page).to have_link "Edit", href: "/sorting-rules/#{sorting_rule1.id}/edit"
 
       expect(page).to have_content "baz"
       expect(page).to have_content "Bazbar"
-      expect(page).to have_link "Edit", :href => "/sorting-rules/#{sorting_rule2.id}/edit"
+      expect(page).to have_link "Edit", href: "/sorting-rules/#{sorting_rule2.id}/edit"
     end
   end
 
@@ -66,14 +66,14 @@ feature "Sorting Rules", :truncate => true, :js => true do
       expect(page).to have_field "Flag matches for review"
       expect(page).to have_field "Tags"
       expect(page).to have_button "Save"
-      expect(page).to have_link "Cancel", :href => "/sorting-rules"
+      expect(page).to have_link "Cancel", href: "/sorting-rules"
     end
 
     it "creates a new sorting_rule" do
       expect {
-        fill_in "Contains", :with => "test"
-        fill_in "Name", :with => "Test Rule"
-        select "Test Category", :from => "Category"
+        fill_in "Contains", with: "test"
+        fill_in "Name", with: "Test Rule"
+        select "Test Category", from: "Category"
 
         click_button "Save"
 
@@ -102,12 +102,12 @@ feature "Sorting Rules", :truncate => true, :js => true do
       expect(find_field("Category").value).to eq category.id.to_s
       expect(find_field("Flag matches for review").value).to eq "true"
       expect(page).to have_button "Save"
-      expect(page).to have_link "Cancel", :href => "/sorting-rules"
+      expect(page).to have_link "Cancel", href: "/sorting-rules"
     end
 
     it "updates an existing sorting_rule" do
       expect {
-        fill_in "Name", :with => "New Sorting Rule Name"
+        fill_in "Name", with: "New Sorting Rule Name"
 
         click_button "Save"
 

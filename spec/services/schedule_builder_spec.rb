@@ -8,8 +8,8 @@ describe ScheduleBuilder do
   describe "no repeat" do
     let(:params) do
       {
-        :repeat => false,
-        :date => '2011-03-06'
+        repeat: false,
+        date: '2011-03-06'
       }
     end
 
@@ -26,10 +26,10 @@ describe ScheduleBuilder do
     context "monthly" do
       let(:params) do
         {
-          :date => '2011-03-06',
-          :repeat => 'true',
-          :repeat_interval => 12,
-          :repeat_period => 'Month'
+          date: '2011-03-06',
+          repeat: 'true',
+          repeat_interval: 12,
+          repeat_period: 'Month'
         }
       end
 
@@ -57,10 +57,10 @@ describe ScheduleBuilder do
     context "weekly" do
       let(:params) do
         {
-          :date => '2011-02-18',
-          :repeat => 'true',
-          :repeat_interval => 2,
-          :repeat_period => 'Week'
+          date: '2011-02-18',
+          repeat: 'true',
+          repeat_interval: 2,
+          repeat_period: 'Week'
         }
       end
 
@@ -88,10 +88,10 @@ describe ScheduleBuilder do
     context "daily" do
       let(:params) do
         {
-          :date => '2011-06-12',
-          :repeat => 'true',
-          :repeat_interval => 1,
-          :repeat_period => 'Day'
+          date: '2011-06-12',
+          repeat: 'true',
+          repeat_interval: 1,
+          repeat_period: 'Day'
         }
       end
 

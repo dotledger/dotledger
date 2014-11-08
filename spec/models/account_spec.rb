@@ -5,13 +5,13 @@ describe Account do
     FactoryGirl.create :account
   end
 
-  it { should have_db_column(:name).of_type(:string).with_options(:null => false) }
+  it { should have_db_column(:name).of_type(:string).with_options(null: false) }
 
-  it { should have_db_column(:number).of_type(:string).with_options(:null => false) }
+  it { should have_db_column(:number).of_type(:string).with_options(null: false) }
 
-  it { should have_db_column(:type).of_type(:string).with_options(:null => false) }
+  it { should have_db_column(:type).of_type(:string).with_options(null: false) }
 
-  it { should have_db_column(:balance).of_type(:decimal).with_options(:precision => 10, :scale => 2, :null => false, :default => 0.0) }
+  it { should have_db_column(:balance).of_type(:decimal).with_options(precision: 10, scale: 2, null: false, default: 0.0) }
 
   it { should have_db_index(:number).unique(:true) }
 

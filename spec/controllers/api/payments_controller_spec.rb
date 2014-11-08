@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Api::PaymentsController do
   let!(:category) { FactoryGirl.create :category }
 
-  let!(:payment) { FactoryGirl.create :payment, :category => category, :amount => 10.00 }
+  let!(:payment) { FactoryGirl.create :payment, category: category, amount: 10.00 }
 
   describe "GET index" do
     before { get :index }
@@ -16,7 +16,7 @@ describe Api::PaymentsController do
   end
 
   describe "GET show" do
-    before { get :show, :id => payment.id }
+    before { get :show, id: payment.id }
 
     it { should respond_with :success }
 
@@ -28,10 +28,10 @@ describe Api::PaymentsController do
   describe "POST create" do
     def valid_request
       post :create,
-        :name => 'Some Payment',
-        :type => 'Spend',
-        :amount => 1000,
-        :category_id => category.id
+        name: 'Some Payment',
+        type: 'Spend',
+        amount: 1000,
+        category_id: category.id
     end
 
     it "should respond with 200" do
@@ -49,8 +49,8 @@ describe Api::PaymentsController do
   describe "PUT update" do
     def valid_request
       put :update,
-        :id => payment.id,
-        :amount => 500 
+        id: payment.id,
+        amount: 500 
     end
 
     it "should respond with 200" do
@@ -68,7 +68,7 @@ describe Api::PaymentsController do
   describe "DELETE destroy" do
     def valid_request
       delete :destroy,
-        :id => payment.id
+        id: payment.id
     end
 
     it "should respond with 204" do

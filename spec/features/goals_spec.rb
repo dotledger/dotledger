@@ -1,21 +1,21 @@
 require 'rails_helper'
 
-feature "Goals", :truncate => true, :js => true do
+feature "Goals", truncate: true, js: true do
   include ActionView::Helpers::NumberHelper
 
   describe "Index" do
 
     let!(:essential_category) do
-      FactoryGirl.create :category, :type => 'Essential', :name => "Groceries"
+      FactoryGirl.create :category, type: 'Essential', name: "Groceries"
     end
 
     let!(:flexible_category) do
-      FactoryGirl.create :category, :type => 'Flexible', :name => "Eating Out"
+      FactoryGirl.create :category, type: 'Flexible', name: "Eating Out"
     end
 
     background do
-      essential_category.goal.update_attributes(:amount => 125, :period => 'Week')
-      flexible_category.goal.update_attributes(:amount => 100)
+      essential_category.goal.update_attributes(amount: 125, period: 'Week')
+      flexible_category.goal.update_attributes(amount: 100)
     end
 
     before do

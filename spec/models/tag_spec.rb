@@ -5,7 +5,7 @@ describe Tag do
     FactoryGirl.create :tag
   end
 
-  it { should have_db_column(:name).of_type(:string).with_options(:null => false) }
+  it { should have_db_column(:name).of_type(:string).with_options(null: false) }
 
   it { should validate_presence_of :name }
 
@@ -17,9 +17,9 @@ describe Tag do
     let(:tags_name_array) { ['First Tag', 'Second Tag'] }
 
     context "existing tags" do
-      let!(:tag1) { FactoryGirl.create :tag, :name => 'First Tag' }
+      let!(:tag1) { FactoryGirl.create :tag, name: 'First Tag' }
 
-      let!(:tag2) { FactoryGirl.create :tag , :name => 'Second Tag'}
+      let!(:tag2) { FactoryGirl.create :tag , name: 'Second Tag'}
 
       specify do
         expect(Tag.tags_from_string(tags_string)).to eq [tag1, tag2]

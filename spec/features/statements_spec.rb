@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-feature "Statements", :truncate => true, :js => true do
+feature "Statements", truncate: true, js: true do
   describe "Create" do
     let!(:account) do
       FactoryGirl.create :account,
-        :name => "Test Account 1",
-        :balance => 2000.00,
-        :number => "12-3456-1234567-123",
-        :type => "Savings"
+        name: "Test Account 1",
+        balance: 2000.00,
+        number: "12-3456-1234567-123",
+        type: "Savings"
     end
 
     before do
@@ -29,7 +29,7 @@ feature "Statements", :truncate => true, :js => true do
     it "shows the form" do
       expect(page).to have_field "File"
       expect(page).to have_button "Import"
-      expect(page).to have_link "Cancel", :href => "/accounts/#{account.id}"
+      expect(page).to have_link "Cancel", href: "/accounts/#{account.id}"
     end
   end
 end

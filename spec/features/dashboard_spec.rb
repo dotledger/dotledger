@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-feature "Dashboard", :truncate => true, :js => true do
-  let!(:account_1) { FactoryGirl.create :account, :name => "Test Account 1", :balance => 2000.00 }
-  let!(:account_2) { FactoryGirl.create :account, :name => "Test Account 2", :balance => 123.45 }
-  let!(:account_3) { FactoryGirl.create :account, :name => "Test Account 3", :balance => -500.00 }
-  let!(:unsorted_transaction) { FactoryGirl.create :transaction, :account => account_1 }
+feature "Dashboard", truncate: true, js: true do
+  let!(:account_1) { FactoryGirl.create :account, name: "Test Account 1", balance: 2000.00 }
+  let!(:account_2) { FactoryGirl.create :account, name: "Test Account 2", balance: 123.45 }
+  let!(:account_3) { FactoryGirl.create :account, name: "Test Account 3", balance: -500.00 }
+  let!(:unsorted_transaction) { FactoryGirl.create :transaction, account: account_1 }
 
   before do
     visit "/"
@@ -38,6 +38,6 @@ feature "Dashboard", :truncate => true, :js => true do
   end
 
   it "shows the unsorted transactions link" do
-    expect(page).to have_link "1 unsorted", :href => "/accounts/#{account_1.id}/unsorted"
+    expect(page).to have_link "1 unsorted", href: "/accounts/#{account_1.id}/unsorted"
   end
 end

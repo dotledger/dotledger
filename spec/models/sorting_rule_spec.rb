@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 describe SortingRule do
-  it { should have_db_column(:contains).of_type(:string).with_options(:null => false) }
+  it { should have_db_column(:contains).of_type(:string).with_options(null: false) }
 
-  it { should have_db_column(:category_id).of_type(:integer).with_options(:null => false) }
+  it { should have_db_column(:category_id).of_type(:integer).with_options(null: false) }
 
-  it { should have_db_column(:name).of_type(:string).with_options(:default => nil) }
+  it { should have_db_column(:name).of_type(:string).with_options(default: nil) }
 
-  it { should have_db_column(:review).of_type(:boolean).with_options(:default => false, :null => false) }
+  it { should have_db_column(:review).of_type(:boolean).with_options(default: false, null: false) }
 
-  it { should have_db_column(:tag_ids).of_type(:integer).with_options(:array => true) }
+  it { should have_db_column(:tag_ids).of_type(:integer).with_options(array: true) }
 
   it { should have_db_index(:contains).unique(:true) }
 
@@ -20,12 +20,12 @@ describe SortingRule do
   it { should belong_to :category }
 
   describe "tags" do
-    let!(:tag1) { FactoryGirl.create :tag, :name => 'First Tag' }
+    let!(:tag1) { FactoryGirl.create :tag, name: 'First Tag' }
 
-    let!(:tag2) { FactoryGirl.create :tag , :name => 'Second Tag'}
+    let!(:tag2) { FactoryGirl.create :tag , name: 'Second Tag'}
 
     describe ".tags" do
-      subject { FactoryGirl.build :sorting_rule, :tag_ids => [tag1.id, tag2.id] }
+      subject { FactoryGirl.build :sorting_rule, tag_ids: [tag1.id, tag2.id] }
 
       specify do
         expect(subject.tags).to eq [tag1, tag2]
@@ -33,7 +33,7 @@ describe SortingRule do
     end
 
     describe ".tags=" do
-      subject { FactoryGirl.build :sorting_rule, :tag_ids => [] }
+      subject { FactoryGirl.build :sorting_rule, tag_ids: [] }
 
       context "a list of tag models" do
         before do
@@ -58,7 +58,7 @@ describe SortingRule do
       context "an unexpected type" do
         specify do
           expect {
-            subject.tags = {:foo => 'bar'}
+            subject.tags = {foo: 'bar'}
           }.to raise_error StandardError, 'unknown tag list'
         end
       end

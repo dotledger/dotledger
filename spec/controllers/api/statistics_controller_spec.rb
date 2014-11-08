@@ -7,7 +7,7 @@ describe Api::StatisticsController do
       let(:date_to) { '2011-01-05' }
 
       it "use the date range" do
-        get :activity_per_category, :date_from => date_from, :date_to => date_to
+        get :activity_per_category, date_from: date_from, date_to: date_to
 
         date_range = assigns(:activity_per_category).date_range
         expect(date_range).to eq Date.parse(date_from)..Date.parse(date_to)
@@ -18,7 +18,7 @@ describe Api::StatisticsController do
       let(:date) { '2011-01-01' }
 
       it "use the date range" do
-        get :activity_per_category, :date => date
+        get :activity_per_category, date: date
 
         date_range = assigns(:activity_per_category).date_range
         expect(date_range).to eq Date.parse(date).beginning_of_month..Date.parse(date).end_of_month

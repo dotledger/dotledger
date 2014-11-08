@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::SortingRulesController do
-  let!(:sorting_rule) { FactoryGirl.create :sorting_rule, :name => 'Some Name' }
+  let!(:sorting_rule) { FactoryGirl.create :sorting_rule, name: 'Some Name' }
   let!(:category) { FactoryGirl.create :category }
 
   describe "GET index" do
@@ -15,7 +15,7 @@ describe Api::SortingRulesController do
   end
 
   describe "GET show" do
-    before { get :show, :id => sorting_rule.id }
+    before { get :show, id: sorting_rule.id }
 
     it { should respond_with :success }
 
@@ -27,9 +27,9 @@ describe Api::SortingRulesController do
   describe "POST create" do
     def valid_request
       post :create,
-        :name => 'New Name',
-        :contains => 'Foobar',
-        :category_id => category.id
+        name: 'New Name',
+        contains: 'Foobar',
+        category_id: category.id
     end
 
     it "should respond with 200" do
@@ -47,8 +47,8 @@ describe Api::SortingRulesController do
   describe "PUT update" do
     def valid_request
       put :update,
-        :id => sorting_rule.id,
-        :name => 'Some New Name'
+        id: sorting_rule.id,
+        name: 'Some New Name'
     end
 
     it "should respond with 200" do
@@ -66,7 +66,7 @@ describe Api::SortingRulesController do
   describe "DELETE destroy" do
     def valid_request
       delete :destroy,
-        :id => sorting_rule.id
+        id: sorting_rule.id
     end
 
     it "should respond with 204" do

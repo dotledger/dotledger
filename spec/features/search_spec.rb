@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-feature "Search", :truncate => true, :js => true do
+feature "Search", truncate: true, js: true do
   background do
-    FactoryGirl.create :transaction, :name => 'Foobar Something'
-    FactoryGirl.create :transaction, :name => 'Another Foobar'
-    FactoryGirl.create :transaction, :name => 'Blah'
+    FactoryGirl.create :transaction, name: 'Foobar Something'
+    FactoryGirl.create :transaction, name: 'Another Foobar'
+    FactoryGirl.create :transaction, name: 'Blah'
   end
 
   describe "results" do
@@ -30,7 +30,7 @@ feature "Search", :truncate => true, :js => true do
       context 'with new query' do
         it "sets the new page title" do
           expect_page_title_to_be 'Search', 'Foobar'
-          fill_in "Search for", :with => 'Bazbar'
+          fill_in "Search for", with: 'Bazbar'
           click_on "Search"
           expect_page_title_to_be 'Search', 'Bazbar'
         end
@@ -59,7 +59,7 @@ feature "Search", :truncate => true, :js => true do
       context 'with new query' do
         it "sets the new page title" do
           expect_page_title_to_be 'Search'
-          fill_in "Search for", :with => 'Bazbar'
+          fill_in "Search for", with: 'Bazbar'
           click_on "Search"
           expect_page_title_to_be 'Search', 'Bazbar'
         end

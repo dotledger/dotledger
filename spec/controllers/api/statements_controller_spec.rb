@@ -15,7 +15,7 @@ describe Api::StatementsController do
   end
 
   describe "GET show" do
-    before { get :show, :id => statement.id }
+    before { get :show, id: statement.id }
 
     it { should respond_with :success }
 
@@ -26,8 +26,8 @@ describe Api::StatementsController do
 
   describe "POST create" do
     def valid_request
-      post :create, :account_id => account.id,
-        :file => fixture_file_upload('example.ofx')
+      post :create, account_id: account.id,
+        file: fixture_file_upload('example.ofx')
     end
 
     it "should respond with 200" do
@@ -51,7 +51,7 @@ describe Api::StatementsController do
   describe "DELETE destroy" do
     def valid_request
       delete :destroy,
-        :id => statement.id
+        id: statement.id
     end
 
     it "should respond with 204" do

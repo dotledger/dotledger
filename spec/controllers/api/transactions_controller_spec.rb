@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe Api::TransactionsController do
-  let!(:transaction) { FactoryGirl.create :transaction, :name => 'Transaction Name' }
+  let!(:transaction) { FactoryGirl.create :transaction, name: 'Transaction Name' }
   let!(:account) { FactoryGirl.create :account }
 
   describe "GET index" do
-    let!(:account_transactions) { FactoryGirl.create_list :transaction, 2, :account => account }
+    let!(:account_transactions) { FactoryGirl.create_list :transaction, 2, account: account }
     let!(:other_transactions) { FactoryGirl.create_list :transaction, 2 }
     let!(:sorted_transactions) { FactoryGirl.create_list :transaction, 2 }
     let!(:transactions_for_review) { FactoryGirl.create_list :transaction, 2 }
@@ -30,19 +30,19 @@ describe Api::TransactionsController do
     before do
       sorted_transactions.each do |t|
         t.create_sorted_transaction(
-          :account => t.account,
-          :category => category,
-          :name => 'Test',
-          :review => false
+          account: t.account,
+          category: category,
+          name: 'Test',
+          review: false
         )
       end
 
       transactions_for_review.each do |t|
         t.create_sorted_transaction(
-          :account => t.account,
-          :category => category,
-          :name => t.search,
-          :review => true
+          account: t.account,
+          category: category,
+          name: t.search,
+          review: true
         )
       end
     end
@@ -59,7 +59,7 @@ describe Api::TransactionsController do
 
     context "filter by account_id" do
       before do
-        get :index, :account_id => account.id
+        get :index, account_id: account.id
       end
 
       it { should respond_with :success }
@@ -71,7 +71,7 @@ describe Api::TransactionsController do
 
     context "filter sorted" do
       before do
-        get :index, :sorted => true
+        get :index, sorted: true
       end
 
       it { should respond_with :success }
@@ -83,7 +83,7 @@ describe Api::TransactionsController do
 
     context "filter unsorted" do
       before do
-        get :index, :unsorted => true
+        get :index, unsorted: true
       end
 
       it { should respond_with :success }
@@ -95,7 +95,7 @@ describe Api::TransactionsController do
 
     context "filter flagged for review" do
       before do
-        get :index, :review => true
+        get :index, review: true
       end
 
       it { should respond_with :success }
@@ -107,7 +107,7 @@ describe Api::TransactionsController do
 
     context "filter not flagged for review" do
       before do
-        get :index, :review => false
+        get :index, review: false
       end
 
       it { should respond_with :success }
@@ -119,7 +119,7 @@ describe Api::TransactionsController do
 
     context "filter search query" do
       before do
-        get :index, :query => 'test'
+        get :index, query: 'test'
       end
 
       it { should respond_with :success }
@@ -131,7 +131,7 @@ describe Api::TransactionsController do
 
     context "filter with category" do
       before do
-        get :index, :category_id => category.id
+        get :index, category_id: category.id
       end
 
       it { should respond_with :success }
@@ -145,7 +145,7 @@ describe Api::TransactionsController do
       let!(:transaction_during) { FactoryGirl.create :transaction, posted_at: Date.parse('2012-04-10') }
 
       before do
-        get :index, :date_from => '2012-04-01', :date_to => '2012-04-30'
+        get :index, date_from: '2012-04-01', date_to: '2012-04-30'
       end
 
       it { should respond_with :success }
@@ -161,7 +161,7 @@ describe Api::TransactionsController do
       let!(:transaction_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, tag_ids: [tag.id]) }
 
       before do
-        get :index, :tag_ids => tag.id
+        get :index, tag_ids: tag.id
       end
 
       it { should respond_with :success }
@@ -173,7 +173,7 @@ describe Api::TransactionsController do
   end
 
   describe "GET show" do
-    before { get :show, :id => transaction.id }
+    before { get :show, id: transaction.id }
 
     it { should respond_with :success }
 
@@ -185,7 +185,7 @@ describe Api::TransactionsController do
   describe "POST create" do
     def valid_request
       attributes = FactoryGirl.attributes_for(:transaction)
-      attributes.merge!(:account_id => account.id)
+      attributes.merge!(account_id: account.id)
       post :create, attributes
     end
 
@@ -204,8 +204,8 @@ describe Api::TransactionsController do
   describe "PUT update" do
     def valid_request
       put :update,
-        :id => transaction.id,
-        :name => 'New Transaction Name'
+        id: transaction.id,
+        name: 'New Transaction Name'
     end
 
     it "should respond with 200" do
@@ -223,7 +223,7 @@ describe Api::TransactionsController do
   describe "DELETE destroy" do
     def valid_request
       delete :destroy,
-        :id => transaction.id
+        id: transaction.id
     end
 
     it "should respond with 204" do
@@ -249,7 +249,7 @@ describe Api::TransactionsController do
     context "with account_id" do
       let(:account) { FactoryGirl.create :account }
       it "should respond with 200" do
-        post :sort, :account_id => account.id
+        post :sort, account_id: account.id
         expect(subject).to respond_with(:success)
       end
     end

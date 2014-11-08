@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::AccountsController do
-  let!(:account) { FactoryGirl.create :account, :name => 'Account Name' }
+  let!(:account) { FactoryGirl.create :account, name: 'Account Name' }
 
   describe "GET index" do
     before { get :index }
@@ -14,7 +14,7 @@ describe Api::AccountsController do
   end
 
   describe "GET show" do
-    before { get :show, :id => account.id }
+    before { get :show, id: account.id }
 
     it { should respond_with :success }
 
@@ -26,9 +26,9 @@ describe Api::AccountsController do
   describe "POST create" do
     def valid_request
       post :create,
-        :name => 'Account Name',
-        :number => '1212341234567120',
-        :type => 'Cheque'
+        name: 'Account Name',
+        number: '1212341234567120',
+        type: 'Cheque'
     end
 
     it "should respond with 200" do
@@ -46,8 +46,8 @@ describe Api::AccountsController do
   describe "PUT update" do
     def valid_request
       put :update,
-        :id => account.id,
-        :name => 'New Account Name'
+        id: account.id,
+        name: 'New Account Name'
     end
 
     it "should respond with 200" do
@@ -65,7 +65,7 @@ describe Api::AccountsController do
   describe "DELETE destroy" do
     def valid_request
       delete :destroy,
-        :id => account.id
+        id: account.id
     end
 
     it "should respond with 204" do
