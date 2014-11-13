@@ -122,20 +122,20 @@ module Api
     end
 
     def filter_search_query
-      params.has_key?(:query)
+      params.key?(:query)
     end
 
     def filter_with_category
-      params.has_key?(:category_id)
+      params.key?(:category_id)
     end
 
     def filter_with_tags
-      params.has_key?(:tag_ids)
+      params.key?(:tag_ids)
     end
 
     # FIXME: Yuck.
     def filter_between_dates
-      if params.has_key?(:date_from) && params.has_key?(:date_to)
+      if params.key?(:date_from) && params.key?(:date_to)
         begin
           Date.parse(params[:date_from])
           Date.parse(params[:date_to])
@@ -152,7 +152,7 @@ module Api
     end
 
     def sort_base
-      if params.has_key?(:account_id)
+      if params.key?(:account_id)
         Account.find(params[:account_id]).transactions.unsorted
       else
         Transaction.unsorted
