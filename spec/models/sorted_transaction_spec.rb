@@ -65,7 +65,7 @@ describe SortedTransaction do
       context 'an unexpected type' do
         specify do
           expect do
-            subject.tags = {foo: 'bar'}
+            subject.tags = { foo: 'bar' }
           end.to raise_error StandardError, 'unknown tag list'
         end
       end
