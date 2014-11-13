@@ -70,7 +70,7 @@ feature 'Sorting Rules', truncate: true, js: true do
     end
 
     it 'creates a new sorting_rule' do
-      expect {
+      expect do
         fill_in 'Contains', with: 'test'
         fill_in 'Name', with: 'Test Rule'
         select 'Test Category', from: 'Category'
@@ -79,7 +79,7 @@ feature 'Sorting Rules', truncate: true, js: true do
 
         expect(page).to have_content 'test'
         expect(page).to have_content 'Test Rule'
-      }.to change { SortingRule.count }.by(1)
+      end.to change { SortingRule.count }.by(1)
     end
   end
 
@@ -106,7 +106,7 @@ feature 'Sorting Rules', truncate: true, js: true do
     end
 
     it 'updates an existing sorting_rule' do
-      expect {
+      expect do
         fill_in 'Name', with: 'New Sorting Rule Name'
 
         click_button 'Save'
@@ -114,7 +114,7 @@ feature 'Sorting Rules', truncate: true, js: true do
         expect(page).to have_content 'New Sorting Rule Name'
 
         sorting_rule1.reload
-      }.to change { sorting_rule1.name }.from('Foobar').to('New Sorting Rule Name')
+      end.to change { sorting_rule1.name }.from('Foobar').to('New Sorting Rule Name')
     end
   end
 end

@@ -38,9 +38,9 @@ describe Api::SortingRulesController do
     end
 
     it 'should create a sorting_rule' do
-      expect {
+      expect do
         valid_request
-      }.to change(SortingRule, :count).by(1)
+      end.to change(SortingRule, :count).by(1)
     end
   end
 
@@ -57,9 +57,9 @@ describe Api::SortingRulesController do
     end
 
     it 'should update the name' do
-      expect {
+      expect do
         valid_request
-      }.to change {sorting_rule.reload.name}.from('Some Name').to('Some New Name')
+      end.to change {sorting_rule.reload.name}.from('Some Name').to('Some New Name')
     end
   end
 
@@ -75,9 +75,9 @@ describe Api::SortingRulesController do
     end
 
     it 'should delete the sorting_rule' do
-      expect {
+      expect do
         valid_request
-      }.to change(SortingRule, :count).by(-1)
+      end.to change(SortingRule, :count).by(-1)
     end
   end
 end

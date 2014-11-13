@@ -13,9 +13,9 @@ describe TransactionSorter do
   end
 
   it 'should create a sorted_transaction' do
-    expect {
+    expect do
       subject.sort
-    }.to change(SortedTransaction, :count).by(1)
+    end.to change(SortedTransaction, :count).by(1)
   end
 
   it 'should use the rule name if present' do

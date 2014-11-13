@@ -36,9 +36,9 @@ describe Api::CategoriesController do
     end
 
     it 'should create a category' do
-      expect {
+      expect do
         valid_request
-      }.to change(Category, :count).by(1)
+      end.to change(Category, :count).by(1)
     end
   end
 
@@ -55,9 +55,9 @@ describe Api::CategoriesController do
     end
 
     it 'should update the name' do
-      expect {
+      expect do
         valid_request
-      }.to change {category.reload.name}.from('Category').to('New Category Name')
+      end.to change {category.reload.name}.from('Category').to('New Category Name')
     end
   end
 
@@ -73,9 +73,9 @@ describe Api::CategoriesController do
     end
 
     it 'should delete the category' do
-      expect {
+      expect do
         valid_request
-      }.to change(Category, :count).by(-1)
+      end.to change(Category, :count).by(-1)
     end
   end
 end

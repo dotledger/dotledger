@@ -41,9 +41,9 @@ describe Api::SortedTransactionsController do
     end
 
     it 'should create a sorted_transaction' do
-      expect {
+      expect do
         valid_request
-      }.to change(SortedTransaction, :count).by(1)
+      end.to change(SortedTransaction, :count).by(1)
     end
   end
 
@@ -60,9 +60,9 @@ describe Api::SortedTransactionsController do
     end
 
     it 'should update the name' do
-      expect {
+      expect do
         valid_request
-      }.to change {sorted_transaction.reload.name}.from('Sorted Transaction Name').to('New Sorted Transaction Name')
+      end.to change {sorted_transaction.reload.name}.from('Sorted Transaction Name').to('New Sorted Transaction Name')
     end
   end
 
@@ -78,9 +78,9 @@ describe Api::SortedTransactionsController do
     end
 
     it 'should delete the sorted_transaction' do
-      expect {
+      expect do
         valid_request
-      }.to change(SortedTransaction, :count).by(-1)
+      end.to change(SortedTransaction, :count).by(-1)
     end
   end
 end

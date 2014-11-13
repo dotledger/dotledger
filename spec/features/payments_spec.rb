@@ -73,7 +73,7 @@ feature 'Payments', truncate: true, js: true do
     end
 
     it 'creates a new payment' do
-      expect {
+      expect do
         fill_in 'Name', with: 'Some Payment'
         select 'Spend', from: 'Type'
         select category.name, from: 'Category'
@@ -84,7 +84,7 @@ feature 'Payments', truncate: true, js: true do
         find_button('Save').trigger('click')
 
         expect(page).to have_content 'Some Payment'
-      }.to change { Payment.count }.by(1)
+      end.to change { Payment.count }.by(1)
     end
   end
 
@@ -110,7 +110,7 @@ feature 'Payments', truncate: true, js: true do
     end
 
     it 'updates an existing payment' do
-      expect {
+      expect do
         fill_in 'Name', with: 'Foobar Salary'
 
         click_button 'Save'
@@ -118,7 +118,7 @@ feature 'Payments', truncate: true, js: true do
         expect(page).to have_content 'Foobar Salary'
 
         payment.reload
-      }.to change { payment.name }.from('Foobar Wages').to('Foobar Salary')
+      end.to change { payment.name }.from('Foobar Wages').to('Foobar Salary')
     end
 
   end

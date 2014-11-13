@@ -28,8 +28,8 @@ describe Category do
   it { should have_one :goal }
 
   it 'should create a related goal' do
-    expect {
+    expect do
       FactoryGirl.create :category
-    }.to change(Goal, :count).by(1)
+    end.to change(Goal, :count).by(1)
   end
 end

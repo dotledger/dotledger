@@ -36,15 +36,15 @@ describe Api::StatementsController do
     end
 
     it 'should create a statement' do
-      expect {
+      expect do
         valid_request
-      }.to change(Statement, :count).by(1)
+      end.to change(Statement, :count).by(1)
     end
 
     it 'should create 4 transaction' do
-      expect {
+      expect do
         valid_request
-      }.to change(Transaction, :count).by(4)
+      end.to change(Transaction, :count).by(4)
     end
   end
 
@@ -60,9 +60,9 @@ describe Api::StatementsController do
     end
 
     it 'should delete the statement' do
-      expect {
+      expect do
         valid_request
-      }.to change(Statement, :count).by(-1)
+      end.to change(Statement, :count).by(-1)
     end
   end
 end

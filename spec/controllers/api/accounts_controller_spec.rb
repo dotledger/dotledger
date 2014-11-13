@@ -37,9 +37,9 @@ describe Api::AccountsController do
     end
 
     it 'should create an account' do
-      expect {
+      expect do
         valid_request
-      }.to change(Account, :count).by(1)
+      end.to change(Account, :count).by(1)
     end
   end
 
@@ -56,9 +56,9 @@ describe Api::AccountsController do
     end
 
     it 'should update the name' do
-      expect {
+      expect do
         valid_request
-      }.to change {account.reload.name}.from('Account Name').to('New Account Name')
+      end.to change {account.reload.name}.from('Account Name').to('New Account Name')
     end
   end
 
@@ -74,9 +74,9 @@ describe Api::AccountsController do
     end
 
     it 'should delete the account' do
-      expect {
+      expect do
         valid_request
-      }.to change(Account, :count).by(-1)
+      end.to change(Account, :count).by(-1)
     end
   end
 end

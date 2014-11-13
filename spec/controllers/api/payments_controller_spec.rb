@@ -40,9 +40,9 @@ describe Api::PaymentsController do
     end
 
     it 'should create a payment' do
-      expect {
+      expect do
         valid_request
-      }.to change(Payment, :count).by(1)
+      end.to change(Payment, :count).by(1)
     end
   end
 
@@ -59,9 +59,9 @@ describe Api::PaymentsController do
     end
 
     it 'should update the amount' do
-      expect {
+      expect do
         valid_request
-      }.to change {payment.reload.amount}.from(10.0).to(500)
+      end.to change {payment.reload.amount}.from(10.0).to(500)
     end
   end
 
@@ -77,9 +77,9 @@ describe Api::PaymentsController do
     end
 
     it 'should delete the payment' do
-      expect {
+      expect do
         valid_request
-      }.to change(Payment, :count).by(-1)
+      end.to change(Payment, :count).by(-1)
     end
   end
 end

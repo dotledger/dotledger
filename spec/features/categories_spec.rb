@@ -56,14 +56,14 @@ feature 'Categories', truncate: true, js: true do
     end
 
     it 'creates a new category' do
-      expect {
+      expect do
         fill_in 'Name', with: 'Some Category'
         select 'Essential', from: 'Type'
 
         click_button 'Save'
 
         expect(page).to have_content 'Some Category'
-      }.to change { Category.count }.by(1)
+      end.to change { Category.count }.by(1)
     end
   end
 
@@ -88,7 +88,7 @@ feature 'Categories', truncate: true, js: true do
     end
 
     it 'updates an existing category' do
-      expect {
+      expect do
         fill_in 'Name', with: 'New Category Name'
 
         click_button 'Save'
@@ -96,7 +96,7 @@ feature 'Categories', truncate: true, js: true do
         expect(page).to have_content 'New Category Name'
 
         category1.reload
-      }.to change { category1.name }.from('Test Category 1').to('New Category Name')
+      end.to change { category1.name }.from('Test Category 1').to('New Category Name')
     end
   end
 end

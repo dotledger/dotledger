@@ -9,7 +9,7 @@ describe Api::TransactionsController do
     let!(:other_transactions) { FactoryGirl.create_list :transaction, 2 }
     let!(:sorted_transactions) { FactoryGirl.create_list :transaction, 2 }
     let!(:transactions_for_review) { FactoryGirl.create_list :transaction, 2 }
-    let!(:all_transactions) {
+    let!(:all_transactions) do
       [
         transaction,
         account_transactions,
@@ -17,14 +17,14 @@ describe Api::TransactionsController do
         sorted_transactions,
         transactions_for_review
       ].flatten
-    }
-    let!(:unsorted_transactions) {
+    end
+    let!(:unsorted_transactions) do
       [
         transaction,
         account_transactions,
         other_transactions
       ].flatten
-    }
+    end
     let!(:category) { FactoryGirl.create :category }
 
     before do
@@ -195,9 +195,9 @@ describe Api::TransactionsController do
     end
 
     it 'should create a transaction' do
-      expect {
+      expect do
         valid_request
-      }.to change(Transaction, :count).by(1)
+      end.to change(Transaction, :count).by(1)
     end
   end
 
@@ -214,9 +214,9 @@ describe Api::TransactionsController do
     end
 
     it 'should update the name' do
-      expect {
+      expect do
         valid_request
-      }.to change {transaction.reload.name}.from('Transaction Name').to('New Transaction Name')
+      end.to change {transaction.reload.name}.from('Transaction Name').to('New Transaction Name')
     end
   end
 
@@ -232,9 +232,9 @@ describe Api::TransactionsController do
     end
 
     it 'should delete the transaction' do
-      expect {
+      expect do
         valid_request
-      }.to change(Transaction, :count).by(-1)
+      end.to change(Transaction, :count).by(-1)
     end
   end
 

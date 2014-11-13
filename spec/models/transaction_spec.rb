@@ -38,9 +38,9 @@ describe Transaction do
   it 'should set the search attribute before validation' do
     transaction = FactoryGirl.build :transaction, name: 'FOO', memo: 'BAR'
 
-    expect {
+    expect do
       transaction.valid?
-    }.to change(transaction, :search).from(nil).to('Foo Bar')
+    end.to change(transaction, :search).from(nil).to('Foo Bar')
   end
 
   describe '#unsorted' do

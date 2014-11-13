@@ -37,9 +37,9 @@ describe Api::GoalsController do
     end
 
     it 'should create a goal' do
-      expect {
+      expect do
         valid_request
-      }.to change(Goal, :count).by(1)
+      end.to change(Goal, :count).by(1)
     end
   end
 
@@ -56,9 +56,9 @@ describe Api::GoalsController do
     end
 
     it 'should update the amount' do
-      expect {
+      expect do
         valid_request
-      }.to change {goal.reload.amount}.from(0.0).to(500)
+      end.to change {goal.reload.amount}.from(0.0).to(500)
     end
   end
 
@@ -74,9 +74,9 @@ describe Api::GoalsController do
     end
 
     it 'should delete the goal' do
-      expect {
+      expect do
         valid_request
-      }.to change(Goal, :count).by(-1)
+      end.to change(Goal, :count).by(-1)
     end
   end
 end

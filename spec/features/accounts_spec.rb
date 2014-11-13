@@ -139,7 +139,7 @@ feature 'Accounts', truncate: true, js: true do
     end
 
     it 'creates a new account' do
-      expect {
+      expect do
         fill_in 'Name', with: 'Test Account'
         fill_in 'Number', with: '12-1234-1234567-123'
         select 'Savings', from: 'Type'
@@ -147,7 +147,7 @@ feature 'Accounts', truncate: true, js: true do
         click_button 'Save'
 
         expect(page).to have_content 'Test Account'
-      }.to change { Account.count }.by(1)
+      end.to change { Account.count }.by(1)
     end
   end
 
@@ -181,7 +181,7 @@ feature 'Accounts', truncate: true, js: true do
     end
 
     it 'updates an existing account' do
-      expect {
+      expect do
         fill_in 'Name', with: 'New Account Name'
 
         click_button 'Save'
@@ -189,7 +189,7 @@ feature 'Accounts', truncate: true, js: true do
         expect(page).to have_content 'New Account Name'
 
         account.reload
-      }.to change { account.name }.from('Test Account').to('New Account Name')
+      end.to change { account.name }.from('Test Account').to('New Account Name')
     end
   end
 end

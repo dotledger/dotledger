@@ -9,15 +9,15 @@ describe StatementCreator do
     let(:statement_creator) { StatementCreator.new(account: account, file: file) }
 
     it 'should create a statement' do
-      expect {
+      expect do
         statement_creator.save
-      }.to change(Statement, :count).by(1)
+      end.to change(Statement, :count).by(1)
     end
 
     it 'should create 4 transaction' do
-      expect {
+      expect do
         statement_creator.save
-      }.to change(Transaction, :count).by(4)
+      end.to change(Transaction, :count).by(4)
     end
 
     describe '.statement' do
@@ -47,9 +47,9 @@ describe StatementCreator do
         end
 
         it 'should update the account balance' do
-          expect {
+          expect do
             statement_creator.save
-          }.to change(account, :balance).from(10.to_d).to(2000.to_d)
+          end.to change(account, :balance).from(10.to_d).to(2000.to_d)
         end
       end
 
@@ -63,9 +63,9 @@ describe StatementCreator do
         end
 
         it 'should update the account balance' do
-          expect {
+          expect do
             statement_creator.save
-          }.to_not change(account, :balance)
+          end.to_not change(account, :balance)
         end
       end
     end
