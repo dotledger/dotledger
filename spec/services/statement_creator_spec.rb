@@ -40,9 +40,9 @@ describe StatementCreator do
       context 'latest statement' do
         before do
           FactoryGirl.create :statement,
-            to_date: Date.parse('2012-12-01'),
-            balance: 10.00,
-            account: account
+                             to_date: Date.parse('2012-12-01'),
+                             balance: 10.00,
+                             account: account
           account.update(balance: 10.00)
         end
 
@@ -56,9 +56,9 @@ describe StatementCreator do
       context 'older statement' do
         before do
           FactoryGirl.create :statement,
-            to_date: Date.parse('2013-03-01'),
-            balance: 10.00,
-            account: account
+                             to_date: Date.parse('2013-03-01'),
+                             balance: 10.00,
+                             account: account
           account.update(balance: 10.00)
         end
 

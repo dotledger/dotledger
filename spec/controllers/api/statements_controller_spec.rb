@@ -51,7 +51,7 @@ describe Api::StatementsController do
   describe 'DELETE destroy' do
     def valid_request
       delete :destroy,
-        id: statement.id
+             id: statement.id
     end
 
     it 'should respond with 204' do

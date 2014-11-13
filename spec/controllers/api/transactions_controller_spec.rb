@@ -204,8 +204,8 @@ describe Api::TransactionsController do
   describe 'PUT update' do
     def valid_request
       put :update,
-        id: transaction.id,
-        name: 'New Transaction Name'
+          id: transaction.id,
+          name: 'New Transaction Name'
     end
 
     it 'should respond with 200' do
@@ -223,7 +223,7 @@ describe Api::TransactionsController do
   describe 'DELETE destroy' do
     def valid_request
       delete :destroy,
-        id: transaction.id
+             id: transaction.id
     end
 
     it 'should respond with 204' do

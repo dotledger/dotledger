@@ -3,14 +3,14 @@ require 'rails_helper'
 feature 'Categories', truncate: true, js: true do
   let!(:category1) do
     FactoryGirl.create :category,
-      name: 'Test Category 1',
-      type: 'Essential'
+                       name: 'Test Category 1',
+                       type: 'Essential'
   end
 
   let!(:category2) do
     FactoryGirl.create :category,
-      name: 'Test Category 2',
-      type: 'Flexible'
+                       name: 'Test Category 2',
+                       type: 'Flexible'
   end
 
   describe 'Index' do

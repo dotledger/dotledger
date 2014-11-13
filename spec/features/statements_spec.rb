@@ -4,10 +4,10 @@ feature 'Statements', truncate: true, js: true do
   describe 'Create' do
     let!(:account) do
       FactoryGirl.create :account,
-        name: 'Test Account 1',
-        balance: 2000.00,
-        number: '12-3456-1234567-123',
-        type: 'Savings'
+                         name: 'Test Account 1',
+                         balance: 2000.00,
+                         number: '12-3456-1234567-123',
+                         type: 'Savings'
     end
 
     before do

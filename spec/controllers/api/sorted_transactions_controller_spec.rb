@@ -50,8 +50,8 @@ describe Api::SortedTransactionsController do
   describe 'PUT update' do
     def valid_request
       put :update,
-        id: sorted_transaction.id,
-        name: 'New Sorted Transaction Name'
+          id: sorted_transaction.id,
+          name: 'New Sorted Transaction Name'
     end
 
     it 'should respond with 200' do
@@ -69,7 +69,7 @@ describe Api::SortedTransactionsController do
   describe 'DELETE destroy' do
     def valid_request
       delete :destroy,
-        id: sorted_transaction.id
+             id: sorted_transaction.id
     end
 
     it 'should respond with 204' do

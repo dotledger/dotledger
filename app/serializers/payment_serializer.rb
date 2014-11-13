@@ -1,6 +1,6 @@
 class PaymentSerializer < ActiveModel::Serializer
   attributes :id, :name, :amount, :category_id, :category_name, :category_type,
-    :type, :schedule, :upcoming, :repeat, :repeat_interval, :repeat_period, :date
+             :type, :schedule, :upcoming, :repeat, :repeat_interval, :repeat_period, :date
 
   def repeat
     schedule.recurrence_rules.length > 0

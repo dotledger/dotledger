@@ -6,7 +6,7 @@ class ScheduleSerializer
 
     unless obj.is_a?(IceCube::Schedule)
       raise ActiveRecord::SerializationTypeMismatch,
-        "Attribute was supposed to be a IceCube::Schedule, but was a #{obj.class}. -- #{obj.inspect}"
+            "Attribute was supposed to be a IceCube::Schedule, but was a #{obj.class}. -- #{obj.inspect}"
     end
 
     obj.to_yaml
