@@ -216,7 +216,7 @@ describe Api::TransactionsController do
     it 'should update the name' do
       expect do
         valid_request
-      end.to change {transaction.reload.name}.from('Transaction Name').to('New Transaction Name')
+      end.to change { transaction.reload.name }.from('Transaction Name').to('New Transaction Name')
     end
   end
 

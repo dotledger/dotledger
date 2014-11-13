@@ -57,7 +57,7 @@ describe Api::CategoriesController do
     it 'should update the name' do
       expect do
         valid_request
-      end.to change {category.reload.name}.from('Category').to('New Category Name')
+      end.to change { category.reload.name }.from('Category').to('New Category Name')
     end
   end
 

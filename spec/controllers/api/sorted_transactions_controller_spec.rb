@@ -62,7 +62,7 @@ describe Api::SortedTransactionsController do
     it 'should update the name' do
       expect do
         valid_request
-      end.to change {sorted_transaction.reload.name}.from('Sorted Transaction Name').to('New Sorted Transaction Name')
+      end.to change { sorted_transaction.reload.name }.from('Sorted Transaction Name').to('New Sorted Transaction Name')
     end
   end
 

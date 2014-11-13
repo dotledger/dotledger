@@ -10,7 +10,7 @@ namespace :dot_ledger do
       if creator.save
         puts "Imported #{creator.statement.transactions.count} transactions into #{account.name}."
       else
-        puts "Error: #{creator.errors.messages.map {|k,v| "#{k} #{v.join(', ')}."}.join}"
+        puts "Error: #{creator.errors.messages.map { |k,v| "#{k} #{v.join(', ')}." }.join}"
       end
 
     rescue StandardError => e

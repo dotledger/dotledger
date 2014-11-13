@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :payment do
-    sequence(:name) {|n| "MyString #{n}" }
+    sequence(:name) { |n| "MyString #{n}" }
     category
     amount 9.99
     type 'Spend'

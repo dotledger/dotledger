@@ -58,7 +58,7 @@ describe Api::AccountsController do
     it 'should update the name' do
       expect do
         valid_request
-      end.to change {account.reload.name}.from('Account Name').to('New Account Name')
+      end.to change { account.reload.name }.from('Account Name').to('New Account Name')
     end
   end
 

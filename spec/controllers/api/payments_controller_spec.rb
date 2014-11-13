@@ -61,7 +61,7 @@ describe Api::PaymentsController do
     it 'should update the amount' do
       expect do
         valid_request
-      end.to change {payment.reload.amount}.from(10.0).to(500)
+      end.to change { payment.reload.amount }.from(10.0).to(500)
     end
   end
 

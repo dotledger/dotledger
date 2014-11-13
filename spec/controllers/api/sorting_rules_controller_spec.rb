@@ -59,7 +59,7 @@ describe Api::SortingRulesController do
     it 'should update the name' do
       expect do
         valid_request
-      end.to change {sorting_rule.reload.name}.from('Some Name').to('Some New Name')
+      end.to change { sorting_rule.reload.name }.from('Some Name').to('Some New Name')
     end
   end
 

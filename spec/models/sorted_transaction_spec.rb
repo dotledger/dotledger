@@ -29,7 +29,7 @@ describe SortedTransaction do
   describe 'tags' do
     let!(:tag1) { FactoryGirl.create :tag, name: 'First Tag' }
 
-    let!(:tag2) { FactoryGirl.create :tag , name: 'Second Tag'}
+    let!(:tag2) { FactoryGirl.create :tag , name: 'Second Tag' }
 
     describe '.tags' do
       subject { FactoryGirl.build :sorted_transaction, tag_ids: [tag1.id, tag2.id] }

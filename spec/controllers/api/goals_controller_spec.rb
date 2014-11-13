@@ -58,7 +58,7 @@ describe Api::GoalsController do
     it 'should update the amount' do
       expect do
         valid_request
-      end.to change {goal.reload.amount}.from(0.0).to(500)
+      end.to change { goal.reload.amount }.from(0.0).to(500)
     end
   end
 
