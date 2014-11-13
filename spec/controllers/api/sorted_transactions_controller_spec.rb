@@ -28,7 +28,7 @@ describe Api::SortedTransactionsController do
 
   describe 'POST create' do
     def valid_request
-      attributes = FactoryGirl.attributes_for(:sorted_transaction) 
+      attributes = FactoryGirl.attributes_for(:sorted_transaction)
       attributes.merge!(account_id: account.id)
       attributes.merge!(transaction_id: transaction.id)
       attributes.merge!(category_id: category.id)

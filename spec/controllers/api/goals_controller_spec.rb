@@ -47,7 +47,7 @@ describe Api::GoalsController do
     def valid_request
       put :update,
         id: goal.id,
-        amount: 500 
+        amount: 500
     end
 
     it 'should respond with 200' do

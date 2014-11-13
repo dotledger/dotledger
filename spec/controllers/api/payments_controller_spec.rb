@@ -50,7 +50,7 @@ describe Api::PaymentsController do
     def valid_request
       put :update,
         id: payment.id,
-        amount: 500 
+        amount: 500
     end
 
     it 'should respond with 200' do

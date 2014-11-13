@@ -49,7 +49,7 @@ describe Api::BalancesController do
           account: account
         )
 
-        get :index, account_id: account.id, date_from: date_from, date_to: date_to 
+        get :index, account_id: account.id, date_from: date_from, date_to: date_to
       end
     end
   end
