@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308063125) do
+ActiveRecord::Schema.define(version: 20141129174946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 20140308063125) do
   end
 
   add_index "payments", ["category_id"], name: "index_payments_on_category_id", using: :btree
-  add_index "payments", ["name"], name: "index_payments_on_name", unique: true, using: :btree
 
   create_table "sorted_transactions", force: true do |t|
     t.string   "name",                           null: false

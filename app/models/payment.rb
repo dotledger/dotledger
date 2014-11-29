@@ -11,7 +11,7 @@ class Payment < ActiveRecord::Base
 
   PAYMENT_PERIODS = %w(Day Week Month)
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
 
   validates :category, presence: true
 
