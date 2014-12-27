@@ -13,7 +13,7 @@ DotLedger.module 'Views.SortingRules', ->
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
 
-      @options.categories.on 'all', =>
+      @options.categories.on 'sync', =>
         @renderCategories()
 
       @ui.name.val(@model.get('name'))

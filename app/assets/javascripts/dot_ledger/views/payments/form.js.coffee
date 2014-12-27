@@ -15,7 +15,7 @@ DotLedger.module 'Views.Payments', ->
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
 
-      @options.categories.on 'all', =>
+      @options.categories.on 'sync', =>
         @renderCategories()
 
       DotLedger.on 'options:change', @renderPaymentTypes, this

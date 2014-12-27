@@ -12,11 +12,13 @@ DotLedger.module 'Views.SortedTransactions', ->
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
 
-      @options.categories.on 'all', =>
+      @options.categories.on 'sync', =>
         @renderCategories()
 
       @ui.name.val(@model.get('name') || @options.transaction.get('search'))
       @ui.tags.val(@model.get('tag_list'))
+
+      @renderCategories()
 
     renderCategories: ->
       @ui.category.empty()

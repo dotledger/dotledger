@@ -7,7 +7,7 @@ DotLedger.module 'Views.Application', ->
       nav_search: '#nav-search'
 
     initialize: ->
-      @options.accounts.on 'all', =>
+      @options.accounts.on 'sync', =>
         @render()
 
       @active = 'root'

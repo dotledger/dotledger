@@ -14,9 +14,9 @@ DotLedger.module 'Views.Search', ->
       'submit form': 'search'
 
     onRender: ->
-      @options.categories.on 'all', =>
+      @options.categories.on 'sync', =>
         @renderCategories()
-      @options.tags.on 'all', =>
+      @options.tags.on 'sync', =>
         @renderTags()
       @ui.query.val(@model.get('query'))
       @ui.date_from.val(@model.get('date_from'))
