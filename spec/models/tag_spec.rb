@@ -19,7 +19,7 @@ describe Tag do
     context 'existing tags' do
       let!(:tag1) { FactoryGirl.create :tag, name: 'First Tag' }
 
-      let!(:tag2) { FactoryGirl.create :tag , name: 'Second Tag' }
+      let!(:tag2) { FactoryGirl.create :tag, name: 'Second Tag' }
 
       specify do
         expect(Tag.tags_from_string(tags_string)).to eq [tag1, tag2]

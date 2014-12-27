@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe SortedTransaction do
-
   it { should have_db_column(:account_id).of_type(:integer).with_options(null: false) }
 
   it { should have_db_column(:transaction_id).of_type(:integer).with_options(null: false) }
@@ -29,7 +28,7 @@ describe SortedTransaction do
   describe 'tags' do
     let!(:tag1) { FactoryGirl.create :tag, name: 'First Tag' }
 
-    let!(:tag2) { FactoryGirl.create :tag , name: 'Second Tag' }
+    let!(:tag2) { FactoryGirl.create :tag, name: 'Second Tag' }
 
     describe '.tags' do
       subject { FactoryGirl.build :sorted_transaction, tag_ids: [tag1.id, tag2.id] }

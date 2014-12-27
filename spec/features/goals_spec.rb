@@ -4,7 +4,6 @@ feature 'Goals', truncate: true, js: true do
   include ActionView::Helpers::NumberHelper
 
   describe 'Index' do
-
     let!(:essential_category) do
       FactoryGirl.create :category, type: 'Essential', name: 'Groceries'
     end

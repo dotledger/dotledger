@@ -5,10 +5,10 @@ describe "DotLedger.Views.Goals.ListItem", ->
       id: 1
       amount: "1000.0"
       period: "Month"
-      category_id: 1 
+      category_id: 1
       category_name: "Cash Withdrawals"
       category_type: "Flexible"
-      
+
     new DotLedger.Views.Goals.ListItem(model: model)
 
   it "should be defined", ->

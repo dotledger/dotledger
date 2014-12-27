@@ -19,7 +19,6 @@ feature 'Payments', truncate: true, js: true do
   end
 
   describe 'Index' do
-
     before do
       visit '/payments'
     end
@@ -43,11 +42,9 @@ feature 'Payments', truncate: true, js: true do
     it 'shows the payment amount' do
       expect(page).to have_content number_to_currency(5000)
     end
-
   end
 
   describe 'Create' do
-
     let!(:category) { FactoryGirl.create :category }
 
     before do
@@ -120,7 +117,5 @@ feature 'Payments', truncate: true, js: true do
         payment.reload
       end.to change { payment.name }.from('Foobar Wages').to('Foobar Salary')
     end
-
   end
-
 end

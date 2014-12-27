@@ -7,6 +7,7 @@ module Statistics
     end
 
     private
+
     def select_list
       <<-EOT
       categories.id AS id,

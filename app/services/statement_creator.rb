@@ -39,7 +39,6 @@ class StatementCreator
 
   def persist!
     Statement.transaction do
-
       create_statement!
 
       parser.account.transactions.each do |t|
