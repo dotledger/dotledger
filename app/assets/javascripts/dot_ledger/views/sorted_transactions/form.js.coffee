@@ -3,8 +3,6 @@ DotLedger.module 'Views.SortedTransactions', ->
     template: 'sorted_transactions/form'
     className: 'modal'
     initialize: ->
-      @options.categories.on 'all', =>
-        @render()
 
     ui:
       name: 'input[name=name]'
@@ -14,6 +12,14 @@ DotLedger.module 'Views.SortedTransactions', ->
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
 
+      @options.categories.on 'all', =>
+        @renderCategories()
+
+      @ui.name.val(@model.get('name') || @options.transaction.get('search'))
+      @ui.tags.val(@model.get('tag_list'))
+
+    renderCategories: ->
+      @ui.category.empty()
       _.each @options.categories.groupBy('type'), (categories, label) =>
         $optgroup = $("<optgroup label='#{label}'></optgroup>")
         _.each categories, (category) ->
@@ -21,9 +27,7 @@ DotLedger.module 'Views.SortedTransactions', ->
           $optgroup.append($option)
         @ui.category.append($optgroup)
 
-      @ui.name.val(@model.get('name') || @options.transaction.get('search'))
       @ui.category.val(@model.get('category_id'))
-      @ui.tags.val(@model.get('tag_list'))
 
     events:
       'click button.save': 'save'
