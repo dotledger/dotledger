@@ -17,9 +17,9 @@ require 'capybara/poltergeist'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, {
+  Capybara::Poltergeist::Driver.new(app,
     phantomjs_logger: PoltergeistLogger
-  })
+  )
 end
 
 Capybara.default_driver = :poltergeist
