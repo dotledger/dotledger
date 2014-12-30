@@ -50,7 +50,7 @@ class StatementCreator
       end
 
       if statement.transactions.empty?
-        raise ActiveRecord::Rollback
+        fail ActiveRecord::Rollback
       end
 
       set_statement_dates!

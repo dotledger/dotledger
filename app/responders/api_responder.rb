@@ -1,6 +1,6 @@
 class ApiResponder < ActionController::Responder
   def api_behavior(error)
-    raise error unless resourceful?
+    fail error unless resourceful?
 
     if get? || patch? || put? || post?
       display resource

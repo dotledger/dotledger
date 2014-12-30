@@ -5,7 +5,7 @@ class ScheduleSerializer
     return if obj.nil?
 
     unless obj.is_a?(IceCube::Schedule)
-      raise ActiveRecord::SerializationTypeMismatch,
+      fail ActiveRecord::SerializationTypeMismatch,
             "Attribute was supposed to be a IceCube::Schedule, but was a #{obj.class}. -- #{obj.inspect}"
     end
 
