@@ -3,41 +3,23 @@ module Api
     def index
       @transactions = Transaction.includes(sorted_transaction: :category)
 
-      if account_id.present?
-        @transactions = @transactions.where(account_id: account_id)
-      end
+      @transactions = @transactions.where(account_id: account_id) if account_id.present?
 
-      if filter_sorted
-        @transactions = @transactions.sorted
-      end
+      @transactions = @transactions.sorted if filter_sorted
 
-      if filter_unsorted
-        @transactions = @transactions.unsorted
-      end
+      @transactions = @transactions.unsorted if filter_unsorted
 
-      if filter_for_review
-        @transactions = @transactions.for_review
-      end
+      @transactions = @transactions.for_review if filter_for_review
 
-      if filter_not_for_review
-        @transactions = @transactions.not_for_review
-      end
+      @transactions = @transactions.not_for_review if filter_not_for_review
 
-      if filter_search_query
-        @transactions = @transactions.search_query(params[:query])
-      end
+      @transactions = @transactions.search_query(params[:query]) if filter_search_query
 
-      if filter_with_category
-        @transactions = @transactions.with_category(params[:category_id])
-      end
+      @transactions = @transactions.with_category(params[:category_id]) if filter_with_category
 
-      if filter_between_dates
-        @transactions = @transactions.between_dates(params[:date_from], params[:date_to])
-      end
+      @transactions = @transactions.between_dates(params[:date_from], params[:date_to]) if filter_between_dates
 
-      if filter_with_tags
-        @transactions = @transactions.with_tags(params[:tag_ids])
-      end
+      @transactions = @transactions.with_tags(params[:tag_ids]) if filter_with_tags
 
       @transactions = @transactions.order(posted_at: :desc)
 

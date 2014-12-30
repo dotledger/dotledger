@@ -20,8 +20,6 @@ class Category < ActiveRecord::Base
   private
 
   def create_default_goal
-    if goal.nil?
-      create_goal(amount: 0.0, period: 'Month')
-    end
+    create_goal(amount: 0.0, period: 'Month') if goal.nil?
   end
 end

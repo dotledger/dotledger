@@ -44,14 +44,10 @@ class StatementCreator
       parser.account.transactions.each do |t|
         tr = create_transaction!(t)
 
-        if tr
-          sort_transaction(tr)
-        end
+        sort_transaction(tr) if tr
       end
 
-      if statement.transactions.empty?
-        fail ActiveRecord::Rollback
-      end
+      fail ActiveRecord::Rollback if statement.transactions.empty?
 
       set_statement_dates!
 
