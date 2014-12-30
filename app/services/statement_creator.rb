@@ -31,7 +31,7 @@ class StatementCreator
     return unless file.present?
 
     OFX::Parser::Base.new(file)
-  rescue StandardError => e
+  rescue StandardError
     errors.add(:file, 'could not be parsed')
   end
 
