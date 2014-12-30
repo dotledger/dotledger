@@ -17,7 +17,7 @@ class ScheduleBuilder
   private
 
   def repeats?
-    !!(params[:repeat].to_s =~ /true/i)
+    params[:repeat].to_s =~ /true/i
   end
 
   def valid_date?

@@ -106,19 +106,19 @@ module Api
     end
 
     def filter_sorted
-      !!(params[:sorted].to_s =~ /true/i)
+      params[:sorted].to_s =~ /true/i
     end
 
     def filter_unsorted
-      !!(params[:unsorted].to_s =~ /true/i)
+      params[:unsorted].to_s =~ /true/i
     end
 
     def filter_for_review
-      !!(params[:review].to_s =~ /true/i)
+      params[:review].to_s =~ /true/i
     end
 
     def filter_not_for_review
-      !!(params[:review].to_s =~ /false/i)
+      params[:review].to_s =~ /false/i
     end
 
     def filter_search_query
