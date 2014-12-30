@@ -28,13 +28,11 @@ class StatementCreator
   private
 
   def file_can_be_parsed
-    if file.present?
-      begin
-        OFX::Parser::Base.new(file)
-      rescue StandardError => e
-        errors.add(:file, 'could not be parsed')
-      end
-    end
+    return unless file.present?
+
+    OFX::Parser::Base.new(file)
+  rescue StandardError => e
+    errors.add(:file, 'could not be parsed')
   end
 
   def persist!
@@ -105,9 +103,9 @@ class StatementCreator
   end
 
   def set_account_balance!
-    if account.statements.order(:to_date).last == statement
-      account.update!(balance: statement.balance)
-    end
+    return if account.statements.order(:to_date).last != statement
+
+    account.update!(balance: statement.balance)
   end
 
   def sort_transaction(transaction)

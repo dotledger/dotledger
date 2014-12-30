@@ -37,9 +37,8 @@ module Api
     end
 
     def default_format_json
-      if request.headers['HTTP_ACCEPT'].nil? && params[:format].nil?
-        request.format = 'json'
-      end
+      return unless request.headers['HTTP_ACCEPT'].nil? && params[:format].nil?
+      request.format = 'json'
     end
   end
 end
