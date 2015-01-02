@@ -38,7 +38,7 @@ describe Statistics::ActivityPerCategory do
     end
 
     it 'returns the correct net amount' do
-      expect(subject.as_json.first['net']).to eq -10.0
+      expect(subject.as_json.first['net']).to eq(-10.0)
     end
 
     it 'returns the correct category name' do
