@@ -18,7 +18,8 @@ class TransactionSorter
   end
 
   def rule
-    @rule ||= SortingRule
+    @rule ||=
+      SortingRule
       .where("? ILIKE ('%' || contains || '%')", @transaction.search)
       .order('LENGTH(contains)')
       .last
