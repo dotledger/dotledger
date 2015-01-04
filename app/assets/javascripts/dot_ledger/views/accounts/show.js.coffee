@@ -59,4 +59,7 @@ DotLedger.module 'Views.Accounts', ->
     onRender: ->
       @$el.find("a[data-tab-id='#{@tab}-transactions']").parent().addClass('active')
 
+      @options.balances.on 'sync', =>
+        @renderBalanceGraph()
+
       _.defer(=> @renderBalanceGraph())
