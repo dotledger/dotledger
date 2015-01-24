@@ -115,8 +115,8 @@ GEM
       mini_portile (~> 0.6.0)
     ofx (0.3.2)
       nokogiri
-    pg (0.17.1)
-    phantomjs (1.9.7.1)
+    pg (0.18.1)
+    phantomjs (1.9.8.0)
     poltergeist (1.5.1)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
