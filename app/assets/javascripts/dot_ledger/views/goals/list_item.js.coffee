@@ -30,10 +30,10 @@ DotLedger.module 'Views.Goals', ->
     events:
       'click button.save': 'save'
       'submit form': 'save'
-      'change input': 'reRender'
-      'change select': 'reRender'
+      'change input': 'rerender'
+      'change select': 'rerender'
 
-    reRender: ->
+    rerender: ->
       @update()
       @render()
 
