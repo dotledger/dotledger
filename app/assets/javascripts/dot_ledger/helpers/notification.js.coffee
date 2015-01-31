@@ -19,3 +19,6 @@ DotLedger.module 'Helpers', ->
     warning: (message)=>
       view = notificationView(message, 'warning')
       @app.notificationsRegion.show(view)
+
+    empty: =>
+      @app.notificationsRegion.empty()
