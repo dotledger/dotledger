@@ -117,7 +117,7 @@ GEM
       nokogiri
     pg (0.18.1)
     phantomjs (1.9.8.0)
-    poltergeist (1.5.1)
+    poltergeist (1.6.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
