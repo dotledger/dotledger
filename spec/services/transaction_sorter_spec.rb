@@ -6,7 +6,7 @@ describe TransactionSorter do
   let!(:second_best_rule) { FactoryGirl.create :sorting_rule, contains: 'Transaction' }
   let!(:least_best_rule) { FactoryGirl.create :sorting_rule, contains: 'Action' }
 
-  subject { TransactionSorter.new(transaction) }
+  subject { described_class.new(transaction) }
 
   it 'finds the best rule for sorting' do
     expect(subject.rule).to eq best_rule

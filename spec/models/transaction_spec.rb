@@ -59,7 +59,7 @@ describe Transaction do
     end
 
     it 'does not include sorted transactions' do
-      expect(Transaction.unsorted).to match_array unsorted
+      expect(described_class.unsorted).to match_array unsorted
     end
   end
 
@@ -79,7 +79,7 @@ describe Transaction do
     end
 
     it 'does not include unsorted transactions' do
-      expect(Transaction.sorted).to match_array sorted
+      expect(described_class.sorted).to match_array sorted
     end
   end
 
@@ -100,7 +100,7 @@ describe Transaction do
     end
 
     it 'only includes transactions with the correct category' do
-      expect(Transaction.with_category(category_1.id)).to match_array transactions_1
+      expect(described_class.with_category(category_1.id)).to match_array transactions_1
     end
   end
 
@@ -113,7 +113,7 @@ describe Transaction do
       date_from = '2012-04-01'
       date_to = '2012-04-30'
 
-      expect(Transaction.between_dates(date_from, date_to)).to match_array [transaction_during]
+      expect(described_class.between_dates(date_from, date_to)).to match_array [transaction_during]
     end
   end
 
@@ -124,11 +124,11 @@ describe Transaction do
     let!(:transaction_no_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, name: 'Some Name') }
 
     it 'only includes transaction that match the search query' do
-      expect(Transaction.search_query('Test')).to match_array [transaction_match_1, transaction_match_2]
+      expect(described_class.search_query('Test')).to match_array [transaction_match_1, transaction_match_2]
     end
 
     it 'only includes transaction that match the search query, case insensitive' do
-      expect(Transaction.search_query('test')).to match_array [transaction_match_1, transaction_match_2]
+      expect(described_class.search_query('test')).to match_array [transaction_match_1, transaction_match_2]
     end
   end
 
@@ -140,11 +140,11 @@ describe Transaction do
     let!(:transaction_no_match) { FactoryGirl.create :transaction }
 
     it 'only includes transaction that have all the correct tags' do
-      expect(Transaction.with_tags([tag_1.id, tag_2.id])).to match_array [transaction_match_1, transaction_match_2]
+      expect(described_class.with_tags([tag_1.id, tag_2.id])).to match_array [transaction_match_1, transaction_match_2]
     end
 
     it 'only includes transaction that have one correct tag' do
-      expect(Transaction.with_tags([tag_1.id])).to match_array [transaction_match_1, transaction_match_2]
+      expect(described_class.with_tags([tag_1.id])).to match_array [transaction_match_1, transaction_match_2]
     end
   end
 end

@@ -22,13 +22,13 @@ describe Tag do
       let!(:tag2) { FactoryGirl.create :tag, name: 'Second Tag' }
 
       specify do
-        expect(Tag.tags_from_string(tags_string)).to eq [tag1, tag2]
+        expect(described_class.tags_from_string(tags_string)).to eq [tag1, tag2]
       end
     end
 
     context 'new tags' do
       specify do
-        expect(Tag.tags_from_string(tags_string).map(&:name)).to eq tags_name_array
+        expect(described_class.tags_from_string(tags_string).map(&:name)).to eq tags_name_array
       end
     end
   end

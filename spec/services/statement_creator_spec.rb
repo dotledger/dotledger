@@ -6,7 +6,7 @@ describe StatementCreator do
   let(:blank_file) { File.open("#{fixture_path}/blank.txt") }
 
   describe 'valid' do
-    let(:statement_creator) { StatementCreator.new(account: account, file: file) }
+    let(:statement_creator) { described_class.new(account: account, file: file) }
 
     it 'creates a statement' do
       expect do
@@ -72,7 +72,7 @@ describe StatementCreator do
   end
 
   describe 'missing account' do
-    let(:statement_creator) { StatementCreator.new(file: file) }
+    let(:statement_creator) { described_class.new(file: file) }
 
     it 'has an error on account' do
       expect(statement_creator).to have(1).error_on(:account)
@@ -80,7 +80,7 @@ describe StatementCreator do
   end
 
   describe 'missing file' do
-    let(:statement_creator) { StatementCreator.new(account: account) }
+    let(:statement_creator) { described_class.new(account: account) }
 
     it 'has an error on file' do
       expect(statement_creator).to have(1).error_on(:file)
@@ -88,7 +88,7 @@ describe StatementCreator do
   end
 
   describe 'invalid file' do
-    let(:statement_creator) { StatementCreator.new(account: account, file: blank_file) }
+    let(:statement_creator) { described_class.new(account: account, file: blank_file) }
 
     it 'has an error on file' do
       expect(statement_creator).to have(1).error_on(:file)

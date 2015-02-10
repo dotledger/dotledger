@@ -21,7 +21,7 @@ describe BalanceCalculator do
 
   context 'to the present balance' do
     subject do
-      BalanceCalculator.new(
+      described_class.new(
         account: account,
         date_from: Date.parse('2014-03-13'),
         date_to: Date.parse('2014-03-22')
@@ -51,7 +51,7 @@ describe BalanceCalculator do
 
   context 'historical' do
     subject do
-      BalanceCalculator.new(
+      described_class.new(
         account: account,
         date_from: Date.parse('2014-03-10'),
         date_to: Date.parse('2014-03-17')

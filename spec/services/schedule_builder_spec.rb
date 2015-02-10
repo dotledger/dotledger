@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ScheduleBuilder do
-  subject { ScheduleBuilder.new(params).build }
+  subject { described_class.new(params).build }
   let(:year_start) { Date.parse('2012-01-01').beginning_of_year }
   let(:year_end) { Date.parse('2012-01-01').end_of_year }
 

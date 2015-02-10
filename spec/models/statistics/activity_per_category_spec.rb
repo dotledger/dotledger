@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Statistics::ActivityPerCategory do
   let(:date_range) { (Date.parse('2011-01-01')..Date.parse('2011-02-01')) }
-  subject { Statistics::ActivityPerCategory.new(date_range) }
+  subject { described_class.new(date_range) }
 
   context 'with no transactions' do
     it 'returns an empty array' do
