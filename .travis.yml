@@ -1,4 +1,5 @@
 language: ruby
+sudo: false
 env:
   - "DB=postgresql"
 before_script:
