@@ -1,3 +1,4 @@
+language: ruby
 env:
   - "DB=postgresql"
 before_script:
