@@ -9,7 +9,7 @@ describe Api::SortingRulesController do
 
     it { should respond_with :success }
 
-    it 'should return all sorting_rules' do
+    it 'returns all sorting_rules' do
       expect(assigns(:sorting_rules)).to eq [sorting_rule]
     end
   end
@@ -19,7 +19,7 @@ describe Api::SortingRulesController do
 
     it { should respond_with :success }
 
-    it 'should return the sorting_rule' do
+    it 'returns the sorting_rule' do
       expect(assigns(:sorting_rule)).to eq sorting_rule
     end
   end
@@ -32,12 +32,12 @@ describe Api::SortingRulesController do
            category_id: category.id
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should create a sorting_rule' do
+    it 'creates a sorting_rule' do
       expect do
         valid_request
       end.to change(SortingRule, :count).by(1)
@@ -51,12 +51,12 @@ describe Api::SortingRulesController do
           name: 'Some New Name'
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should update the name' do
+    it 'updates the name' do
       expect do
         valid_request
       end.to change { sorting_rule.reload.name }.from('Some Name').to('Some New Name')
@@ -69,12 +69,12 @@ describe Api::SortingRulesController do
              id: sorting_rule.id
     end
 
-    it 'should respond with 204' do
+    it 'responds with 204' do
       valid_request
       expect(subject).to respond_with(:no_content)
     end
 
-    it 'should delete the sorting_rule' do
+    it 'deletes the sorting_rule' do
       expect do
         valid_request
       end.to change(SortingRule, :count).by(-1)

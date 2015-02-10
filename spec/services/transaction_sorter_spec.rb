@@ -8,29 +8,29 @@ describe TransactionSorter do
 
   subject { TransactionSorter.new(transaction) }
 
-  it 'should find the best rule for sorting' do
+  it 'finds the best rule for sorting' do
     expect(subject.rule).to eq best_rule
   end
 
-  it 'should create a sorted_transaction' do
+  it 'creates a sorted_transaction' do
     expect do
       subject.sort
     end.to change(SortedTransaction, :count).by(1)
   end
 
-  it 'should use the rule name if present' do
+  it 'uses the rule name if present' do
     best_rule.update(name: 'New Name')
     subject.sort
     expect(subject.sorted_transaction.name).to eq best_rule.name
   end
 
-  it 'should use the transaction search if rule name is blank' do
+  it 'uses the transaction search if rule name is blank' do
     best_rule.update(name: nil)
     subject.sort
     expect(subject.sorted_transaction.name).to eq transaction.search
   end
 
-  it 'should flag the sorted transaction for review if review is true on the rule' do
+  it 'flags the sorted transaction for review if review is true on the rule' do
     best_rule.update(review: true)
     subject.sort
     expect(subject.sorted_transaction.review).to eq true

@@ -8,7 +8,7 @@ describe Api::AccountsController do
 
     it { should respond_with :success }
 
-    it 'should return all accounts' do
+    it 'returns all accounts' do
       expect(assigns(:accounts)).to eq [account]
     end
   end
@@ -18,7 +18,7 @@ describe Api::AccountsController do
 
     it { should respond_with :success }
 
-    it 'should return the account' do
+    it 'returns the account' do
       expect(assigns(:account)).to eq account
     end
   end
@@ -31,12 +31,12 @@ describe Api::AccountsController do
            type: 'Cheque'
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should create an account' do
+    it 'creates an account' do
       expect do
         valid_request
       end.to change(Account, :count).by(1)
@@ -50,12 +50,12 @@ describe Api::AccountsController do
           name: 'New Account Name'
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should update the name' do
+    it 'updates the name' do
       expect do
         valid_request
       end.to change { account.reload.name }.from('Account Name').to('New Account Name')
@@ -68,12 +68,12 @@ describe Api::AccountsController do
              id: account.id
     end
 
-    it 'should respond with 204' do
+    it 'responds with 204' do
       valid_request
       expect(subject).to respond_with(:no_content)
     end
 
-    it 'should delete the account' do
+    it 'deletes the account' do
       expect do
         valid_request
       end.to change(Account, :count).by(-1)

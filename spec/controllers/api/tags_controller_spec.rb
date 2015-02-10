@@ -9,7 +9,7 @@ describe Api::TagsController do
 
     it { should respond_with :success }
 
-    it 'should return all tags' do
+    it 'returns all tags' do
       expect(assigns(:tags)).to eq [tag1, tag2]
     end
   end

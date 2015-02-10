@@ -8,7 +8,7 @@ describe Api::CategoriesController do
 
     it { should respond_with :success }
 
-    it 'should return all categories' do
+    it 'returns all categories' do
       expect(assigns(:categories)).to eq [category]
     end
   end
@@ -18,7 +18,7 @@ describe Api::CategoriesController do
 
     it { should respond_with :success }
 
-    it 'should return the category' do
+    it 'returns the category' do
       expect(assigns(:category)).to eq category
     end
   end
@@ -30,12 +30,12 @@ describe Api::CategoriesController do
            type: 'Essential'
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should create a category' do
+    it 'creates a category' do
       expect do
         valid_request
       end.to change(Category, :count).by(1)
@@ -49,12 +49,12 @@ describe Api::CategoriesController do
           name: 'New Category Name'
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should update the name' do
+    it 'updates the name' do
       expect do
         valid_request
       end.to change { category.reload.name }.from('Category').to('New Category Name')
@@ -67,12 +67,12 @@ describe Api::CategoriesController do
              id: category.id
     end
 
-    it 'should respond with 204' do
+    it 'responds with 204' do
       valid_request
       expect(subject).to respond_with(:no_content)
     end
 
-    it 'should delete the category' do
+    it 'deletes the category' do
       expect do
         valid_request
       end.to change(Category, :count).by(-1)

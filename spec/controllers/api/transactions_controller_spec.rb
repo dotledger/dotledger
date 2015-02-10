@@ -52,7 +52,7 @@ describe Api::TransactionsController do
 
       it { should respond_with :success }
 
-      it 'should return all transactions' do
+      it 'returns all transactions' do
         expect(assigns(:transactions)).to match_array all_transactions
       end
     end
@@ -64,7 +64,7 @@ describe Api::TransactionsController do
 
       it { should respond_with :success }
 
-      it 'should return all transactions for the account' do
+      it 'returns all transactions for the account' do
         expect(assigns(:transactions)).to match_array account_transactions
       end
     end
@@ -76,7 +76,7 @@ describe Api::TransactionsController do
 
       it { should respond_with :success }
 
-      it 'should return sorted transactions' do
+      it 'returns sorted transactions' do
         expect(assigns(:transactions)).to match_array [sorted_transactions, transactions_for_review].flatten
       end
     end
@@ -88,7 +88,7 @@ describe Api::TransactionsController do
 
       it { should respond_with :success }
 
-      it 'should return unsorted transactions' do
+      it 'returns unsorted transactions' do
         expect(assigns(:transactions)).to match_array unsorted_transactions
       end
     end
@@ -100,7 +100,7 @@ describe Api::TransactionsController do
 
       it { should respond_with :success }
 
-      it 'should return transactions flagged for review' do
+      it 'returns transactions flagged for review' do
         expect(assigns(:transactions)).to match_array transactions_for_review
       end
     end
@@ -112,7 +112,7 @@ describe Api::TransactionsController do
 
       it { should respond_with :success }
 
-      it 'should return transactions not flagged for review' do
+      it 'returns transactions not flagged for review' do
         expect(assigns(:transactions)).to match_array sorted_transactions
       end
     end
@@ -124,7 +124,7 @@ describe Api::TransactionsController do
 
       it { should respond_with :success }
 
-      it 'should filter transactions by search query' do
+      it 'filters transactions by search query' do
         expect(assigns(:transactions)).to match_array sorted_transactions
       end
     end
@@ -136,7 +136,7 @@ describe Api::TransactionsController do
 
       it { should respond_with :success }
 
-      it 'should filter transactions by category_id' do
+      it 'filters transactions by category_id' do
         expect(assigns(:transactions)).to match_array [sorted_transactions, transactions_for_review].flatten
       end
     end
@@ -150,7 +150,7 @@ describe Api::TransactionsController do
 
       it { should respond_with :success }
 
-      it 'should filter transactions between dates' do
+      it 'filters transactions between dates' do
         expect(assigns(:transactions)).to match_array [transaction_during]
       end
     end
@@ -166,7 +166,7 @@ describe Api::TransactionsController do
 
       it { should respond_with :success }
 
-      it 'should filter transactions by tag id' do
+      it 'filters transactions by tag id' do
         expect(assigns(:transactions)).to match_array [transaction_match_1, transaction_match_2]
       end
     end
@@ -177,7 +177,7 @@ describe Api::TransactionsController do
 
     it { should respond_with :success }
 
-    it 'should return the transaction' do
+    it 'returns the transaction' do
       expect(assigns(:transaction)).to eq transaction
     end
   end
@@ -189,12 +189,12 @@ describe Api::TransactionsController do
       post :create, attributes
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should create a transaction' do
+    it 'creates a transaction' do
       expect do
         valid_request
       end.to change(Transaction, :count).by(1)
@@ -208,12 +208,12 @@ describe Api::TransactionsController do
           name: 'New Transaction Name'
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should update the name' do
+    it 'updates the name' do
       expect do
         valid_request
       end.to change { transaction.reload.name }.from('Transaction Name').to('New Transaction Name')
@@ -226,12 +226,12 @@ describe Api::TransactionsController do
              id: transaction.id
     end
 
-    it 'should respond with 204' do
+    it 'responds with 204' do
       valid_request
       expect(subject).to respond_with(:no_content)
     end
 
-    it 'should delete the transaction' do
+    it 'deletes the transaction' do
       expect do
         valid_request
       end.to change(Transaction, :count).by(-1)
@@ -241,14 +241,14 @@ describe Api::TransactionsController do
   describe 'POST sort' do
     # FIXME: this needs more tests
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       post :sort
       expect(subject).to respond_with(:success)
     end
 
     context 'with account_id' do
       let(:account) { FactoryGirl.create :account }
-      it 'should respond with 200' do
+      it 'responds with 200' do
         post :sort, account_id: account.id
         expect(subject).to respond_with(:success)
       end

@@ -27,7 +27,7 @@ describe Category do
 
   it { should have_one :goal }
 
-  it 'should create a related goal' do
+  it 'creates a related goal' do
     expect do
       FactoryGirl.create :category
     end.to change(Goal, :count).by(1)

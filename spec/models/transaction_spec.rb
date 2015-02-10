@@ -35,7 +35,7 @@ describe Transaction do
 
   it { should have_one :sorted_transaction }
 
-  it 'should set the search attribute before validation' do
+  it 'sets the search attribute before validation' do
     transaction = FactoryGirl.build :transaction, name: 'FOO', memo: 'BAR'
 
     expect do
@@ -58,7 +58,7 @@ describe Transaction do
       end
     end
 
-    it 'should not include sorted transactions' do
+    it 'does not include sorted transactions' do
       expect(Transaction.unsorted).to match_array unsorted
     end
   end
@@ -78,7 +78,7 @@ describe Transaction do
       end
     end
 
-    it 'should not include unsorted transactions' do
+    it 'does not include unsorted transactions' do
       expect(Transaction.sorted).to match_array sorted
     end
   end
@@ -99,7 +99,7 @@ describe Transaction do
       end
     end
 
-    it 'should only include transactions with the correct category' do
+    it 'only includes transactions with the correct category' do
       expect(Transaction.with_category(category_1.id)).to match_array transactions_1
     end
   end
@@ -109,7 +109,7 @@ describe Transaction do
     let!(:transaction_during) { FactoryGirl.create :transaction, posted_at: Date.parse('2012-04-10') }
     let!(:transaction_after) { FactoryGirl.create :transaction, posted_at: Date.parse('2012-05-20') }
 
-    it 'should only include transaction within the date range' do
+    it 'only includes transaction within the date range' do
       date_from = '2012-04-01'
       date_to = '2012-04-30'
 
@@ -123,11 +123,11 @@ describe Transaction do
     let!(:transaction_no_match_1) { FactoryGirl.create :transaction, name: 'Foobar' }
     let!(:transaction_no_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, name: 'Some Name') }
 
-    it 'should only include transaction that match the search query' do
+    it 'only includes transaction that match the search query' do
       expect(Transaction.search_query('Test')).to match_array [transaction_match_1, transaction_match_2]
     end
 
-    it 'should only include transaction that match the search query, case insensitive' do
+    it 'only includes transaction that match the search query, case insensitive' do
       expect(Transaction.search_query('test')).to match_array [transaction_match_1, transaction_match_2]
     end
   end
@@ -139,11 +139,11 @@ describe Transaction do
     let!(:transaction_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, tag_ids: [tag_1.id, tag_2.id]) }
     let!(:transaction_no_match) { FactoryGirl.create :transaction }
 
-    it 'should only include transaction that have all the correct tags' do
+    it 'only includes transaction that have all the correct tags' do
       expect(Transaction.with_tags([tag_1.id, tag_2.id])).to match_array [transaction_match_1, transaction_match_2]
     end
 
-    it 'should only include transaction that have one correct tag' do
+    it 'only includes transaction that have one correct tag' do
       expect(Transaction.with_tags([tag_1.id])).to match_array [transaction_match_1, transaction_match_2]
     end
   end

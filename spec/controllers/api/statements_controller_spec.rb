@@ -9,7 +9,7 @@ describe Api::StatementsController do
 
     it { should respond_with :success }
 
-    it 'should return all statements' do
+    it 'returns all statements' do
       expect(assigns(:statements)).to eq [statement]
     end
   end
@@ -19,7 +19,7 @@ describe Api::StatementsController do
 
     it { should respond_with :success }
 
-    it 'should return the statement' do
+    it 'returns the statement' do
       expect(assigns(:statement)).to eq statement
     end
   end
@@ -30,18 +30,18 @@ describe Api::StatementsController do
         file: fixture_file_upload('example.ofx')
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should create a statement' do
+    it 'creates a statement' do
       expect do
         valid_request
       end.to change(Statement, :count).by(1)
     end
 
-    it 'should create 4 transaction' do
+    it 'creates 4 transaction' do
       expect do
         valid_request
       end.to change(Transaction, :count).by(4)
@@ -54,12 +54,12 @@ describe Api::StatementsController do
              id: statement.id
     end
 
-    it 'should respond with 204' do
+    it 'responds with 204' do
       valid_request
       expect(subject).to respond_with(:no_content)
     end
 
-    it 'should delete the statement' do
+    it 'deletes the statement' do
       expect do
         valid_request
       end.to change(Statement, :count).by(-1)

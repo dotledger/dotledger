@@ -9,7 +9,7 @@ describe Api::GoalsController do
 
     it { should respond_with :success }
 
-    it 'should return all goals' do
+    it 'returns all goals' do
       expect(assigns(:goals)).to eq [goal]
     end
   end
@@ -19,7 +19,7 @@ describe Api::GoalsController do
 
     it { should respond_with :success }
 
-    it 'should return the goal' do
+    it 'returns the goal' do
       expect(assigns(:goal)).to eq goal
     end
   end
@@ -31,12 +31,12 @@ describe Api::GoalsController do
            category_id: category.id
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should create a goal' do
+    it 'creates a goal' do
       expect do
         valid_request
       end.to change(Goal, :count).by(1)
@@ -50,12 +50,12 @@ describe Api::GoalsController do
           amount: 500
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should update the amount' do
+    it 'updates the amount' do
       expect do
         valid_request
       end.to change { goal.reload.amount }.from(0.0).to(500)
@@ -68,12 +68,12 @@ describe Api::GoalsController do
              id: goal.id
     end
 
-    it 'should respond with 204' do
+    it 'responds with 204' do
       valid_request
       expect(subject).to respond_with(:no_content)
     end
 
-    it 'should delete the goal' do
+    it 'deletes the goal' do
       expect do
         valid_request
       end.to change(Goal, :count).by(-1)

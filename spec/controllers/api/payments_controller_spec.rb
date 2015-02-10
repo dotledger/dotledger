@@ -10,7 +10,7 @@ describe Api::PaymentsController do
 
     it { should respond_with :success }
 
-    it 'should return all payments' do
+    it 'returns all payments' do
       expect(assigns(:payments)).to eq [payment]
     end
   end
@@ -20,7 +20,7 @@ describe Api::PaymentsController do
 
     it { should respond_with :success }
 
-    it 'should return the payment' do
+    it 'returns the payment' do
       expect(assigns(:payment)).to eq payment
     end
   end
@@ -34,12 +34,12 @@ describe Api::PaymentsController do
            category_id: category.id
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should create a payment' do
+    it 'creates a payment' do
       expect do
         valid_request
       end.to change(Payment, :count).by(1)
@@ -53,12 +53,12 @@ describe Api::PaymentsController do
           amount: 500
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should update the amount' do
+    it 'updates the amount' do
       expect do
         valid_request
       end.to change { payment.reload.amount }.from(10.0).to(500)
@@ -71,12 +71,12 @@ describe Api::PaymentsController do
              id: payment.id
     end
 
-    it 'should respond with 204' do
+    it 'responds with 204' do
       valid_request
       expect(subject).to respond_with(:no_content)
     end
 
-    it 'should delete the payment' do
+    it 'deletes the payment' do
       expect do
         valid_request
       end.to change(Payment, :count).by(-1)

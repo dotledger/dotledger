@@ -11,7 +11,7 @@ describe Api::SortedTransactionsController do
 
     it { should respond_with :success }
 
-    it 'should return all sorted_transactions' do
+    it 'returns all sorted_transactions' do
       expect(assigns(:sorted_transactions)).to match_array [sorted_transaction]
     end
   end
@@ -21,7 +21,7 @@ describe Api::SortedTransactionsController do
 
     it { should respond_with :success }
 
-    it 'should return the sorted_transaction' do
+    it 'returns the sorted_transaction' do
       expect(assigns(:sorted_transaction)).to eq sorted_transaction
     end
   end
@@ -35,12 +35,12 @@ describe Api::SortedTransactionsController do
       post :create, attributes
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should create a sorted_transaction' do
+    it 'creates a sorted_transaction' do
       expect do
         valid_request
       end.to change(SortedTransaction, :count).by(1)
@@ -54,12 +54,12 @@ describe Api::SortedTransactionsController do
           name: 'New Sorted Transaction Name'
     end
 
-    it 'should respond with 200' do
+    it 'responds with 200' do
       valid_request
       expect(subject).to respond_with(:success)
     end
 
-    it 'should update the name' do
+    it 'updates the name' do
       expect do
         valid_request
       end.to change { sorted_transaction.reload.name }.from('Sorted Transaction Name').to('New Sorted Transaction Name')
@@ -72,12 +72,12 @@ describe Api::SortedTransactionsController do
              id: sorted_transaction.id
     end
 
-    it 'should respond with 204' do
+    it 'responds with 204' do
       valid_request
       expect(subject).to respond_with(:no_content)
     end
 
-    it 'should delete the sorted_transaction' do
+    it 'deletes the sorted_transaction' do
       expect do
         valid_request
       end.to change(SortedTransaction, :count).by(-1)
