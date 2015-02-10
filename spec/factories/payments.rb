@@ -6,5 +6,6 @@ FactoryGirl.define do
     category
     amount 9.99
     type 'Spend'
+    schedule { IceCube::Schedule.new }
   end
 end

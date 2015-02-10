@@ -13,7 +13,7 @@ class ScheduleSerializer
   end
 
   def load(yaml)
-    return IceCube::Schedule.new if yaml.nil?
+    return if yaml.nil?
     return yaml unless yaml.is_a?(String) && yaml =~ /^---/
 
     IceCube::Schedule.from_yaml(yaml)
