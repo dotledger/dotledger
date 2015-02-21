@@ -37,10 +37,23 @@ describe "DotLedger.Views.Search.FilterForm", ->
         name: 'Tag Three'
       }
     ]
+
+    accounts = new DotLedger.Collections.Accounts [
+      {
+        id: 88
+        name: 'Account One'
+      }
+      {
+        id: 99
+        name: 'Account Two'
+      }
+    ]
+
     view = new DotLedger.Views.Search.FilterForm
       model: model
       categories: categories
       tags: tags
+      accounts: accounts
 
     view
 
@@ -72,6 +85,9 @@ describe "DotLedger.Views.Search.FilterForm", ->
     expect(view.$el).toContainElement('option[value=55]')
     expect(view.$el).toContainElement('option[value=66]')
     expect(view.$el).toContainElement('option[value=77]')
+    expect(view.$el).toContainElement('select[name=account_id]')
+    expect(view.$el).toContainElement('option[value=88]')
+    expect(view.$el).toContainElement('option[value=99]')
     expect(view.$el).toContainElement('button.search')
 
   it "should clear the model and set the query", ->

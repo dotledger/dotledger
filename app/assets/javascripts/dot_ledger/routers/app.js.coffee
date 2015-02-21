@@ -343,12 +343,16 @@ DotLedger.module 'Routers', ->
       tags = new DotLedger.Collections.Tags()
       tags.fetch()
 
+      accounts = new DotLedger.Collections.Accounts()
+      accounts.fetch()
+
       searchLayout = new DotLedger.Views.Search.Search()
 
       searchFilters = new DotLedger.Views.Search.FilterForm
         model: search
         categories: categories
         tags: tags
+        accounts: accounts
 
       transactions = new DotLedger.Collections.Transactions()
 

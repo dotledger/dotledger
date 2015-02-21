@@ -8,6 +8,7 @@ DotLedger.module 'Views.Search', ->
       date_from: 'input[name=date_from]'
       date_to: 'input[name=date_to]'
       tags: 'select[name=tags]'
+      account_id: 'select[name=account_id]'
 
     events:
       'click button.search': 'search'
@@ -18,6 +19,8 @@ DotLedger.module 'Views.Search', ->
         @renderCategories()
       @options.tags.on 'sync', =>
         @renderTags()
+      @options.accounts.on 'sync', =>
+        @renderAccounts()
       @ui.query.val(@model.get('query'))
       @ui.date_from.val(@model.get('date_from'))
       @ui.date_to.val(@model.get('date_to'))
@@ -26,6 +29,7 @@ DotLedger.module 'Views.Search', ->
 
       @renderCategories()
       @renderTags()
+      @renderAccounts()
 
     renderCategories: ->
       @ui.category.empty()
@@ -49,6 +53,15 @@ DotLedger.module 'Views.Search', ->
 
       @ui.tags.val(@model.get('tag_ids'))
 
+    renderAccounts: ->
+      @ui.account_id.empty()
+      @ui.account_id.append('<option value="">Any</option>')
+      @options.accounts.each (account) =>
+        $option = $("<option value='#{account.get('id')}'>#{account.get('name')}</option>")
+        @ui.account_id.append($option)
+
+      @ui.account_id.val(@model.get('account_id'))
+
     search: ->
       data = {}
       data['query'] = @ui.query.val()
@@ -61,6 +74,7 @@ DotLedger.module 'Views.Search', ->
       data['date_from'] = @ui.date_from.val()
       data['date_to'] = @ui.date_to.val()
       data['tag_ids'] = @ui.tags.val()
+      data['account_id'] = @ui.account_id.val()
 
       @model.clear()
       @model.set(_.compactObject(data))
