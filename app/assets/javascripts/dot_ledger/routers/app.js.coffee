@@ -19,10 +19,11 @@ DotLedger.module 'Routers', ->
       'categories/:id/edit': 'editCategory'
 
       # Sorting Rules
-      'sorting-rules': 'listSortingRules'
-      'sorting-rules/page-:page_number': 'listSortingRules'
       'sorting-rules/new': 'newSortingRule'
       'sorting-rules/:id/edit': 'editSortingRule'
+      'sorting-rules/:params': 'listSortingRules'
+      'sorting-rules/:params/page-:page_number': 'listSortingRules'
+      'sorting-rules': 'listSortingRules'
 
       # Goals
       'goals': 'listGoals'
@@ -211,24 +212,39 @@ DotLedger.module 'Routers', ->
           DotLedger.title 'Edit Category', category.get('name')
           DotLedger.mainRegion.show(form)
 
-    listSortingRules: (page_number = 1)->
+    listSortingRules: (params = JSURL.stringify({}), page_number = 1)->
+      search = new Backbone.Model(JSURL.parse(params))
+
+      categories = new DotLedger.Collections.Categories()
+      categories.fetch()
+
+      tags = new DotLedger.Collections.Tags()
+      tags.fetch()
+
       sorting_rules = new DotLedger.Collections.SortingRules()
+
+      list = new DotLedger.Views.SortingRules.List
+        collection: sorting_rules
+        model: search
+        categories: categories
+        tags: tags
 
       DotLedger.title 'Sorting Rules'
 
-      sorting_rules.fetch
-        data:
-          page: page_number
-        success: ->
-          list = new DotLedger.Views.SortingRules.List
-            collection: sorting_rules
+      updateSortingRules = (model, page = page_number)->
+        params = JSURL.stringify(model.attributes)
+        Backbone.history.navigate("/sorting-rules/#{params}/page-#{page}")
+        sorting_rules.fetch(data: _.extend(model.attributes, page: page))
 
-          DotLedger.mainRegion.show(list)
+      list.on('search', updateSortingRules)
 
-      Backbone.history.navigate("/sorting-rules/page-#{page_number}")
+      updateSortingRules(search)
+
+      DotLedger.mainRegion.show(list)
+      Backbone.history.navigate("/sorting-rules/#{params}/page-#{page_number}")
 
       sorting_rules.on 'page:change', (page)->
-        Backbone.history.navigate("/sorting-rules/page-#{page}")
+        Backbone.history.navigate("/sorting-rules/#{params}/page-#{page}")
 
     newSortingRule: ->
       sorting_rule = new DotLedger.Models.SortingRule()

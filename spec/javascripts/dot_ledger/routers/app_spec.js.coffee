@@ -75,10 +75,15 @@ describe "DotLedger.Routers.App", ->
       router.navigate('/sorting-rules', navigateOptions)
       expect(router.listSortingRules).toHaveBeenCalled()
 
-    it "routes to listSortingRules with page number", ->
+    it "routes to listSortingRules with params", ->
       router = createRouter('listSortingRules')
-      router.navigate('/sorting-rules/page-13', navigateOptions)
-      expect(router.listSortingRules).toHaveBeenCalledWith('13', null)
+      router.navigate("/sorting-rules/~(foo~'bar~baz~42)", navigateOptions)
+      expect(router.listSortingRules).toHaveBeenCalledWith("~(foo~'bar~baz~42)", null)
+
+    it "routes to listSortingRules with params and page number", ->
+      router = createRouter('listSortingRules')
+      router.navigate("/sorting-rules/~(foo~'bar~baz~42)/page-13", navigateOptions)
+      expect(router.listSortingRules).toHaveBeenCalledWith("~(foo~'bar~baz~42)", '13', null)
 
     it "routes to newSortingRule", ->
       router = createRouter('newSortingRule')

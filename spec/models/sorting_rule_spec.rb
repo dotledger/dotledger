@@ -64,4 +64,44 @@ describe SortingRule do
       end
     end
   end
+
+  describe '#with_category' do
+    let!(:sorting_rules_1) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_1.id }
+    let!(:sorting_rules_2) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_2.id }
+    let!(:category_1) { FactoryGirl.create :category }
+    let!(:category_2) { FactoryGirl.create :category }
+
+    it 'only includes sorting rules with the correct category' do
+      expect(described_class.with_category(category_1.id)).to match_array sorting_rules_1
+    end
+  end
+
+  describe '#search_query' do
+    let!(:sorting_rule_match) { FactoryGirl.create :sorting_rule, name: 'Test Foobar' }
+    let!(:sorting_rule_no_match) { FactoryGirl.create :sorting_rule, name: 'Foobar' }
+
+    it 'only includes sorting rule that match the search query' do
+      expect(described_class.search_query('Test')).to match_array [sorting_rule_match]
+    end
+
+    it 'only includes sorting rule that match the search query, case insensitive' do
+      expect(described_class.search_query('test')).to match_array [sorting_rule_match]
+    end
+  end
+
+  describe '#with_tags' do
+    let!(:tag_1) { FactoryGirl.create :tag }
+    let!(:tag_2) { FactoryGirl.create :tag }
+    let!(:sorting_rule_match_1) { FactoryGirl.create :sorting_rule, tag_ids: [tag_1.id, tag_2.id] }
+    let!(:sorting_rule_match_2) { FactoryGirl.create :sorting_rule, tag_ids: [tag_1.id, tag_2.id] }
+    let!(:sorting_rule_no_match) { FactoryGirl.create :sorting_rule }
+
+    it 'only includes sorting rule that have all the correct tags' do
+      expect(described_class.with_tags([tag_1.id, tag_2.id])).to match_array [sorting_rule_match_1, sorting_rule_match_2]
+    end
+
+    it 'only includes sorting rule that have one correct tag' do
+      expect(described_class.with_tags([tag_1.id])).to match_array [sorting_rule_match_1, sorting_rule_match_2]
+    end
+  end
 end

@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :sorting_rule do
-    contains 'MyString'
-    name 'MyString'
+    sequence(:contains) { |n| "Contains #{n}" }
+    sequence(:name) { |n| "Name #{n}" }
     category
   end
 end
