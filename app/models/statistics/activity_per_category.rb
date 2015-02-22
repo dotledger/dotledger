@@ -6,6 +6,18 @@ module Statistics
       query.map(&:attributes)
     end
 
+    def total_spent
+      query.inject(0) {|memo, category| category.spent + memo }
+    end
+
+    def total_received
+      query.inject(0) {|memo, category| category.received + memo }
+    end
+
+    def total_net
+      query.inject(0) {|memo, category| category.net + memo }
+    end
+
     private
 
     def select_list

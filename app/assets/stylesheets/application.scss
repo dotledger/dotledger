@@ -111,3 +111,10 @@ div.balance {
     margin-bottom: 0;
   }
 }
+
+table {
+  td.amount, th.amount {
+    width: 120px;
+  }
+
+}

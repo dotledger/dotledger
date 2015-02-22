@@ -38,6 +38,9 @@ DotLedger.module 'Routers', ->
       'search/:params/page-:page_number': 'search'
       'search': 'search'
 
+      # Reports
+      'reports/income-and-expenses': 'incomeAndExpenses'
+
       # Not Found
       '*path': 'notFound'
 
@@ -398,3 +401,38 @@ DotLedger.module 'Routers', ->
       searchLayout.searchFilters.show(searchFilters)
       searchLayout.searchSummary.show(searchSummary)
       searchLayout.searchResults.show(searchResults)
+
+    incomeAndExpenses: ->
+      DotLedger.title 'Reports', 'Income and Expenses'
+
+      filter = new Backbone.Model()
+
+      filterView = new DotLedger.Views.Reports.IncomeAndExpenses.Filter
+        model: filter
+
+      reportView = new DotLedger.Views.Reports.IncomeAndExpenses.Show()
+
+      category_statistics = new (DotLedger.Collections.Base.extend({
+        url: '/api/statistics/activity_per_category'
+      }))
+
+      renderReport = ->
+        filterView.render()
+        date_to = moment()
+        date_from = moment().subtract(filter.get('period'), 'day')
+
+        category_statistics.fetch
+          data:
+            date_to: date_to.format('YYYY-MM-DD')
+            date_from: date_from.format('YYYY-MM-DD')
+          success: ->
+            activity = new DotLedger.Views.Reports.IncomeAndExpenses.Table(
+              collection: category_statistics
+            )
+            reportView.report.show(activity)
+
+      filter.on 'change:period', renderReport
+      filter.set('period', 90)
+
+      DotLedger.mainRegion.show(reportView)
+      reportView.filter.show(filterView)

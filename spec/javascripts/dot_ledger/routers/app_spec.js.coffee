@@ -132,3 +132,9 @@ describe "DotLedger.Routers.App", ->
       router = createRouter('search')
       router.navigate("/search/~(foo~'bar~baz~42)/page-13", navigateOptions)
       expect(router.search).toHaveBeenCalledWith("~(foo~'bar~baz~42)", '13', null)
+
+  describe 'Reports', ->
+    it "routes to income and expenses", ->
+      router = createRouter('incomeAndExpenses')
+      router.navigate('/reports/income-and-expenses', navigateOptions)
+      expect(router.incomeAndExpenses).toHaveBeenCalled()
