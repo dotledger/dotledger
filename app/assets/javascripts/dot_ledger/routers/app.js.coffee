@@ -333,14 +333,10 @@ DotLedger.module 'Routers', ->
 
       search.trigger 'change'
 
-      accounts = new DotLedger.Collections.Accounts()
-      accounts.fetch()
-
       searchLayout = new DotLedger.Views.Search.Search()
 
       searchFilters = new DotLedger.Views.Search.FilterForm
         model: search
-        accounts: accounts
 
       transactions = new DotLedger.Collections.Transactions()
 

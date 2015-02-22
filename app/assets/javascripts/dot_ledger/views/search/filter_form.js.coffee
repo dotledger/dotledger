@@ -5,6 +5,7 @@ DotLedger.module 'Views.Search', ->
     behaviors:
       TagSelector: {}
       CategorySelector: {}
+      AccountsSelector: {}
 
     ui:
       query: 'input[name=query]'
@@ -19,24 +20,11 @@ DotLedger.module 'Views.Search', ->
       'submit form': 'search'
 
     onRender: ->
-      @options.accounts.on 'sync', =>
-        @renderAccounts()
       @ui.query.val(@model.get('query'))
       @ui.date_from.val(@model.get('date_from'))
       @ui.date_to.val(@model.get('date_to'))
       @ui.date_from.datepicker(format: 'yyyy-mm-dd')
       @ui.date_to.datepicker(format: 'yyyy-mm-dd')
-
-      @renderAccounts()
-
-    renderAccounts: ->
-      @ui.account.empty()
-      @ui.account.append('<option value="">Any</option>')
-      @options.accounts.each (account) =>
-        $option = $("<option value='#{account.get('id')}'>#{account.get('name')}</option>")
-        @ui.account.append($option)
-
-      @ui.account.val(@model.get('account'))
 
     search: ->
       data = {}
