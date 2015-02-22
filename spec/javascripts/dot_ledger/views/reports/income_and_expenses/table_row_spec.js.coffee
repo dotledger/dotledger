@@ -22,9 +22,15 @@ describe "DotLedger.Views.Reports.IncomeAndExpenses.TableRow", ->
       type: "Income"
     )
 
+  metadata = {
+    date_from: '2014-05-10'
+    date_to: '2014-05-17'
+  }
+
   createView = (model = new Backbone.Model) ->
     new DotLedger.Views.Reports.IncomeAndExpenses.TableRow
       model: model
+      metadata: metadata
 
   it "should be defined", ->
     expect(DotLedger.Views.Reports.IncomeAndExpenses.TableRow).toBeDefined()

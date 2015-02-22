@@ -6,6 +6,11 @@ DotLedger.module 'Views.Reports.IncomeAndExpenses', ->
 
     childViewContainer: "tbody"
 
+    childViewOptions: (model, index)->
+      {
+        metadata: @collection.metadata
+      }
+
     templateHelpers: ->
       spentAmountTotal: =>
         DotLedger.Helpers.Format.money(@collection.metadata.total_spent)

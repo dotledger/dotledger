@@ -5,6 +5,14 @@ DotLedger.module 'Views.Reports.IncomeAndExpenses', ->
     tagName: 'tr'
 
     templateHelpers: ->
+      searchLinkHref: =>
+        searchParams = {
+          date_from: @options.metadata.date_from
+          date_to: @options.metadata.date_to
+          category_id: @model.get('id')
+        }
+
+        "/search/#{JSURL.stringify(searchParams)}/page-1"
       spentAmount: =>
         if @model.get('spent') != '0.0'
           DotLedger.Helpers.Format.money(@model.get('spent'))
