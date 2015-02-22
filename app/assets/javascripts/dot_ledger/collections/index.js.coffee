@@ -3,6 +3,10 @@
 
 DotLedger.module 'Collections', ->
   class @Base extends Backbone.Collection
+    pagination: {}
+
+    metadata: {}
+
     parse: (response, options)->
       @_fetch_options_data = options.data || {}
       @pagination = JSON.parse options.xhr.getResponseHeader('X-Pagination')
