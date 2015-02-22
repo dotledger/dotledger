@@ -11,6 +11,8 @@ DotLedger.module 'Views.SortingRules', ->
 
     behaviors:
       TagSelector: {}
+      CategorySelector:
+        showNoneOption: false
 
     ui:
       query: 'input[name=query]'
@@ -22,24 +24,7 @@ DotLedger.module 'Views.SortingRules', ->
       'submit form': 'search'
 
     onRender: ->
-      @options.categories.on 'sync', =>
-        @renderCategories()
-
       @ui.query.val(@model.get('query'))
-
-      @renderCategories()
-
-    renderCategories: ->
-      @ui.category.empty()
-      @ui.category.append('<option value="">Any</option>')
-      _.each @options.categories.groupBy('type'), (categories, label) =>
-        $optgroup = $("<optgroup label='#{label}'></optgroup>")
-        _.each categories, (category) ->
-          $option = $("<option value='#{category.get('id')}'>#{category.get('name')}</option>")
-          $optgroup.append($option)
-        @ui.category.append($optgroup)
-
-      @ui.category.val(@model.get('category_id'))
 
     search: ->
       data = {}

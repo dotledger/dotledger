@@ -218,15 +218,11 @@ DotLedger.module 'Routers', ->
     listSortingRules: (params = JSURL.stringify({}), page_number = 1)->
       search = new Backbone.Model(JSURL.parse(params))
 
-      categories = new DotLedger.Collections.Categories()
-      categories.fetch()
-
       sorting_rules = new DotLedger.Collections.SortingRules()
 
       list = new DotLedger.Views.SortingRules.List
         collection: sorting_rules
         model: search
-        categories: categories
 
       DotLedger.title 'Sorting Rules'
 
@@ -247,15 +243,11 @@ DotLedger.module 'Routers', ->
 
     newSortingRule: ->
       sorting_rule = new DotLedger.Models.SortingRule()
-      categories = new DotLedger.Collections.Categories()
 
       DotLedger.title 'New Sorting Rule'
 
-      categories.fetch()
-
       form = new DotLedger.Views.SortingRules.Form
         model: sorting_rule
-        categories: categories
 
       form.on 'save', (model)->
         Backbone.history.navigate("/sorting-rules", trigger: true)
@@ -264,13 +256,9 @@ DotLedger.module 'Routers', ->
 
     editSortingRule: (sorting_rule_id)->
       sorting_rule = new DotLedger.Models.SortingRule(id: sorting_rule_id)
-      categories = new DotLedger.Collections.Categories()
-
-      categories.fetch()
 
       form = new DotLedger.Views.SortingRules.Form
         model: sorting_rule
-        categories: categories
 
       form.on 'save', (model)->
         Backbone.history.navigate("/sorting-rules", trigger: true)
@@ -307,15 +295,11 @@ DotLedger.module 'Routers', ->
 
     newPayment: ->
       payment = new DotLedger.Models.Payment()
-      categories = new DotLedger.Collections.Categories()
 
       DotLedger.title 'New Payment'
 
-      categories.fetch()
-
       form = new DotLedger.Views.Payments.Form
         model: payment
-        categories: categories
 
       form.on 'save', (model)->
         Backbone.history.navigate("/payments", trigger: true)
@@ -324,13 +308,9 @@ DotLedger.module 'Routers', ->
 
     editPayment: (payment_id)->
       payment = new DotLedger.Models.Payment(id: payment_id)
-      categories = new DotLedger.Collections.Categories()
-
-      categories.fetch()
 
       form = new DotLedger.Views.Payments.Form
         model: payment
-        categories: categories
 
       payment.fetch(
         success: ->
@@ -344,8 +324,6 @@ DotLedger.module 'Routers', ->
 
     search: (params = JSURL.stringify({}), page_number = 1)->
       search = new Backbone.Model(JSURL.parse(params))
-      categories = new DotLedger.Collections.Categories()
-      categories.fetch()
 
       search.on 'change', ->
         if search.has('query')
@@ -362,7 +340,6 @@ DotLedger.module 'Routers', ->
 
       searchFilters = new DotLedger.Views.Search.FilterForm
         model: search
-        categories: categories
         accounts: accounts
 
       transactions = new DotLedger.Collections.Transactions()

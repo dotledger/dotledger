@@ -2,6 +2,10 @@ DotLedger.module 'Views.SortingRules', ->
   class @Form extends Backbone.Marionette.ItemView
     template: 'sorting_rules/form'
 
+    behaviors:
+      CategorySelector:
+        showAnyOption: false
+        showNoneOption: false
 
     ui:
       name: 'input[name=name]'
@@ -13,25 +17,10 @@ DotLedger.module 'Views.SortingRules', ->
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
 
-      @options.categories.on 'sync', =>
-        @renderCategories()
-
       @ui.name.val(@model.get('name'))
       @ui.contains.val(@model.get('contains'))
       @ui.review.val("#{@model.get('review')}").change()
       @ui.tags.val(@model.get('tag_list'))
-      @renderCategories()
-
-    renderCategories: ->
-      @ui.category.empty()
-      _.each @options.categories.groupBy('type'), (categories, label) =>
-        $optgroup = $("<optgroup label='#{label}'></optgroup>")
-        _.each categories, (category) ->
-          $option = $("<option value='#{category.get('id')}'>#{category.get('name')}</option>")
-          $optgroup.append($option)
-        @ui.category.append($optgroup)
-
-      @ui.category.val(@model.get('category_id'))
 
     events:
       'click button.save': 'save'

@@ -2,6 +2,11 @@ DotLedger.module 'Views.Payments', ->
   class @Form extends Backbone.Marionette.ItemView
     template: 'payments/form'
 
+    behaviors:
+      CategorySelector:
+        showAnyOption: false
+        showNoneOption: false
+
     ui:
       name: 'input[name=name]'
       amount: 'input[name=amount]'
@@ -14,9 +19,6 @@ DotLedger.module 'Views.Payments', ->
 
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
-
-      @options.categories.on 'sync', =>
-        @renderCategories()
 
       DotLedger.on 'options:change', @renderPaymentTypes, this
       DotLedger.on 'options:change', @renderPaymentPeriods, this
@@ -31,7 +33,6 @@ DotLedger.module 'Views.Payments', ->
 
       @renderPaymentTypes()
       @renderPaymentPeriods()
-      @renderCategories()
       @toggleRepeat()
 
     renderPaymentTypes: (data = DotLedgerData)->
@@ -47,17 +48,6 @@ DotLedger.module 'Views.Payments', ->
         $option = $("<option value='#{option}'>#{option}(s)</option>")
         @ui.repeat_period.append($option)
       @ui.repeat_period.val(@model.get('repeat_period'))
-
-    renderCategories: ->
-      @ui.category.empty()
-      _.each @options.categories.groupBy('type'), (categories, label) =>
-        $optgroup = $("<optgroup label='#{label}'></optgroup>")
-        _.each categories, (category) ->
-          $option = $("<option value='#{category.get('id')}'>#{category.get('name')}</option>")
-          $optgroup.append($option)
-        @ui.category.append($optgroup)
-
-      @ui.category.val(@model.get('category_id'))
 
     events:
       'click button.save': 'save'

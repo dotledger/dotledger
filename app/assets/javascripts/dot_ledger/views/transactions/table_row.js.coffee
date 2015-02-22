@@ -36,8 +36,6 @@ DotLedger.module 'Views.Transactions', ->
           @remove()
 
     sortedTransactionForm: ->
-      categories = new DotLedger.Collections.Categories()
-      categories.fetch()
       sorted_transaction = new DotLedger.Models.SortedTransaction(
         @model.get('sorted_transaction')
       )
@@ -47,7 +45,6 @@ DotLedger.module 'Views.Transactions', ->
       form = new DotLedger.Views.SortedTransactions.Form
         model: sorted_transaction
         transaction: @model
-        categories: categories
       DotLedger.modalRegion.show(form)
 
       form
