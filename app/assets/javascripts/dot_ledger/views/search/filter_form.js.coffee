@@ -12,7 +12,7 @@ DotLedger.module 'Views.Search', ->
       date_from: 'input[name=date_from]'
       date_to: 'input[name=date_to]'
       tags: 'select[name=tags]'
-      account_id: 'select[name=account_id]'
+      account: 'select[name=account]'
 
     events:
       'click button.search': 'search'
@@ -30,13 +30,13 @@ DotLedger.module 'Views.Search', ->
       @renderAccounts()
 
     renderAccounts: ->
-      @ui.account_id.empty()
-      @ui.account_id.append('<option value="">Any</option>')
+      @ui.account.empty()
+      @ui.account.append('<option value="">Any</option>')
       @options.accounts.each (account) =>
         $option = $("<option value='#{account.get('id')}'>#{account.get('name')}</option>")
-        @ui.account_id.append($option)
+        @ui.account.append($option)
 
-      @ui.account_id.val(@model.get('account_id'))
+      @ui.account.val(@model.get('account'))
 
     search: ->
       data = {}
@@ -50,7 +50,7 @@ DotLedger.module 'Views.Search', ->
       data['date_from'] = @ui.date_from.val()
       data['date_to'] = @ui.date_to.val()
       data['tag_ids'] = @ui.tags.val()
-      data['account_id'] = @ui.account_id.val()
+      data['account_id'] = @ui.account.val()
 
       @model.clear()
       @model.set(_.compactObject(data))

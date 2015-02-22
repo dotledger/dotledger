@@ -85,7 +85,7 @@ describe "DotLedger.Views.Search.FilterForm", ->
     expect(view.$el).toContainElement('option[value=55]')
     expect(view.$el).toContainElement('option[value=66]')
     expect(view.$el).toContainElement('option[value=77]')
-    expect(view.$el).toContainElement('select[name=account_id]')
+    expect(view.$el).toContainElement('select[name=account]')
     expect(view.$el).toContainElement('option[value=88]')
     expect(view.$el).toContainElement('option[value=99]')
     expect(view.$el).toContainElement('button.search')
