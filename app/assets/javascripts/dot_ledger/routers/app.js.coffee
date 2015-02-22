@@ -221,16 +221,12 @@ DotLedger.module 'Routers', ->
       categories = new DotLedger.Collections.Categories()
       categories.fetch()
 
-      tags = new DotLedger.Collections.Tags()
-      tags.fetch()
-
       sorting_rules = new DotLedger.Collections.SortingRules()
 
       list = new DotLedger.Views.SortingRules.List
         collection: sorting_rules
         model: search
         categories: categories
-        tags: tags
 
       DotLedger.title 'Sorting Rules'
 
@@ -359,9 +355,6 @@ DotLedger.module 'Routers', ->
 
       search.trigger 'change'
 
-      tags = new DotLedger.Collections.Tags()
-      tags.fetch()
-
       accounts = new DotLedger.Collections.Accounts()
       accounts.fetch()
 
@@ -370,7 +363,6 @@ DotLedger.module 'Routers', ->
       searchFilters = new DotLedger.Views.Search.FilterForm
         model: search
         categories: categories
-        tags: tags
         accounts: accounts
 
       transactions = new DotLedger.Collections.Transactions()

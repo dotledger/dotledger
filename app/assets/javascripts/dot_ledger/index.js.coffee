@@ -4,6 +4,7 @@
 #= require ./routers
 #= require ./models
 #= require ./collections
+#= require_tree ./behaviors
 #= require_tree ./regions
 #= require_tree ./views
 #= require_tree ./initializers
@@ -16,6 +17,9 @@ DotLedger.title = (title_parts...)->
 
 Backbone.Marionette.Renderer.render = (template, data)->
   JST["dot_ledger/templates/#{template}"](data)
+
+Marionette.Behaviors.behaviorsLookup = ->
+  DotLedger.Behaviors
 
 DotLedger.addRegions
   headerRegion: "header",

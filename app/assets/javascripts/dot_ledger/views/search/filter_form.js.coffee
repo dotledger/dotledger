@@ -2,6 +2,9 @@ DotLedger.module 'Views.Search', ->
   class @FilterForm extends Backbone.Marionette.ItemView
     template: 'search/filter_form'
 
+    behaviors:
+      TagSelector: {}
+
     ui:
       query: 'input[name=query]'
       category: 'select[name=category]'
@@ -17,8 +20,6 @@ DotLedger.module 'Views.Search', ->
     onRender: ->
       @options.categories.on 'sync', =>
         @renderCategories()
-      @options.tags.on 'sync', =>
-        @renderTags()
       @options.accounts.on 'sync', =>
         @renderAccounts()
       @ui.query.val(@model.get('query'))
@@ -28,7 +29,6 @@ DotLedger.module 'Views.Search', ->
       @ui.date_to.datepicker(format: 'yyyy-mm-dd')
 
       @renderCategories()
-      @renderTags()
       @renderAccounts()
 
     renderCategories: ->
@@ -43,15 +43,6 @@ DotLedger.module 'Views.Search', ->
         @ui.category.append($optgroup)
 
       @ui.category.val(@model.get('category_id'))
-
-    renderTags: ->
-      @ui.tags.empty()
-      @ui.tags.append('<option value="">Any</option>')
-      @options.tags.each (tag) =>
-        $option = $("<option value='#{tag.get('id')}'>#{tag.get('name')}</option>")
-        @ui.tags.append($option)
-
-      @ui.tags.val(@model.get('tag_ids'))
 
     renderAccounts: ->
       @ui.account_id.empty()

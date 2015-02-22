@@ -9,6 +9,9 @@ DotLedger.module 'Views.SortingRules', ->
     initialize: ->
       DotLedger.Helpers.pagination(this, @collection)
 
+    behaviors:
+      TagSelector: {}
+
     ui:
       query: 'input[name=query]'
       category: 'select[name=category]'
@@ -21,13 +24,10 @@ DotLedger.module 'Views.SortingRules', ->
     onRender: ->
       @options.categories.on 'sync', =>
         @renderCategories()
-      @options.tags.on 'sync', =>
-        @renderTags()
 
       @ui.query.val(@model.get('query'))
 
       @renderCategories()
-      @renderTags()
 
     renderCategories: ->
       @ui.category.empty()
@@ -40,15 +40,6 @@ DotLedger.module 'Views.SortingRules', ->
         @ui.category.append($optgroup)
 
       @ui.category.val(@model.get('category_id'))
-
-    renderTags: ->
-      @ui.tags.empty()
-      @ui.tags.append('<option value="">Any</option>')
-      @options.tags.each (tag) =>
-        $option = $("<option value='#{tag.get('id')}'>#{tag.get('name')}</option>")
-        @ui.tags.append($option)
-
-      @ui.tags.val(@model.get('tag_ids'))
 
     search: ->
       data = {}
