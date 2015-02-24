@@ -5,12 +5,28 @@ describe Api::StatementsController do
   let!(:account) { FactoryGirl.create :account }
 
   describe 'GET index' do
-    before { get :index }
+    let!(:account_statements) { FactoryGirl.create_list :statement, 2, account: account }
 
-    it { should respond_with :success }
+    context 'no filters' do
+      before { get :index }
 
-    it 'returns all statements' do
-      expect(assigns(:statements)).to eq [statement]
+      it { should respond_with :success }
+
+      it 'returns all statements' do
+        expect(assigns(:statements)).to match_array [statement, account_statements].flatten
+      end
+    end
+
+    context 'filter by account_id' do
+      before do
+        get :index, account_id: account.id
+      end
+
+      it { should respond_with :success }
+
+      it 'returns all statements for the account' do
+        expect(assigns(:statements)).to match_array account_statements
+      end
     end
   end
 

@@ -1,7 +1,13 @@
 module Api
   class StatementsController < BaseController
     def index
-      @statements = Statement.all
+      @statements = Statement.all.order(created_at: :desc)
+
+      @statements = @statements.where(account_id: account_id) if account_id.present?
+
+      @statements = @statements.page(page_number)
+
+      set_pagination_header(@statements)
 
       respond_with @statements
     end
