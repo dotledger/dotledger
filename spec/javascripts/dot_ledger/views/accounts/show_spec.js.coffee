@@ -1,5 +1,3 @@
-$.plot = $.noop
-
 describe "DotLedger.Views.Accounts.Show", ->
   createView = ->
     balances = new DotLedger.Collections.Balances

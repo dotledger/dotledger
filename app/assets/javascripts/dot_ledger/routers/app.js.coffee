@@ -80,13 +80,6 @@ DotLedger.module 'Routers', ->
       account = new DotLedger.Models.Account(id: account_id)
       transactions = new DotLedger.Collections.Transactions()
 
-      balances = new DotLedger.Collections.Balances()
-      balances.fetch
-        data:
-          account_id: account_id
-          date_from: moment().subtract('days', 90).format('YYYY-MM-DD')
-          date_to: moment().format('YYYY-MM-DD')
-
       Backbone.history.navigate("/accounts/#{account_id}/#{tab}/page-#{page_number}")
 
       transactions.on 'page:change', (page)->
@@ -117,19 +110,22 @@ DotLedger.module 'Routers', ->
 
       show = new DotLedger.Views.Accounts.Show
         model: account
-        balances: balances
         tab: tab
+
+      balanceGraph = new DotLedger.Views.Accounts.BalanceGraph
+        model: account
+        days: 90
 
       account.fetch
         success: ->
           DotLedger.title 'Accounts', account.get('name')
 
-          DotLedger.mainRegion.show(show)
-
           transactionsTableView = new DotLedger.Views.Transactions.Table(
             collection: transactions
           )
 
+          DotLedger.mainRegion.show(show)
+          show.graph.show(balanceGraph)
           show.transactions.show(transactionsTableView)
 
     newAccount: ->
