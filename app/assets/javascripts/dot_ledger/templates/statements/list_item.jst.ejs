@@ -1,0 +1,5 @@
+<td><time datetime="<%= created_at %>"><%= moment(created_at).format("D MMM YYYY hh:mm:ss") %></time></td>
+<td><time datetime="<%= from_date %>"><%= moment(from_date).format("D MMM YYYY") %></time></td>
+<td><time datetime="<%= to_date %>"><%= moment(to_date).format("D MMM YYYY") %></time></td>
+<td><%- transaction_count %></td>
+<td><%- DotLedger.Helpers.Format.money(balance) %></td>

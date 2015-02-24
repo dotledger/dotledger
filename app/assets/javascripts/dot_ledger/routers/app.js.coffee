@@ -9,6 +9,7 @@ DotLedger.module 'Routers', ->
       'accounts/:account_id/sort': 'sortAccount'
       'accounts/:account_id/edit': 'editAccount'
       'accounts/:account_id/import': 'newStatement'
+      'accounts/:account_id/statements': 'listStatements'
       'accounts/:account_id': 'showAccount'
       'accounts/:account_id/:tab': 'showAccount'
       'accounts/:account_id/:tab/page-:page_number': 'showAccount'
@@ -179,6 +180,22 @@ DotLedger.module 'Routers', ->
 
       form.on 'save', ->
         Backbone.history.navigate("/accounts/#{account_id}", trigger: true)
+
+    listStatements: (account_id)->
+      account = new DotLedger.Models.Account(id: account_id)
+      statements = new DotLedger.Collections.Statements()
+      list = new DotLedger.Views.Statements.List
+        account: account
+        collection: statements
+      statements.fetch
+        data:
+          account_id: account_id
+
+      account.fetch
+        success: ->
+          DotLedger.title 'Statements', account.get('name')
+
+          DotLedger.mainRegion.show(list)
 
     listCategories: (page_number = 1) ->
       categories = new DotLedger.Collections.Categories()
