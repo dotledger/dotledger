@@ -8,5 +8,5 @@
 </span>
 <h4 class="list-group-item-heading"><a href="/accounts/<%= id %>"><%- name %></a></h4>
 <p class="list-group-item-text">
-  <small class="text-muted">Updated <time datetime="<%= updated_at %>"><%= moment(updated_at).fromNow() %></time></small>
+  <small class="text-muted">Updated <time datetime="<%= updated_at %>"><%= DotLedger.Helpers.Format.agoDate(updated_at) %></time></small>
 </p>

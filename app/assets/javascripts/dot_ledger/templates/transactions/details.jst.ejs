@@ -28,7 +28,7 @@
         <dd><%- type %></dd>
 
         <dt>Date</dt>
-        <dd><time datetime="<%- posted_at %>"><%= moment(posted_at).format("D MMM YYYY") %></time></dd>
+        <dd><time datetime="<%- posted_at %>"><%= DotLedger.Helpers.Format.shortDate(posted_at) %></time></dd>
       </dl>
     </div>
   </div>

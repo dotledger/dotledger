@@ -11,10 +11,10 @@
 <% _.each(paymentDates(), function(date) { %>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= moment(date).format('LL') %></h3>
+      <h3 class="panel-title"><%= DotLedger.Helpers.Format.titleDate(date) %></h3>
     </div>
     <div class="panel-body has-table">
-      <table class="table payments" id="payment-date-<%= moment(date).format('X') %>">
+      <table class="table payments" id="payment-date-<%= DotLedger.Helpers.Format.unixTimestamp(date) %>">
         <thead>
           <tr>
             <th>Name</th>

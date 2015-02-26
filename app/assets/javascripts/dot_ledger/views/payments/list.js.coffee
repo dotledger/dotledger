@@ -5,11 +5,11 @@ DotLedger.module 'Views.Payments', ->
     templateHelpers: ->
       paymentDates: =>
         _.sortBy _.uniq(_.flatten(@collection.pluck('upcoming'))), (date)->
-          moment(date).format('X')
+          DotLedger.Helpers.Format.unixTimestamp(date)
 
     attachHtml: (collectionView, childView, index)->
       # FIXME: this is bad
       _.each childView.model.get('upcoming'), (date)->
-        date_id = "payment-date-#{moment(date).format('X')}"
+        date_id = "payment-date-#{DotLedger.Helpers.Format.unixTimestamp(date)}"
         view_string = childView.el.outerHTML
         collectionView.$("table##{date_id} tbody").append(view_string)

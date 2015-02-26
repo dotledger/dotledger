@@ -10,8 +10,8 @@ DotLedger.module 'Views.Accounts', ->
       @balances.fetch
         data:
           account_id: @model.id
-          date_from: moment().subtract('days', @options.days).format('YYYY-MM-DD')
-          date_to: moment().format('YYYY-MM-DD')
+          date_from: DotLedger.Helpers.Format.queryDate(moment().subtract('days', @options.days))
+          date_to: DotLedger.Helpers.Format.queryDate()
 
     ui:
       balanceGraph: '.balance .graph'
@@ -23,7 +23,7 @@ DotLedger.module 'Views.Accounts', ->
         {
           color: 'rgb(111, 202, 194)'
           data: @balances.map (balance) ->
-            [moment(balance.get('date')).toDate().getTime(), balance.get('balance')]
+            [DotLedger.Helpers.Format.unixTimestamp(balance.get('date')), balance.get('balance')]
         }
       ]
 

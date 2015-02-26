@@ -1,4 +1,4 @@
-<td><time datetime="<%= posted_at %>"><%= moment(posted_at).format("D MMM YYYY") %></time></td>
+<td><time datetime="<%= posted_at %>"><%= DotLedger.Helpers.Format.shortDate(posted_at) %></time></td>
 <td><a href="#" class="transaction-details"><%- name() %></a></td>
 <td><%= category() %></td>
 <td><%= spentAmount() %></td>
