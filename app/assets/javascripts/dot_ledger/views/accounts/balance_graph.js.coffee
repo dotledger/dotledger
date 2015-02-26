@@ -10,7 +10,7 @@ DotLedger.module 'Views.Accounts', ->
       @balances.fetch
         data:
           account_id: @model.id
-          date_from: DotLedger.Helpers.Format.queryDate(moment().subtract('days', @options.days))
+          date_from: DotLedger.Helpers.Format.queryDate(moment().subtract(@options.days, 'days'))
           date_to: DotLedger.Helpers.Format.queryDate()
 
     ui:

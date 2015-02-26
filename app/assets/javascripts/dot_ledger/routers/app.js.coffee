@@ -397,7 +397,7 @@ DotLedger.module 'Routers', ->
       renderReport = ->
         filterView.render()
         date_to = moment()
-        date_from = moment().subtract(filter.get('period'), 'day')
+        date_from = moment().subtract('day', filter.get('period'))
 
         category_statistics.fetch
           data:
