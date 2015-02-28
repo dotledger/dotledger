@@ -14,8 +14,6 @@ gem 'jquery-rails'
 
 gem 'ofx'
 
-gem 'virtus'
-
 gem 'ejs'
 
 gem 'kaminari'

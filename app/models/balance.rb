@@ -1,10 +1,8 @@
 class Balance
-  include ActiveModel::SerializerSupport
-  include Virtus.model
+  include ActiveModel::Model
+  include ActiveModel::Serialization
 
-  attribute :date
-  attribute :balance
-  attribute :account_id
+  attr_accessor :date, :balance, :account_id
 
   def active_model_serializer
     BalanceSerializer

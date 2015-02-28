@@ -1,16 +1,11 @@
 class StatementCreator
-  include Virtus.model
+  include ActiveModel::Model
 
-  include ActiveModel::Validations
-
-  attribute :file
-  attribute :account
+  attr_accessor :file, :account, :statement
 
   validates :file, presence: true
   validates :account, presence: true
   validate :file_can_be_parsed
-
-  attr_accessor :statement
 
   def persisted?
     false
