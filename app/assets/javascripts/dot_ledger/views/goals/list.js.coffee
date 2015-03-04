@@ -17,3 +17,4 @@ DotLedger.module 'Views.Goals', ->
 
     saveAll: ->
       @children.call('save')
+      DotLedger.Helpers.Notification.success('Goals have been saved.')
