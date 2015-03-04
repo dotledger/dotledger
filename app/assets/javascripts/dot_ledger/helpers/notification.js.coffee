@@ -4,25 +4,12 @@ DotLedger.module 'Helpers', ->
     new DotLedger.Views.Application.Notification(model: model, className: "alert alert-#{class_name} alert-dismissable")
 
   @Notification =
-    danger: (message)=>
-      view = notificationView(message, 'danger')
-      @app.notificationsRegion.show(view)
-      window.scroll(0, 0)
-
-    success: (message)=>
-      view = notificationView(message, 'success')
-      @app.notificationsRegion.show(view)
-      window.scroll(0, 0)
-
-    info: (message)=>
-      view = notificationView(message, 'info')
-      @app.notificationsRegion.show(view)
-      window.scroll(0, 0)
-
-    warning: (message)=>
-      view = notificationView(message, 'warning')
-      @app.notificationsRegion.show(view)
-      window.scroll(0, 0)
-
+    levels: ['danger', 'success', 'info', 'warning']
     empty: =>
       @app.notificationsRegion.empty()
+
+  for level in @Notification.levels then do (level)=>
+    @Notification[level] = (message)=>
+      view = notificationView(message, level)
+      @app.notificationsRegion.show(view)
+      window.scroll(0, 0)
