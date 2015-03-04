@@ -1,11 +1,11 @@
 class Account < ActiveRecord::Base
   self.inheritance_column = nil
 
-  has_many :transactions
+  has_many :transactions, dependent: :destroy
 
-  has_many :statements
+  has_many :statements, dependent: :destroy
 
-  has_many :sorted_transactions
+  has_many :sorted_transactions, dependent: :destroy
 
   ACCOUNT_TYPES = ['Cheque', 'Savings', 'Credit Card', 'Other']
 

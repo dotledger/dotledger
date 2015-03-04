@@ -25,9 +25,9 @@ describe Account do
 
   it { should validate_inclusion_of(:type).in_array(['Cheque', 'Savings', 'Credit Card', 'Other']) }
 
-  it { should have_many :transactions }
+  it { should have_many(:transactions).dependent(:destroy) }
 
-  it { should have_many :statements }
+  it { should have_many(:statements).dependent(:destroy) }
 
-  it { should have_many :sorted_transactions }
+  it { should have_many(:sorted_transactions).dependent(:destroy) }
 end

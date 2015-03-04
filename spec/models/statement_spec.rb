@@ -15,5 +15,5 @@ describe Statement do
 
   it { should belong_to :account }
 
-  it { should have_many :transactions }
+  it { should have_many(:transactions).dependent(:destroy) }
 end

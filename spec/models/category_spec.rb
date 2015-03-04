@@ -19,13 +19,13 @@ describe Category do
 
   it { should validate_inclusion_of(:type).in_array(%w(Flexible Essential Income Transfer)) }
 
-  it { should have_many :sorted_transactions }
+  it { should have_many(:sorted_transactions).dependent(:destroy) }
 
-  it { should have_many :sorting_rules }
+  it { should have_many(:sorting_rules).dependent(:destroy) }
 
-  it { should have_many :payments }
+  it { should have_many(:payments).dependent(:destroy) }
 
-  it { should have_one :goal }
+  it { should have_one(:goal).dependent(:destroy) }
 
   it 'creates a related goal' do
     expect do
