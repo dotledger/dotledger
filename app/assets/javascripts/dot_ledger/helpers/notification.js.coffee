@@ -7,18 +7,22 @@ DotLedger.module 'Helpers', ->
     danger: (message)=>
       view = notificationView(message, 'danger')
       @app.notificationsRegion.show(view)
+      window.scroll(0, 0)
 
     success: (message)=>
       view = notificationView(message, 'success')
       @app.notificationsRegion.show(view)
+      window.scroll(0, 0)
 
     info: (message)=>
       view = notificationView(message, 'info')
       @app.notificationsRegion.show(view)
+      window.scroll(0, 0)
 
     warning: (message)=>
       view = notificationView(message, 'warning')
       @app.notificationsRegion.show(view)
+      window.scroll(0, 0)
 
     empty: =>
       @app.notificationsRegion.empty()
