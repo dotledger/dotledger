@@ -52,6 +52,7 @@ DotLedger.module 'Views.Accounts', ->
 
       @model.save {},
         success: =>
+          DotLedger.accounts.fetch()
           @trigger 'save', @model
 
       false
