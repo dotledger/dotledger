@@ -21,11 +21,11 @@ module Api
     def create
       @account = Account.find(account_id)
 
-      @statement = StatementCreator.new(account: @account, file: file)
+      @statement_creator = StatementCreator.new(account: @account, file: file)
 
-      @statement.save
+      @statement_creator.save
 
-      respond_with @statement
+      respond_with @statement_creator.statement
     end
 
     def destroy

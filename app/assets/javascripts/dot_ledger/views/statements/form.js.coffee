@@ -36,9 +36,11 @@ DotLedger.module 'Views.Statements', ->
           contentType: false
           processData: false
           type: 'POST'
-          success: =>
+          success: (statement)=>
             @trigger 'save'
             @ui.button.button('reset')
+            transaction_count = DotLedger.Helpers.Format.pluralize(statement.transaction_count, "transaction", "transactions")
+            DotLedger.Helpers.Notification.success("#{transaction_count} imported.")
           error: (resp)=>
             if resp.status == 422
               @ui.button.button('reset')
