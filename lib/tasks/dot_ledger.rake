@@ -46,7 +46,7 @@ namespace :dot_ledger do
       end
 
       data['SortingRules'] = SortingRule.all.map do |sorting_rule|
-        sorting_rule.slice(:name, :contains, :category_name).to_hash
+        sorting_rule.slice(:name, :contains, :category_name, :tag_list, :review).to_hash
       end
 
       if args[:file].present?
@@ -97,9 +97,11 @@ namespace :dot_ledger do
       if data['SortingRules']
         data['SortingRules'].map do |sorting_rule|
           category = Category.where(name: sorting_rule.delete('category_name')).first
+          tag_list = sorting_rule.delete('tag_list')
           new_sorting_rule = SortingRule.where(
             sorting_rule.merge(category_id: category.id)
           ).first_or_initialize
+          new_sorting_rule.tag_list = tag_list if tag_list
           counts['SortingRules'] += 1 if new_sorting_rule.new_record?
           new_sorting_rule.save!
         end
