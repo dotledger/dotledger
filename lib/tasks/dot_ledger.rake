@@ -49,6 +49,12 @@ namespace :dot_ledger do
         sorting_rule.slice(:name, :contains, :category_name, :tag_list, :review).to_hash
       end
 
+      data['Goals'] = Goal.all.map do |goal|
+        goal.slice(:category_name, :amount, :period).tap do |goal|
+          goal[:amount] = goal[:amount].to_f
+        end.to_hash
+      end
+
       if args[:file].present?
         File.open(args[:file], 'w+') do |f|
           f.write(data.to_yaml)
@@ -74,7 +80,8 @@ namespace :dot_ledger do
       counts = {
         'Accounts' => 0,
         'Categories' => 0,
-        'SortingRules' => 0
+        'SortingRules' => 0,
+        'Goals' => 0
       }
 
       data = YAML.load_file(args[:file])
@@ -104,6 +111,18 @@ namespace :dot_ledger do
           new_sorting_rule.tag_list = tag_list if tag_list
           counts['SortingRules'] += 1 if new_sorting_rule.new_record?
           new_sorting_rule.save!
+        end
+      end
+
+      if data['Goals']
+        data['Goals'].map do |goal|
+          category = Category.where(name: goal.delete('category_name')).first
+          new_goal = Goal.where(
+            category_id: category.id
+          ).first_or_initialize
+          new_goal.assign_attributes(goal)
+          counts['Goals'] += 1 if new_goal.new_record? || new_goal.changed?
+          new_goal.save!
         end
       end
 
