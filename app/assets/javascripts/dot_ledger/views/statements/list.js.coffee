@@ -12,3 +12,6 @@ DotLedger.module 'Views.Statements', ->
     templateHelpers: ->
       accountName: =>
         @options.account.get('name')
+
+      accountID: =>
+        @options.account.get('id')
