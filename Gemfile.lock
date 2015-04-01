@@ -196,7 +196,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    websocket-driver (0.5.3)
+    websocket-driver (0.5.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     xpath (2.0.0)
