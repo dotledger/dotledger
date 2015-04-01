@@ -12,7 +12,6 @@ namespace :dot_ledger do
       else
         puts "Error: #{creator.errors.messages.map { |k,v| "#{k} #{v.join(', ')}." }.join}"
       end
-
     rescue StandardError => e
       puts "Error: #{e.message}"
       exit 1
@@ -34,106 +33,41 @@ namespace :dot_ledger do
 
   desc 'Export data to a YAML file'
   task :export_yaml, [:file] => :environment do |t, args|
-    begin
-      data = {}
-
-      data['Accounts'] = Account.all.map do |account|
-        account.slice(:name, :number, :type).to_hash
-      end
-
-      data['Categories'] = Category.all.map do |category|
-        category.slice(:name, :type).to_hash
-      end
-
-      data['SortingRules'] = SortingRule.all.map do |sorting_rule|
-        sorting_rule.slice(:name, :contains, :category_name, :tag_list, :review).to_hash
-      end
-
-      data['Goals'] = Goal.all.map do |goal|
-        goal.slice(:category_name, :amount, :period).tap do |goal|
-          goal[:amount] = goal[:amount].to_f
-        end.to_hash
-      end
-
+    file =
       if args[:file].present?
-        File.open(args[:file], 'w+') do |f|
-          f.write(data.to_yaml)
-        end
-
-        puts 'Exported'
-        puts '--------'
-        data.each do |label, elements|
-          puts "#{label}: #{elements.count}"
-        end
+        File.open(args[:file], 'w')
       else
-        puts data.to_yaml
+        $stdout
       end
-    rescue StandardError => e
-      puts "Error: #{e.message}"
-      exit 1
+
+    exporter = DotLedgerExporter.new(file)
+    exporter.export
+
+    summary = "Exported\n--------\n\n"
+    exporter.data.each do |label, elements|
+      summary << "#{label}: #{elements.count}\n"
     end
+
+    $stderr.write(summary)
   end
 
   desc 'Import data from a YAML file'
   task :import_yaml, [:file] => :environment do |t, args|
-    begin
-      counts = {
-        'Accounts' => 0,
-        'Categories' => 0,
-        'SortingRules' => 0,
-        'Goals' => 0
-      }
-
-      data = YAML.load_file(args[:file])
-      if data['Accounts']
-        data['Accounts'].map do |account|
-          new_account = Account.where(account).first_or_initialize
-          counts['Accounts'] += 1 if new_account.new_record?
-          new_account.save!
-        end
+    file =
+      if args[:file].present?
+        File.open(args[:file], 'r')
+      else
+        $stdin
       end
 
-      if data['Categories']
-        data['Categories'].map do |category|
-          new_category = Category.where(category).first_or_initialize
-          counts['Categories'] += 1 if new_category.new_record?
-          new_category.save!
-        end
-      end
+    importer = DotLedgerImporter.new(file)
+    importer.import
 
-      if data['SortingRules']
-        data['SortingRules'].map do |sorting_rule|
-          category = Category.where(name: sorting_rule.delete('category_name')).first
-          tag_list = sorting_rule.delete('tag_list')
-          new_sorting_rule = SortingRule.where(
-            sorting_rule.merge(category_id: category.id)
-          ).first_or_initialize
-          new_sorting_rule.tag_list = tag_list if tag_list
-          counts['SortingRules'] += 1 if new_sorting_rule.new_record?
-          new_sorting_rule.save!
-        end
-      end
-
-      if data['Goals']
-        data['Goals'].map do |goal|
-          category = Category.where(name: goal.delete('category_name')).first
-          new_goal = Goal.where(
-            category_id: category.id
-          ).first_or_initialize
-          new_goal.assign_attributes(goal)
-          counts['Goals'] += 1 if new_goal.new_record? || new_goal.changed?
-          new_goal.save!
-        end
-      end
-
-      puts 'Imported'
-      puts '--------'
-      counts.each do |label, count|
-        puts "#{label}: #{count}"
-      end
-    rescue StandardError => e
-      puts "Error: #{e.message}"
-      exit 1
+    summary = "Imported\n--------\n\n"
+    importer.data.each do |label, elements|
+      summary << "#{label}: #{elements.count}\n"
     end
+
+    $stderr.write(summary)
   end
 end
