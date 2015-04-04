@@ -46,7 +46,7 @@ describe "DotLedger.Views.SortingRules.List", ->
           category_id: 11
           category_name: 'Category One'
           review: true
-          tag_list: 'Tag One, Tag Two'
+          tag_list: ['Tag One', 'Tag Two']
         }
         {
           id: 2
@@ -55,7 +55,7 @@ describe "DotLedger.Views.SortingRules.List", ->
           category_id: 22
           category_name: 'Category Two'
           review: false
-          tag_list: 'Tag One, Tag Three'
+          tag_list: ['Tag One', 'Tag Three']
         }
       ]
     )

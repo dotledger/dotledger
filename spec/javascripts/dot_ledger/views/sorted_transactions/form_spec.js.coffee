@@ -85,7 +85,7 @@ describe "DotLedger.Views.SortedTransactions.Form", ->
     model = new DotLedger.Models.SortingRule
       name: 'Foobar'
       category_id: '22'
-      tag_list: 'Foo, Bar, Baz'
+      tag_list: ['Foo', 'Bar', 'Baz']
 
     view = createView(model).render()
 

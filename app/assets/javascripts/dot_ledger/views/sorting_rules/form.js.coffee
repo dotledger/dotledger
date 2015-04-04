@@ -20,7 +20,7 @@ DotLedger.module 'Views.SortingRules', ->
       @ui.name.val(@model.get('name'))
       @ui.contains.val(@model.get('contains'))
       @ui.review.val("#{@model.get('review')}").change()
-      @ui.tags.val(@model.get('tag_list'))
+      @ui.tags.val((@model.get('tag_list') || []).join(', '))
 
     events:
       'click button.save': 'save'

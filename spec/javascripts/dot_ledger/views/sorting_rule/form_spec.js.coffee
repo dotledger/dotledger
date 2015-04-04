@@ -97,7 +97,7 @@ describe "DotLedger.Views.SortingRules.Form", ->
       contains: 'Barfoo'
       category_id: '22'
       review: 'true'
-      tag_list: 'Foo, Bar, Baz'
+      tag_list: ['Foo', 'Bar', 'Baz']
 
     view = createView(model).render()
 

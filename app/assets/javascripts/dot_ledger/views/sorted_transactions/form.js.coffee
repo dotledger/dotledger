@@ -17,7 +17,7 @@ DotLedger.module 'Views.SortedTransactions', ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
 
       @ui.name.val(@model.get('name') || @options.transaction.get('search'))
-      @ui.tags.val(@model.get('tag_list'))
+      @ui.tags.val((@model.get('tag_list') || []).join(', '))
 
     events:
       'click button.save': 'save'

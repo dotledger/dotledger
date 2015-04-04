@@ -7,7 +7,7 @@ describe "DotLedger.Views.SortingRules.ListItem", ->
       category_id: 1
       review: true
       id: 1
-      tag_list: 'Foo, Bar, Baz'
+      tag_list: ['Foo', 'Bar', 'Baz']
 
     view = new DotLedger.Views.SortingRules.ListItem
       model: model

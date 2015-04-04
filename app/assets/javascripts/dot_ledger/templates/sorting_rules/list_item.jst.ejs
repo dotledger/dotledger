@@ -1,6 +1,6 @@
 <td><%- contains %></td>
 <td><%- name %></td>
 <td><%- category_name %></td>
-<td><%- tag_list %></td>
+<td><%- (tag_list || []).join(', ') %></td>
 <td><%- flag() %></td>
 <td class="text-right"><a class="edit-sorting-rule btn btn-xs btn-default" href="<%= DotLedger.path.editSortingRule({id: id}) %>">Edit</a></td>
