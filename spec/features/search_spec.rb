@@ -29,10 +29,12 @@ feature 'Search', truncate: true, js: true do
 
       context 'with new query' do
         it 'sets the new page title' do
-          expect_page_title_to_be 'Search', 'Foobar'
-          fill_in 'Search for', with: 'Bazbar'
-          click_on 'Search'
-          expect_page_title_to_be 'Search', 'Bazbar'
+          within '.page-header' do
+            expect_page_title_to_be 'Search', 'Foobar'
+            fill_in 'Search for', with: 'Bazbar'
+            click_on 'Search'
+            expect_page_title_to_be 'Search', 'Bazbar'
+          end
         end
       end
     end
@@ -58,10 +60,12 @@ feature 'Search', truncate: true, js: true do
 
       context 'with new query' do
         it 'sets the new page title' do
-          expect_page_title_to_be 'Search'
-          fill_in 'Search for', with: 'Bazbar'
-          click_on 'Search'
-          expect_page_title_to_be 'Search', 'Bazbar'
+          within '.page-header' do
+            expect_page_title_to_be 'Search'
+            fill_in 'Search for', with: 'Bazbar'
+            click_on 'Search'
+            expect_page_title_to_be 'Search', 'Bazbar'
+          end
         end
       end
     end
