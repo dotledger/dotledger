@@ -12,4 +12,12 @@ module Taggable
       fail StandardError, 'unknown tag list'
     end
   end
+
+  def tag_list
+    tags.pluck(:name)
+  end
+
+  def tag_list=(tag_list)
+    self.tag_ids = Tag.tags_from_string(tag_list.join(', ')).map(&:id)
+  end
 end

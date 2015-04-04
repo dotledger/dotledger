@@ -63,6 +63,26 @@ describe SortingRule do
         end
       end
     end
+
+    describe '.tag_list' do
+      subject { FactoryGirl.build :sorting_rule, tag_ids: [tag1.id, tag2.id] }
+
+      specify do
+        expect(subject.tag_list).to eq [tag1.name, tag2.name]
+      end
+    end
+
+    describe '.tag_list=' do
+      subject { FactoryGirl.build :sorting_rule, tag_ids: [] }
+
+      before do
+        subject.tag_list = [tag1.name, tag2.name]
+      end
+
+      specify do
+        expect(subject.tag_ids).to eq [tag1.id, tag2.id]
+      end
+    end
   end
 
   describe '#with_category' do
