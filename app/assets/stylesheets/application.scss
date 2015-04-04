@@ -96,6 +96,7 @@ div.balance {
           color: $component-active-color;
 
           .badge {
+            background-color: $panel-default-heading-bg;
             color: $brand-primary;
           } 
         }
