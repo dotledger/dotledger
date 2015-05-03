@@ -27,6 +27,7 @@ describe "DotLedger.Views.SortedTransactions.Form", ->
       search: 'Some Search'
       account_id: 123
       id: 345
+      note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 
     view = new DotLedger.Views.SortedTransactions.Form
       model: model
@@ -57,6 +58,7 @@ describe "DotLedger.Views.SortedTransactions.Form", ->
     expect(view.$el).toContainElement('optgroup[label=Income]')
     expect(view.$el).toContainElement('optgroup[label=Transfer]')
     expect(view.$el).toContainElement('input[name=tags]')
+    expect(view.$el).toContainElement('textarea[name=note]')
 
   it "renders the heading", ->
     view = createView().render()
@@ -69,6 +71,7 @@ describe "DotLedger.Views.SortedTransactions.Form", ->
     view.$el.find('input[name=name]').val('New Name')
     view.$el.find('select[name=category]').val('11')
     view.$el.find('input[name=tags]').val('Foo, Bar, Baz')
+    view.$el.find('textarea[name=note]').val('Some note...')
 
     spyOn(model, 'set')
 
@@ -80,15 +83,20 @@ describe "DotLedger.Views.SortedTransactions.Form", ->
       account_id: 123
       transaction_id: 345
       tags: 'Foo, Bar, Baz'
+      note: 'Some note...'
 
   it "renders the form fields with the model values", ->
-    model = new DotLedger.Models.SortingRule
-      name: 'Foobar'
+    model = new DotLedger.Models.SortedTransaction
+      name: 'Some transaction'
       category_id: '22'
       tag_list: ['Foo', 'Bar', 'Baz']
+      account_id: 123
+      transaction_id: 345
+      note: 'Some note...'
 
     view = createView(model).render()
 
-    expect(view.$el.find('input[name=name]')).toHaveValue('Foobar')
+    expect(view.$el.find('input[name=name]')).toHaveValue('Some transaction')
     expect(view.$el.find('select[name=category]')).toHaveValue('22')
     expect(view.$el.find('input[name=tags]')).toHaveValue('Foo, Bar, Baz')
+    expect(view.$el.find('textarea[name=note]')).toHaveValue('Some note...')

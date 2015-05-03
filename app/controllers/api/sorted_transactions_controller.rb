@@ -47,7 +47,7 @@ module Api
     end
 
     def sorted_transaction_params
-      params.permit(:name, :transaction_id, :account_id, :category_id, :review, :tags)
+      params.permit(:name, :transaction_id, :account_id, :category_id, :review, :tags, :note)
     end
   end
 end

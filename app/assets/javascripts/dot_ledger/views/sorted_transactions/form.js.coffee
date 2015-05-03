@@ -12,12 +12,14 @@ DotLedger.module 'Views.SortedTransactions', ->
       name: 'input[name=name]'
       category: 'select[name=category]'
       tags: 'input[name=tags]'
+      note: 'textarea[name=note]'
 
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
 
       @ui.name.val(@model.get('name') || @options.transaction.get('search'))
       @ui.tags.val((@model.get('tag_list') || []).join(', '))
+      @ui.note.val(@model.get('note'))
 
     events:
       'click button.save': 'save'
@@ -30,6 +32,7 @@ DotLedger.module 'Views.SortedTransactions', ->
         account_id: @options.transaction.get('account_id')
         transaction_id: @options.transaction.get('id')
         tags: @ui.tags.val()
+        note: @ui.note.val()
 
       @model.set(data)
 
