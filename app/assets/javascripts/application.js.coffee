@@ -18,7 +18,27 @@
 #= require jsurl
 #= require dot_ledger
 
-_.mixin compactObject: (object) ->
-  _.each object, (v, k) ->
-    delete object[k] if _.isEmpty(object[k])
-  object
+_.mixin
+  compactObject: (object) ->
+    _.each object, (v, k) ->
+      delete object[k] if _.isEmpty(object[k])
+    object
+
+  parseQueryString: (queryString) ->
+    return {} if typeof queryString != 'string' or queryString == ''
+    variables = queryString.trim().replace(/\+/g, ' ').split('&')
+
+    (pair.split '=' for pair in variables).reduce((output, pair) ->
+      [key, value] = pair
+      key = decodeURIComponent(key)
+      value = if value? then decodeURIComponent(value) else null
+
+      unless key of output
+        output[key] = value
+      else if _.isArray(output[key])
+        output[key].push value
+      else
+        output[key] = [output[key], value]
+
+      output
+    , {})
