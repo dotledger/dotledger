@@ -9,10 +9,10 @@ DotLedger.module 'Views.Goals', ->
         types = _.uniq(@collection.pluck('category_type'))
         _.map types, (type)->
           label: type
-          id: "category-type-#{_.string.underscored(type)}"
+          id: "category-type-#{s.underscored(type)}"
 
     attachHtml: (collectionView, childView, index)->
-      list_id =  "category-type-#{_.string.underscored(childView.model.get('category_type'))}"
+      list_id =  "category-type-#{s.underscored(childView.model.get('category_type'))}"
       collectionView.$("div##{list_id}").append(childView.el)
 
     saveAll: ->

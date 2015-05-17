@@ -16,7 +16,7 @@ DotLedger.module 'Helpers', ->
       ), this
 
     showError: (attribute, errors) ->
-      $error_messages = $('<span class="server-side-error help-block" />').html(_.string.toSentence(errors))
+      $error_messages = $('<span class="server-side-error help-block" />').html(s.toSentence(errors))
       $form_group = @$el.find("[name='#{attribute}']").parents(".form-group")
       $form_group.addClass "has-error"
       $errors_container = $form_group.find('.errors')
