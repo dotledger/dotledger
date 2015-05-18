@@ -23,7 +23,7 @@ DotLedger.module 'Views.Accounts', ->
         {
           color: 'rgb(111, 202, 194)'
           data: @balances.map (balance) ->
-            [DotLedger.Helpers.Format.unixTimestamp(balance.get('date')), balance.get('balance')]
+            [DotLedger.Helpers.Format.unixMilliTimestamp(balance.get('date')), balance.get('balance')]
         }
       ]
 
