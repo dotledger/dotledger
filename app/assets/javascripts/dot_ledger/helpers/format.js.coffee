@@ -27,5 +27,8 @@ DotLedger.module 'Helpers', ->
     unixTimestamp: (date)->
       moment(date).format('X')
 
+    unixMilliTimestamp: (date)->
+      moment(date).format('x')
+
     agoDate: (date)->
       moment(date).fromNow()

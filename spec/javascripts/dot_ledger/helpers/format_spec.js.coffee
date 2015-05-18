@@ -37,3 +37,8 @@ describe "DotLedger.Helpers.Format", ->
     it "correctly formats the date", ->
       # FIXME: I hate timezones.
       expect(DotLedger.Helpers.Format.unixTimestamp(date)).toMatch(/^\d+$/)
+
+  describe ".unixMilliTimestamp", ->
+    it "correctly formats the date", ->
+      # FIXME: I hate timezones.
+      expect(DotLedger.Helpers.Format.unixMilliTimestamp(date)).toMatch(/^\d+$/)
