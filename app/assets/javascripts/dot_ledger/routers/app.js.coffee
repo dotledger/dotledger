@@ -1,49 +1,53 @@
 DotLedger.module 'Routers', ->
+  routes =
+    # Root
+    '': 'root'
+
+    # Accounts
+    'accounts/new': 'newAccount'
+    'accounts/:account_id/sort': 'sortAccount'
+    'accounts/:account_id/edit': 'editAccount'
+    'accounts/:account_id/import': 'newStatement'
+    'accounts/:account_id/statements': 'listStatements'
+    'accounts/:account_id': 'showAccount'
+    'accounts/:account_id/:tab': 'showAccount'
+    'accounts/:account_id/:tab/page-:page_number': 'showAccount'
+
+    # Categories
+    'categories': 'listCategories'
+    'categories/new': 'newCategory'
+    'categories/:id/edit': 'editCategory'
+
+    # Sorting Rules
+    'sorting-rules/new': 'newSortingRule'
+    'sorting-rules/:id/edit': 'editSortingRule'
+    'sorting-rules/:params': 'listSortingRules'
+    'sorting-rules/:params/page-:page_number': 'listSortingRules'
+    'sorting-rules': 'listSortingRules'
+
+    # Goals
+    'goals': 'listGoals'
+
+    # Payments
+    'payments': 'listPayments'
+    'payments/new': 'newPayment'
+    'payments/:id/edit': 'editPayment'
+
+    # Search
+    'search/:params': 'search'
+    'search/:params/page-:page_number': 'search'
+    'search': 'search'
+
+    # Reports
+    'reports/income-and-expenses': 'incomeAndExpenses'
+
+    # Not Found
+    '*path': 'notFound'
+
+  DotLedger.path = DotLedger.Helpers.Path.routesToPathHelpers(routes)
+
   class @App extends @Base
-    routes:
-      # Root
-      '': 'root'
-
-      # Accounts
-      'accounts/new': 'newAccount'
-      'accounts/:account_id/sort': 'sortAccount'
-      'accounts/:account_id/edit': 'editAccount'
-      'accounts/:account_id/import': 'newStatement'
-      'accounts/:account_id/statements': 'listStatements'
-      'accounts/:account_id': 'showAccount'
-      'accounts/:account_id/:tab': 'showAccount'
-      'accounts/:account_id/:tab/page-:page_number': 'showAccount'
-
-      # Categories
-      'categories': 'listCategories'
-      'categories/new': 'newCategory'
-      'categories/:id/edit': 'editCategory'
-
-      # Sorting Rules
-      'sorting-rules/new': 'newSortingRule'
-      'sorting-rules/:id/edit': 'editSortingRule'
-      'sorting-rules/:params': 'listSortingRules'
-      'sorting-rules/:params/page-:page_number': 'listSortingRules'
-      'sorting-rules': 'listSortingRules'
-
-      # Goals
-      'goals': 'listGoals'
-
-      # Payments
-      'payments': 'listPayments'
-      'payments/new': 'newPayment'
-      'payments/:id/edit': 'editPayment'
-
-      # Search
-      'search/:params': 'search'
-      'search/:params/page-:page_number': 'search'
-      'search': 'search'
-
-      # Reports
-      'reports/income-and-expenses': 'incomeAndExpenses'
-
-      # Not Found
-      '*path': 'notFound'
+    routes: routes
 
     root: ->
       DotLedger.title 'Dashboard'
