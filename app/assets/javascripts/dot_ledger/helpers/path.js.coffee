@@ -2,6 +2,14 @@ DotLedger.module 'Helpers', ->
   namedParam = /[:\*](\w+)/g
 
   @Path =
+    routesToNavigateHelpers: (routes)->
+      helpers = {}
+      _.each routes, (funcName, route) ->
+        fn = DotLedger.Helpers.Path.routeToPathHelper(route)
+        helpers[funcName] = (args = {}, navigateOptions = {})->
+          Backbone.history.navigate(fn(args), navigateOptions)
+      helpers
+
     routesToPathHelpers: (routes)->
       helpers = {}
       _.each routes, (funcName, route) ->

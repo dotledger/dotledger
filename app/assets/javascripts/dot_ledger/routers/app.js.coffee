@@ -45,6 +45,7 @@ DotLedger.module 'Routers', ->
     '*path': 'notFound'
 
   DotLedger.path = DotLedger.Helpers.Path.routesToPathHelpers(routes)
+  DotLedger.navigate = DotLedger.Helpers.Path.routesToNavigateHelpers(routes)
 
   class @App extends @Base
     routes: routes
