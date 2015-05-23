@@ -5,13 +5,11 @@ DotLedger.module 'Routers', ->
 
     # Accounts
     'accounts/new': 'newAccount'
-    'accounts/:account_id/sort': 'sortAccount'
-    'accounts/:account_id/edit': 'editAccount'
-    'accounts/:account_id/import': 'newStatement'
-    'accounts/:account_id/statements': 'listStatements'
-    'accounts/:account_id': 'showAccount'
-    'accounts/:account_id/:tab': 'showAccount'
-    'accounts/:account_id/:tab/page-:page_number': 'showAccount'
+    'accounts/:id/sort': 'sortAccount'
+    'accounts/:id/edit': 'editAccount'
+    'accounts/:id/import': 'newStatement'
+    'accounts/:id/statements': 'listStatements'
+    'accounts/:id': 'showAccount'
 
     # Categories
     'categories': 'listCategories'
@@ -21,8 +19,6 @@ DotLedger.module 'Routers', ->
     # Sorting Rules
     'sorting-rules/new': 'newSortingRule'
     'sorting-rules/:id/edit': 'editSortingRule'
-    'sorting-rules/:params': 'listSortingRules'
-    'sorting-rules/:params/page-:page_number': 'listSortingRules'
     'sorting-rules': 'listSortingRules'
 
     # Goals
@@ -34,8 +30,6 @@ DotLedger.module 'Routers', ->
     'payments/:id/edit': 'editPayment'
 
     # Search
-    'search/:params': 'search'
-    'search/:params/page-:page_number': 'search'
     'search': 'search'
 
     # Reports
@@ -81,41 +75,45 @@ DotLedger.module 'Routers', ->
         model: model
       DotLedger.mainRegion.show(notFoundView)
 
-    showAccount: (account_id, tab = 'sorted', page_number = 1)->
+    showAccount: (account_id)->
+      @QueryParams.set(tab: 'sorted') unless @QueryParams.has('tab')
+      @QueryParams.set(page: 1) unless @QueryParams.has('page')
+
       account = new DotLedger.Models.Account(id: account_id)
       transactions = new DotLedger.Collections.Transactions()
 
-      Backbone.history.navigate("/accounts/#{account_id}/#{tab}/page-#{page_number}")
+      DotLedger.navigate.showAccount(_.extend(id: account_id, @QueryParams.attributes), replace: true)
 
-      transactions.on 'page:change', (page)->
-        Backbone.history.navigate("/accounts/#{account_id}/#{tab}/page-#{page}")
+      transactions.on 'page:change', (page)=>
+        @QueryParams.set(page: page)
+        DotLedger.navigate.showAccount(_.extend(id: account_id, @QueryParams.attributes))
 
-      switch tab
+      switch @QueryParams.get('tab')
         when 'sorted'
           transactions.fetch
             data:
               account_id: account_id
               sorted: true
               review: false
-              page: page_number
+              page: @QueryParams.get('page')
 
         when 'review'
           transactions.fetch
             data:
               account_id: account_id
               review: true
-              page: page_number
+              page: @QueryParams.get('page')
 
         when 'unsorted'
           transactions.fetch
             data:
               account_id: account_id
               unsorted: true
-              page: page_number
+              page: @QueryParams.get('page')
 
       show = new DotLedger.Views.Accounts.Show
         model: account
-        tab: tab
+        tab: @QueryParams.get('tab')
 
       balanceGraph = new DotLedger.Views.Accounts.BalanceGraph
         model: account
@@ -138,7 +136,7 @@ DotLedger.module 'Routers', ->
       form = new DotLedger.Views.Accounts.Form(model: account)
 
       form.on 'save', (model)->
-        Backbone.history.navigate("/accounts/#{model.get('id')}", trigger: true)
+        DotLedger.navigate.showAccount({id: model.get('id')}, trigger: true)
 
       DotLedger.title 'New Account'
 
@@ -166,7 +164,7 @@ DotLedger.module 'Routers', ->
       )
 
       form.on 'save', ->
-        Backbone.history.navigate("/accounts/#{account_id}", trigger: true)
+        DotLedger.navigate.showAccount({id: account_id}, trigger: true)
 
     newStatement: (account_id)->
       account = new DotLedger.Models.Account(id: account_id)
@@ -180,7 +178,7 @@ DotLedger.module 'Routers', ->
           DotLedger.mainRegion.show(form)
 
       form.on 'save', ->
-        Backbone.history.navigate("/accounts/#{account_id}", trigger: true)
+        DotLedger.navigate.showAccount({id: account_id}, trigger: true)
 
     listStatements: (account_id)->
       account = new DotLedger.Models.Account(id: account_id)
@@ -198,7 +196,7 @@ DotLedger.module 'Routers', ->
 
           DotLedger.mainRegion.show(list)
 
-    listCategories: (page_number = 1) ->
+    listCategories: ->
       categories = new DotLedger.Collections.Categories()
 
       DotLedger.title 'Categories'
@@ -217,7 +215,7 @@ DotLedger.module 'Routers', ->
       DotLedger.title 'New Category'
 
       form.on 'save', (model)->
-        Backbone.history.navigate("/categories", trigger: true)
+        DotLedger.navigate.listCategories({}, trigger: true)
 
       DotLedger.mainRegion.show(form)
 
@@ -226,38 +224,36 @@ DotLedger.module 'Routers', ->
       form = new DotLedger.Views.Categories.Form(model: category)
 
       form.on 'save', (model)->
-        Backbone.history.navigate("/categories", trigger: true)
+        DotLedger.navigate.listCategories({}, trigger: true)
 
       category.fetch
         success: ->
           DotLedger.title 'Edit Category', category.get('name')
           DotLedger.mainRegion.show(form)
 
-    listSortingRules: (params = JSURL.stringify({}), page_number = 1)->
-      search = new Backbone.Model(JSURL.parse(params))
-
+    listSortingRules: ->
+      @QueryParams.set(page: 1) unless @QueryParams.has('page')
       sorting_rules = new DotLedger.Collections.SortingRules()
 
       list = new DotLedger.Views.SortingRules.List
         collection: sorting_rules
-        model: search
+        model: @QueryParams
 
       DotLedger.title 'Sorting Rules'
 
-      updateSortingRules = (model, page = page_number)->
-        params = JSURL.stringify(model.attributes)
-        Backbone.history.navigate("/sorting-rules/#{params}/page-#{page}")
-        sorting_rules.fetch(data: _.extend(model.attributes, page: page))
+      updateSortingRules = =>
+        DotLedger.navigate.listSortingRules(@QueryParams.attributes)
+        sorting_rules.fetch(data: @QueryParams.attributes)
 
       list.on('search', updateSortingRules)
 
-      updateSortingRules(search)
+      updateSortingRules()
 
       DotLedger.mainRegion.show(list)
-      Backbone.history.navigate("/sorting-rules/#{params}/page-#{page_number}")
 
-      sorting_rules.on 'page:change', (page)->
-        Backbone.history.navigate("/sorting-rules/#{params}/page-#{page}")
+      sorting_rules.on 'page:change', (page)=>
+        @QueryParams.set(page: page)
+        DotLedger.navigate.listSortingRules(@QueryParams.attributes)
 
     newSortingRule: ->
       sorting_rule = new DotLedger.Models.SortingRule()
@@ -268,7 +264,7 @@ DotLedger.module 'Routers', ->
         model: sorting_rule
 
       form.on 'save', (model)->
-        Backbone.history.navigate("/sorting-rules", trigger: true)
+        DotLedger.navigate.listSortingRules({}, trigger: true)
 
       DotLedger.mainRegion.show(form)
 
@@ -279,7 +275,7 @@ DotLedger.module 'Routers', ->
         model: sorting_rule
 
       form.on 'save', (model)->
-        Backbone.history.navigate("/sorting-rules", trigger: true)
+        DotLedger.navigate.listSortingRules({}, trigger: true)
 
       sorting_rule.fetch
         success: ->
@@ -320,7 +316,7 @@ DotLedger.module 'Routers', ->
         model: payment
 
       form.on 'save', (model)->
-        Backbone.history.navigate("/payments", trigger: true)
+        DotLedger.navigate.listPayments({}, trigger: true)
 
       DotLedger.mainRegion.show(form)
 
@@ -338,43 +334,38 @@ DotLedger.module 'Routers', ->
       )
 
       form.on 'save', ->
-        Backbone.history.navigate("/payments", trigger: true)
+        DotLedger.navigate.listPayments({}, trigger: true)
 
-    search: (params = JSURL.stringify({}), page_number = 1)->
-      search = new Backbone.Model(JSURL.parse(params))
-
-      search.on 'change', ->
-        if search.has('query')
-          DotLedger.title 'Search', search.get('query')
-        else
-          DotLedger.title 'Search'
-
-      search.trigger 'change'
+    search: ->
+      @QueryParams.set(page: 1) unless @QueryParams.has('page')
 
       searchLayout = new DotLedger.Views.Search.Search()
 
       searchFilters = new DotLedger.Views.Search.FilterForm
-        model: search
+        model: @QueryParams
 
       transactions = new DotLedger.Collections.Transactions()
 
-      Backbone.history.navigate("/search/#{params}/page-#{page_number}")
-
-      transactions.on 'page:change', (page)->
-        Backbone.history.navigate("/search/#{params}/page-#{page}")
+      transactions.on 'page:change', (page)=>
+        @QueryParams.set(page: page)
+        DotLedger.navigate.search(@QueryParams.attributes)
 
       searchSummary = new DotLedger.Views.Search.Summary(
         collection: transactions
       )
 
-      updateTransactions = (model, page = page_number)->
-        params = JSURL.stringify(model.attributes)
-        Backbone.history.navigate("/search/#{params}/page-#{page}")
-        transactions.fetch(data: _.extend(model.attributes, page: page))
+      updateTransactions = =>
+        if @QueryParams.has('query')
+          DotLedger.title 'Search', @QueryParams.get('query')
+        else
+          DotLedger.title 'Search'
+
+        DotLedger.navigate.search(@QueryParams.attributes)
+        transactions.fetch(data: @QueryParams.attributes)
 
       searchFilters.on('search', updateTransactions)
 
-      updateTransactions(search)
+      updateTransactions()
 
       searchResults = new DotLedger.Views.Transactions.Table(
         collection: transactions
@@ -387,11 +378,12 @@ DotLedger.module 'Routers', ->
 
     incomeAndExpenses: ->
       DotLedger.title 'Reports', 'Income and Expenses'
+      @QueryParams.set(period: 90) unless @QueryParams.has('period')
 
-      filter = new Backbone.Model()
+      DotLedger.navigate.incomeAndExpenses(@QueryParams.attributes, replace: true)
 
       filterView = new DotLedger.Views.Reports.IncomeAndExpenses.Filter
-        model: filter
+        model: @QueryParams
 
       reportView = new DotLedger.Views.Reports.IncomeAndExpenses.Show()
 
@@ -399,10 +391,12 @@ DotLedger.module 'Routers', ->
         url: '/api/statistics/activity_per_category'
       }))
 
-      renderReport = ->
+      renderReport = =>
+        DotLedger.navigate.incomeAndExpenses(@QueryParams.attributes)
         filterView.render()
         date_to = moment()
-        date_from = moment().subtract('day', filter.get('period'))
+        date_from = moment().subtract('day', @QueryParams.get('period'))
+
 
         category_statistics.fetch
           data:
@@ -414,8 +408,8 @@ DotLedger.module 'Routers', ->
             )
             reportView.report.show(activity)
 
-      filter.on 'change:period', renderReport
-      filter.set('period', 90)
+      @QueryParams.on 'change:period', renderReport
 
+      renderReport()
       DotLedger.mainRegion.show(reportView)
       reportView.filter.show(filterView)

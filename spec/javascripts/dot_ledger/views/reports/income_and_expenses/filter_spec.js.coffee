@@ -1,5 +1,5 @@
 describe "DotLedger.Views.Reports.IncomeAndExpenses.Filter", ->
-  createView = (model = new Backbone.Model(period: 90))->
+  createView = (model = new DotLedger.Models.QueryParams(period: 90))->
 
     view = new DotLedger.Views.Reports.IncomeAndExpenses.Filter(
       model: model

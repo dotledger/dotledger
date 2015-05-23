@@ -8,13 +8,14 @@ DotLedger.module 'Views.Statistics.ActivityPerCategory', ->
       'click strong.name a': 'search'
 
     search: ->
-      attributes = {
+      params =
         category_id: @model.get('id')
         date_from: @model.collection.metadata.date_from
         date_to: @model.collection.metadata.date_to
-      }
+        page: 1
 
-      Backbone.history.navigate("/search/#{JSURL.stringify(attributes)}/page-1", trigger: true)
+      DotLedger.navigate.search(params, trigger: true)
+
       false
 
     templateHelpers: ->

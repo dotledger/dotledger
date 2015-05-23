@@ -45,13 +45,13 @@ describe "DotLedger.Routers.App", ->
 
     it "routes to showAccout with a tab", ->
       router = createRouter('showAccount')
-      router.navigate('/accounts/42/sorted', navigateOptions)
-      expect(router.showAccount).toHaveBeenCalledWith('42', 'sorted', {})
+      router.navigate('/accounts/42?tab=sorted', navigateOptions)
+      expect(router.showAccount).toHaveBeenCalledWith('42', tab: 'sorted')
 
     it "routes to showAccout with a tab and page number", ->
       router = createRouter('showAccount')
-      router.navigate('/accounts/42/sorted/page-13', navigateOptions)
-      expect(router.showAccount).toHaveBeenCalledWith('42', 'sorted', '13', {})
+      router.navigate('/accounts/42?tab=sorted&page=13', navigateOptions)
+      expect(router.showAccount).toHaveBeenCalledWith('42', tab: 'sorted', page: '13')
 
   describe 'Categories', ->
     it "routes to listCategories", ->
@@ -77,13 +77,13 @@ describe "DotLedger.Routers.App", ->
 
     it "routes to listSortingRules with params", ->
       router = createRouter('listSortingRules')
-      router.navigate("/sorting-rules/~(foo~'bar~baz~42)", navigateOptions)
-      expect(router.listSortingRules).toHaveBeenCalledWith("~(foo~'bar~baz~42)", {})
+      router.navigate("/sorting-rules?foo=bar&baz=42", navigateOptions)
+      expect(router.listSortingRules).toHaveBeenCalledWith(foo: 'bar', baz: '42')
 
     it "routes to listSortingRules with params and page number", ->
       router = createRouter('listSortingRules')
-      router.navigate("/sorting-rules/~(foo~'bar~baz~42)/page-13", navigateOptions)
-      expect(router.listSortingRules).toHaveBeenCalledWith("~(foo~'bar~baz~42)", '13', {})
+      router.navigate("/sorting-rules?foo=bar&baz=42&page=13", navigateOptions)
+      expect(router.listSortingRules).toHaveBeenCalledWith(foo: 'bar', baz: '42', page: '13')
 
     it "routes to newSortingRule", ->
       router = createRouter('newSortingRule')
@@ -125,13 +125,13 @@ describe "DotLedger.Routers.App", ->
 
     it "routes to search with params", ->
       router = createRouter('search')
-      router.navigate("/search/~(foo~'bar~baz~42)", navigateOptions)
-      expect(router.search).toHaveBeenCalledWith("~(foo~'bar~baz~42)", {})
+      router.navigate("/search?foo=bar&baz=42", navigateOptions)
+      expect(router.search).toHaveBeenCalledWith(foo: 'bar', baz: '42')
 
     it "routes to search with params and page number", ->
       router = createRouter('search')
-      router.navigate("/search/~(foo~'bar~baz~42)/page-13", navigateOptions)
-      expect(router.search).toHaveBeenCalledWith("~(foo~'bar~baz~42)", '13', {})
+      router.navigate("/search?foo=bar&baz=42&page=13", navigateOptions)
+      expect(router.search).toHaveBeenCalledWith(foo: 'bar', baz: '42', page: '13')
 
   describe 'Reports', ->
     it "routes to income and expenses", ->

@@ -15,7 +15,6 @@
 #= require backbone.babysitter
 #= require backbone.wreqr
 #= require backbone.marionette
-#= require jsurl
 #= require dot_ledger
 
 _.mixin

@@ -39,12 +39,11 @@ DotLedger.module 'Views.Search', ->
       data['date_to'] = @ui.date_to.val()
       data['tag_ids'] = @ui.tags.val()
       data['account_id'] = @ui.account.val()
+      data['page'] = 1
 
       @model.clear()
       @model.set(_.compactObject(data))
 
-      # Note: The last argument, 1, is the page number.
-      # We want to jump back to the first page when we perform a new search.
-      @trigger 'search', @model, 1
+      @trigger 'search', @model
 
       return false

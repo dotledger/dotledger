@@ -25,6 +25,6 @@ DotLedger.module 'Views.Application', ->
 
     onRender: ->
       # FIXME: This is yuck.
-      searchModel = new Backbone.Model()
+      searchModel = new DotLedger.Models.QueryParams()
       searchForm = new DotLedger.Views.Search.NavForm(model: searchModel)
       @ui.nav_search.html(searchForm.render().el)

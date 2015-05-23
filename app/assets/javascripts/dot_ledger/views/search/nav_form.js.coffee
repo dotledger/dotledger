@@ -14,12 +14,14 @@ DotLedger.module 'Views.Search', ->
       if @ui.query.val() != ''
         data['query'] = @ui.query.val()
 
+      data['page'] = 1
+
       @model.clear()
       @model.set(data)
 
       @trigger 'search', @model
 
       # FIXME: This is yuck.
-      Backbone.history.navigate("/search/#{JSURL.stringify(@model.attributes)}/page-1", trigger: true)
+      DotLedger.navigate.search(@model.attributes, trigger: true)
 
       return false

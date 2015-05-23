@@ -1,5 +1,5 @@
 describe "DotLedger.Views.Search.NavForm", ->
-  createView = (model = new Backbone.Model())->
+  createView = (model = new DotLedger.Models.QueryParams())->
     view = new DotLedger.Views.Search.NavForm
       model: model
     view
@@ -20,7 +20,7 @@ describe "DotLedger.Views.Search.NavForm", ->
     expect(view.$el).toContainElement('button.search')
 
   it "should clear the model and set the query", ->
-    model = new Backbone.Model()
+    model = new DotLedger.Models.QueryParams()
     view = createView(model).render()
 
     view.$el.find('input[name=query]').val('coffee')
@@ -33,9 +33,10 @@ describe "DotLedger.Views.Search.NavForm", ->
     expect(model.clear).toHaveBeenCalled
     expect(model.set).toHaveBeenCalledWith
       query: 'coffee'
+      page: 1
 
   it "should navigate to the search page with a query", ->
-    model = new Backbone.Model()
+    model = new DotLedger.Models.QueryParams()
     view = createView(model).render()
 
     view.$el.find('input[name=query]').val('coffee')
@@ -44,10 +45,10 @@ describe "DotLedger.Views.Search.NavForm", ->
 
     view.search()
 
-    expect(Backbone.history.navigate).toHaveBeenCalledWith("/search/~(query~'coffee)/page-1", { trigger: true })
+    expect(Backbone.history.navigate).toHaveBeenCalledWith("/search?query=coffee&page=1", { trigger: true })
 
   it "should navigate to the search page without a query", ->
-    model = new Backbone.Model()
+    model = new DotLedger.Models.QueryParams()
     view = createView(model).render()
 
     view.$el.find('input[name=query]').val('')
@@ -56,4 +57,4 @@ describe "DotLedger.Views.Search.NavForm", ->
 
     view.search()
 
-    expect(Backbone.history.navigate).toHaveBeenCalledWith("/search/~()/page-1", { trigger: true })
+    expect(Backbone.history.navigate).toHaveBeenCalledWith("/search?page=1", { trigger: true })

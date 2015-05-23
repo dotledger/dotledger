@@ -1,5 +1,5 @@
 describe "DotLedger.Views.Search.FilterForm", ->
-  createView = (model = new Backbone.Model())->
+  createView = (model = new DotLedger.Models.QueryParams())->
     categories = new DotLedger.Collections.Categories [
       {
         id: 11
@@ -91,7 +91,7 @@ describe "DotLedger.Views.Search.FilterForm", ->
     expect(view.$el).toContainElement('button.search')
 
   it "should clear the model and set the query", ->
-    model = new Backbone.Model()
+    model = new DotLedger.Models.QueryParams()
     view = createView(model).render()
 
     view.$el.find('input[name=query]').val('coffee')
@@ -106,7 +106,7 @@ describe "DotLedger.Views.Search.FilterForm", ->
       query: 'coffee'
 
   it "should search unsorted transactions", ->
-    model = new Backbone.Model()
+    model = new DotLedger.Models.QueryParams()
     view = createView(model).render()
 
     view.$el.find('select[name=category]').val('-1')
@@ -130,4 +130,4 @@ describe "DotLedger.Views.Search.FilterForm", ->
 
     view.search()
 
-    expect(view.trigger).toHaveBeenCalledWith('search', model, 1)
+    expect(view.trigger).toHaveBeenCalledWith('search', model)

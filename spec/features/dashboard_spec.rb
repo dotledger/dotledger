@@ -38,6 +38,6 @@ feature 'Dashboard', truncate: true, js: true do
   end
 
   it 'shows the unsorted transactions link' do
-    expect(page).to have_link '1 unsorted', href: "/accounts/#{account_1.id}/unsorted"
+    expect(page).to have_link '1 unsorted', href: "/accounts/#{account_1.id}?tab=unsorted"
   end
 end

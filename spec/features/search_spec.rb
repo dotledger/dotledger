@@ -10,7 +10,7 @@ feature 'Search', truncate: true, js: true do
   describe 'results' do
     context 'with query' do
       before do
-        visit "/search/~(query~'Foobar)/page-1"
+        visit "/search?query=Foobar"
       end
 
       it 'sets the correct page title' do
@@ -39,7 +39,7 @@ feature 'Search', truncate: true, js: true do
 
     context 'without query' do
       before do
-        visit '/search/~()/page-1'
+        visit '/search'
       end
 
       it 'sets the correct page title' do
