@@ -20,7 +20,7 @@
 _.mixin
   compactObject: (object) ->
     _.each object, (v, k) ->
-      delete object[k] if _.isEmpty(object[k])
+      delete object[k] if _.isEmpty(object[k]) and not _.isNumber(object[k])
     object
 
   parseQueryString: (queryString) ->

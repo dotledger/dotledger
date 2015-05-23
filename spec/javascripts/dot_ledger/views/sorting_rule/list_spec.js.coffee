@@ -109,6 +109,7 @@ describe "DotLedger.Views.SortingRules.List", ->
     expect(model.clear).toHaveBeenCalled
     expect(model.set).toHaveBeenCalledWith
       query: 'cafe'
+      page: 1
 
   it "should trigger a search event", ->
     model = new DotLedger.Models.QueryParams()

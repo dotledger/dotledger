@@ -104,6 +104,7 @@ describe "DotLedger.Views.Search.FilterForm", ->
     expect(model.clear).toHaveBeenCalled
     expect(model.set).toHaveBeenCalledWith
       query: 'coffee'
+      page: 1
 
   it "should search unsorted transactions", ->
     model = new DotLedger.Models.QueryParams()
@@ -119,6 +120,7 @@ describe "DotLedger.Views.Search.FilterForm", ->
     expect(model.clear).toHaveBeenCalled
     expect(model.set).toHaveBeenCalledWith
       unsorted: 'true'
+      page: 1
 
   it "should trigger a search event", ->
     model = new Backbone.Model()
