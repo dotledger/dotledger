@@ -35,9 +35,9 @@ DotLedger.module 'Views.Accounts', ->
           'New Account'
       cancelPath: =>
         if @model.get('id')
-          "/accounts/#{@model.get('id')}"
+          DotLedger.path.showAccount(id: @model.get('id'))
         else
-          "/"
+          DotLedger.path.root()
 
     update: ->
       data =

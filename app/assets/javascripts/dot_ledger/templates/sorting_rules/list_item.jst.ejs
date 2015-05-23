@@ -3,4 +3,4 @@
 <td><%- category_name %></td>
 <td><%- tag_list %></td>
 <td><%- flag() %></td>
-<td class="text-right"><a class="edit-sorting-rule btn btn-xs btn-default" href="/sorting-rules/<%= id  %>/edit">Edit</a></td>
+<td class="text-right"><a class="edit-sorting-rule btn btn-xs btn-default" href="<%= DotLedger.path.editSortingRule({id: id}) %>">Edit</a></td>

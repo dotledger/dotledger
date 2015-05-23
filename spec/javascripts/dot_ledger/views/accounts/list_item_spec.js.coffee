@@ -29,7 +29,7 @@ describe "DotLedger.Views.Accounts.ListItem", ->
 
   it "renders the account link", ->
     view = createView().render()
-    expect(view.$el).toContainElement('a[href="/accounts/1"]')
+    expect(view.$el).toContainElement('a[href="/accounts/1?tab=sorted&page=1"]')
 
   it "renders the updated at time", ->
     view = createView().render()
@@ -38,7 +38,7 @@ describe "DotLedger.Views.Accounts.ListItem", ->
   it "renders unsorted transaction count if greater than 0", ->
     view = createView().render()
     expect(view.$el).toHaveText(/123 unsorted/)
-    expect(view.$el).toContainElement('a[href="/accounts/1?tab=unsorted"]')
+    expect(view.$el).toContainElement('a[href="/accounts/1?tab=unsorted&page=1"]')
 
   it "does not render unsorted transaction count if 0", ->
     model = new DotLedger.Models.Account

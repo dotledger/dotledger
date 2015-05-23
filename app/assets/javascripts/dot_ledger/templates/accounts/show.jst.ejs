@@ -6,10 +6,10 @@
         <span class="fa fa-cog"></span> <span class="caret"></span>
       </button>
       <ul class="dropdown-menu pull-right">
-        <li><a href="/accounts/<%= id %>/sort">Sort transactions</a></li>
-        <li><a href="/accounts/<%= id %>/edit">Edit account</a></li>
-        <li><a href="/accounts/<%= id %>/import">Import statement</a></li>
-        <li><a href="/accounts/<%= id %>/statements">Statements</a></li>
+        <li><a href="<%= DotLedger.path.sortAccount({id: id}) %>">Sort transactions</a></li>
+        <li><a href="<%= DotLedger.path.editAccount({id: id}) %>">Edit account</a></li>
+        <li><a href="<%= DotLedger.path.newStatement({id: id}) %>">Import statement</a></li>
+        <li><a href="<%= DotLedger.path.listStatements({id: id}) %>">Statements</a></li>
       </ul>
     </div>
 
@@ -23,9 +23,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <ul class="nav nav-pills nav-justified">
-      <li><a href="/accounts/<%= id %>?tab=sorted" data-tab-id="sorted-transactions">Sorted <span class="badge pull-right"><%= sorted_transaction_count %></span></a></li>
-      <li><a href="/accounts/<%= id %>?tab=review" data-tab-id="review-transactions">Review <span class="badge pull-right"><%= review_transaction_count %></span></a></li>
-      <li><a href="/accounts/<%= id %>?tab=unsorted" data-tab-id="unsorted-transactions">Unsorted <span class="badge pull-right"><%= unsorted_transaction_count %></span></a></li>
+      <li><a href="<%= DotLedger.path.showAccount({id: id, tab: 'sorted', page: 1}) %>" data-tab-id="sorted-transactions">Sorted <span class="badge pull-right"><%= sorted_transaction_count %></span></a></li>
+      <li><a href="<%= DotLedger.path.showAccount({id: id, tab: 'review', page: 1}) %>" data-tab-id="review-transactions">Review <span class="badge pull-right"><%= review_transaction_count %></span></a></li>
+      <li><a href="<%= DotLedger.path.showAccount({id: id, tab: 'unsorted', page: 1}) %>" data-tab-id="unsorted-transactions">Unsorted <span class="badge pull-right"><%= unsorted_transaction_count %></span></a></li>
     </ul>
   </div>
 

@@ -52,7 +52,7 @@ describe "DotLedger.Views.Accounts.Show", ->
 
   it "renders the sorted transactions tab link", ->
     view = createView().render()
-    expect(view.$el).toContainElement('a[href="/accounts/1?tab=sorted"]')
+    expect(view.$el).toContainElement('a[href="/accounts/1?tab=sorted&page=1"]')
 
   it "renders the sorted transactions tab label with count", ->
     view = createView().render()
@@ -60,7 +60,7 @@ describe "DotLedger.Views.Accounts.Show", ->
 
   it "renders the review transactions tab link", ->
     view = createView().render()
-    expect(view.$el).toContainElement('a[href="/accounts/1?tab=review"]')
+    expect(view.$el).toContainElement('a[href="/accounts/1?tab=review&page=1"]')
 
   it "renders the unsorted transactions tab label with count", ->
     view = createView().render()
@@ -68,7 +68,7 @@ describe "DotLedger.Views.Accounts.Show", ->
 
   it "renders the unsorted transactions tab link", ->
     view = createView().render()
-    expect(view.$el).toContainElement('a[href="/accounts/1?tab=unsorted"]')
+    expect(view.$el).toContainElement('a[href="/accounts/1?tab=unsorted&page=1"]')
 
   it "renders the review transactions tab label with count", ->
     view = createView().render()

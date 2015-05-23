@@ -13,7 +13,7 @@
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
       <button type="submit" data-loading-text="Importing..." class="save btn btn-default">Import</button>
-      <a class="btn btn-link" href="/accounts/<%= accountId %>">Cancel</a>
+      <a class="btn btn-link" href="<%= DotLedger.path.showAccount({id: accountId}) %>">Cancel</a>
     </div>
   </div>
 </form>

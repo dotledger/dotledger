@@ -47,9 +47,9 @@ describe "DotLedger.Views.Accounts.List", ->
 
   it "renders the account links", ->
     view = createView().render()
-    expect(view.$el).toContainElement('a[href="/accounts/1"]')
-    expect(view.$el).toContainElement('a[href="/accounts/2"]')
-    expect(view.$el).toContainElement('a[href="/accounts/3"]')
+    expect(view.$el).toContainElement('a[href="/accounts/1?tab=sorted&page=1"]')
+    expect(view.$el).toContainElement('a[href="/accounts/2?tab=sorted&page=1"]')
+    expect(view.$el).toContainElement('a[href="/accounts/3?tab=sorted&page=1"]')
 
   it "renders the udated at times", ->
     view = createView().render()
