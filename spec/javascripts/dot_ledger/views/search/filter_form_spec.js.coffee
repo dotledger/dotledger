@@ -101,7 +101,7 @@ describe "DotLedger.Views.Search.FilterForm", ->
 
     view.search()
 
-    expect(model.clear).toHaveBeenCalled
+    expect(model.clear).toHaveBeenCalled()
     expect(model.set).toHaveBeenCalledWith
       query: 'coffee'
       page: 1
@@ -117,7 +117,7 @@ describe "DotLedger.Views.Search.FilterForm", ->
 
     view.search()
 
-    expect(model.clear).toHaveBeenCalled
+    expect(model.clear).toHaveBeenCalled()
     expect(model.set).toHaveBeenCalledWith
       unsorted: 'true'
       page: 1

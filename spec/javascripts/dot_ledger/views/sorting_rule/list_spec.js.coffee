@@ -106,7 +106,7 @@ describe "DotLedger.Views.SortingRules.List", ->
 
     view.search()
 
-    expect(model.clear).toHaveBeenCalled
+    expect(model.clear).toHaveBeenCalled()
     expect(model.set).toHaveBeenCalledWith
       query: 'cafe'
       page: 1

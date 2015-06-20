@@ -30,7 +30,7 @@ describe "DotLedger.Views.Search.NavForm", ->
 
     view.search()
 
-    expect(model.clear).toHaveBeenCalled
+    expect(model.clear).toHaveBeenCalled()
     expect(model.set).toHaveBeenCalledWith
       query: 'coffee'
       page: 1
