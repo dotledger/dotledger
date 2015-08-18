@@ -118,17 +118,21 @@ describe Transaction do
   end
 
   describe '#search_query' do
-    let!(:transaction_match_1) { FactoryGirl.create :transaction, name: 'Test Foobar' }
-    let!(:transaction_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, name: 'Some Test Name') }
+    let!(:transaction_match_1) { FactoryGirl.create :transaction, name: 'Foobar', memo: 'Test-Baz' }
+    let!(:transaction_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, name: 'Some Test Baz Name') }
     let!(:transaction_no_match_1) { FactoryGirl.create :transaction, name: 'Foobar' }
     let!(:transaction_no_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, name: 'Some Name') }
 
     it 'only includes transaction that match the search query' do
       expect(described_class.search_query('Test')).to match_array [transaction_match_1, transaction_match_2]
+      expect(described_class.search_query('Test Baz')).to match_array [transaction_match_1, transaction_match_2]
+      expect(described_class.search_query('Test-Baz')).to match_array [transaction_match_1]
     end
 
     it 'only includes transaction that match the search query, case insensitive' do
       expect(described_class.search_query('test')).to match_array [transaction_match_1, transaction_match_2]
+      expect(described_class.search_query('TEST BAZ')).to match_array [transaction_match_1, transaction_match_2]
+      expect(described_class.search_query('test-baz')).to match_array [transaction_match_1]
     end
   end
 

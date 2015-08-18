@@ -40,7 +40,9 @@ class Transaction < ActiveRecord::Base
     wildcard_search_query = "%#{search_query}%"
     includes(:sorted_transaction)
       .where(
-        transactions[:name].matches(wildcard_search_query)
+        transactions[:search].matches(wildcard_search_query)
+        .or(transactions[:name].matches(wildcard_search_query))
+        .or(transactions[:memo].matches(wildcard_search_query))
         .or(sorted_transactions[:name].matches(wildcard_search_query))
       )
       .references(:sorted_transactions)
