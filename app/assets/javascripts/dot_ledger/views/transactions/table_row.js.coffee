@@ -76,10 +76,10 @@ DotLedger.module 'Views.Transactions', ->
 
           if sorted_transaction.review
             '<div class="btn-group">' +
-            '<a href="#" class="review-okay-transaction btn-xs btn btn-default" title="Review transaction">Ok</a>' +
-            '<a href="#" class="sort-transaction btn-xs btn btn-default" title="Review transaction">Edit</a>' +
+            '<a href="#" class="review-okay-transaction btn-xs btn btn-default" title="Ok">Ok</a>' +
+            '<a href="#" class="sort-transaction btn-xs btn btn-default" title="Edit">Edit</a>' +
             '</div>'
           else
-            '<a href="#" class="edit-transaction btn-xs btn btn-default" title="Sort transaction">Edit</a>'
+            '<a href="#" class="edit-transaction btn-xs btn btn-default" title="Edit">Edit</a>'
         else
-          '<a href="#" class="sort-transaction btn-xs btn btn-default" title="Sort transaction">Sort</a>'
+          '<a href="#" class="sort-transaction btn-xs btn btn-default" title="Sort">Sort</a>'
