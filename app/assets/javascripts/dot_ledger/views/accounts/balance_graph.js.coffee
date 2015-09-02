@@ -4,7 +4,8 @@ DotLedger.module 'Views.Accounts', ->
 
     template: 'accounts/balance_graph'
 
-    balances: new DotLedger.Collections.Balances()
+    initialize: ->
+      @balances = new DotLedger.Collections.Balances()
 
     fetchBalances: ->
       @balances.fetch
@@ -48,18 +49,18 @@ DotLedger.module 'Views.Accounts', ->
         tickColor: 'rgba(238, 238, 238, 1)'
 
     renderBalanceGraph: ->
-      $.plot(@ui.balanceGraph, @balanceGraphData(), @balanceGraphOptions())
-
-      @ui.balanceGraph.bind "plothover", (event, pos, item) =>
-        if item
-          balance = DotLedger.Helpers.Format.money(item.datapoint[1])
-          @ui.balanceTooltipInner.html(balance)
-          @ui.balanceTooltip.css(
-            top: item.pageY - 35
-            left: item.pageX - 40
-          ).addClass('in')
-        else
-          @ui.balanceTooltip.removeClass('in')
+      if @isRendered
+        @graph = $.plot(@ui.balanceGraph, @balanceGraphData(), @balanceGraphOptions())
+        @ui.balanceGraph.bind "plothover", (event, pos, item) =>
+          if item
+            balance = DotLedger.Helpers.Format.money(item.datapoint[1])
+            @ui.balanceTooltipInner.html(balance)
+            @ui.balanceTooltip.css(
+              top: item.pageY - 35
+              left: item.pageX - 40
+            ).addClass('in')
+          else
+            @ui.balanceTooltip.removeClass('in')
 
     onRender: ->
       @balances.on 'sync', =>
