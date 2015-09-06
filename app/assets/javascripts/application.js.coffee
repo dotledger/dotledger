@@ -1,4 +1,3 @@
-#= require pace
 #= require jquery
 #= require bootstrap/button
 #= require bootstrap/collapse

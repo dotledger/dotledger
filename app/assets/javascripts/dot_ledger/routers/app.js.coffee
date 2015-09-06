@@ -150,6 +150,7 @@ DotLedger.module 'Routers', ->
         type: 'POST'
         success: (response)=>
           DotLedger.Helpers.Notification.success(response.message)
+          DotLedger.Helpers.Loading.stop()
           @showAccount(account_id)
 
     editAccount: (account_id)->

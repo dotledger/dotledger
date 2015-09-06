@@ -4,8 +4,17 @@
 @import "variables";
 @import "bootstrap";
 @import "bootstrap-datepicker";
-@import "pace";
 @import "theme";
+
+#dot_ledger {
+  opacity: 1;
+  pointer-events: auto;
+
+  &.loading {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
 
 .page-header {
   margin-top: 10px;
