@@ -102,34 +102,40 @@ DotLedger.module 'Routers', ->
 
       transactions.on 'page:change', (page)=>
         @QueryParams.set(page: page)
+
+      updateTransactions = =>
+        switch @QueryParams.get('tab')
+          when 'sorted'
+            transactions.fetch
+              data:
+                account_id: account_id
+                sorted: true
+                review: false
+                page: @QueryParams.get('page')
+
+          when 'review'
+            transactions.fetch
+              data:
+                account_id: account_id
+                review: true
+                page: @QueryParams.get('page')
+
+          when 'unsorted'
+            transactions.fetch
+              data:
+                account_id: account_id
+                unsorted: true
+                page: @QueryParams.get('page')
+
+      @QueryParams.on 'change', =>
         DotLedger.navigate.showAccount(_.extend(id: account_id, @QueryParams.attributes))
+        updateTransactions()
 
-      switch @QueryParams.get('tab')
-        when 'sorted'
-          transactions.fetch
-            data:
-              account_id: account_id
-              sorted: true
-              review: false
-              page: @QueryParams.get('page')
-
-        when 'review'
-          transactions.fetch
-            data:
-              account_id: account_id
-              review: true
-              page: @QueryParams.get('page')
-
-        when 'unsorted'
-          transactions.fetch
-            data:
-              account_id: account_id
-              unsorted: true
-              page: @QueryParams.get('page')
+      updateTransactions()
 
       show = new DotLedger.Views.Accounts.Show
+        params: @QueryParams
         model: account
-        tab: @QueryParams.get('tab')
 
       balanceGraph = new DotLedger.Views.Accounts.BalanceGraph
         model: account

@@ -29,9 +29,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <ul class="nav nav-pills nav-justified">
-      <li><a href="<%= DotLedger.path.showAccount({id: id, tab: 'sorted', page: 1}) %>" data-tab-id="sorted-transactions">Sorted <span class="badge pull-right"><%= sorted_transaction_count %></span></a></li>
-      <li><a href="<%= DotLedger.path.showAccount({id: id, tab: 'review', page: 1}) %>" data-tab-id="review-transactions">Review <span class="badge pull-right"><%= review_transaction_count %></span></a></li>
-      <li><a href="<%= DotLedger.path.showAccount({id: id, tab: 'unsorted', page: 1}) %>" data-tab-id="unsorted-transactions">Unsorted <span class="badge pull-right"><%= unsorted_transaction_count %></span></a></li>
+      <li><a href="#" data-tab="sorted">Sorted <span class="badge pull-right"><%= sorted_transaction_count %></span></a></li>
+      <li><a href="#" data-tab="review">Review <span class="badge pull-right"><%= review_transaction_count %></span></a></li>
+      <li><a href="#" data-tab="unsorted">Unsorted <span class="badge pull-right"><%= unsorted_transaction_count %></span></a></li>
     </ul>
   </div>
 
