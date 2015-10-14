@@ -5,10 +5,11 @@ describe "DotLedger.Views.Accounts.BalanceGraph", ->
     account =  new DotLedger.Models.Account
       id: 1
 
-    balances = new DotLedger.Collections.Balances
+    queryParams = new DotLedger.Models.QueryParams
+      period: 90
 
     view = new DotLedger.Views.Accounts.BalanceGraph
-      balances: balances
+      params: queryParams
       model: account
     view
 
@@ -21,3 +22,13 @@ describe "DotLedger.Views.Accounts.BalanceGraph", ->
   it "can be rendered", ->
     view = createView()
     expect(view.render).not.toThrow()
+
+  it "renders the period tabs", ->
+    view = createView().render()
+    expect(view.$el).toContainElement('a[data-period=7]')
+    expect(view.$el).toContainElement('a[data-period=14]')
+    expect(view.$el).toContainElement('a[data-period=30]')
+    expect(view.$el).toContainElement('a[data-period=90]')
+    expect(view.$el).toContainElement('a[data-period=180]')
+    expect(view.$el).toContainElement('a[data-period=mtd]')
+    expect(view.$el).toContainElement('a[data-period=ytd]')

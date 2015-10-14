@@ -94,6 +94,7 @@ DotLedger.module 'Routers', ->
     showAccount: (account_id)->
       @QueryParams.set(tab: 'sorted') unless @QueryParams.has('tab')
       @QueryParams.set(page: 1) unless @QueryParams.has('page')
+      @QueryParams.set(period: 90) unless @QueryParams.has('period')
 
       account = new DotLedger.Models.Account(id: account_id)
       transactions = new DotLedger.Collections.Transactions()
@@ -138,8 +139,10 @@ DotLedger.module 'Routers', ->
         model: account
 
       balanceGraph = new DotLedger.Views.Accounts.BalanceGraph
+        params: @QueryParams
         model: account
-        days: 90
+
+      @QueryParams.on 'change:period', show.fetchBalances
 
       account.fetch
         success: ->
