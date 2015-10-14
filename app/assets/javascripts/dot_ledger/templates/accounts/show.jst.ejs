@@ -16,6 +16,7 @@
   </div>
   <h1><%- name %> <small><%= DotLedger.Helpers.Format.money(balance) %></small></h1>
   <small><%= type %> &mdash; <%= number %></small>
+  <small class="text-muted pull-right">Updated <time datetime="<%= updated_at %>"><%= DotLedger.Helpers.Format.agoDate(updated_at) %></time></small>
 </div>
 
 <div id="graph"></div>

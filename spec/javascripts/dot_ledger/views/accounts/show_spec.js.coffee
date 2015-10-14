@@ -10,6 +10,7 @@ describe "DotLedger.Views.Accounts.Show", ->
       sorted_transaction_count: 10
       review_transaction_count: 15
       balance: 123.45
+      updated_at: '2013-01-01T01:00:00Z'
 
     view = new DotLedger.Views.Accounts.Show
       model: model
@@ -37,6 +38,10 @@ describe "DotLedger.Views.Accounts.Show", ->
   it "renders the account number", ->
     view = createView().render()
     expect(view.$el).toHaveText(/123/)
+
+  it "renders the updated at time", ->
+    view = createView().render()
+    expect(view.$el).toContainElement('time[datetime="2013-01-01T01:00:00Z"]')
 
   it "renders the account balance", ->
     view = createView().render()
