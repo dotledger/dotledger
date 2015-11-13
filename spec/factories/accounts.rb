@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :account do
     name 'Eftpos'
-    sequence(:number) { |n| "121234123456712#{n}" }
+    sequence(:number) { |n| "A121234123456712#{n}" }
     type 'Cheque'
   end
 end
