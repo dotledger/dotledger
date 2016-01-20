@@ -40,7 +40,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (6.0.3)
-    autoprefixer-rails (6.2.1)
+    autoprefixer-rails (6.3.1)
       execjs
       json
     bootstrap-sass (3.3.6)
