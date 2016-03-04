@@ -1,5 +1,6 @@
 describe "DotLedger.Views.Transactions.Details", ->
-  createModel = ->
+
+  createModel = (sorted_transaction = null)->
     new DotLedger.Models.Transaction
       amount: '-10.00'
       memo: 'Some memo'
@@ -10,6 +11,7 @@ describe "DotLedger.Views.Transactions.Details", ->
       fit_id: '1234567'
       posted_at: '2013-01-01'
       id: 1
+      sorted_transaction: sorted_transaction
 
   createView = (model = createModel()) ->
     new DotLedger.Views.Transactions.Details
@@ -52,3 +54,14 @@ describe "DotLedger.Views.Transactions.Details", ->
   it "renders the posted_at date", ->
     view = createView().render()
     expect(view.$el).toContainText('1 Jan 2013')
+
+  it "renders the sorted transaction details if the transaction is sorted", ->
+    model = createModel({
+      category_name: "Some Category",
+      tag_list: ["tag1, tag2, tag3"],
+      note: "Some note."
+    })
+    view = createView(model).render()
+    expect(view.$el).toContainText('Some Category')
+    expect(view.$el).toContainText('tag1, tag2, tag3')
+    expect(view.$el).toContainText('Some note.')

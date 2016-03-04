@@ -29,6 +29,21 @@
 
         <dt>Date</dt>
         <dd><time datetime="<%- posted_at %>"><%= DotLedger.Helpers.Format.shortDate(posted_at) %></time></dd>
+
+      <% if (sorted_transaction) { %>
+        <dt>Category</dt>
+        <dd><%- sorted_transaction.category_name %></dd>
+
+        <dt>Tags</dt>
+        <dd><%- sorted_transaction.tag_list %></dd>
+
+        <dt>Note</dt>
+        <dd>
+          <% if (sorted_transaction.note) { %>
+            <p><%- sorted_transaction.note %></p>
+          <% } %>
+        </dd>
+      <% } %>
       </dl>
     </div>
   </div>
