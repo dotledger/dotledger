@@ -14,12 +14,18 @@ DotLedger.module 'Views.Search', ->
       date_to: 'input[name=date_to]'
       tags: 'select[name=tags]'
       account: 'select[name=account]'
+      review: 'select[name=review]'
 
     events:
       'click button.search': 'search'
       'submit form': 'search'
 
     onRender: ->
+      @ui.review.append('<option value="">Any</option>')
+      @ui.review.append('<option value="true">Yes</option>')
+      @ui.review.append('<option value="false">No</option>')
+      @ui.review.val(@model.get('review'))
+
       @ui.query.val(@model.get('query'))
       @ui.date_from.val(@model.get('date_from'))
       @ui.date_to.val(@model.get('date_to'))
@@ -39,6 +45,8 @@ DotLedger.module 'Views.Search', ->
       data['date_to'] = @ui.date_to.val()
       data['tag_ids'] = @ui.tags.val()
       data['account_id'] = @ui.account.val()
+      if @ui.review.val()
+        data['review'] = @ui.review.val()
       data['page'] = 1
 
       @model.clear()

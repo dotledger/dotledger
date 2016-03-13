@@ -73,21 +73,25 @@ describe "DotLedger.Views.Search.FilterForm", ->
     expect(view.$el).toContainElement('input[name=date_from]')
     expect(view.$el).toContainElement('input[name=date_to]')
     expect(view.$el).toContainElement('select[name=category]')
-    expect(view.$el).toContainElement('option[value=11]')
-    expect(view.$el).toContainElement('option[value=22]')
-    expect(view.$el).toContainElement('option[value=33]')
-    expect(view.$el).toContainElement('option[value=44]')
-    expect(view.$el).toContainElement('optgroup[label=Essential]')
-    expect(view.$el).toContainElement('optgroup[label=Flexible]')
-    expect(view.$el).toContainElement('optgroup[label=Income]')
-    expect(view.$el).toContainElement('optgroup[label=Transfer]')
+    expect(view.$el).toContainElement('select[name=category] option[value=11]')
+    expect(view.$el).toContainElement('select[name=category] option[value=22]')
+    expect(view.$el).toContainElement('select[name=category] option[value=33]')
+    expect(view.$el).toContainElement('select[name=category] option[value=44]')
+    expect(view.$el).toContainElement('select[name=category] optgroup[label=Essential]')
+    expect(view.$el).toContainElement('select[name=category] optgroup[label=Flexible]')
+    expect(view.$el).toContainElement('select[name=category] optgroup[label=Income]')
+    expect(view.$el).toContainElement('select[name=category] optgroup[label=Transfer]')
     expect(view.$el).toContainElement('select[name=tags]')
-    expect(view.$el).toContainElement('option[value=55]')
-    expect(view.$el).toContainElement('option[value=66]')
-    expect(view.$el).toContainElement('option[value=77]')
+    expect(view.$el).toContainElement('select[name=tags] option[value=55]')
+    expect(view.$el).toContainElement('select[name=tags] option[value=66]')
+    expect(view.$el).toContainElement('select[name=tags] option[value=77]')
     expect(view.$el).toContainElement('select[name=account]')
-    expect(view.$el).toContainElement('option[value=88]')
-    expect(view.$el).toContainElement('option[value=99]')
+    expect(view.$el).toContainElement('select[name=account] option[value=88]')
+    expect(view.$el).toContainElement('select[name=account] option[value=99]')
+    expect(view.$el).toContainElement('select[name=review]')
+    expect(view.$el).toContainElement('select[name=review] option[value=""]')
+    expect(view.$el).toContainElement('select[name=review] option[value=true]')
+    expect(view.$el).toContainElement('select[name=review] option[value=false]')
     expect(view.$el).toContainElement('button.search')
 
   it "should clear the model and set the query", ->
@@ -120,6 +124,38 @@ describe "DotLedger.Views.Search.FilterForm", ->
     expect(model.clear).toHaveBeenCalled()
     expect(model.set).toHaveBeenCalledWith
       unsorted: 'true'
+      page: 1
+
+  it "should search \"for review\" transactions", ->
+    model = new DotLedger.Models.QueryParams()
+    view = createView(model).render()
+
+    view.$el.find('select[name=review]').val('true')
+
+    spyOn(model, 'clear')
+    spyOn(model, 'set')
+
+    view.search()
+
+    expect(model.clear).toHaveBeenCalled()
+    expect(model.set).toHaveBeenCalledWith
+      review: 'true'
+      page: 1
+
+  it "should search \"not for review\" transactions", ->
+    model = new DotLedger.Models.QueryParams()
+    view = createView(model).render()
+
+    view.$el.find('select[name=review]').val('false')
+
+    spyOn(model, 'clear')
+    spyOn(model, 'set')
+
+    view.search()
+
+    expect(model.clear).toHaveBeenCalled()
+    expect(model.set).toHaveBeenCalledWith
+      review: 'false'
       page: 1
 
   it "should trigger a search event", ->
