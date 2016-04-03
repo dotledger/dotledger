@@ -11,7 +11,7 @@ Setup
 
 Dot Ledger requires:
 
-- [PostgeSQL](http://www.postgresql.org/) (>= 9.1)
+- [PostgreSQL](http://www.postgresql.org/) (>= 9.1)
 - [Ruby](https://www.ruby-lang.org/) (>= 2.0)
 - [RubyGems](http://rubygems.org/)
 - [Ruby on Rails](http://rubyonrails.org/)
