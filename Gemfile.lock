@@ -63,7 +63,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.1)
-    database_cleaner (1.5.1)
+    database_cleaner (1.5.3)
     diff-lcs (1.2.5)
     ejs (1.1.1)
     erubis (2.7.0)
