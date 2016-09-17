@@ -5,5 +5,6 @@ FactoryGirl.define do
     name 'Eftpos'
     sequence(:number) { |n| "A121234123456712#{n}" }
     type 'Cheque'
+    account_group
   end
 end

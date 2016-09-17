@@ -45,7 +45,7 @@ module Api
     end
 
     def account_params
-      params.permit(:name, :number, :type)
+      params.permit(:name, :number, :type, :account_group_id)
     end
   end
 end
