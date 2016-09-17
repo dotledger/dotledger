@@ -1,7 +1,18 @@
 describe "DotLedger.Views.Accounts.Form", ->
   createView = (model = new DotLedger.Models.Account())->
+    account_groups = new DotLedger.Collections.AccountGroups [
+      {
+        id: 1
+        name: 'Personal'
+      }
+      {
+        id: 2
+        name: 'Joint'
+      }
+    ]
     view = new DotLedger.Views.Accounts.Form
       model: model
+      account_groups: account_groups
     view
 
   it "should be defined", ->
@@ -19,10 +30,13 @@ describe "DotLedger.Views.Accounts.Form", ->
     expect(view.$el).toContainElement('input[name=name]')
     expect(view.$el).toContainElement('input[name=number]')
     expect(view.$el).toContainElement('select[name=type]')
-    expect(view.$el).toContainElement('option[value=Cheque]')
-    expect(view.$el).toContainElement('option[value=Savings]')
-    expect(view.$el).toContainElement('option[value="Credit Card"]')
-    expect(view.$el).toContainElement('option[value=Other]')
+    expect(view.$el).toContainElement('select[name=type] option[value=Cheque]')
+    expect(view.$el).toContainElement('select[name=type] option[value=Savings]')
+    expect(view.$el).toContainElement('select[name=type] option[value="Credit Card"]')
+    expect(view.$el).toContainElement('select[name=type] option[value=Other]')
+    expect(view.$el).toContainElement('select[name=account_group]')
+    expect(view.$el).toContainElement('select[name=account_group] option[value=1]')
+    expect(view.$el).toContainElement('select[name=account_group] option[value=2]')
 
   it "renders the heading for new account", ->
     view = createView().render()
@@ -51,6 +65,7 @@ describe "DotLedger.Views.Accounts.Form", ->
     view.$el.find('input[name=name]').val('Eftpos')
     view.$el.find('input[name=number]').val('12-1234-1234567-123')
     view.$el.find('select[name=type]').val('Cheque')
+    view.$el.find('select[name=account_group]').val("1")
 
     spyOn(model, 'set')
 
@@ -60,15 +75,18 @@ describe "DotLedger.Views.Accounts.Form", ->
       name: 'Eftpos'
       number: '12-1234-1234567-123'
       type: 'Cheque'
+      account_group_id: '1'
 
   it "renders the form fields with the model values", ->
     model = new DotLedger.Models.Account
       name: 'Account'
       number: '12-1234-1234567-123'
       type: 'Savings'
+      account_group_id: 1
 
     view = createView(model).render()
 
     expect(view.$el.find('input[name=name]')).toHaveValue('Account')
     expect(view.$el.find('input[name=number]')).toHaveValue('12-1234-1234567-123')
     expect(view.$el.find('select[name=type]')).toHaveValue('Savings')
+    expect(view.$el.find('select[name=account_group]')).toHaveValue('1')

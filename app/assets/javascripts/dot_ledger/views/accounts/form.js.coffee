@@ -2,10 +2,16 @@ DotLedger.module 'Views.Accounts', ->
   class @Form extends Backbone.Marionette.ItemView
     template: 'accounts/form'
 
+    behaviors:
+      AccountGroupSelector:
+        showAnyOption: false
+        showNoneOption: true
+
     ui:
       name: 'input[name=name]'
       number: 'input[name=number]'
       type: 'select[name=type]'
+      account_group: 'select[name=account_group]'
 
     onRender: ->
       new DotLedger.Helpers.FormErrors(@model, @$el)
@@ -44,6 +50,11 @@ DotLedger.module 'Views.Accounts', ->
         name: @ui.name.val()
         number: @ui.number.val()
         type: @ui.type.val()
+
+      if @ui.account_group.val() > -1
+        data['account_group_id'] = @ui.account_group.val()
+      else
+        data['account_group_id'] = null
 
       @model.set(data)
 
