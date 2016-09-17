@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api, except: [:edit, :new], defaults: { format: :json } do
     resources :accounts
+    resources :account_groups
     resources :categories
     resources :goals
     resources :sorted_transactions
