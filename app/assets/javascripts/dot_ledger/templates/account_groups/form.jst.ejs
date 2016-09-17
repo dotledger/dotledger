@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1><%- pageHeader() %></h1>
+</div>
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="account_group_name" class="col-md-2 control-label">Name</label>
+    <div class="col-md-5">
+      <input type="text" class="form-control" id="account_group_name" name="name" placeholder="e.g. Personal" />
+    </div>
+    <div class="errors col-md-5"></div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <button type="submit" class="save btn btn-default">Save</button>
+      <a class="btn btn-link" href="<%= DotLedger.path.listAccountGroups() %>">Cancel</a>
+    </div>
+  </div>
+</form>

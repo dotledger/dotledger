@@ -117,6 +117,22 @@ describe "DotLedger.Routers.App", ->
       router.navigate('/payments/42/edit', navigateOptions)
       expect(router.editPayment).toHaveBeenCalledWith('42', {})
 
+  describe 'Account Groups', ->
+    it "routes to listAccountGroups", ->
+      router = createRouter('listAccountGroups')
+      router.navigate('/account-groups', navigateOptions)
+      expect(router.listAccountGroups).toHaveBeenCalled()
+
+    it "routes to newAccountGroups", ->
+      router = createRouter('newAccountGroup')
+      router.navigate('/account-groups/new', navigateOptions)
+      expect(router.newAccountGroup).toHaveBeenCalled()
+
+    it "routes to editAccountGroups", ->
+      router = createRouter('editAccountGroup')
+      router.navigate('/account-groups/42/edit', navigateOptions)
+      expect(router.editAccountGroup).toHaveBeenCalledWith('42', {})
+
   describe 'Search', ->
     it "routes to search", ->
       router = createRouter('search')

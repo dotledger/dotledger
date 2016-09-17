@@ -29,6 +29,11 @@ DotLedger.module 'Routers', ->
     'payments/new': 'newPayment'
     'payments/:id/edit': 'editPayment'
 
+    # Account Groups
+    'account-groups/new': 'newAccountGroup'
+    'account-groups/:id/edit': 'editAccountGroup'
+    'account-groups': 'listAccountGroups'
+
     # Search
     'search': 'search'
 
@@ -336,6 +341,47 @@ DotLedger.module 'Routers', ->
 
       form.on 'save', ->
         DotLedger.navigate.listPayments({}, trigger: true)
+
+    listAccountGroups: ->
+      account_groups = new DotLedger.Collections.AccountGroups()
+
+      DotLedger.title 'Account Groups'
+
+      account_groups.fetch
+        success: ->
+          list = new DotLedger.Views.AccountGroups.List
+            collection: account_groups
+
+          DotLedger.mainRegion.show(list)
+
+    newAccountGroup: ->
+      account_group = new DotLedger.Models.AccountGroup()
+
+      DotLedger.title 'New Account Group'
+
+      form = new DotLedger.Views.AccountGroups.Form
+        model: account_group
+
+      form.on 'save', (model)->
+        DotLedger.navigate.listAccountGroups({}, trigger: true)
+
+      DotLedger.mainRegion.show(form)
+
+    editAccountGroup: (account_group_id)->
+      account_group = new DotLedger.Models.AccountGroup(id: account_group_id)
+
+      form = new DotLedger.Views.AccountGroups.Form
+        model: account_group
+
+      account_group.fetch(
+        success: ->
+          DotLedger.title 'Edit Account Group', account_group.get('name')
+
+          DotLedger.mainRegion.show(form)
+      )
+
+      form.on 'save', ->
+        DotLedger.navigate.listAccountGroups({}, trigger: true)
 
     search: ->
       @QueryParams.set(page: 1) unless @QueryParams.has('page')
