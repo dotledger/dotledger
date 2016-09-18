@@ -6,6 +6,7 @@
 #= require bootstrap/tab
 #= require bootstrap-datepicker
 #= require jquery.flot
+#= require jquery.flot.pie
 #= require jquery.flot.time
 #= require moment
 #= require underscore
