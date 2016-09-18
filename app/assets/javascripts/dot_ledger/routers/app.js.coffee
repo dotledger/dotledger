@@ -65,6 +65,17 @@ DotLedger.module 'Routers', ->
           activity = new DotLedger.Views.Statistics.ActivityPerCategory.List(
             collection: category_statistics
           )
+          dashboard.panelC.show(activity)
+
+      category_type_statistics = new (DotLedger.Collections.Base.extend({
+        url: '/api/statistics/activity_per_category_type'
+      }))
+
+      category_type_statistics.fetch
+        success: ->
+          activity = new DotLedger.Views.Statistics.ActivityPerCategoryType.List(
+            collection: category_type_statistics
+          )
           dashboard.panelB.show(activity)
 
       accounts = new DotLedger.Collections.Accounts()

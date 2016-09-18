@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-3">
+    <strong class="type"><%= type %></strong>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-4 text-muted">
+    <small>Received: <strong><%= DotLedger.Helpers.Format.money(received) %></strong></small>
+  </div>
+  <div class="col-xs-4 text-muted">
+    <small>Spent: <strong><%= DotLedger.Helpers.Format.money(spent) %></strong></small>
+  </div>
+  <div class="col-xs-4 text-muted">
+    <small>Difference: <strong><%= DotLedger.Helpers.Format.money(net) %></strong></small>
+  </div>
+</div>
