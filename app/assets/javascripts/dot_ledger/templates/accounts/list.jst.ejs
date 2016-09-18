@@ -19,7 +19,16 @@
       <small>Difference: <strong><%= DotLedger.Helpers.Format.money(totalCash() - totalDebt()) %></strong></small>
     </div>
   </div>
-
 </div>
 
-<div class="list-group"></div>  
+<% _.each(accountGroups(), function(group) { %>
+  <div class="list-group" id="<%= group.id %>">
+    <div class="list-group-item active"><h4>
+    <% if (group.label) { %>
+      <%= group.label %>
+    <% } else { %>
+      <i>Other</i>
+    <% } %>
+    </h4></div>
+  </div>
+<% }) %>
