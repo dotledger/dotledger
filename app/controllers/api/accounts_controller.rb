@@ -3,7 +3,7 @@ module Api
     def index
       @accounts = Account.all
 
-      @accounts = @accounts.order(:name)
+      @accounts = @accounts.includes(:account_group).order('account_groups.name ASC').order(:name)
 
       respond_with @accounts
     end
