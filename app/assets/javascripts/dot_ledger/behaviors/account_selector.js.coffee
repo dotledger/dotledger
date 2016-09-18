@@ -27,8 +27,13 @@ DotLedger.module 'Behaviors', ->
       if @options.showAnyOption
         $accountSelect.append('<option value="">Any</option>')
 
-      @accounts.each (account) =>
-        $option = $("<option value='#{account.get('id')}'>#{account.get('name')}</option>")
-        $accountSelect.append($option)
+      _.each @accounts.groupBy('account_group_name'), (accounts, label) =>
+        if label == 'null'
+          label = 'Other'
+        $optgroup = $("<optgroup label='#{label}'></optgroup>")
+        _.each accounts, (account) ->
+          $option = $("<option value='#{account.get('id')}'>#{account.get('name')}</option>")
+          $optgroup.append($option)
+        $accountSelect.append($optgroup)
 
       $accountSelect.val(@view.model.get(@options.accountAttribute))
