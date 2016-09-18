@@ -7,4 +7,18 @@
   <h3 class="panel-title">Goals</h3>
 </div>
 
+<div class="panel-body">
+  <div class="row text-muted">
+    <div class="col-xs-4 text-left">
+      <small>Total received: <strong><%= receivedAmountTotal() %></strong></small>
+    </div>
+    <div class="col-xs-4 text-center">
+      <small>Total spent: <strong><%= spentAmountTotal() %></strong></small>
+    </div>
+    <div class="col-xs-4 text-right">
+      <small>Difference: <strong><%= netAmountTotal() %></strong></small>
+    </div>
+  </div>
+</div>
+
 <div class="list-group"></div>  
