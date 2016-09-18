@@ -15,5 +15,17 @@ module Api
       )
       render json: @activity_per_category
     end
+
+    def activity_per_category_type
+      @activity_per_category_type = Statistics::ActivityPerCategoryType.new(date_range)
+      set_metadata_header(
+        date_from: date_range.first,
+        date_to: date_range.last,
+        total_spent: @activity_per_category_type.total_spent,
+        total_received: @activity_per_category_type.total_received,
+        total_net: @activity_per_category_type.total_net
+      )
+      render json: @activity_per_category_type
+    end
   end
 end

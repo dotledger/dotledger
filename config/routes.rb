@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :balances, only: [:index]
 
     get 'statistics/activity_per_category'
+    get 'statistics/activity_per_category_type'
 
     get 'options' => 'options#options'
     get 'options/account_types'
