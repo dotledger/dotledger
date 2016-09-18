@@ -24,7 +24,7 @@ module Statistics
       <<-EOT
       categories.id AS id,
       categories.type AS type,
-      categories.NAME AS NAME,
+      categories.name AS name,
       goals.amount AS goal_amount,
       goals.period AS goal_period,
       (CASE
