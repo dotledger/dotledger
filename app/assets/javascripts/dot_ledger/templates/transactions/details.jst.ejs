@@ -6,6 +6,18 @@
     </div>
     <div class="modal-body">
       <dl class="dl-horizontal">
+        <dt>Account</dt>
+        <dd><%- account_name %></dd>
+
+        <dt>Account Group</dt>
+        <dd>
+        <% if (account_group_name === null) { %>
+          <i>Other</i>
+        <% } else { %>
+          <%- account_group_name %>
+        <% } %>
+        </dd>
+
         <dt>Amount</dt>
         <dd><%- amount %></dd>
 

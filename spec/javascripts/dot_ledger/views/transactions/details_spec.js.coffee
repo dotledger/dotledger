@@ -12,6 +12,8 @@ describe "DotLedger.Views.Transactions.Details", ->
       posted_at: '2013-01-01'
       id: 1
       sorted_transaction: sorted_transaction
+      account_name: 'Eftpos'
+      account_group_name: 'Personal'
 
   createView = (model = createModel()) ->
     new DotLedger.Views.Transactions.Details
@@ -54,6 +56,20 @@ describe "DotLedger.Views.Transactions.Details", ->
   it "renders the posted_at date", ->
     view = createView().render()
     expect(view.$el).toContainText('1 Jan 2013')
+
+  it "renders the account_name", ->
+    view = createView().render()
+    expect(view.$el).toContainText('Eftpos')
+
+  it "renders the account_group_name", ->
+    view = createView().render()
+    expect(view.$el).toContainText('Personal')
+
+  it "renders other if account_group_name if null", ->
+    model = createModel()
+    model.set('account_group_name', null)
+    view = createView(model).render()
+    expect(view.$el).toContainText('Other')
 
   it "renders the sorted transaction details if the transaction is sorted", ->
     model = createModel({

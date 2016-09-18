@@ -63,6 +63,9 @@ class Transaction < ActiveRecord::Base
       .references(:sorted_transactions)
   }
 
+  delegate :name, to: :account, prefix: true
+  delegate :account_group_name, to: :account, prefix: false
+
   private
 
   def set_search
