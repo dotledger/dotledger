@@ -1,4 +1,4 @@
-describe "DotLedger.Views.Accounts.List", ->
+describe "DotLedger.Views.Statistics.ActivityPerCategory.List", ->
   createView = ->
     collection =  new Backbone.Collection(
       [
@@ -37,6 +37,13 @@ describe "DotLedger.Views.Accounts.List", ->
         },
       ]
     )
+
+    collection.metadata = {
+      total_received: "0.0"
+      total_spent: "244.87"
+      total_net: "-244.87"
+    }
+
     view = new DotLedger.Views.Statistics.ActivityPerCategory.List
       collection: collection
     view
