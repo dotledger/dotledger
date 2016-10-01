@@ -35,7 +35,10 @@ DotLedger.module 'Views.Statistics.ActivityPerCategoryType', ->
 
     renderPieGraph: ->
       if @isRendered
-        $.plot(@ui.pieGraph, @pieGraphData(), @pieGraphOptions())
+        if @collection.length > 0
+          $.plot(@ui.pieGraph, @pieGraphData(), @pieGraphOptions())
+        else
+          @ui.pieGraph.html('<h3 class="text-center text-muted"><i>No Transactions</i></h3>')
 
     onRender: ->
       @collection.on 'sync', =>
