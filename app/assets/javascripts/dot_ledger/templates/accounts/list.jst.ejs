@@ -23,12 +23,15 @@
 
 <% _.each(accountGroups(), function(group) { %>
   <div class="list-group" id="<%= group.id %>">
-    <div class="list-group-item active"><h4>
-    <% if (group.label) { %>
-      <%= group.label %>
-    <% } else { %>
-      <i>Other</i>
-    <% } %>
-    </h4></div>
+    <div class="list-group-item active">
+      <span class="pull-right text-right"><%= DotLedger.Helpers.Format.money(group.net) %></span>
+      <h4>
+      <% if (group.label) { %>
+        <%= group.label %>
+      <% } else { %>
+        <i>Other</i>
+      <% } %>
+      </h4>
+    </div>
   </div>
 <% }) %>

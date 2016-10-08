@@ -8,6 +8,7 @@ describe "DotLedger.Views.Accounts.List", ->
           balance: 10.00
           updated_at: '2013-01-01T01:00:00Z'
           unsorted_transaction_count: 0
+          account_group_name: 'Group A'
         }
         {
           id: 2
@@ -15,6 +16,7 @@ describe "DotLedger.Views.Accounts.List", ->
           balance: 12.00
           updated_at: '2013-01-02T01:00:00Z'
           unsorted_transaction_count: 10
+          account_group_name: 'Group A'
         }
         {
           id: 3
@@ -22,6 +24,7 @@ describe "DotLedger.Views.Accounts.List", ->
           balance: -12.00
           updated_at: '2013-01-03T01:00:00Z'
           unsorted_transaction_count: 12
+          account_group_name: 'Group B'
         }
       ]
     )
@@ -38,6 +41,16 @@ describe "DotLedger.Views.Accounts.List", ->
   it "can be rendered", ->
     view = createView()
     expect(view.render).not.toThrow()
+
+  it "renders the account group names", ->
+    view = createView().render()
+    expect(view.$el.find('.list-group-item.active')).toHaveText(/Group A/)
+    expect(view.$el.find('.list-group-item.active')).toHaveText(/Group B/)
+
+  it "renders the account group net balance", ->
+    view = createView().render()
+    expect(view.$el.find('.list-group-item.active')).toContainText('$22.00')
+    expect(view.$el.find('.list-group-item.active')).toContainText('$-12.00')
 
   it "renders the account names", ->
     view = createView().render()
