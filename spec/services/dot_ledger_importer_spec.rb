@@ -4,11 +4,23 @@ require 'tempfile'
 describe DotLedgerImporter do
   let(:data) do
     {
+      'AccountGroups' => [
+        {
+          'name' => 'Savings'
+        }
+      ],
       'Accounts' => [
         {
           'name' => 'Eftpos',
           'number' => '1212341234567121',
-          'type' => 'Cheque'
+          'type' => 'Cheque',
+          'account_group_name' => nil
+        },
+        {
+          'name' => 'Savings',
+          'number' => '1212341234567122',
+          'type' => 'Savings',
+          'account_group_name' => 'Savings'
         }
       ],
       'Categories' => [
@@ -42,14 +54,25 @@ describe DotLedgerImporter do
       file.rewind
     end
   end
+
   subject { described_class.new(file) }
+
+  it 'imports the account groups' do
+    expect do
+      subject.import
+    end.to change(AccountGroup, :count).by(1)
+
+    expect(subject.data['AccountGroups'].first.name).to eq('Savings')
+  end
 
   it 'imports the accounts' do
     expect do
       subject.import
-    end.to change(Account, :count).by(1)
+    end.to change(Account, :count).by(2)
 
-    expect(subject.data['Accounts'].last.name).to eq('Eftpos')
+    expect(subject.data['Accounts'].first.name).to eq('Eftpos')
+    expect(subject.data['Accounts'].last.name).to eq('Savings')
+    expect(subject.data['Accounts'].last.account_group_name).to eq('Savings')
   end
 
   it 'imports the categories' do

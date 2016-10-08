@@ -7,6 +7,7 @@ class DotLedgerImporter
   end
 
   def import
+    import_account_groups
     import_accounts
     import_categories
     import_sorting_rules
@@ -15,11 +16,27 @@ class DotLedgerImporter
     true
   end
 
+  def import_account_groups
+    load_yaml
+
+    data['AccountGroups'] = yaml.fetch('AccountGroups', []).map do |account_group|
+      new_account = AccountGroup.where(account_group).first_or_initialize
+      new_account.tap(&:save!)
+    end
+  end
+
   def import_accounts
     load_yaml
 
     data['Accounts'] = yaml.fetch('Accounts', []).map do |account|
-      new_account = Account.where(account).first_or_initialize
+      account_group =
+        begin
+          account_group_name = account.delete('account_group_name')
+          AccountGroup.where(name: account_group_name).first if account_group_name 
+        end
+      new_account = Account.where(
+        account.merge(account_group_id: account_group.try(:id))
+      ).first_or_initialize
       new_account.tap(&:save!)
     end
   end

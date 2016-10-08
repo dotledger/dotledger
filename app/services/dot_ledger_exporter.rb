@@ -7,6 +7,7 @@ class DotLedgerExporter
   end
 
   def export
+    export_account_groups
     export_accounts
     export_categories
     export_sorting_rules
@@ -17,9 +18,15 @@ class DotLedgerExporter
     true
   end
 
+  def export_account_groups
+    data['AccountGroups'] = AccountGroup.all.map do |account_group|
+      account_group.slice(:name).to_hash
+    end
+  end
+
   def export_accounts
     data['Accounts'] = Account.all.map do |account|
-      account.slice(:name, :number, :type).to_hash
+      account.slice(:name, :number, :type, :account_group_name).to_hash
     end
   end
 
