@@ -6,3 +6,4 @@
 #= require ./notification
 #= require ./pagination
 #= require ./path
+#= require ./sort_transactions

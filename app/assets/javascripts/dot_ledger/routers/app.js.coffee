@@ -282,6 +282,7 @@ DotLedger.module 'Routers', ->
 
       form.on 'save', (model)->
         DotLedger.navigate.listSortingRules({}, trigger: true)
+        DotLedger.Helpers.SortTransactions.sort()
 
       DotLedger.mainRegion.show(form)
 
@@ -293,6 +294,7 @@ DotLedger.module 'Routers', ->
 
       form.on 'save', (model)->
         DotLedger.navigate.listSortingRules({}, trigger: true)
+        DotLedger.Helpers.SortTransactions.sort()
 
       sorting_rule.fetch
         success: ->
