@@ -13,7 +13,3 @@ describe "DotLedger.Views.Payments.List", ->
   it "can be rendered", ->
     view = createView()
     expect(view.render).not.toThrow()
-
-  it "renders the heading", ->
-    view = createView().render()
-    expect(view.$el).toContainText('Payments')

@@ -317,14 +317,21 @@ DotLedger.module 'Routers', ->
     listPayments: ->
       payments = new DotLedger.Collections.Payments()
 
+      paymentsView = new DotLedger.Views.Payments.Payments()
+
+      balanceGraph = new DotLedger.Views.Payments.ProjectedBalanceGraph
+        days: 90
+
+      list = new DotLedger.Views.Payments.List
+        collection: payments
+
       DotLedger.title 'Payments'
 
       payments.fetch
         success: ->
-          list = new DotLedger.Views.Payments.List
-            collection: payments
-
-          DotLedger.mainRegion.show(list)
+          DotLedger.mainRegion.show(paymentsView)
+          paymentsView.graph.show(balanceGraph)
+          paymentsView.payments.show(list)
 
     newPayment: ->
       payment = new DotLedger.Models.Payment()

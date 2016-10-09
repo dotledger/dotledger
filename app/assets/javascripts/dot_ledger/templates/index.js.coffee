@@ -20,6 +20,8 @@
 #= require ./payments/form
 #= require ./payments/list
 #= require ./payments/list_item
+#= require ./payments/payments
+#= require ./payments/projected_balance_graph
 #= require ./reports/income_and_expenses/filter
 #= require ./reports/income_and_expenses/show
 #= require ./reports/income_and_expenses/table

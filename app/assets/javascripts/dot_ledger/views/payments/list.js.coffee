@@ -1,7 +1,9 @@
 DotLedger.module 'Views.Payments', ->
   class @List extends Backbone.Marionette.CompositeView
     template: 'payments/list'
+
     getChildView: -> DotLedger.Views.Payments.ListItem
+
     templateHelpers: ->
       paymentDates: =>
         _.sortBy _.uniq(_.flatten(@collection.pluck('upcoming'))), (date)->

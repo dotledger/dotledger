@@ -6,6 +6,7 @@
 #= require ./goals
 #= require ./index
 #= require ./payments
+#= require ./projected_balances
 #= require ./sorting_rules
 #= require ./statements
 #= require ./tags
