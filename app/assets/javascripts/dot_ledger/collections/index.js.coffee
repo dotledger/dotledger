@@ -1,5 +1,15 @@
 #= require_self
-#= require_tree .
+#= require ./account_groups
+#= require ./accounts
+#= require ./balances
+#= require ./categories
+#= require ./goals
+#= require ./index
+#= require ./payments
+#= require ./sorting_rules
+#= require ./statements
+#= require ./tags
+#= require ./transactions
 
 DotLedger.module 'Collections', ->
   class @Base extends Backbone.Collection

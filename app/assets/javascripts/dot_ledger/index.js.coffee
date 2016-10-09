@@ -1,13 +1,13 @@
 #= require_self
 #= require ./helpers
-#= require_tree ./templates
+#= require ./templates
 #= require ./routers
 #= require ./models
 #= require ./collections
-#= require_tree ./behaviors
-#= require_tree ./regions
-#= require_tree ./views
-#= require_tree ./initializers
+#= require ./behaviors
+#= require ./regions
+#= require ./views
+#= require ./initializers
 
 @DotLedgerData = {}
 @DotLedger = new Marionette.Application()

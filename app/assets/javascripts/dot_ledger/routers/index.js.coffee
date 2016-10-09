@@ -1,5 +1,5 @@
 #= require_self
-#= require_tree .
+#= require ./app
 
 DotLedger.module 'Routers', ->
   class @Base extends Backbone.Marionette.AppRouter
