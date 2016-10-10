@@ -19,11 +19,11 @@ describe Category do
 
   it { should validate_inclusion_of(:type).in_array(%w(Flexible Essential Income Transfer)) }
 
-  it { should have_many(:sorted_transactions).dependent(:destroy) }
+  it { should have_many(:sorted_transactions).dependent(:restrict_with_error) }
 
-  it { should have_many(:sorting_rules).dependent(:destroy) }
+  it { should have_many(:sorting_rules).dependent(:restrict_with_error) }
 
-  it { should have_many(:payments).dependent(:destroy) }
+  it { should have_many(:payments).dependent(:restrict_with_error) }
 
   it { should have_one(:goal).dependent(:destroy) }
 

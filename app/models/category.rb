@@ -1,11 +1,11 @@
 class Category < ActiveRecord::Base
   self.inheritance_column = nil
 
-  has_many :sorted_transactions, dependent: :destroy
+  has_many :sorted_transactions, dependent: :restrict_with_error
 
-  has_many :sorting_rules, dependent: :destroy
+  has_many :sorting_rules, dependent: :restrict_with_error
 
-  has_many :payments, dependent: :destroy
+  has_many :payments, dependent: :restrict_with_error
 
   has_one :goal, dependent: :destroy
 

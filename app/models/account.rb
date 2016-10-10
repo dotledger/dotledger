@@ -3,11 +3,11 @@ class Account < ActiveRecord::Base
 
   belongs_to :account_group
 
-  has_many :transactions, dependent: :destroy
+  has_many :transactions, dependent: :restrict_with_error
 
-  has_many :statements, dependent: :destroy
+  has_many :statements, dependent: :restrict_with_error
 
-  has_many :sorted_transactions, dependent: :destroy
+  has_many :sorted_transactions, dependent: :restrict_with_error
 
   ACCOUNT_TYPES = ['Cheque', 'Savings', 'Credit Card', 'Other']
 
