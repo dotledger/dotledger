@@ -1,4 +1,7 @@
 <div class="row">
   <div class="col-xs-6"><%- name %></div>
-  <div class="col-xs-6 text-right"><a class="edit-category btn btn-xs btn-default" href="<%= DotLedger.path.editCategory({id: id}) %>">Edit</a></div>
+  <div class="col-xs-6 text-right">
+    <a class="edit-category btn btn-xs btn-default" href="<%= DotLedger.path.editCategory({id: id}) %>">Edit</a>
+    <a class="delete-category btn btn-xs btn-danger" href="#">Delete</a>
+  </div>
 </div>
