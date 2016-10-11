@@ -42,3 +42,13 @@ describe "DotLedger.Views.SortingRules.ListItem", ->
   it "renders the tag list", ->
     view = createView().render()
     expect(view.$el).toHaveText(/Foo, Bar, Baz/)
+
+  it "renders the edit button", ->
+    view = createView().render()
+    expect(view.$el).toContainElement('a[href="/sorting-rules/1/edit"]')
+    expect(view.$el).toContainText('Edit')
+
+  it "renders the delete button", ->
+    view = createView().render()
+    expect(view.$el).toContainElement('a.delete-sorting-rule')
+    expect(view.$el).toContainText('Delete')
