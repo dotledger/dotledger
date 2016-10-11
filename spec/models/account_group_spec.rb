@@ -12,4 +12,6 @@ describe AccountGroup do
   it { should validate_presence_of :name }
 
   it { should validate_uniqueness_of :name }
+
+  it { should have_many(:accounts).dependent(:restrict_with_error) }
 end
