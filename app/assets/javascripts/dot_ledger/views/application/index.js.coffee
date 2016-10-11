@@ -1,3 +1,4 @@
+#= require ./confirmation_modal
 #= require ./dashboard
 #= require ./footer
 #= require ./main_nav

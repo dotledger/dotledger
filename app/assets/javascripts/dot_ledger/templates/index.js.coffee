@@ -6,6 +6,7 @@
 #= require ./accounts/list
 #= require ./accounts/list_item
 #= require ./accounts/show
+#= require ./application/confirmation_modal
 #= require ./application/dashboard
 #= require ./application/footer
 #= require ./application/main_nav
