@@ -1,2 +1,5 @@
 <td><%- name %></td>
-<td class="text-right"><a class="edit-sorting-rule btn btn-xs btn-default" href="<%= DotLedger.path.editAccountGroup({id: id}) %>">Edit</a></td>
+<td class="text-right">
+  <a class="edit-account-group btn btn-xs btn-default" href="<%= DotLedger.path.editAccountGroup({id: id}) %>">Edit</a>
+  <a class="delete-account-group btn btn-xs btn-danger" href="#">Delete</a>
+</td>
