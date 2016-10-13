@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe Statistics::ActivityPerCategory do
+describe ActivityPerCategory do
   let(:date_range) { (Date.parse('2011-01-01')..Date.parse('2011-02-01')) }
   subject { described_class.new(date_range) }
 
   context 'with no transactions' do
     it 'returns an empty array' do
-      expect(subject.as_json).to eq []
+      expect(subject.activity_per_category).to eq []
     end
   end
 
@@ -22,43 +22,43 @@ describe Statistics::ActivityPerCategory do
     end
 
     it 'returns an array with one element' do
-      expect(subject.as_json.length).to eq 1
+      expect(subject.activity_per_category.length).to eq 1
     end
 
     it 'returns the correct adjusted goal amount' do
-      expect(subject.as_json.first['goal']).to eq 100 * Goal::WEEK_MULTIPLIER
+      expect(subject.activity_per_category.first['goal']).to eq 100 * Goal::WEEK_MULTIPLIER
     end
 
     it 'returns the correct spent amount' do
-      expect(subject.as_json.first['spent']).to eq 40.0
+      expect(subject.activity_per_category.first['spent']).to eq 40.0
     end
 
     it 'returns the correct received amount' do
-      expect(subject.as_json.first['received']).to eq 30.0
+      expect(subject.activity_per_category.first['received']).to eq 30.0
     end
 
     it 'returns the correct net amount' do
-      expect(subject.as_json.first['net']).to eq(-10.0)
+      expect(subject.activity_per_category.first['net']).to eq(-10.0)
     end
 
     it 'returns the correct category name' do
-      expect(subject.as_json.first['name']).to eq category.name
+      expect(subject.activity_per_category.first['name']).to eq category.name
     end
 
     it 'returns the correct category type' do
-      expect(subject.as_json.first['type']).to eq category.type
+      expect(subject.activity_per_category.first['type']).to eq category.type
     end
 
     it 'returns the correct category id' do
-      expect(subject.as_json.first['id']).to eq category.id
+      expect(subject.activity_per_category.first['id']).to eq category.id
     end
 
     it 'returns the correct goal amount' do
-      expect(subject.as_json.first['goal_amount']).to eq category.goal.amount
+      expect(subject.activity_per_category.first['goal_amount']).to eq category.goal.amount
     end
 
     it 'returns the correct goal period' do
-      expect(subject.as_json.first['goal_period']).to eq category.goal.period
+      expect(subject.activity_per_category.first['goal_period']).to eq category.goal.period
     end
   end
 end

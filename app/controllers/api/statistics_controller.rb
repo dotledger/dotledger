@@ -5,7 +5,7 @@ module Api
     include DateRangeParams
 
     def activity_per_category
-      @activity_per_category = Statistics::ActivityPerCategory.new(date_range)
+      @activity_per_category = ActivityPerCategory.new(date_range)
       set_metadata_header(
         date_from: date_range.first,
         date_to: date_range.last,
@@ -17,7 +17,7 @@ module Api
     end
 
     def activity_per_category_type
-      @activity_per_category_type = Statistics::ActivityPerCategoryType.new(date_range)
+      @activity_per_category_type = ActivityPerCategoryType.new(date_range)
       set_metadata_header(
         date_from: date_range.first,
         date_to: date_range.last,

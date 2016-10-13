@@ -8,7 +8,7 @@ describe Api::StatisticsController do
       let(:expected_range) { Date.parse(date_from)..Date.parse(date_to) }
 
       it 'use the date range' do
-        expect(Statistics::ActivityPerCategory).to receive(:new).with(expected_range).and_call_original
+        expect(ActivityPerCategory).to receive(:new).with(expected_range).and_call_original
         get :activity_per_category, date_from: date_from, date_to: date_to
 
         date_range = assigns(:activity_per_category).date_range
@@ -21,7 +21,7 @@ describe Api::StatisticsController do
       let(:expected_range) { Date.parse(date).beginning_of_month..Date.parse(date).end_of_month }
 
       it 'use the date range' do
-        expect(Statistics::ActivityPerCategory).to receive(:new).with(expected_range).and_call_original
+        expect(ActivityPerCategory).to receive(:new).with(expected_range).and_call_original
         get :activity_per_category, date: date
 
         date_range = assigns(:activity_per_category).date_range
@@ -32,7 +32,7 @@ describe Api::StatisticsController do
     context 'with no date' do
       let(:expected_range) { Date.today.beginning_of_month.to_date..Date.today.end_of_month.to_date }
       it 'use the date range' do
-        expect(Statistics::ActivityPerCategory).to receive(:new).with(expected_range).and_call_original
+        expect(ActivityPerCategory).to receive(:new).with(expected_range).and_call_original
         get :activity_per_category
 
         date_range = assigns(:activity_per_category).date_range
@@ -48,7 +48,7 @@ describe Api::StatisticsController do
       let(:expected_range) { Date.parse(date_from)..Date.parse(date_to) }
 
       it 'use the date range' do
-        expect(Statistics::ActivityPerCategoryType).to receive(:new).with(expected_range).and_call_original
+        expect(ActivityPerCategoryType).to receive(:new).with(expected_range).and_call_original
         get :activity_per_category_type, date_from: date_from, date_to: date_to
 
         date_range = assigns(:activity_per_category_type).date_range
@@ -61,7 +61,7 @@ describe Api::StatisticsController do
       let(:expected_range) { Date.parse(date).beginning_of_month..Date.parse(date).end_of_month }
 
       it 'use the date range' do
-        expect(Statistics::ActivityPerCategoryType).to receive(:new).with(expected_range).and_call_original
+        expect(ActivityPerCategoryType).to receive(:new).with(expected_range).and_call_original
         get :activity_per_category_type, date: date
 
         date_range = assigns(:activity_per_category_type).date_range
@@ -72,7 +72,7 @@ describe Api::StatisticsController do
     context 'with no date' do
       let(:expected_range) { Date.today.beginning_of_month.to_date..Date.today.end_of_month.to_date }
       it 'use the date range' do
-        expect(Statistics::ActivityPerCategoryType).to receive(:new).with(expected_range).and_call_original
+        expect(ActivityPerCategoryType).to receive(:new).with(expected_range).and_call_original
         get :activity_per_category_type
 
         date_range = assigns(:activity_per_category_type).date_range
