@@ -3,7 +3,7 @@ class PaymentSerializer < ActiveModel::Serializer
              :type, :schedule, :upcoming, :repeat, :repeat_interval, :repeat_period, :date
 
   def repeat
-    schedule.recurrence_rules.length > 0
+    object.schedule.recurrence_rules.length > 0
   end
 
   def repeat_interval
@@ -23,16 +23,16 @@ class PaymentSerializer < ActiveModel::Serializer
   end
 
   def date
-    schedule.start_time.strftime('%Y-%m-%d')
+    object.schedule.start_time.strftime('%Y-%m-%d')
   end
 
   def upcoming
-    schedule.occurrences_between(Date.today, Date.today + 30.days)
+    object.schedule.occurrences_between(Date.today, Date.today + 30.days)
   end
 
   private
 
   def first_rule
-    schedule.recurrence_rules.first
+    object.schedule.recurrence_rules.first
   end
 end
