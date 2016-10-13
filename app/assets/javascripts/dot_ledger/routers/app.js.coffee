@@ -462,8 +462,11 @@ DotLedger.module 'Routers', ->
         DotLedger.navigate.incomeAndExpenses(@QueryParams.attributes)
         filterView.render()
         date_to = moment()
-        date_from = moment().subtract('day', @QueryParams.get('period'))
-
+        period = @QueryParams.get('period')
+        if period == 'mtd'
+          date_from = moment().startOf('month')
+        else
+          date_from = moment().subtract('day', period)
 
         category_statistics.fetch
           data:
