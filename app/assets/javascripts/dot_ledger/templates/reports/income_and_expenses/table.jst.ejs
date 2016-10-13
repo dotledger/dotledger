@@ -1,14 +1,33 @@
+<% _.each(categoryTypes(), function(type) { %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th colspan="3">
+          <h3><%= type.label %></h3>
+        </th>
+      </tr>
+
+      <tr>
+        <th>Category</th>
+        <th class="amount">Spent</th>
+        <th class="amount">Received</th>
+      </tr>
+    </thead>
+
+    <tbody id="<%= type.id %>"></tbody>
+
+    <tfoot>
+      <tr>
+        <th>Subtotal</th>
+        <th class="amount"><%= spentAmountSubTotal(type.label) %></th>
+        <th class="amount"><%= receivedAmountSubTotal(type.label) %></th>
+      </tr>
+    </tfoot>
+  </table>
+  <hr>
+<% }) %>
+
 <table class="table">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th class="amount">Spent</th>
-      <th class="amount">Received</th>
-    </tr>
-  </thead>
-
-  <tbody></tbody>
-
   <tfoot>
     <tr>
       <th>Total</th>
