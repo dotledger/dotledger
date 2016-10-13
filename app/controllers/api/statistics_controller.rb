@@ -13,7 +13,7 @@ module Api
         total_received: @activity_per_category.total_received,
         total_net: @activity_per_category.total_net
       )
-      render json: @activity_per_category
+      respond_with @activity_per_category
     end
 
     def activity_per_category_type
@@ -25,7 +25,7 @@ module Api
         total_received: @activity_per_category_type.total_received,
         total_net: @activity_per_category_type.total_net
       )
-      render json: @activity_per_category_type
+      respond_with @activity_per_category_type
     end
   end
 end

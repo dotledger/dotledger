@@ -26,39 +26,39 @@ describe ActivityPerCategory do
     end
 
     it 'returns the correct adjusted goal amount' do
-      expect(subject.activity_per_category.first['goal']).to eq 100 * Goal::WEEK_MULTIPLIER
+      expect(subject.activity_per_category.first.goal).to eq 100 * Goal::WEEK_MULTIPLIER
     end
 
     it 'returns the correct spent amount' do
-      expect(subject.activity_per_category.first['spent']).to eq 40.0
+      expect(subject.activity_per_category.first.spent).to eq 40.0
     end
 
     it 'returns the correct received amount' do
-      expect(subject.activity_per_category.first['received']).to eq 30.0
+      expect(subject.activity_per_category.first.received).to eq 30.0
     end
 
     it 'returns the correct net amount' do
-      expect(subject.activity_per_category.first['net']).to eq(-10.0)
+      expect(subject.activity_per_category.first.net).to eq(-10.0)
     end
 
     it 'returns the correct category name' do
-      expect(subject.activity_per_category.first['name']).to eq category.name
+      expect(subject.activity_per_category.first.name).to eq category.name
     end
 
     it 'returns the correct category type' do
-      expect(subject.activity_per_category.first['type']).to eq category.type
+      expect(subject.activity_per_category.first.type).to eq category.type
     end
 
     it 'returns the correct category id' do
-      expect(subject.activity_per_category.first['id']).to eq category.id
+      expect(subject.activity_per_category.first.id).to eq category.id
     end
 
     it 'returns the correct goal amount' do
-      expect(subject.activity_per_category.first['goal_amount']).to eq category.goal.amount
+      expect(subject.activity_per_category.first.goal_amount).to eq category.goal.amount
     end
 
     it 'returns the correct goal period' do
-      expect(subject.activity_per_category.first['goal_period']).to eq category.goal.period
+      expect(subject.activity_per_category.first.goal_period).to eq category.goal.period
     end
   end
 end

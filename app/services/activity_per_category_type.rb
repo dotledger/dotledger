@@ -13,7 +13,7 @@ class ActivityPerCategoryType
 
   def activity_per_category_type
     query.map do |row|
-       row.attributes.except('id')
+      CategoryTypeActivity.new(row.attributes.except('id'))
     end
   end
 

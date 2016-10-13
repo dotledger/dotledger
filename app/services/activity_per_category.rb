@@ -13,7 +13,7 @@ class ActivityPerCategory
 
   def activity_per_category
     query.map do |row|
-      row.attributes
+      CategoryActivity.new(row.attributes)
     end
   end
 
