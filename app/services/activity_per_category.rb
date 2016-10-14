@@ -8,7 +8,7 @@ class ActivityPerCategory
   end
 
   def as_json(options = {})
-    ActiveModel::ArraySerializer.new activity_per_category, options
+    ActiveModel::Serializer::CollectionSerializer.new activity_per_category, options
   end
 
   def activity_per_category

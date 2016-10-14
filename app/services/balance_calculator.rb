@@ -19,7 +19,7 @@ class BalanceCalculator
   end
 
   def as_json(options = {})
-    ActiveModel::ArraySerializer.new balances, options
+    ActiveModel::Serializer::CollectionSerializer.new balances, options
   end
 
   private
