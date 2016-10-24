@@ -5,6 +5,8 @@ $navbar-height: 50px;
 $navbar-default-bg: #6FCAC2;
 $navbar-default-color: #fff;
 
+$dropdown-link-hover-bg: $navbar-default-bg;
+
 $navbar-default-link-color: darken($navbar-default-bg, 30%);
 $navbar-default-link-active-color: #fff;
 
