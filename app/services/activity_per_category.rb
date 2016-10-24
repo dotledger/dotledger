@@ -38,6 +38,7 @@ class ActivityPerCategory
     categories.name AS name,
     goals.amount AS goal_amount,
     goals.period AS goal_period,
+    goals.type AS goal_type,
     (CASE
     WHEN goals.period = 'Week'
     THEN goals.amount * #{Goal::WEEK_MULTIPLIER}
@@ -64,7 +65,7 @@ class ActivityPerCategory
       Category.joins(:goal, sorted_transactions: :account_transaction)
       .where(transactions: { posted_at: date_range })
       .select(select_list)
-      .group('categories.id, categories.name, categories.type, goals.amount, goals.period')
+      .group('categories.id, categories.name, categories.type, goals.amount, goals.period, goals.type')
       .order(:name)
   end
 end

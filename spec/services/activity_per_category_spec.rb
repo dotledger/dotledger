@@ -18,7 +18,7 @@ describe ActivityPerCategory do
     let!(:sorted_transaction2) { FactoryGirl.create(:sorted_transaction, category_id: category.id, transaction_id: transaction2.id) }
 
     before do
-      category.goal.update_attributes(amount: 100, period: 'Week')
+      category.goal.update_attributes(amount: 100, period: 'Week', type: 'Spend')
     end
 
     it 'returns an array with one element' do
@@ -59,6 +59,10 @@ describe ActivityPerCategory do
 
     it 'returns the correct goal period' do
       expect(subject.activity_per_category.first.goal_period).to eq category.goal.period
+    end
+
+    it 'returns the correct goal type' do
+      expect(subject.activity_per_category.first.goal_type).to eq category.goal.type
     end
   end
 end
