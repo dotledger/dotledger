@@ -2,14 +2,14 @@ require 'rails_helper'
 
 describe BalanceProjector do
   let(:opening_balance) { 1000.00 }
-  
+
   let!(:payment1) do
     schedule = IceCube::Schedule.new(Date.parse('2014-01-01')) do |s|
       s.add_recurrence_rule(IceCube::Rule.daily(2))
     end
     FactoryGirl.create :payment, type: 'Spend', amount: 10.00, schedule: schedule
   end
-  
+
   let!(:payment2) do
     schedule = IceCube::Schedule.new(Date.parse('2014-01-01')) do |s|
       s.add_recurrence_rule(IceCube::Rule.daily(4))

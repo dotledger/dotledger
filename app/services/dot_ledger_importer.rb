@@ -32,7 +32,7 @@ class DotLedgerImporter
       account_group =
         begin
           account_group_name = account.delete('account_group_name')
-          AccountGroup.where(name: account_group_name).first if account_group_name 
+          AccountGroup.where(name: account_group_name).first if account_group_name
         end
       new_account = Account.where(
         account.merge(account_group_id: account_group.try(:id))

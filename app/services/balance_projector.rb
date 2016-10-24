@@ -11,23 +11,23 @@ class BalanceProjector
   def as_json(options = {})
     balances
   end
- 
+
   def balances
     sum = opening_balance
     @balances ||= date_range.map do |date|
       balance = payments.select do |payment|
         payment.schedule.occurs_on? date
-      end.reduce(0.0) do |m,payment| 
+      end.reduce(0.0) do |m,payment|
         amount =
           if payment.type == 'Receive'
-            payment.amount 
+            payment.amount
           else
-            -payment.amount 
+            -payment.amount
           end
         m + amount
       end
       {
-        balance: (sum += balance), 
+        balance: (sum += balance),
         date: date
       }
     end
