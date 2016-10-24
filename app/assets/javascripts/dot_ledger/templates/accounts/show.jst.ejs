@@ -15,7 +15,12 @@
 
   </div>
   <h1><%- name %> <small><%= DotLedger.Helpers.Format.money(balance) %></small></h1>
-  <small><%= type %> &mdash; <%= number %></small>
+  <small>
+    <% if (account_group_name) { %>
+      <%= account_group_name %> &mdash;
+    <% } %>
+    <%= type %> &mdash; <%= number %>
+  </small>
   <small class="text-muted pull-right">Updated <time datetime="<%= updated_at %>"><%= DotLedger.Helpers.Format.agoDate(updated_at) %></time></small>
 </div>
 

@@ -1,7 +1,6 @@
 describe "DotLedger.Views.Accounts.Show", ->
-  createView = ->
-    balances = new DotLedger.Collections.Balances
-    model =  new DotLedger.Models.Account
+  createModel = ->
+    new DotLedger.Models.Account
       name: 'Some Account'
       type: 'Savings'
       number: '123'
@@ -11,6 +10,11 @@ describe "DotLedger.Views.Accounts.Show", ->
       review_transaction_count: 15
       balance: 123.45
       updated_at: '2013-01-01T01:00:00Z'
+      account_group_id: 2
+      account_group_name: "Personal"
+
+  createView = (model = createModel()) ->
+    balances = new DotLedger.Collections.Balances
 
     view = new DotLedger.Views.Accounts.Show
       model: model
@@ -26,6 +30,10 @@ describe "DotLedger.Views.Accounts.Show", ->
   it "can be rendered", ->
     view = createView()
     expect(view.render).not.toThrow()
+
+  it "renders the account group name", ->
+    view = createView().render()
+    expect(view.$el).toHaveText(/Personal/)
 
   it "renders the account name", ->
     view = createView().render()
