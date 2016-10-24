@@ -9,7 +9,7 @@ class Category < ActiveRecord::Base
 
   has_one :goal, dependent: :destroy
 
-  CATEGORY_TYPES = %w(Flexible Essential Income Transfer)
+  CATEGORY_TYPES = %w(Flexible Essential Income Transfer).freeze
 
   validates :name, presence: true, uniqueness: true
 

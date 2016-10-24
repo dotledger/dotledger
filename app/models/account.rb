@@ -9,7 +9,7 @@ class Account < ActiveRecord::Base
 
   has_many :sorted_transactions, dependent: :restrict_with_error
 
-  ACCOUNT_TYPES = ['Cheque', 'Savings', 'Credit Card', 'Other']
+  ACCOUNT_TYPES = ['Cheque', 'Savings', 'Credit Card', 'Other'].freeze
 
   validates :name, presence: true
 
