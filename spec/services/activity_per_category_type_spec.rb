@@ -48,10 +48,10 @@ describe ActivityPerCategoryType do
     end
 
     it 'returns the correct category type' do
-      expect(subject.activity_per_category_type[0].type).to eq "Essential"
-      expect(subject.activity_per_category_type[1].type).to eq "Flexible"
-      expect(subject.activity_per_category_type[2].type).to eq "Income"
-      expect(subject.activity_per_category_type[3].type).to eq "Uncategorised"
+      expect(subject.activity_per_category_type[0].type).to eq 'Essential'
+      expect(subject.activity_per_category_type[1].type).to eq 'Flexible'
+      expect(subject.activity_per_category_type[2].type).to eq 'Income'
+      expect(subject.activity_per_category_type[3].type).to eq 'Uncategorised'
     end
   end
 end

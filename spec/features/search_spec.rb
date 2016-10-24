@@ -10,7 +10,7 @@ feature 'Search', truncate: true, js: true do
   describe 'results' do
     context 'with query' do
       before do
-        visit "/search?query=Foobar"
+        visit '/search?query=Foobar'
       end
 
       it 'sets the correct page title' do

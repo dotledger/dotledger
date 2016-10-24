@@ -66,13 +66,13 @@ describe Api::GoalsController do
     it 'updates the type' do
       expect do
         valid_request
-      end.to change { goal.reload.type }.from("Spend").to("Receive")
+      end.to change { goal.reload.type }.from('Spend').to('Receive')
     end
 
     it 'updates the period' do
       expect do
         valid_request
-      end.to change { goal.reload.period }.from("Month").to("Week")
+      end.to change { goal.reload.period }.from('Month').to('Week')
     end
   end
 

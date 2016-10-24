@@ -5,7 +5,7 @@ class AddTypeToGoals < ActiveRecord::Migration
   end
 
   def down
-    Goal.where(type: 'Receive').update_all("amount = -amount")
+    Goal.where(type: 'Receive').update_all('amount = -amount')
     remove_column :goals, :type
   end
 end

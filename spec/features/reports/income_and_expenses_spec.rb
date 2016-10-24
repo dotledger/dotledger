@@ -27,7 +27,7 @@ feature 'IncomeAndExpenses', truncate: true, js: true do
     end
 
     before do
-      visit "/reports/income-and-expenses"
+      visit '/reports/income-and-expenses'
     end
 
     it 'sets the correct page title' do
