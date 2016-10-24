@@ -7,6 +7,8 @@ describe Goal do
 
   it { should have_db_column(:period).of_type(:string).with_options(null: false, default: 'Month') }
 
+  it { should have_db_column(:type).of_type(:string).with_options(null: false, default: 'Spend') }
+
   it { should validate_presence_of :category }
 
   it { should validate_presence_of :amount }
