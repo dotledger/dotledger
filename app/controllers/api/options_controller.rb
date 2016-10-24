@@ -5,6 +5,7 @@ module Api
         account_types: Account::ACCOUNT_TYPES,
         category_types: Category::CATEGORY_TYPES,
         goal_periods: Goal::GOAL_PERIODS,
+        goal_types: Goal::GOAL_TYPES,
         payment_types: Payment::PAYMENT_TYPES,
         payment_periods: Payment::PAYMENT_PERIODS
       )
@@ -20,6 +21,10 @@ module Api
 
     def goal_periods
       respond_with goal_periods: Goal::GOAL_PERIODS
+    end
+
+    def goal_types
+      respond_with goal_types: Goal::GOAL_TYPES
     end
 
     def payment_types

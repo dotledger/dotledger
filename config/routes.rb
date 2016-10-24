@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get 'options/account_types'
     get 'options/category_types'
     get 'options/goal_periods'
+    get 'options/goal_types'
     get 'options/payment_types'
     get 'options/payment_periods'
   end

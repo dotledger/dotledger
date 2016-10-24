@@ -11,6 +11,7 @@ describe Api::OptionsController do
         account_types: Account::ACCOUNT_TYPES,
         category_types: Category::CATEGORY_TYPES,
         goal_periods: Goal::GOAL_PERIODS,
+        goal_types: Goal::GOAL_TYPES,
         payment_types: Payment::PAYMENT_TYPES,
         payment_periods: Payment::PAYMENT_PERIODS
       }.to_json)
@@ -49,6 +50,18 @@ describe Api::OptionsController do
     it 'returns all goal_periods' do
       expect(response.body).to eq({
         goal_periods: Goal::GOAL_PERIODS
+      }.to_json)
+    end
+  end
+
+  describe 'GET goal_types' do
+    before { get :goal_types }
+
+    it { should respond_with :success }
+
+    it 'returns all goal_types' do
+      expect(response.body).to eq({
+        goal_types: Goal::GOAL_TYPES
       }.to_json)
     end
   end
