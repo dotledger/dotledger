@@ -13,7 +13,7 @@ class Goal < ActiveRecord::Base
 
   validates :category, presence: true
 
-  validates :amount, presence: true
+  validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0.0 }
 
   validates :type, presence: true, inclusion: GOAL_TYPES
 
