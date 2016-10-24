@@ -45,7 +45,7 @@ module Api
     end
 
     def goal_params
-      params.permit(:category_id, :amount, :period)
+      params.permit(:category_id, :amount, :period, :type)
     end
   end
 end

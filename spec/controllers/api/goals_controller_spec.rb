@@ -47,7 +47,9 @@ describe Api::GoalsController do
     def valid_request
       put :update,
           id: goal.id,
-          amount: 500
+          amount: 500,
+          type: 'Receive',
+          period: 'Week'
     end
 
     it 'responds with 200' do
@@ -59,6 +61,18 @@ describe Api::GoalsController do
       expect do
         valid_request
       end.to change { goal.reload.amount }.from(0.0).to(500)
+    end
+
+    it 'updates the type' do
+      expect do
+        valid_request
+      end.to change { goal.reload.type }.from("Spend").to("Receive")
+    end
+
+    it 'updates the period' do
+      expect do
+        valid_request
+      end.to change { goal.reload.period }.from("Month").to("Week")
     end
   end
 
