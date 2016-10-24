@@ -9,16 +9,16 @@ class SortingRule < ActiveRecord::Base
 
   delegate :name, to: :category, prefix: true
 
-  scope :with_category, proc {|category_id|
+  scope :with_category, proc { |category_id|
     where(category_id: category_id)
   }
 
-  scope :with_tags, proc {|tag_ids|
+  scope :with_tags, proc { |tag_ids|
     tag_ids = Array(tag_ids).flatten.map(&:to_i)
     where([tag_ids.map { '? = ANY(tag_ids)' }.join(' OR '), *tag_ids])
   }
 
-  scope :search_query, proc {|search_query|
+  scope :search_query, proc { |search_query|
     table = SortingRule.arel_table
     wildcard_search_query = "%#{search_query}%"
 

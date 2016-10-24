@@ -34,7 +34,7 @@ class Transaction < ActiveRecord::Base
   }
 
   # FIXME: Solr, Sphinx, ElasticSearch...?
-  scope :search_query, proc {|search_query|
+  scope :search_query, proc { |search_query|
     transactions = Transaction.arel_table
     sorted_transactions = SortedTransaction.arel_table
     wildcard_search_query = "%#{search_query}%"
@@ -48,15 +48,15 @@ class Transaction < ActiveRecord::Base
       .references(:sorted_transactions)
   }
 
-  scope :with_category, proc {|category_id|
+  scope :with_category, proc { |category_id|
     includes(:sorted_transaction).where(sorted_transactions: { category_id: category_id })
   }
 
-  scope :between_dates, proc {|date_from, date_to|
+  scope :between_dates, proc { |date_from, date_to|
     includes(:sorted_transaction).where(posted_at: (Date.parse(date_from)..Date.parse(date_to)))
   }
 
-  scope :with_tags, proc {|tag_ids|
+  scope :with_tags, proc { |tag_ids|
     tag_ids = Array(tag_ids).flatten.map(&:to_i)
     includes(:sorted_transaction)
       .where([tag_ids.map { '? = ANY(sorted_transactions.tag_ids)' }.join(' OR '), *tag_ids])

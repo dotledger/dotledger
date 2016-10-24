@@ -18,15 +18,15 @@ class ActivityPerCategory
   end
 
   def total_spent
-    query.inject(0) {|memo, category| category.spent + memo }
+    query.inject(0) { |memo, category| category.spent + memo }
   end
 
   def total_received
-    query.inject(0) {|memo, category| category.received + memo }
+    query.inject(0) { |memo, category| category.received + memo }
   end
 
   def total_net
-    query.inject(0) {|memo, category| category.net + memo }
+    query.inject(0) { |memo, category| category.net + memo }
   end
 
   private
