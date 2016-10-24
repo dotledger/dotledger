@@ -5,6 +5,7 @@ describe "DotLedger.Views.Goals.ListItem", ->
       id: 1
       amount: "1000.0"
       period: "Month"
+      type: "Spend"
       category_id: 1
       category_name: "Cash Withdrawals"
       category_type: "Flexible"
@@ -28,6 +29,10 @@ describe "DotLedger.Views.Goals.ListItem", ->
   it "renders the period select", ->
     view = createView().render()
     expect(view.$el).toContainElement('select[name=period]')
+
+  it "renders the type select", ->
+    view = createView().render()
+    expect(view.$el).toContainElement('select[name=type]')
 
   it "renders the category name", ->
     view = createView().render()

@@ -7,6 +7,7 @@ DotLedger.module 'Views.Goals', ->
     ui:
       amount: 'input[name=amount]'
       period: 'select[name=period]'
+      type: 'select[name=type]'
 
     initialize: ->
       @hasChanged = false
@@ -18,7 +19,15 @@ DotLedger.module 'Views.Goals', ->
 
       @ui.amount.val(@model.get('amount'))
 
+      @renderGoalTypes()
       @renderGoalPeriods()
+
+    renderGoalTypes: (data = DotLedgerData)->
+      @ui.type.empty()
+      _.each data.goal_types, (option)=>
+        $option = $("<option value='#{option}'>#{option}</option>")
+        @ui.type.append($option)
+      @ui.type.val(@model.get('type'))
 
     renderGoalPeriods: (data = DotLedgerData)->
       @ui.period.empty()
@@ -41,6 +50,7 @@ DotLedger.module 'Views.Goals', ->
       data =
         amount: @ui.amount.val()
         period: @ui.period.val()
+        type: @ui.type.val()
 
       @model.set(data)
 
