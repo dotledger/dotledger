@@ -5,5 +5,6 @@ FactoryGirl.define do
     category
     amount 1000
     period 'Month'
+    type 'Spend'
   end
 end

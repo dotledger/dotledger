@@ -17,6 +17,10 @@ describe Goal do
 
   it { should validate_inclusion_of(:period).in_array(%w(Month Fortnight Week)) }
 
+  it { should validate_presence_of :type }
+
+  it { should validate_inclusion_of(:type).in_array(%w(Spend Receive)) }
+
   it { should belong_to :category }
 
   describe '.month_amount' do

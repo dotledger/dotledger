@@ -1,5 +1,9 @@
 class Goal < ActiveRecord::Base
+  self.inheritance_column = nil
+
   GOAL_PERIODS = %w(Month Fortnight Week)
+
+  GOAL_TYPES = %w(Spend Receive)
 
   FORTNIGHT_MULTIPLIER = 13.0 / 6
 
@@ -10,6 +14,8 @@ class Goal < ActiveRecord::Base
   validates :category, presence: true
 
   validates :amount, presence: true
+
+  validates :type, presence: true, inclusion: GOAL_TYPES
 
   validates :period, presence: true, inclusion: GOAL_PERIODS
 
