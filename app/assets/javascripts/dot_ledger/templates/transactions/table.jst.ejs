@@ -2,6 +2,9 @@
   <thead>
     <tr>
       <th>Date</th>
+      <% if (showAccountName()) { %>
+        <th>Account</th>
+      <% } %>
       <th>Name</th>
       <th>Category</th>
       <th>Spent</th>

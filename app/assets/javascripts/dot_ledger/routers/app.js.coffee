@@ -436,6 +436,7 @@ DotLedger.module 'Routers', ->
 
       searchResults = new DotLedger.Views.Transactions.Table(
         collection: transactions
+        showAccountName: true
       )
 
       DotLedger.mainRegion.show(searchLayout)

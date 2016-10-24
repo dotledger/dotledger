@@ -50,6 +50,10 @@ DotLedger.module 'Views.Transactions', ->
       form
 
     templateHelpers: ->
+      showAccountName: =>
+        !!@options.showAccountName
+      accountName: =>
+        @model.get('account_name')
       name: =>
         if @model.has('sorted_transaction')
           @model.get('sorted_transaction').name

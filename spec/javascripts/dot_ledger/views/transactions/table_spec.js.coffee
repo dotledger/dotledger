@@ -1,9 +1,11 @@
 describe "DotLedger.Views.Transactions.Table", ->
-  createView = ->
-    collection =  new DotLedger.Collections.Transactions
+  createCollection = ->
+    new DotLedger.Collections.Transactions()
 
+  createView = (collection = createCollection(), showAccountName = undefined) ->
     view = new DotLedger.Views.Transactions.Table
       collection: collection
+      showAccountName: showAccountName
     view
 
   it "should be defined", ->
@@ -35,3 +37,12 @@ describe "DotLedger.Views.Transactions.Table", ->
   it "renders the received label", ->
     view = createView().render()
     expect(view.$el).toContainText('Received')
+
+  it "does not render the account label", ->
+    view = createView().render()
+    expect(view.$el).not.toContainText('Account')
+
+  describe "with showAccountName = true", ->
+    it "renders the account label", ->
+      view = createView(createCollection(), true).render()
+      expect(view.$el).toContainText('Account')

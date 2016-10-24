@@ -19,14 +19,16 @@ describe "DotLedger.Views.Transactions.TableRow", ->
 
   createModel = ->
     new DotLedger.Models.Transaction
+      account_name: 'Eftpos'
       search: 'Some Name'
       amount: '10.00'
       posted_at: '2013-01-01'
       id: 1
 
-  createView = (model = createModel()) ->
+  createView = (model = createModel(), showAccountName = undefined) ->
     new DotLedger.Views.Transactions.TableRow
       model: model
+      showAccountName: showAccountName
 
   it "should be defined", ->
     expect(DotLedger.Views.Transactions.TableRow).toBeDefined()
@@ -45,6 +47,15 @@ describe "DotLedger.Views.Transactions.TableRow", ->
   it "renders the posted at date", ->
     view = createView().render()
     expect(view.$el).toContainElement('time[datetime="2013-01-01"]')
+
+  it "does not render the account name", ->
+    view = createView().render()
+    expect(view.$el).not.toContainText('Eftpos')
+
+  describe "with showAccountName = true", ->
+    it "renders the account name", ->
+      view = createView(createModel(), true).render()
+      expect(view.$el).toContainText('Eftpos')
 
   describe "transaction unsorted", ->
     it "renders sort button", ->
