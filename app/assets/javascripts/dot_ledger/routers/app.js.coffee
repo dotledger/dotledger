@@ -473,10 +473,13 @@ DotLedger.module 'Routers', ->
         filterView.render()
         date_to = moment()
         period = @QueryParams.get('period')
-        if period == 'mtd'
-          date_from = moment().startOf('month')
-        else
-          date_from = moment().subtract('day', period)
+        switch period
+          when "mtd"
+            date_from = moment().startOf('month')
+          when "ytd"
+            date_from = moment().startOf('year')
+          else
+            date_from = moment().subtract(period, 'days')
 
         category_statistics.fetch
           data:
