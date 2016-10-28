@@ -31,7 +31,7 @@ DotLedger.module 'Behaviors', ->
       if @options.showNoneOption
         $accountGroupSelect.append('<option value="-1">None</option>')
 
-      @account_groups.each (account_group) =>
+      @account_groups.each (account_group) ->
         $option = $("<option value='#{account_group.get('id')}'>#{account_group.get('name')}</option>")
         $accountGroupSelect.append($option)
 

@@ -27,7 +27,7 @@ DotLedger.module 'Behaviors', ->
       if @options.showAnyOption
         $tagSelect.append('<option value="">Any</option>')
 
-      @tags.each (tag) =>
+      @tags.each (tag) ->
         $option = $("<option value='#{tag.get('id')}'>#{tag.get('name')}</option>")
         $tagSelect.append($option)
 

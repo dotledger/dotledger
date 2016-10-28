@@ -9,6 +9,6 @@ DotLedger.module 'Helpers', ->
         url: "/api/transactions/sort"
         type: 'POST'
         data: data
-        success: (response)=>
+        success: (response)->
           DotLedger.Helpers.Notification.success(response.message)
           DotLedger.Helpers.Loading.stop()
