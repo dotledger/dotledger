@@ -44,7 +44,7 @@ class DotLedgerExporter
 
   def export_goals
     data['Goals'] = Goal.all.map do |goal|
-      goal.slice(:category_name, :amount, :period).tap do |goal_hash|
+      goal.slice(:category_name, :type, :amount, :period).tap do |goal_hash|
         goal_hash[:amount] = goal_hash[:amount].to_f
       end.to_hash
     end

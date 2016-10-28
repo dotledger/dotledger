@@ -50,6 +50,7 @@ describe DotLedgerExporter do
       'Goals' => [
         {
           'category_name' => 'Category 1',
+          'type' => 'Spend',
           'amount' => 123.45,
           'period' => 'Month'
         }
