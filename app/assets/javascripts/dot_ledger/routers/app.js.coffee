@@ -483,8 +483,8 @@ DotLedger.module 'Routers', ->
 
         category_statistics.fetch
           data:
-            date_to: date_to.format('YYYY-MM-DD')
-            date_from: date_from.format('YYYY-MM-DD')
+            date_to: DotLedger.Helpers.Format.queryDate(date_to)
+            date_from: DotLedger.Helpers.Format.queryDate(date_from)
           success: ->
             activity = new DotLedger.Views.Reports.IncomeAndExpenses.Table(
               collection: category_statistics
