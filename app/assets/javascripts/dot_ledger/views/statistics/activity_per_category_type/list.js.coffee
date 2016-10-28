@@ -18,19 +18,19 @@ DotLedger.module 'Views.Statistics.ActivityPerCategoryType', ->
 
     pieGraphData: ->
       @collection.map (activity) ->
-         {
-           label: activity.get('type')
-           data: Math.abs(activity.get('net'))
-         }
+        {
+          label: activity.get('type')
+          data: Math.abs(activity.get('net'))
+        }
 
     pieGraphOptions: ->
       series: {
-          pie: {
-              show: true
-          }
+        pie: {
+          show: true
+        }
       },
       legend: {
-          show: false
+        show: false
       }
 
     renderPieGraph: ->
