@@ -31,7 +31,7 @@ DotLedger.module 'Behaviors', ->
       if @options.showNoneOption
         $categorySelect.append('<option value="-1">None</option>')
 
-      _.each @categories.groupBy('type'), (categories, label) =>
+      _.each @categories.groupBy('type'), (categories, label) ->
         $optgroup = $("<optgroup label='#{label}'></optgroup>")
         _.each categories, (category) ->
           $option = $("<option value='#{category.get('id')}'>#{category.get('name')}</option>")

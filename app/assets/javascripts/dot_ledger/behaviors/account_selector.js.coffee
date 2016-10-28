@@ -27,7 +27,7 @@ DotLedger.module 'Behaviors', ->
       if @options.showAnyOption
         $accountSelect.append('<option value="">Any</option>')
 
-      _.each @accounts.groupBy('account_group_name'), (accounts, label) =>
+      _.each @accounts.groupBy('account_group_name'), (accounts, label) ->
         if label == 'null'
           label = 'Other'
         $optgroup = $("<optgroup label='#{label}'></optgroup>")
