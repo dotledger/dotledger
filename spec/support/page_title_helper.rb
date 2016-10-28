@@ -6,6 +6,6 @@ module PageTitleHelper
 
     title = parts.join seperator
 
-    expect(page.title).to eq title
+    expect(page).to have_title title
   end
 end
