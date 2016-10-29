@@ -15,7 +15,7 @@
     <ul class="nav navbar-nav">
       <li class="<%= activeClass('root') %>"><a href="<%= DotLedger.path.root() %>">Dashboard</a></li>
       <li class="dropdown <%= activeClass('showAccount', 'newAccount', 'editAccount', 'importStatement', 'listStatements') %>">
-        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts</a>
+        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <% _.each(accounts().groupBy('account_group_name'), function(accounts, label, list) { %>
             <li class="dropdown-header"><%= label === 'null' ? '<i>Other</i>' : label %></li>
@@ -31,13 +31,13 @@
       <li class="<%= activeClass('listGoals') %>"><a href="<%= DotLedger.path.listGoals() %>">Goals</a></li>
       <li class="<%= activeClass('listPayments', 'newPayment', 'editPayment') %>"><a href="<%= DotLedger.path.listPayments() %>">Payments</a></li>
       <li class="dropdown <%= activeClass('incomeAndExpenses') %>">
-        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Reports</a>
+        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Reports <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="<%= DotLedger.path.incomeAndExpenses() %>">Income and Expenses</a></li>
         </ul>
       </li>
       <li class="dropdown <%= activeClass('listCategories', 'newCategory', 'editCategory','listSortingRules', 'newSortingRule', 'editSortingRule') %>">
-        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
+        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li class="<%= activeClass('listCategories', 'newCategory', 'editCategory') %>"><a href="<%= DotLedger.path.listCategories() %>">Categories</a></li>
           <li class="<%= activeClass('listSortingRules', 'newSortingRule', 'editSortingRule') %>"><a href="<%= DotLedger.path.listSortingRules() %>">Sorting Rules</a></li>
