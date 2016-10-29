@@ -8,6 +8,7 @@ describe "DotLedger.Views.Accounts.List", ->
           balance: 10.00
           updated_at: '2013-01-01T01:00:00Z'
           unsorted_transaction_count: 0
+          account_group_id: '1'
           account_group_name: 'Group A'
         }
         {
@@ -16,6 +17,7 @@ describe "DotLedger.Views.Accounts.List", ->
           balance: 12.00
           updated_at: '2013-01-02T01:00:00Z'
           unsorted_transaction_count: 10
+          account_group_id: '1'
           account_group_name: 'Group A'
         }
         {
@@ -24,6 +26,7 @@ describe "DotLedger.Views.Accounts.List", ->
           balance: -12.00
           updated_at: '2013-01-03T01:00:00Z'
           unsorted_transaction_count: 12
+          account_group_id: '2'
           account_group_name: 'Group B'
         }
       ]
