@@ -24,8 +24,6 @@ gem 'ice_cube'
 
 gem 'bootstrap-sass'
 
-gem 'font-awesome-rails'
-
 gem 'responders', '~> 2.0'
 
 group :development, :test do

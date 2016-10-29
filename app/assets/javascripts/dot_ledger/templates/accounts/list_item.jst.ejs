@@ -3,7 +3,7 @@
   <% if (unsorted_transaction_count) { %>
     <div class="text-muted"><small><a href="<%= DotLedger.path.showAccount({id: id, tab: 'unsorted', page: 1}) %>"><%= unsorted_transaction_count %> unsorted</a></small></div>
   <% } else { %>
-    <div class="text-success"><small>sorted! <span class="fa fa-check-circle"></span></small></div>
+    <div class="text-success"><small>sorted!</small></div>
   <% } %>
 </span>
 <h4 class="list-group-item-heading"><a href="<%= DotLedger.path.showAccount({id: id, tab: 'sorted', page: 1}) %>"><%- name %></a></h4>
