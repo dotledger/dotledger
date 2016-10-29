@@ -324,12 +324,17 @@ DotLedger.module 'Routers', ->
           DotLedger.mainRegion.show(list)
 
     listPayments: ->
+      @QueryParams.on 'change', =>
+        DotLedger.navigate.listPayments(@QueryParams.attributes, replace: true)
+
+      @QueryParams.set(period: 90) unless @QueryParams.has('period')
+
       payments = new DotLedger.Collections.Payments()
 
       paymentsView = new DotLedger.Views.Payments.Payments()
 
       balanceGraph = new DotLedger.Views.Payments.ProjectedBalanceGraph
-        days: 90
+        params: @QueryParams
 
       list = new DotLedger.Views.Payments.List
         collection: payments

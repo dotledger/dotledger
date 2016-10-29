@@ -4,14 +4,31 @@ DotLedger.module 'Views.Payments', ->
 
     template: 'payments/projected_balance_graph'
 
-    initialize: ->
+    initialize: (options)->
       @balances = new DotLedger.Collections.ProjectedBalances()
+      @params = options.params
+
+    events:
+      'click a[data-period]': 'clickPeriod'
+
+    setActivePeriod: ->
+      @$el.find("a[data-period]").parent().removeClass('active')
+      @$el.find("a[data-period='#{@params.get('period')}']").parent().addClass('active')
+
+    clickPeriod: (event)->
+      event.preventDefault()
+      @params.set(period: $(event.target).data('period'))
+      @setActivePeriod()
+      @fetchBalances()
 
     fetchBalances: ->
+      date_from = moment()
+      date_to = moment().add(@params.get('period'), 'days')
+      
       @balances.fetch
         data:
-          date_from: DotLedger.Helpers.Format.queryDate()
-          date_to: DotLedger.Helpers.Format.queryDate(moment().add(@options.days, 'days'))
+          date_from: DotLedger.Helpers.Format.queryDate(date_from)
+          date_to: DotLedger.Helpers.Format.queryDate(date_to)
 
     ui:
       balanceGraph: '.balance .graph'
@@ -48,6 +65,8 @@ DotLedger.module 'Views.Payments', ->
         tickColor: 'rgba(238, 238, 238, 1)'
 
     renderBalanceGraph: ->
+      @setActivePeriod()
+
       if @isRendered
         @graph = $.plot(@ui.balanceGraph, @balanceGraphData(), @balanceGraphOptions())
         @ui.balanceGraph.bind "plothover", (event, pos, item) =>
