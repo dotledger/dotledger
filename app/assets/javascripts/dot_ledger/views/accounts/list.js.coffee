@@ -4,20 +4,22 @@ DotLedger.module 'Views.Accounts', ->
     template: 'accounts/list'
     getChildView: -> DotLedger.Views.Accounts.ListItem
     attachHtml: (collectionView, childView, index)->
-      list_id =  "account-group-#{s.underscored(childView.model.get('account_group_name'))}"
+      list_id = "account_group_#{childView.model.get('account_group_id')}"
       collectionView.$("div##{list_id}").append(childView.el)
     templateHelpers: ->
       accountGroups: =>
-        accountGroups = _.uniq(@collection.pluck('account_group_name'))
-        _.map accountGroups, (name)=>
+        accountGroups = {}
+        @collection.forEach (account)=>
+          accountGroups[account.get('account_group_id')] = account.get('account_group_name')
+        _.map accountGroups, (name, id)=>
           net = @collection.
             chain().
-            select((account)-> account.get('account_group_name') == name).
+            select((account)-> account.get('account_group_id') == id).
             map((account)-> account.get('balance')).
             reduce(((total, balance)->  total + parseFloat(balance)), 0.0).
             value()
           label: name
-          id: "account-group-#{s.underscored(name)}"
+          id: "account_group_#{id}"
           net: net
       totalCash: =>
         balances = @collection.map (account)->
