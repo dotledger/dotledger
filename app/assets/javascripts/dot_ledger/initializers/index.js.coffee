@@ -1,9 +1,0 @@
-#= require ./ajax_errors
-#= require ./ajax_loading
-#= require ./anchor_clicks
-#= require ./footer
-#= require ./main_nav
-#= require ./modal_region
-#= require ./options
-#= require ./page_title
-#= require ./router

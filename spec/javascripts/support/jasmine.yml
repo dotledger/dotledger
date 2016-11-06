@@ -1,6 +1,6 @@
 # Boot files are included before source files
 boot_files:
-  - "boot/**/*.{js,coffee}"
+  - "boot/**/*.js"
 # path to parent directory of src_files
 # relative path from Rails.root
 # defaults to app/assets/javascripts
@@ -9,7 +9,7 @@ src_dir: "app/assets/javascripts"
 # relative path from scr_dir
 src_files:
  - "assets/jasmine-jquery.js"
- - "application.js.coffee"
+ - "application.js"
  # path to parent directory of spec_files
 # relative path from Rails.root
 # defaults to spec/javascripts
@@ -17,8 +17,8 @@ spec_dir: "spec/javascripts"
  # list of file expressions to include as helpers into spec runner
 # relative path from spec_dir
 helpers:
-  - "helpers/**/*.{js,coffee}"
+  - "helpers/**/*.js"
  # list of file expressions to include as specs into spec runner
 # relative path from spec_dir
 spec_files:
-  - "**/*[Ss]pec.js.coffee"
+  - "**/*_spec.js"
