@@ -1,0 +1,14 @@
+*
+!app
+!bin
+!config
+!db
+!lib
+!public
+!vendor
+!Gemfile
+!Gemfile.lock
+!Rakefile
+!config.ru
+!docker-entrypoint.sh
+!.ruby-version
