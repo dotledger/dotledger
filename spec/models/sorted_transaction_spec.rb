@@ -71,7 +71,7 @@ describe SortedTransaction do
     end
 
     describe '.tag_list' do
-      subject { FactoryBot.build :sorting_rule, tag_ids: [tag1.id, tag2.id] }
+      subject { FactoryBot.build :sorted_transaction, tag_ids: [tag1.id, tag2.id] }
 
       specify do
         expect(subject.tag_list).to eq [tag1.name, tag2.name]
@@ -79,7 +79,7 @@ describe SortedTransaction do
     end
 
     describe '.tag_list=' do
-      subject { FactoryBot.build :sorting_rule, tag_ids: [] }
+      subject { FactoryBot.build :sorted_transaction, tag_ids: [] }
 
       before do
         subject.tag_list = [tag1.name, tag2.name]
