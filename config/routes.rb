@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :account_groups
     resources :categories
     resources :goals
+    resources :saved_searches
     resources :sorted_transactions
     resources :sorting_rules
     resources :statements, only: %i[index show create destroy]
