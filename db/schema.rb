@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180307094811) do
+ActiveRecord::Schema.define(version: 20180313052221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,24 @@ ActiveRecord::Schema.define(version: 20180307094811) do
   end
 
   add_index "payments", ["category_id"], name: "index_payments_on_category_id", using: :btree
+
+  create_table "saved_searches", force: :cascade do |t|
+    t.string   "name",                       null: false
+    t.string   "query"
+    t.integer  "category_id"
+    t.string   "category_type"
+    t.datetime "date_from"
+    t.datetime "date_to"
+    t.string   "period_from"
+    t.string   "period_to"
+    t.integer  "tag_ids",                                 array: true
+    t.integer  "account_id"
+    t.string   "review",        default: "", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "saved_searches", ["name"], name: "index_saved_searches_on_name", unique: true, using: :btree
 
   create_table "sorted_transactions", force: :cascade do |t|
     t.string   "name",           limit: 255,                 null: false
