@@ -31,6 +31,9 @@ Rails.application.routes.draw do
     get 'options/goal_types'
     get 'options/payment_types'
     get 'options/payment_periods'
+    get 'options/saved_search_review'
+    get 'options/saved_search_period_from'
+    get 'options/saved_search_period_to'
   end
 
   if Rails.env.development? || Rails.env.test?

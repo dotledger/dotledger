@@ -14,7 +14,10 @@ describe Api::OptionsController do
           goal_periods: Goal::GOAL_PERIODS,
           goal_types: Goal::GOAL_TYPES,
           payment_types: Payment::PAYMENT_TYPES,
-          payment_periods: Payment::PAYMENT_PERIODS
+          payment_periods: Payment::PAYMENT_PERIODS,
+          saved_search_review: SavedSearch::REVIEW,
+          saved_search_period_from: SavedSearch::PERIOD_FROM,
+          saved_search_period_to: SavedSearch::PERIOD_TO
         }.to_json
       )
     end
@@ -101,6 +104,42 @@ describe Api::OptionsController do
           payment_periods: Payment::PAYMENT_PERIODS
         }.to_json
       )
+    end
+  end
+
+  describe 'GET saved_search_review' do
+    before { get :saved_search_review }
+
+    it { should respond_with :success }
+
+    it 'returns all saved_search_review' do
+      expect(response.body).to eq({
+        saved_search_review: SavedSearch::REVIEW
+      }.to_json)
+    end
+  end
+
+  describe 'GET saved_search_period_from' do
+    before { get :saved_search_period_from }
+
+    it { should respond_with :success }
+
+    it 'returns all saved_search_period_from' do
+      expect(response.body).to eq({
+        saved_search_period_from: SavedSearch::PERIOD_FROM
+      }.to_json)
+    end
+  end
+
+  describe 'GET saved_search_period_to' do
+    before { get :saved_search_period_to }
+
+    it { should respond_with :success }
+
+    it 'returns all saved_search_period_to' do
+      expect(response.body).to eq({
+        saved_search_period_to: SavedSearch::PERIOD_TO
+      }.to_json)
     end
   end
 end

@@ -7,7 +7,10 @@ module Api
         goal_periods: Goal::GOAL_PERIODS,
         goal_types: Goal::GOAL_TYPES,
         payment_types: Payment::PAYMENT_TYPES,
-        payment_periods: Payment::PAYMENT_PERIODS
+        payment_periods: Payment::PAYMENT_PERIODS,
+        saved_search_review: SavedSearch::REVIEW,
+        saved_search_period_from: SavedSearch::PERIOD_FROM,
+        saved_search_period_to: SavedSearch::PERIOD_TO
       )
     end
 
@@ -33,6 +36,18 @@ module Api
 
     def payment_periods
       respond_with payment_periods: Payment::PAYMENT_PERIODS
+    end
+
+    def saved_search_review
+      respond_with saved_search_review: SavedSearch::REVIEW
+    end
+
+    def saved_search_period_from
+      respond_with saved_search_period_from: SavedSearch::PERIOD_FROM
+    end
+
+    def saved_search_period_to
+      respond_with saved_search_period_to: SavedSearch::PERIOD_TO
     end
   end
 end
