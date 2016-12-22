@@ -31,7 +31,7 @@ DotLedger.module('Routers', function () {
     'payments/new': 'newPayment',
     'payments/:id/edit': 'editPayment',
 
-    // Accoun Groups
+    // Account Groups
     'account-groups/new': 'newAccountGroup',
     'account-groups/:id/edit': 'editAccountGroup',
     'account-groups': 'listAccountGroups',
