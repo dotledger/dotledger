@@ -17,27 +17,26 @@ DotLedger.module('Views.Accounts', function () {
     templateHelpers: function () {
       return {
         accountGroups: _.bind(function () {
-          var accountGroups;
-          accountGroups = {};
-          this.collection.forEach(function (account) {
-            accountGroups[account.get('account_group_id')] = account.get('account_group_name');
-          });
+          return this.collection.chain().map(function (account) {
+            return [
+              account.get('account_group_id'),
+              account.get('account_group_name')
+            ];
+          }).
+            object().
+            map(_.bind(function (name, id) {
+              var net = this.collection.chain().select(function (account) {
+                return account.get('account_group_id') === id * 1;
+              }).reduce(function (total, account) {
+                return total + parseFloat(account.get('balance'));
+              }, 0.0).value();
 
-          return _.map(accountGroups, _.bind(function (name, id) {
-            var net;
-            net = this.collection.chain().select(function (account) {
-              return account.get('account_group_id') === id;
-            }).map(function (account) {
-              return account.get('balance');
-            }).reduce(function (total, balance) {
-              return total + parseFloat(balance);
-            }, 0.0).value();
-            return {
-              label: name,
-              id: 'account_group_' + id,
-              net: net
-            };
-          }, this));
+              return {
+                label: name,
+                id: 'account_group_' + id,
+                net: net
+              };
+            }, this)).value();
         }, this),
         totalCash: _.bind(function () {
           var balances;
