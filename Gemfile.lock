@@ -167,7 +167,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
-    sass (3.4.22)
+    sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
       sass (~> 3.1)
