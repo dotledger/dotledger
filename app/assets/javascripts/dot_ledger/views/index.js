@@ -5,6 +5,7 @@
 // = require ./goals
 // = require ./payments
 // = require ./reports
+// = require ./saved_searches
 // = require ./search
 // = require ./sorted_transactions
 // = require ./sorting_rules

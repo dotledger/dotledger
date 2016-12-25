@@ -1,0 +1,96 @@
+<div class="page-header">
+  <h1><%- pageHeader() %></h1>
+</div>
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="saved_search_name" class="col-md-2 control-label">Name</label>
+    <div class="col-md-5">
+      <input type="text" class="form-control" id="saved_search_name" name="name" placeholder="e.g. Pizza" />
+    </div>
+    <div class="errors col-md-5"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="saved_search_query" class="col-md-2 control-label">Search for </label>
+    <div class="col-md-5">
+      <input type="text" class="form-control" id="saved_search_query" name="query" placeholder="e.g. Dominos" />
+    </div>
+    <div class="errors col-md-5"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="saved_search_category" class="col-md-2 control-label">Category</label>
+    <div class="col-md-5">
+      <select class="form-control" id="saved_search_category" name="category"></select>
+    </div>
+    <div class="errors col-md-5"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="saved_search_date_from" class="col-md-2 control-label">From</label>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-5">
+          <input type="text" class="form-control" id="saved_search_date_from" name="date_from" placeholder="e.g. 2011-01-01" />
+        </div>
+        <div class="col-md-1">
+        or
+        </div>
+        <div class="col-md-6">
+          <select class="form-control" id="saved_search_period_from" name="period_from"></select>
+        </div>
+      </div>
+    </div>
+    <div class="errors col-md-5"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="saved_search_date_to" class="col-md-2 control-label">To</label>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-5">
+          <input type="text" class="form-control" id="saved_search_date_to" name="date_to" placeholder="e.g. 2011-12-30" />
+        </div>
+        <div class="col-md-1">
+        or
+        </div>
+        <div class="col-md-6">
+          <select class="form-control" id="saved_search_period_to" name="period_to"></select>
+        </div>
+      </div>
+    </div>
+    <div class="errors col-md-5"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="saved_search_tags" class="col-md-2 control-label">Tags</label>
+    <div class="col-md-5">
+      <select class="form-control" id="saved_search_tags" name="tags"></select>
+    </div>
+    <div class="errors col-md-5"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="saved_search_account" class="col-md-2 control-label">Account</label>
+    <div class="col-md-5">
+      <select class="form-control" id="saved_search_account" name="account"></select>
+    </div>
+    <div class="errors col-md-5"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="saved_search_review" class="col-md-2 control-label">Review</label>
+    <div class="col-md-5">
+      <select class="form-control" id="saved_search_review" name="review"></select>
+    </div>
+    <div class="errors col-md-5"></div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <button type="submit" class="save btn btn-default" title="Save">Save</button>
+      <a class="btn btn-link" href="<%= DotLedger.path.listSavedSearches() %>" title="Cancel">Cancel</a>
+    </div>
+  </div>
+</form>

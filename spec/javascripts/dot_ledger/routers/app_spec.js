@@ -190,18 +190,41 @@ describe('DotLedger.Routers.App', function () {
       expect(router.listAccountGroups).toHaveBeenCalled();
     });
 
-    it('routes to newAccountGroups', function () {
+    it('routes to newAccountGroup', function () {
       var router;
       router = createRouter('newAccountGroup');
       router.navigate('/account-groups/new', navigateOptions);
       expect(router.newAccountGroup).toHaveBeenCalled();
     });
 
-    it('routes to editAccountGroups', function () {
+    it('routes to editAccountGroup', function () {
       var router;
       router = createRouter('editAccountGroup');
       router.navigate('/account-groups/42/edit', navigateOptions);
       expect(router.editAccountGroup).toHaveBeenCalledWith('42', {});
+    });
+  });
+
+  describe('Saved Searches', function () {
+    it('routes to listSavedSearches', function () {
+      var router;
+      router = createRouter('listSavedSearches');
+      router.navigate('/saved-searches', navigateOptions);
+      expect(router.listSavedSearches).toHaveBeenCalled();
+    });
+
+    it('routes to newSavedSearch', function () {
+      var router;
+      router = createRouter('newSavedSearch');
+      router.navigate('/saved-searches/new', navigateOptions);
+      expect(router.newSavedSearch).toHaveBeenCalled();
+    });
+
+    it('routes to editSavedSearch', function () {
+      var router;
+      router = createRouter('editSavedSearch');
+      router.navigate('/saved-searches/42/edit', navigateOptions);
+      expect(router.editSavedSearch).toHaveBeenCalledWith('42', {});
     });
   });
 

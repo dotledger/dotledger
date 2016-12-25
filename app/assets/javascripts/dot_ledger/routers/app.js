@@ -36,6 +36,12 @@ DotLedger.module('Routers', function () {
     'account-groups/:id/edit': 'editAccountGroup',
     'account-groups': 'listAccountGroups',
 
+
+    // Saved Searches
+    'saved-searches/new': 'newSavedSearch',
+    'saved-searches/:id/edit': 'editSavedSearch',
+    'saved-searches': 'listSavedSearches',
+
     // Search
     'search': 'search',
 
@@ -612,6 +618,57 @@ DotLedger.module('Routers', function () {
       });
       form.on('save', function () {
         DotLedger.navigate.listAccountGroups({}, {
+          trigger: true
+        });
+      });
+    },
+
+    listSavedSearches: function () {
+      var savedSearches;
+      savedSearches = new DotLedger.Collections.SavedSearches();
+      DotLedger.title('Saved Searches');
+      savedSearches.fetch({
+        success: function () {
+          var list;
+          list = new DotLedger.Views.SavedSearches.List({
+            collection: savedSearches
+          });
+          DotLedger.mainRegion.show(list);
+        }
+      });
+    },
+
+    newSavedSearch: function () {
+      var savedSearch, form;
+      savedSearch = new DotLedger.Models.SavedSearch();
+      DotLedger.title('New Saved Search');
+      form = new DotLedger.Views.SavedSearches.Form({
+        model: savedSearch
+      });
+      form.on('save', function (model) {
+        DotLedger.navigate.listSavedSearches({}, {
+          trigger: true
+        });
+      });
+      DotLedger.mainRegion.show(form);
+    },
+
+    editSavedSearch: function (savedSearchID) {
+      var savedSearch, form;
+      savedSearch = new DotLedger.Models.SavedSearch({
+        id: savedSearchID
+      });
+      form = new DotLedger.Views.SavedSearches.Form({
+        model: savedSearch
+      });
+      savedSearch.fetch({
+        success: function () {
+          DotLedger.title('Edit Saved Search', savedSearch.get('name'));
+          DotLedger.mainRegion.show(form);
+        }
+      });
+      form.on('save', function () {
+        DotLedger.navigate.listSavedSearches({}, {
           trigger: true
         });
       });

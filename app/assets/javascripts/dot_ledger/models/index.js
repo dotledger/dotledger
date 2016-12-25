@@ -6,6 +6,7 @@
 // = require ./goal
 // = require ./payment
 // = require ./query_params
+// = require ./saved_search
 // = require ./sorted_transaction
 // = require ./sorting_rule
 // = require ./statement

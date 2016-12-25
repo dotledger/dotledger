@@ -7,6 +7,7 @@
 // = require ./index
 // = require ./payments
 // = require ./projected_balances
+// = require ./saved_searches
 // = require ./sorting_rules
 // = require ./statements
 // = require ./tags
