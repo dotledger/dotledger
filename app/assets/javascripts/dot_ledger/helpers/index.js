@@ -6,4 +6,5 @@
 // = require ./notification
 // = require ./pagination
 // = require ./path
+// = require ./search
 // = require ./sort_transactions
