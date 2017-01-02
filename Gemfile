@@ -24,6 +24,8 @@ gem 'bootstrap-sass'
 
 gem 'responders', '~> 2.0'
 
+gem 'puma'
+
 group :development, :test do
   gem 'quiet_assets'
   gem 'rspec-rails'
