@@ -1,4 +1,4 @@
-# Dot Ledger [![Build Status](https://travis-ci.org/dotledger/dotledger.png?branch=master)](https://travis-ci.org/dotledger/dotledger) [![Code Climate](https://codeclimate.com/github/dotledger/dotledger.png)](https://codeclimate.com/github/dotledger/dotledger)
+# Dot Ledger [![Build Status](https://api.travis-ci.org/dotledger/dotledger.svg?branch=master)](https://travis-ci.org/dotledger/dotledger) [![Code Climate](https://codeclimate.com/github/dotledger/dotledger/badges/gpa.svg)](https://codeclimate.com/github/dotledger/dotledger)
 
 **[Dot Ledger](http://www.dotledger.com/)** is a Free and Open Source personal finance management tool.
 
