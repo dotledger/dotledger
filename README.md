@@ -1,13 +1,11 @@
-Dot Ledger [![Build Status](https://travis-ci.org/dotledger/dotledger.png?branch=master)](https://travis-ci.org/dotledger/dotledger) [![Code Climate](https://codeclimate.com/github/dotledger/dotledger.png)](https://codeclimate.com/github/dotledger/dotledger)
-==========
+# Dot Ledger [![Build Status](https://travis-ci.org/dotledger/dotledger.png?branch=master)](https://travis-ci.org/dotledger/dotledger) [![Code Climate](https://codeclimate.com/github/dotledger/dotledger.png)](https://codeclimate.com/github/dotledger/dotledger)
 
 **[Dot Ledger](http://www.dotledger.com/)** is a Free and Open Source personal finance management tool.
 
 The aim of this project is to create a stable, FOSS alternative to [Xero Personal](https://www.xero.com/personal/)
 which was [shut down](http://blog.xero.com/2013/08/winding-down-xero-personal-in-november-2014/) in November 2014.
 
-Setup
------
+## Setup
 
 Dot Ledger requires:
 
@@ -30,34 +28,31 @@ You'll have to modify the postgres username and password in `config/database.yml
 - `bundle exec rake db:setup`
 - `bundle exec rails server`
 
-Tests
------
+## Tests
 
-**Run all tests**
+### Run all tests
 
 ```
 bundle exec rake spec spec:javascript
 ```
 
-**Run ruby tests ([RSpec](http://rspec.info/))**
+### Run ruby tests ([RSpec](http://rspec.info/))
 
 ```
 bundle exec rake spec
 ```
 
-**Run javascript tests ([Jasmine](http://jasmine.github.io/))**
+### Run javascript tests ([Jasmine](http://jasmine.github.io/))
 
 ```
 bundle exec rake spec:javascript
 ```
 
-Screenshots
------------
+## Screenshots
 
 See [the screenshots section](http://www.dotledger.com/#screenshots) of the [Dot Ledger website](http://www.dotledger.com/).
 
-License
--------
+## License
 
 Copyright 2013 - 2017, Kale Worsley, BitBot Limited.
 
