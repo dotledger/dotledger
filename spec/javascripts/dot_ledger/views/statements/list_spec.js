@@ -99,4 +99,10 @@ describe('DotLedger.Views.Statements.List', function () {
     expect(view.$el).toHaveText(/\$444\.23/);
     expect(view.$el).toHaveText(/\$1,101\.32/);
   });
+
+  it('renders the statement import link', function () {
+    var view;
+    view = createView().render();
+    expect(view.$el).toContainElement('a[href="/accounts/1/import"]');
+  });
 });
