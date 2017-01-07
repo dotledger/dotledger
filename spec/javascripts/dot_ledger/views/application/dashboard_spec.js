@@ -17,4 +17,11 @@ describe('DotLedger.Views.Application.Dashboard', function () {
     view = createView();
     expect(view.render).not.toThrow();
   });
+
+  it('renders the title', function () {
+    var view;
+    view = createView().render();
+    expect(view.$el).toContainText('Dashboard');
+    expect(view.$el).toContainText('My finances');
+  });
 });
