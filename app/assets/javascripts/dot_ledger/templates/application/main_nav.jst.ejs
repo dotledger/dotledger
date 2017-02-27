@@ -17,16 +17,15 @@
       <li class="dropdown <%= activeClass('showAccount', 'newAccount', 'editAccount', 'importStatement', 'listStatements') %>">
         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <% _.each(accounts().groupBy('account_group_name'), function(accounts, label, list) { %>
-            <li class="dropdown-header"><%= label === 'null' ? '<i>Other</i>' : label %></li>
-            <% _.each(accounts, function(account) { %>
-              <li><a href="<%= DotLedger.path.showAccount({id: account.get('id')}) %>"><%- account.get('name') %></a></li>
-            <% }) %>
-            <% if (label !== _.last(_.keys(list))) { %>
+            <% _.each(accounts().groupBy('account_group_name'), function(accounts, label, list) { %>
+              <li class="dropdown-header"><%= label === 'null' ? '<i>Other</i>' : label %></li>
+              <% _.each(accounts, function(account) { %>
+                <li><a href="<%= DotLedger.path.showAccount({id: account.get('id')}) %>"><%- account.get('name') %></a></li>
+              <% }) %>
               <li class="divider"></li>
-            <% } %>
-          <% }) %>
-        </ul> 
+            <% }) %>
+            <li><a href="<%= DotLedger.path.newAccount() %>">New Account</a></li>
+        </ul>
       </li>
       <li class="<%= activeClass('listGoals') %>"><a href="<%= DotLedger.path.listGoals() %>">Goals</a></li>
       <li class="<%= activeClass('listPayments', 'newPayment', 'editPayment') %>"><a href="<%= DotLedger.path.listPayments() %>">Payments</a></li>
