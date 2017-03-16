@@ -25,7 +25,8 @@ describe Api::TransactionsController do
         other_transactions
       ].flatten
     end
-    let!(:category) { FactoryGirl.create :category }
+    let!(:category) { FactoryGirl.create :category, type: 'Essential' }
+    let!(:other_category) { FactoryGirl.create :category, type: 'Income' }
 
     before do
       sorted_transactions.each do |t|
@@ -40,7 +41,7 @@ describe Api::TransactionsController do
       transactions_for_review.each do |t|
         t.create_sorted_transaction(
           account: t.account,
-          category: category,
+          category: other_category,
           name: t.search,
           review: true
         )
@@ -137,7 +138,19 @@ describe Api::TransactionsController do
       it { should respond_with :success }
 
       it 'filters transactions by category_id' do
-        expect(assigns(:transactions)).to match_array [sorted_transactions, transactions_for_review].flatten
+        expect(assigns(:transactions)).to match_array sorted_transactions
+      end
+    end
+
+    context 'filter with category type' do
+      before do
+        get :index, category_type: other_category.type
+      end
+
+      it { should respond_with :success }
+
+      it 'filters transactions by category_id' do
+        expect(assigns(:transactions)).to match_array transactions_for_review
       end
     end
 

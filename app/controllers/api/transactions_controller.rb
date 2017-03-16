@@ -17,6 +17,8 @@ module Api
 
       @transactions = @transactions.with_category(params[:category_id]) if filter_with_category
 
+      @transactions = @transactions.with_category_type(params[:category_type]) if filter_with_category_type
+
       @transactions = @transactions.between_dates(params[:date_from], params[:date_to]) if filter_between_dates
 
       @transactions = @transactions.with_tags(params[:tag_ids]) if filter_with_tags
@@ -113,6 +115,10 @@ module Api
 
     def filter_with_tags
       params.key?(:tag_ids)
+    end
+
+    def filter_with_category_type
+      params.key?(:category_type)
     end
 
     # FIXME: Yuck.
