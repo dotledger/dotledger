@@ -104,6 +104,37 @@ describe Transaction do
     end
   end
 
+  describe '#with_category_type' do
+    let!(:transactions_1) { FactoryGirl.create_list :transaction, 2 }
+    let!(:transactions_2) { FactoryGirl.create_list :transaction, 2 }
+    let!(:transactions_3) { FactoryGirl.create_list :transaction, 2 }
+    let!(:category_1) { FactoryGirl.create :category, type: 'Essential' }
+    let!(:category_2) { FactoryGirl.create :category, type: 'Essential' }
+    let!(:category_3) { FactoryGirl.create :category, type: 'Flexible' }
+
+    before do
+      transactions_1.each do |t|
+        t.create_sorted_transaction!(
+          name: t.search,
+          category: category_1,
+          account: t.account
+        )
+      end
+
+      transactions_2.each do |t|
+        t.create_sorted_transaction!(
+          name: t.search,
+          category: category_2,
+          account: t.account
+        )
+      end
+    end
+
+    it 'only includes transactions with the correct category type' do
+      expect(described_class.with_category_type('Essential')).to match_array(transactions_1 + transactions_2)
+    end
+  end
+
   describe '#between_dates' do
     let!(:transaction_before) { FactoryGirl.create :transaction, posted_at: Date.parse('2012-03-05') }
     let!(:transaction_during) { FactoryGirl.create :transaction, posted_at: Date.parse('2012-04-10') }

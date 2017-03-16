@@ -52,6 +52,10 @@ class Transaction < ActiveRecord::Base
     includes(:sorted_transaction).where(sorted_transactions: { category_id: category_id })
   }
 
+  scope :with_category_type, proc { |category_type|
+    includes(sorted_transaction: :category).where(categories: { type: category_type })
+  }
+
   scope :between_dates, proc { |date_from, date_to|
     includes(:sorted_transaction).where(posted_at: (Date.parse(date_from)..Date.parse(date_to)))
   }
