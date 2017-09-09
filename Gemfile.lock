@@ -62,7 +62,7 @@ GEM
     cliver (0.3.2)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
-    database_cleaner (1.5.3)
+    database_cleaner (1.6.1)
     diff-lcs (1.2.5)
     ejs (1.1.1)
     erubis (2.7.0)
