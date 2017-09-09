@@ -60,7 +60,7 @@ GEM
     case_transform (0.2)
       activesupport
     cliver (0.3.2)
-    coderay (1.1.1)
+    coderay (1.1.2)
     concurrent-ruby (1.0.3)
     database_cleaner (1.5.3)
     diff-lcs (1.2.5)
