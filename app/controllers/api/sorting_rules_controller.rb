@@ -9,6 +9,8 @@ module Api
 
       @sorting_rules = @sorting_rules.with_category(params[:category_id]) if filter_with_category
 
+      @sorting_rules = @sorting_rules.with_category_type(params[:category_type]) if filter_with_category_type
+
       @sorting_rules = @sorting_rules.with_tags(params[:tag_ids]) if filter_with_tags
 
       @sorting_rules = @sorting_rules.search_query(params[:query]) if filter_search_query
@@ -56,6 +58,10 @@ module Api
 
     def filter_with_category
       params.key?(:category_id)
+    end
+
+    def filter_with_category_type
+      params.key?(:category_type)
     end
 
     def filter_with_tags

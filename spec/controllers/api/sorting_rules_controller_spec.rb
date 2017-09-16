@@ -4,8 +4,13 @@ describe Api::SortingRulesController do
   let!(:sorting_rule) { FactoryGirl.create :sorting_rule, name: 'Some Name' }
   let!(:test_sorting_rule) { FactoryGirl.create :sorting_rule, name: 'Test' }
   let!(:tagged_sorting_rules) { FactoryGirl.create_list :sorting_rule, 2, tag_ids: [tag.id] }
-  let!(:categorised_sorting_rules) { FactoryGirl.create_list :sorting_rule, 2, category_id: category.id }
-  let!(:category) { FactoryGirl.create :category }
+  let!(:categorised_sorting_rules_1) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_1.id }
+  let!(:categorised_sorting_rules_2) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_2.id }  
+  let!(:categorised_sorting_rules_3) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_3.id }  
+  let!(:category_1) { FactoryGirl.create :category, type: 'Flexible' }
+  let!(:category_2) { FactoryGirl.create :category, type: 'Flexible' }
+  let!(:category_3) { FactoryGirl.create :category, type: 'Essential' }
+
   let!(:tag) { FactoryGirl.create :tag }
 
   describe 'GET index' do
@@ -15,7 +20,7 @@ describe Api::SortingRulesController do
       it { should respond_with :success }
 
       it 'returns all sorting_rules' do
-        expect(assigns(:sorting_rules)).to match_array [sorting_rule, test_sorting_rule, tagged_sorting_rules, categorised_sorting_rules].flatten
+        expect(assigns(:sorting_rules)).to match_array [sorting_rule, test_sorting_rule, tagged_sorting_rules, categorised_sorting_rules_1, categorised_sorting_rules_2, categorised_sorting_rules_3].flatten
       end
     end
 
@@ -33,13 +38,25 @@ describe Api::SortingRulesController do
 
     context 'filter with category' do
       before do
-        get :index, category_id: category.id
+        get :index, category_id: category_1.id
       end
 
       it { should respond_with :success }
 
       it 'filters sorting rules by category_id' do
-        expect(assigns(:sorting_rules)).to match_array categorised_sorting_rules
+        expect(assigns(:sorting_rules)).to match_array categorised_sorting_rules_1
+      end
+    end
+
+    context 'filter with category type' do
+      before do
+        get :index, category_type: 'Flexible'
+      end
+
+      it { should respond_with :success }
+
+      it 'filters sorting rules by category_type' do
+        expect(assigns(:sorting_rules)).to match_array categorised_sorting_rules_1 + categorised_sorting_rules_2
       end
     end
 
@@ -71,7 +88,7 @@ describe Api::SortingRulesController do
       post :create,
            name: 'New Name',
            contains: 'Foobar',
-           category_id: category.id
+           category_id: category_1.id
     end
 
     it 'responds with 200' do
