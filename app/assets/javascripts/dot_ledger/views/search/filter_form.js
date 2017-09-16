@@ -39,8 +39,12 @@ DotLedger.module('Views.Search', function () {
       this.ui.date_to.datepicker({
         format: 'yyyy-mm-dd'
       });
-      if (!this.model.has('category_id') && this.model.has('category_type')) {
-        this.model.set('category_id', this.model.get('category_type'));
+      if (!this.model.has('category_id')) {
+        if (this.model.has('category_type')) {
+          this.model.set('category_id', this.model.get('category_type'));
+        } else if (this.model.has('unsorted')) {
+          this.model.set('category_id', '-1');
+        }
       } 
     },
 
