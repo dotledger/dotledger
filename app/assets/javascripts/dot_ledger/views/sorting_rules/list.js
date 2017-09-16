@@ -15,7 +15,8 @@ DotLedger.module('Views.SortingRules', function () {
     behaviors: {
       TagSelector: {},
       CategorySelector: {
-        showNoneOption: false
+        showNoneOption: false,
+        typeSelectable: true
       }
     },
 
@@ -32,6 +33,9 @@ DotLedger.module('Views.SortingRules', function () {
 
     onRender: function () {
       this.ui.query.val(this.model.get('query'));
+      if (!this.model.has('category_id') && this.model.has('category_type')) {
+        this.model.set('category_id', this.model.get('category_type'));
+      } 
     },
 
     search: function () {
@@ -41,7 +45,11 @@ DotLedger.module('Views.SortingRules', function () {
         data['query'] = this.ui.query.val();
       }
       if (this.ui.category.val() !== '') {
-        data['category_id'] = this.ui.category.val();
+        if (this.ui.category.val() > 0) {
+          data['category_id'] = this.ui.category.val();
+        } else {
+          data['category_type'] = this.ui.category.val();
+        }
       }
       data['tag_ids'] = this.ui.tags.val();
       data['page'] = 1;
