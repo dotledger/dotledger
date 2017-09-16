@@ -58,6 +58,10 @@ describe('DotLedger.Views.Payments.Form', function () {
     expect(view.$el).toContainElement('select[name=category] option[value=22]');
     expect(view.$el).toContainElement('select[name=category] option[value=33]');
     expect(view.$el).toContainElement('select[name=category] option[value=44]');
+    expect(view.$el).not.toContainElement('select[name=category] option[value=Essential]');
+    expect(view.$el).not.toContainElement('select[name=category] option[value=Flexible]');
+    expect(view.$el).not.toContainElement('select[name=category] option[value=Income]');
+    expect(view.$el).not.toContainElement('select[name=category] option[value=Transfer]');
     expect(view.$el).toContainElement('input[name=date]');
     expect(view.$el).toContainElement('input[name=repeat]');
     expect(view.$el).toContainElement('input[name=repeat_interval]');

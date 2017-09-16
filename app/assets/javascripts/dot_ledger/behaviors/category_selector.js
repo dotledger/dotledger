@@ -14,7 +14,8 @@ DotLedger.module('Behaviors', function () {
       showAnyOption: true,
       showNoneOption: true,
       categorySelect: 'category',
-      categoryAttribute: 'category_id'
+      categoryAttribute: 'category_id',
+      typeSelectable: false
     },
 
     onRender: function () {
@@ -35,9 +36,15 @@ DotLedger.module('Behaviors', function () {
         $categorySelect.append('<option value="-1">None</option>');
       }
 
+      var selectorOptions = this.options;
       _.each(this.categories.groupBy('type'), function (categories, label) {
         var $optgroup;
         $optgroup = $("<optgroup label='" + label + "'></optgroup>");
+
+        if (selectorOptions.typeSelectable) {
+          var $option = $("<option value='" + label + "'>Any " + label + '</option>');
+          $optgroup.append($option);          
+        }
 
         _.each(categories, function (category) {
           var $option = $("<option value='" + (category.get('id')) + "'>" + (category.get('name')) + '</option>');

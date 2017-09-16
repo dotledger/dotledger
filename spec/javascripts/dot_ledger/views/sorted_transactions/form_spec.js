@@ -68,6 +68,10 @@ describe('DotLedger.Views.SortedTransactions.Form', function () {
     expect(view.$el).toContainElement('select[name=category] optgroup[label=Flexible]');
     expect(view.$el).toContainElement('select[name=category] optgroup[label=Income]');
     expect(view.$el).toContainElement('select[name=category] optgroup[label=Transfer]');
+    expect(view.$el).not.toContainElement('select[name=category] option[value=Essential]');
+    expect(view.$el).not.toContainElement('select[name=category] option[value=Flexible]');
+    expect(view.$el).not.toContainElement('select[name=category] option[value=Income]');
+    expect(view.$el).not.toContainElement('select[name=category] option[value=Transfer]');
     expect(view.$el).toContainElement('input[name=tags]');
     expect(view.$el).toContainElement('textarea[name=note]');
   });

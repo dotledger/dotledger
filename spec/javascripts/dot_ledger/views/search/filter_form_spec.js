@@ -78,6 +78,10 @@ describe('DotLedger.Views.Search.FilterForm', function () {
     expect(view.$el).toContainElement('input[name=date_from]');
     expect(view.$el).toContainElement('input[name=date_to]');
     expect(view.$el).toContainElement('select[name=category]');
+    expect(view.$el).toContainElement('select[name=category] option[value=Essential]');
+    expect(view.$el).toContainElement('select[name=category] option[value=Flexible]');
+    expect(view.$el).toContainElement('select[name=category] option[value=Income]');
+    expect(view.$el).toContainElement('select[name=category] option[value=Transfer]');
     expect(view.$el).toContainElement('select[name=category] option[value=11]');
     expect(view.$el).toContainElement('select[name=category] option[value=22]');
     expect(view.$el).toContainElement('select[name=category] option[value=33]');

@@ -4,7 +4,9 @@ DotLedger.module('Views.Search', function () {
 
     behaviors: {
       TagSelector: {},
-      CategorySelector: {},
+      CategorySelector: {
+        typeSelectable: true
+      },
       AccountsSelector: {}
     },
 
@@ -37,6 +39,9 @@ DotLedger.module('Views.Search', function () {
       this.ui.date_to.datepicker({
         format: 'yyyy-mm-dd'
       });
+      if (!this.model.has('category_id') && this.model.has('category_type')) {
+        this.model.set('category_id', this.model.get('category_type'));
+      } 
     },
 
     search: function () {
@@ -46,8 +51,11 @@ DotLedger.module('Views.Search', function () {
       if (this.ui.category.val()) {
         if (this.ui.category.val() > 0) {
           data['category_id'] = this.ui.category.val();
-        } else {
+        } else if (this.ui.category.val() < 0) {
           data['unsorted'] = 'true';
+
+        } else {
+          data['category_type'] = this.ui.category.val();
         }
       }
       data['date_from'] = this.ui.date_from.val();
