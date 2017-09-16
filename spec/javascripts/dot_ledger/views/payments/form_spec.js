@@ -54,20 +54,20 @@ describe('DotLedger.Views.Payments.Form', function () {
     expect(view.$el).toContainElement('input[name=name]');
     expect(view.$el).toContainElement('input[name=amount]');
     expect(view.$el).toContainElement('select[name=category]');
-    expect(view.$el).toContainElement('option[value=11]');
-    expect(view.$el).toContainElement('option[value=22]');
-    expect(view.$el).toContainElement('option[value=33]');
-    expect(view.$el).toContainElement('option[value=44]');
+    expect(view.$el).toContainElement('select[name=category] option[value=11]');
+    expect(view.$el).toContainElement('select[name=category] option[value=22]');
+    expect(view.$el).toContainElement('select[name=category] option[value=33]');
+    expect(view.$el).toContainElement('select[name=category] option[value=44]');
     expect(view.$el).toContainElement('input[name=date]');
     expect(view.$el).toContainElement('input[name=repeat]');
     expect(view.$el).toContainElement('input[name=repeat_interval]');
     expect(view.$el).toContainElement('select[name=repeat_period]');
-    expect(view.$el).toContainElement('option[value=Day]');
-    expect(view.$el).toContainElement('option[value=Week]');
-    expect(view.$el).toContainElement('option[value=Month]');
+    expect(view.$el).toContainElement('select[name=repeat_period] option[value=Day]');
+    expect(view.$el).toContainElement('select[name=repeat_period] option[value=Week]');
+    expect(view.$el).toContainElement('select[name=repeat_period] option[value=Month]');
     expect(view.$el).toContainElement('select[name=type]');
-    expect(view.$el).toContainElement('option[value=Spend]');
-    expect(view.$el).toContainElement('option[value=Receive]');
+    expect(view.$el).toContainElement('select[name=type] option[value=Spend]');
+    expect(view.$el).toContainElement('select[name=type] option[value=Receive]');
   });
 
   it('renders the heading for new payment', function () {

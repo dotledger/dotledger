@@ -54,17 +54,17 @@ describe('DotLedger.Views.SortingRules.Form', function () {
     expect(view.$el).toContainElement('input[name=name]');
     expect(view.$el).toContainElement('input[name=contains]');
     expect(view.$el).toContainElement('select[name=category]');
-    expect(view.$el).toContainElement('option[value=11]');
-    expect(view.$el).toContainElement('option[value=22]');
-    expect(view.$el).toContainElement('option[value=33]');
-    expect(view.$el).toContainElement('option[value=44]');
-    expect(view.$el).toContainElement('optgroup[label=Essential]');
-    expect(view.$el).toContainElement('optgroup[label=Flexible]');
-    expect(view.$el).toContainElement('optgroup[label=Income]');
-    expect(view.$el).toContainElement('optgroup[label=Transfer]');
+    expect(view.$el).toContainElement('select[name=category] option[value=11]');
+    expect(view.$el).toContainElement('select[name=category] option[value=22]');
+    expect(view.$el).toContainElement('select[name=category] option[value=33]');
+    expect(view.$el).toContainElement('select[name=category] option[value=44]');
+    expect(view.$el).toContainElement('select[name=category] optgroup[label=Essential]');
+    expect(view.$el).toContainElement('select[name=category] optgroup[label=Flexible]');
+    expect(view.$el).toContainElement('select[name=category] optgroup[label=Income]');
+    expect(view.$el).toContainElement('select[name=category] optgroup[label=Transfer]');
     expect(view.$el).toContainElement('select[name=review]');
-    expect(view.$el).toContainElement('option[value=true]');
-    expect(view.$el).toContainElement('option[value=false]');
+    expect(view.$el).toContainElement('select[name=review] option[value=true]');
+    expect(view.$el).toContainElement('select[name=review] option[value=false]');
     expect(view.$el).toContainElement('input[name=tags]');
   });
 

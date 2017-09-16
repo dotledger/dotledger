@@ -34,10 +34,10 @@ describe('DotLedger.Views.Categories.Form', function () {
     view = createView().render();
     expect(view.$el).toContainElement('input[name=name]');
     expect(view.$el).toContainElement('select[name=type]');
-    expect(view.$el).toContainElement('option[value=Flexible]');
-    expect(view.$el).toContainElement('option[value=Essential]');
-    expect(view.$el).toContainElement('option[value=Income]');
-    expect(view.$el).toContainElement('option[value=Transfer]');
+    expect(view.$el).toContainElement('select[name=type] option[value=Flexible]');
+    expect(view.$el).toContainElement('select[name=type] option[value=Essential]');
+    expect(view.$el).toContainElement('select[name=type] option[value=Income]');
+    expect(view.$el).toContainElement('select[name=type] option[value=Transfer]');
   });
 
   it('renders the heading for new category', function () {
