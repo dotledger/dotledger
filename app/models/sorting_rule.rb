@@ -13,6 +13,10 @@ class SortingRule < ActiveRecord::Base
     where(category_id: category_id)
   }
 
+  scope :with_category_type, proc { |category_type|
+    includes(:category).where(categories: { type: category_type })
+  }
+
   scope :with_tags, proc { |tag_ids|
     tag_ids = Array(tag_ids).flatten.map(&:to_i)
     where([tag_ids.map { '? = ANY(tag_ids)' }.join(' OR '), *tag_ids])

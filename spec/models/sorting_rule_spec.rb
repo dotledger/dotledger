@@ -96,6 +96,19 @@ describe SortingRule do
     end
   end
 
+  describe '#with_category_type' do
+    let!(:sorting_rules_1) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_1.id }
+    let!(:sorting_rules_2) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_2.id }
+    let!(:sorting_rules_3) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_3.id }
+    let!(:category_1) { FactoryGirl.create :category, type: 'Flexible' }
+    let!(:category_2) { FactoryGirl.create :category, type: 'Flexible' }
+    let!(:category_3) { FactoryGirl.create :category, type: 'Essential' }
+
+    it 'only includes sorting rules with the correct category type' do
+      expect(described_class.with_category_type('Flexible')).to match_array sorting_rules_1 + sorting_rules_2
+    end
+  end
+
   describe '#search_query' do
     let!(:sorting_rule_match) { FactoryGirl.create :sorting_rule, name: 'Test Foobar' }
     let!(:sorting_rule_no_match) { FactoryGirl.create :sorting_rule, name: 'Foobar' }
