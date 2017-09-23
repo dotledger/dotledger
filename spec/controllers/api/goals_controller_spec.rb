@@ -27,8 +27,8 @@ describe Api::GoalsController do
   describe 'POST create' do
     def valid_request
       post :create,
-           amount: 1000,
-           category_id: category.id
+        amount: 1000,
+        category_id: category.id
     end
 
     it 'responds with 200' do
@@ -46,10 +46,10 @@ describe Api::GoalsController do
   describe 'PUT update' do
     def valid_request
       put :update,
-          id: goal.id,
-          amount: 500,
-          type: 'Receive',
-          period: 'Week'
+        id: goal.id,
+        amount: 500,
+        type: 'Receive',
+        period: 'Week'
     end
 
     it 'responds with 200' do
@@ -79,7 +79,7 @@ describe Api::GoalsController do
   describe 'DELETE destroy' do
     def valid_request
       delete :destroy,
-             id: goal.id
+        id: goal.id
     end
 
     it 'responds with 204' do

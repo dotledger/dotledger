@@ -4,30 +4,30 @@ feature 'Accounts', truncate: true, js: true do
   describe 'Show' do
     let(:account) do
       FactoryGirl.create :account,
-                         name: 'Test Account 1',
-                         balance: 2000.00,
-                         number: '12-3456-1234567-123',
-                         type: 'Savings'
+        name: 'Test Account 1',
+        balance: 2000.00,
+        number: '12-3456-1234567-123',
+        type: 'Savings'
     end
 
     background do
       FactoryGirl.create :transaction,
-                         name: 'Test Unsorted Transaction',
-                         posted_at: Date.parse('2012-10-13'),
-                         account: account,
-                         amount: 19.95
+        name: 'Test Unsorted Transaction',
+        posted_at: Date.parse('2012-10-13'),
+        account: account,
+        amount: 19.95
 
       FactoryGirl.create :transaction_review,
-                         name: 'Test Review Transaction',
-                         posted_at: Date.parse('2012-10-14'),
-                         account: account,
-                         amount: 234.56
+        name: 'Test Review Transaction',
+        posted_at: Date.parse('2012-10-14'),
+        account: account,
+        amount: 234.56
 
       FactoryGirl.create :transaction_sorted,
-                         name: 'Test Sorted Transaction',
-                         posted_at: Date.parse('2012-10-15'),
-                         account: account,
-                         amount: -1000.00
+        name: 'Test Sorted Transaction',
+        posted_at: Date.parse('2012-10-15'),
+        account: account,
+        amount: -1000.00
     end
 
     before do
@@ -156,10 +156,10 @@ feature 'Accounts', truncate: true, js: true do
   describe 'Update' do
     let(:account) do
       FactoryGirl.create :account,
-                         name: 'Test Account',
-                         balance: 2000.00,
-                         number: '12-3456-1234567-123',
-                         type: 'Savings'
+        name: 'Test Account',
+        balance: 2000.00,
+        number: '12-3456-1234567-123',
+        type: 'Savings'
     end
 
     before do

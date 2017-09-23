@@ -13,7 +13,7 @@ class DotLedgerExporter
     export_sorting_rules
     export_goals
 
-    file.write(data.to_yaml) if file
+    file&.write(data.to_yaml)
 
     true
   end

@@ -8,7 +8,7 @@ class BalanceProjector
     @date_range = date_from..date_to
   end
 
-  def as_json(options = {})
+  def as_json(_options = {})
     balances
   end
 
@@ -17,7 +17,7 @@ class BalanceProjector
     @balances ||= date_range.map do |date|
       balance = payments.select do |payment|
         payment.schedule.occurs_on? date
-      end.reduce(0.0) do |m,payment|
+      end.reduce(0.0) do |m, payment|
         amount =
           if payment.type == 'Receive'
             payment.amount

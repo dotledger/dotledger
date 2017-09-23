@@ -57,7 +57,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.before(:each, js: true) do
-    page.driver.browser.url_whitelist = ["127.0.0.1"]
+    page.driver.browser.url_whitelist = ['127.0.0.1']
   end
 
   config.before(:suite) do

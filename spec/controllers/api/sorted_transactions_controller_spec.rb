@@ -29,9 +29,9 @@ describe Api::SortedTransactionsController do
   describe 'POST create' do
     def valid_request
       attributes = FactoryGirl.attributes_for(:sorted_transaction)
-      attributes.merge!(account_id: account.id)
-      attributes.merge!(transaction_id: transaction.id)
-      attributes.merge!(category_id: category.id)
+      attributes[:account_id] = account.id
+      attributes[:transaction_id] = transaction.id
+      attributes[:category_id] = category.id
       post :create, attributes
     end
 
@@ -50,8 +50,8 @@ describe Api::SortedTransactionsController do
   describe 'PUT update' do
     def valid_request
       put :update,
-          id: sorted_transaction.id,
-          name: 'New Sorted Transaction Name'
+        id: sorted_transaction.id,
+        name: 'New Sorted Transaction Name'
     end
 
     it 'responds with 200' do
@@ -69,7 +69,7 @@ describe Api::SortedTransactionsController do
   describe 'DELETE destroy' do
     def valid_request
       delete :destroy,
-             id: sorted_transaction.id
+        id: sorted_transaction.id
     end
 
     it 'responds with 204' do

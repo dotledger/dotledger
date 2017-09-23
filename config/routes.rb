@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  namespace :api, except: [:edit, :new], defaults: { format: :json } do
+  namespace :api, except: %i[edit new], defaults: { format: :json } do
     resources :accounts
     resources :account_groups
     resources :categories
     resources :goals
     resources :sorted_transactions
     resources :sorting_rules
-    resources :statements, only: [:index, :show, :create, :destroy]
+    resources :statements, only: %i[index show create destroy]
     resources :transactions do
       collection do
         post :sort

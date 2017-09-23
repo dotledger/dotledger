@@ -26,9 +26,9 @@ describe Api::AccountsController do
   describe 'POST create' do
     def valid_request
       post :create,
-           name: 'Account Name',
-           number: '1212341234567120',
-           type: 'Cheque'
+        name: 'Account Name',
+        number: '1212341234567120',
+        type: 'Cheque'
     end
 
     it 'responds with 200' do
@@ -46,8 +46,8 @@ describe Api::AccountsController do
   describe 'PUT update' do
     def valid_request
       put :update,
-          id: account.id,
-          name: 'New Account Name'
+        id: account.id,
+        name: 'New Account Name'
     end
 
     it 'responds with 200' do
@@ -65,7 +65,7 @@ describe Api::AccountsController do
   describe 'DELETE destroy' do
     def valid_request
       delete :destroy,
-             id: account.id
+        id: account.id
     end
 
     it 'responds with 204' do

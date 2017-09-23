@@ -5,8 +5,8 @@ describe Api::SortingRulesController do
   let!(:test_sorting_rule) { FactoryGirl.create :sorting_rule, name: 'Test' }
   let!(:tagged_sorting_rules) { FactoryGirl.create_list :sorting_rule, 2, tag_ids: [tag.id] }
   let!(:categorised_sorting_rules_1) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_1.id }
-  let!(:categorised_sorting_rules_2) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_2.id }  
-  let!(:categorised_sorting_rules_3) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_3.id }  
+  let!(:categorised_sorting_rules_2) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_2.id }
+  let!(:categorised_sorting_rules_3) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_3.id }
   let!(:category_1) { FactoryGirl.create :category, type: 'Flexible' }
   let!(:category_2) { FactoryGirl.create :category, type: 'Flexible' }
   let!(:category_3) { FactoryGirl.create :category, type: 'Essential' }
@@ -86,9 +86,9 @@ describe Api::SortingRulesController do
   describe 'POST create' do
     def valid_request
       post :create,
-           name: 'New Name',
-           contains: 'Foobar',
-           category_id: category_1.id
+        name: 'New Name',
+        contains: 'Foobar',
+        category_id: category_1.id
     end
 
     it 'responds with 200' do
@@ -106,8 +106,8 @@ describe Api::SortingRulesController do
   describe 'PUT update' do
     def valid_request
       put :update,
-          id: sorting_rule.id,
-          name: 'Some New Name'
+        id: sorting_rule.id,
+        name: 'Some New Name'
     end
 
     it 'responds with 200' do
@@ -125,7 +125,7 @@ describe Api::SortingRulesController do
   describe 'DELETE destroy' do
     def valid_request
       delete :destroy,
-             id: sorting_rule.id
+        id: sorting_rule.id
     end
 
     it 'responds with 204' do

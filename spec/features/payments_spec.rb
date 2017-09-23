@@ -11,11 +11,11 @@ feature 'Payments', truncate: true, js: true do
 
   let!(:payment) do
     FactoryGirl.create :payment,
-                       category: category,
-                       name: 'Foobar Wages',
-                       amount: 5000,
-                       type: 'Receive',
-                       schedule: IceCube::Schedule.new(date)
+      category: category,
+      name: 'Foobar Wages',
+      amount: 5000,
+      type: 'Receive',
+      schedule: IceCube::Schedule.new(date)
   end
 
   describe 'Index' do

@@ -57,9 +57,9 @@ class ActivityPerCategoryType
 
   def query
     @query ||= Transaction.joins(joins_list)
-    .where(posted_at: date_range)
-    .select(select_list)
-    .group('categories.type')
-    .order('categories.type')
+      .where(posted_at: date_range)
+      .select(select_list)
+      .group('categories.type')
+      .order('categories.type')
   end
 end

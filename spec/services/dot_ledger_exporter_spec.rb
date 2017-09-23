@@ -17,7 +17,7 @@ describe DotLedgerExporter do
     category.goal.update_attributes(amount: 123.45)
   end
   let!(:sorting_rule) do
-    FactoryGirl.create :sorting_rule, name: 'Name 1', contains: 'Contains 1', category: category, tag_list: %w(foo bar), review: true
+    FactoryGirl.create :sorting_rule, name: 'Name 1', contains: 'Contains 1', category: category, tag_list: %w[foo bar], review: true
   end
 
   let(:data) do
@@ -60,7 +60,7 @@ describe DotLedgerExporter do
           'name' => 'Name 1',
           'contains' => 'Contains 1',
           'category_name' => 'Category 1',
-          'tag_list' => %w(foo bar),
+          'tag_list' => %w[foo bar],
           'review' => true
         }
       ]

@@ -4,26 +4,26 @@ feature 'IncomeAndExpenses', truncate: true, js: true do
   describe 'Show' do
     let(:account) do
       FactoryGirl.create :account,
-                         name: 'Test Account 1',
-                         balance: 2000.00,
-                         number: '12-3456-1234567-123',
-                         type: 'Savings'
+        name: 'Test Account 1',
+        balance: 2000.00,
+        number: '12-3456-1234567-123',
+        type: 'Savings'
     end
 
     let!(:spent) do
       FactoryGirl.create :transaction_sorted,
-                         name: 'Spent',
-                         posted_at: Date.yesterday,
-                         account: account,
-                         amount: -1000.00
+        name: 'Spent',
+        posted_at: Date.yesterday,
+        account: account,
+        amount: -1000.00
     end
 
     let!(:received) do
       FactoryGirl.create :transaction_sorted,
-                         name: 'Received',
-                         posted_at: Date.yesterday,
-                         account: account,
-                         amount: 3000.00
+        name: 'Received',
+        posted_at: Date.yesterday,
+        account: account,
+        amount: 3000.00
     end
 
     before do

@@ -13,17 +13,17 @@ FactoryGirl.define do
     factory :transaction_sorted do
       after(:create) do |transaction|
         FactoryGirl.create :sorted_transaction,
-                           account_transaction: transaction,
-                           name: transaction.search
+          account_transaction: transaction,
+          name: transaction.search
       end
     end
 
     factory :transaction_review do
       after(:create) do |transaction|
         FactoryGirl.create :sorted_transaction,
-                           review: true,
-                           account_transaction: transaction,
-                           name: transaction.search
+          review: true,
+          account_transaction: transaction,
+          name: transaction.search
       end
     end
   end

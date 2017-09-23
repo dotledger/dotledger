@@ -9,7 +9,7 @@ module Taggable
     elsif tag_list.is_a? String
       self.tag_ids = Tag.tags_from_string(tag_list).map(&:id)
     else
-      fail StandardError, 'unknown tag list'
+      raise StandardError, 'unknown tag list'
     end
   end
 

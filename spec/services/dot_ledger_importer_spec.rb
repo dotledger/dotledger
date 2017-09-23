@@ -42,7 +42,7 @@ describe DotLedgerImporter do
           'name' => 'Name 1',
           'contains' => 'Contains 1',
           'category_name' => 'Category 1',
-          'tag_list' => %w(foo bar),
+          'tag_list' => %w[foo bar],
           'review' => true
         }
       ]

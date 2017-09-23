@@ -1,6 +1,6 @@
 namespace :dot_ledger do
   desc 'Import transactions from an OFX file'
-  task :import, [:account_id, :file] => :environment do |t, args|
+  task :import, %i[account_id file] => :environment do |_t, args|
     begin
       account = Account.find(args[:account_id])
       ofx_file = File.open(args[:file])
@@ -10,7 +10,7 @@ namespace :dot_ledger do
       if creator.save
         puts "Imported #{creator.statement.transactions.count} transactions into #{account.name}."
       else
-        puts "Error: #{creator.errors.messages.map { |k,v| "#{k} #{v.join(', ')}." }.join}"
+        puts "Error: #{creator.errors.messages.map { |k, v| "#{k} #{v.join(', ')}." }.join}"
       end
     rescue StandardError => e
       puts "Error: #{e.message}"
@@ -32,7 +32,7 @@ namespace :dot_ledger do
   end
 
   desc 'Export data to a YAML file'
-  task :export_yaml, [:file] => :environment do |t, args|
+  task :export_yaml, [:file] => :environment do |_t, args|
     file =
       if args[:file].present?
         File.open(args[:file], 'w')
@@ -52,7 +52,7 @@ namespace :dot_ledger do
   end
 
   desc 'Import data from a YAML file'
-  task :import_yaml, [:file] => :environment do |t, args|
+  task :import_yaml, [:file] => :environment do |_t, args|
     file =
       if args[:file].present?
         File.open(args[:file], 'r')

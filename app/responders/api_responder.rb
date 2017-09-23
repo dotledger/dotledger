@@ -1,6 +1,6 @@
 class ApiResponder < ActionController::Responder
   def api_behavior
-    fail MissingRenderer.new(format) unless has_renderer?
+    raise MissingRenderer, format unless has_renderer?
 
     if get? || patch? || put? || post?
       display resource

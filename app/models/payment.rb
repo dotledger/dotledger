@@ -7,9 +7,9 @@ class Payment < ActiveRecord::Base
 
   belongs_to :category
 
-  PAYMENT_TYPES = %w(Spend Receive).freeze
+  PAYMENT_TYPES = %w[Spend Receive].freeze
 
-  PAYMENT_PERIODS = %w(Day Week Month).freeze
+  PAYMENT_PERIODS = %w[Day Week Month].freeze
 
   validates :name, presence: true
 

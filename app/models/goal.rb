@@ -1,9 +1,9 @@
 class Goal < ActiveRecord::Base
   self.inheritance_column = nil
 
-  GOAL_PERIODS = %w(Month Fortnight Week).freeze
+  GOAL_PERIODS = %w[Month Fortnight Week].freeze
 
-  GOAL_TYPES = %w(Spend Receive).freeze
+  GOAL_TYPES = %w[Spend Receive].freeze
 
   FORTNIGHT_MULTIPLIER = 13.0 / 6
 

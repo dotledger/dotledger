@@ -40,7 +40,7 @@ class StatementCreator
         sort_transaction(tr) if tr
       end
 
-      fail ActiveRecord::Rollback if statement.transactions.empty?
+      raise ActiveRecord::Rollback if statement.transactions.empty?
 
       set_statement_dates!
 

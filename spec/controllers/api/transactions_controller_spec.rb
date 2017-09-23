@@ -198,7 +198,7 @@ describe Api::TransactionsController do
   describe 'POST create' do
     def valid_request
       attributes = FactoryGirl.attributes_for(:transaction)
-      attributes.merge!(account_id: account.id)
+      attributes[:account_id] = account.id
       post :create, attributes
     end
 
@@ -217,8 +217,8 @@ describe Api::TransactionsController do
   describe 'PUT update' do
     def valid_request
       put :update,
-          id: transaction.id,
-          name: 'New Transaction Name'
+        id: transaction.id,
+        name: 'New Transaction Name'
     end
 
     it 'responds with 200' do
@@ -236,7 +236,7 @@ describe Api::TransactionsController do
   describe 'DELETE destroy' do
     def valid_request
       delete :destroy,
-             id: transaction.id
+        id: transaction.id
     end
 
     it 'responds with 204' do

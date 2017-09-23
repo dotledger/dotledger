@@ -26,8 +26,8 @@ describe Api::CategoriesController do
   describe 'POST create' do
     def valid_request
       post :create,
-           name: 'Category Name',
-           type: 'Essential'
+        name: 'Category Name',
+        type: 'Essential'
     end
 
     it 'responds with 200' do
@@ -45,8 +45,8 @@ describe Api::CategoriesController do
   describe 'PUT update' do
     def valid_request
       put :update,
-          id: category.id,
-          name: 'New Category Name'
+        id: category.id,
+        name: 'New Category Name'
     end
 
     it 'responds with 200' do
@@ -64,7 +64,7 @@ describe Api::CategoriesController do
   describe 'DELETE destroy' do
     def valid_request
       delete :destroy,
-             id: category.id
+        id: category.id
     end
 
     it 'responds with 204' do
