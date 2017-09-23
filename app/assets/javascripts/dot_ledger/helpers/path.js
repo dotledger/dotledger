@@ -1,6 +1,6 @@
 DotLedger.module('Helpers', function () {
   var namedParam;
-  namedParam = /[:\*](\w+)/g;
+  namedParam = /[:*](\w+)/g;
 
   this.Path = {
     routesToNavigateHelpers: function (routes) {

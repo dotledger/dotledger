@@ -47,42 +47,42 @@ describe('DotLedger.Views.Categories.List', function () {
   it('renders the title', function () {
     var view;
     view = createView().render();
-    expect(view.$el).toContainText("Categories");
+    expect(view.$el).toContainText('Categories');
   });
 
   it('renders the new category link', function () {
     var view;
     view = createView().render();
     expect(view.$el).toContainElement('a[href="/categories/new"]');
-    expect(view.$el.find('a[href="/categories/new"]')).toContainText("New Category");
+    expect(view.$el.find('a[href="/categories/new"]')).toContainText('New Category');
   });
 
   it('renders the category type headings', function () {
     var view;
     view = createView().render();
-    expect(view.$el).toContainText("Essential");
-    expect(view.$el).toContainText("Flexible");
-    expect(view.$el).toContainText("Transfer");
-    expect(view.$el).toContainText("Income");
+    expect(view.$el).toContainText('Essential');
+    expect(view.$el).toContainText('Flexible');
+    expect(view.$el).toContainText('Transfer');
+    expect(view.$el).toContainText('Income');
   });
 
   it('renders the categories', function () {
     var view;
     view = createView().render();
-    expect(view.$el).toContainText("Category One");
+    expect(view.$el).toContainText('Category One');
     expect(view.$el).toContainElement('a[href="/categories/11/edit"]');
-    expect(view.$el.find('a[href="/categories/11/edit"]')).toContainText("Edit");
+    expect(view.$el.find('a[href="/categories/11/edit"]')).toContainText('Edit');
 
-    expect(view.$el).toContainText("Category Two");
+    expect(view.$el).toContainText('Category Two');
     expect(view.$el).toContainElement('a[href="/categories/22/edit"]');
-    expect(view.$el.find('a[href="/categories/22/edit"]')).toContainText("Edit");
+    expect(view.$el.find('a[href="/categories/22/edit"]')).toContainText('Edit');
 
-    expect(view.$el).toContainText("Category Three");
+    expect(view.$el).toContainText('Category Three');
     expect(view.$el).toContainElement('a[href="/categories/33/edit"]');
-    expect(view.$el.find('a[href="/categories/33/edit"]')).toContainText("Edit");
+    expect(view.$el.find('a[href="/categories/33/edit"]')).toContainText('Edit');
 
-    expect(view.$el).toContainText("Category Four");
+    expect(view.$el).toContainText('Category Four');
     expect(view.$el).toContainElement('a[href="/categories/44/edit"]');
-    expect(view.$el.find('a[href="/categories/44/edit"]')).toContainText("Edit");
+    expect(view.$el.find('a[href="/categories/44/edit"]')).toContainText('Edit');
   });
 });

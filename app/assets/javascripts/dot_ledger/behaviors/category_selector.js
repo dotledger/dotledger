@@ -43,7 +43,7 @@ DotLedger.module('Behaviors', function () {
 
         if (selectorOptions.typeSelectable) {
           var $option = $("<option value='" + label + "'>Any " + label + '</option>');
-          $optgroup.append($option);          
+          $optgroup.append($option);
         }
 
         _.each(categories, function (category) {

@@ -35,7 +35,7 @@ DotLedger.module('Views.SortingRules', function () {
       this.ui.query.val(this.model.get('query'));
       if (!this.model.has('category_id') && this.model.has('category_type')) {
         this.model.set('category_id', this.model.get('category_type'));
-      } 
+      }
     },
 
     search: function () {

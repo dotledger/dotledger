@@ -45,7 +45,7 @@ DotLedger.module('Views.Search', function () {
         } else if (this.model.has('unsorted')) {
           this.model.set('category_id', '-1');
         }
-      } 
+      }
     },
 
     search: function () {
@@ -57,7 +57,6 @@ DotLedger.module('Views.Search', function () {
           data['category_id'] = this.ui.category.val();
         } else if (this.ui.category.val() < 0) {
           data['unsorted'] = 'true';
-
         } else {
           data['category_type'] = this.ui.category.val();
         }

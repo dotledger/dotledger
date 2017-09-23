@@ -90,7 +90,7 @@ DotLedger.module('Views.Goals', function () {
       return {
         monthAmount: _.bind(function () {
           var amount;
-          amount = function () {
+          amount = (function () {
             switch (this.model.get('period')) {
               case 'Month':
                 return 1 * this.model.get('amount');
@@ -99,7 +99,7 @@ DotLedger.module('Views.Goals', function () {
               case 'Week':
                 return 1 * this.model.get('amount') * 13.0 / 3;
             }
-          }.call(this);
+          }.call(this));
           return DotLedger.Helpers.Format.money(amount);
         }, this)
       };
