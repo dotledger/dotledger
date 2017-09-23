@@ -9,12 +9,12 @@ which was [shut down](http://blog.xero.com/2013/08/winding-down-xero-personal-in
 
 Dot Ledger requires:
 
-- [PostgreSQL](http://www.postgresql.org/) (>= 9.1)
-- [Ruby](https://www.ruby-lang.org/) (>= 2.0)
-- [RubyGems](http://rubygems.org/)
+- [PostgreSQL](https://www.postgresql.org/) (Tested with 9.6)
+- [Ruby](https://www.ruby-lang.org/) (Tested with 2.3)
+- [RubyGems](https://rubygems.org/)
 - [Ruby on Rails](http://rubyonrails.org/)
-- [Bundler](http://bundler.io/)
-- [Git](http://git-scm.com/)
+- [Bundler](https://bundler.io/)
+- [Git](https://git-scm.com/)
 
 The basic setup steps are:
 

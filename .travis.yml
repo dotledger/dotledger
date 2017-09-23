@@ -7,7 +7,9 @@ before_script:
   - "cp ./config/database.yml.travis ./config/database.yml"
   - "bundle exec rake db:setup"
 rvm:
-  - 2.2.0
+  - 2.3
+addons:
+  postgresql: "9.6"
 script:
   - "bundle exec rake spec"
   - "bundle exec rake spec:javascript"
