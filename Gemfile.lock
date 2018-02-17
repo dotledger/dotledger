@@ -79,7 +79,7 @@ GEM
       concurrent-ruby (~> 1.0)
     ice_cube (0.16.2)
     jasmine-core (2.99.2)
-    jasmine-rails (0.14.2)
+    jasmine-rails (0.14.7)
       jasmine-core (>= 1.3, < 3.0)
       phantomjs (>= 1.9)
       railties (>= 3.2.0)
