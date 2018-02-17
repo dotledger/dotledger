@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe Api::SortedTransactionsController do
-  let!(:sorted_transaction) { FactoryGirl.create :sorted_transaction, name: 'Sorted Transaction Name' }
-  let!(:account) { FactoryGirl.create :account }
-  let!(:transaction) { FactoryGirl.create :transaction, account: account }
-  let!(:category) { FactoryGirl.create :category }
+  let!(:sorted_transaction) { FactoryBot.create :sorted_transaction, name: 'Sorted Transaction Name' }
+  let!(:account) { FactoryBot.create :account }
+  let!(:transaction) { FactoryBot.create :transaction, account: account }
+  let!(:category) { FactoryBot.create :category }
 
   describe 'GET index' do
     before { get :index }
@@ -28,7 +28,7 @@ describe Api::SortedTransactionsController do
 
   describe 'POST create' do
     def valid_request
-      attributes = FactoryGirl.attributes_for(:sorted_transaction)
+      attributes = FactoryBot.attributes_for(:sorted_transaction)
       attributes[:account_id] = account.id
       attributes[:transaction_id] = transaction.id
       attributes[:category_id] = category.id

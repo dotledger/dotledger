@@ -4,7 +4,7 @@ feature 'AccountGroups', truncate: true, js: true do
   include ActionView::Helpers::NumberHelper
 
   let!(:account_group) do
-    FactoryGirl.create :account_group, name: 'Foobar Group'
+    FactoryBot.create :account_group, name: 'Foobar Group'
   end
 
   describe 'Index' do

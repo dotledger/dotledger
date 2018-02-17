@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'IncomeAndExpenses', truncate: true, js: true do
   describe 'Show' do
     let(:account) do
-      FactoryGirl.create :account,
+      FactoryBot.create :account,
         name: 'Test Account 1',
         balance: 2000.00,
         number: '12-3456-1234567-123',
@@ -11,7 +11,7 @@ feature 'IncomeAndExpenses', truncate: true, js: true do
     end
 
     let!(:spent) do
-      FactoryGirl.create :transaction_sorted,
+      FactoryBot.create :transaction_sorted,
         name: 'Spent',
         posted_at: Date.yesterday,
         account: account,
@@ -19,7 +19,7 @@ feature 'IncomeAndExpenses', truncate: true, js: true do
     end
 
     let!(:received) do
-      FactoryGirl.create :transaction_sorted,
+      FactoryBot.create :transaction_sorted,
         name: 'Received',
         posted_at: Date.yesterday,
         account: account,

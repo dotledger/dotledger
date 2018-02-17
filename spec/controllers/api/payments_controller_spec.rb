@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Api::PaymentsController do
-  let!(:category) { FactoryGirl.create :category }
+  let!(:category) { FactoryBot.create :category }
 
-  let!(:payment) { FactoryGirl.create :payment, category: category, amount: 10.00 }
+  let!(:payment) { FactoryBot.create :payment, category: category, amount: 10.00 }
 
   describe 'GET index' do
     before { get :index }

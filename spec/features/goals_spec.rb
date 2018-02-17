@@ -5,11 +5,11 @@ feature 'Goals', truncate: true, js: true do
 
   describe 'Index' do
     let!(:essential_category) do
-      FactoryGirl.create :category, type: 'Essential', name: 'Groceries'
+      FactoryBot.create :category, type: 'Essential', name: 'Groceries'
     end
 
     let!(:flexible_category) do
-      FactoryGirl.create :category, type: 'Flexible', name: 'Eating Out'
+      FactoryBot.create :category, type: 'Flexible', name: 'Eating Out'
     end
 
     background do

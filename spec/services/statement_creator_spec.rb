@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe StatementCreator do
-  let(:account) { FactoryGirl.create :account }
+  let(:account) { FactoryBot.create :account }
   let(:file) { File.open("#{fixture_path}/example.ofx") }
   let(:blank_file) { File.open("#{fixture_path}/blank.txt") }
 
@@ -39,7 +39,7 @@ describe StatementCreator do
     describe 'set account balance' do
       context 'latest statement' do
         before do
-          FactoryGirl.create :statement,
+          FactoryBot.create :statement,
             to_date: Date.parse('2012-12-01'),
             balance: 10.00,
             account: account
@@ -55,7 +55,7 @@ describe StatementCreator do
 
       context 'older statement' do
         before do
-          FactoryGirl.create :statement,
+          FactoryBot.create :statement,
             to_date: Date.parse('2013-03-01'),
             balance: 10.00,
             account: account

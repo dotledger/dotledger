@@ -29,7 +29,7 @@ gem 'puma'
 group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'jasmine-rails'
   gem 'poltergeist'
   gem 'pry-rails'

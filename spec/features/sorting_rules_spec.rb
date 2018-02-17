@@ -2,12 +2,12 @@ require 'rails_helper'
 
 feature 'Sorting Rules', truncate: true, js: true do
   let!(:category) do
-    FactoryGirl.create :category,
+    FactoryBot.create :category,
       name: 'Test Category'
   end
 
   let!(:sorting_rule1) do
-    FactoryGirl.create :sorting_rule,
+    FactoryBot.create :sorting_rule,
       contains: 'foo',
       name: 'Foobar',
       category: category,
@@ -15,7 +15,7 @@ feature 'Sorting Rules', truncate: true, js: true do
   end
 
   let!(:sorting_rule2) do
-    FactoryGirl.create :sorting_rule,
+    FactoryBot.create :sorting_rule,
       contains: 'baz',
       name: 'Bazbar',
       category: category,

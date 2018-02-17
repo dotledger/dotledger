@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Payment do
-  before { FactoryGirl.create :payment }
+  before { FactoryBot.create :payment }
 
   it { should have_db_column(:name).of_type(:string).with_options(null: false) }
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Accounts', truncate: true, js: true do
   describe 'Show' do
     let(:account) do
-      FactoryGirl.create :account,
+      FactoryBot.create :account,
         name: 'Test Account 1',
         balance: 2000.00,
         number: '12-3456-1234567-123',
@@ -11,19 +11,19 @@ feature 'Accounts', truncate: true, js: true do
     end
 
     background do
-      FactoryGirl.create :transaction,
+      FactoryBot.create :transaction,
         name: 'Test Unsorted Transaction',
         posted_at: Date.parse('2012-10-13'),
         account: account,
         amount: 19.95
 
-      FactoryGirl.create :transaction_review,
+      FactoryBot.create :transaction_review,
         name: 'Test Review Transaction',
         posted_at: Date.parse('2012-10-14'),
         account: account,
         amount: 234.56
 
-      FactoryGirl.create :transaction_sorted,
+      FactoryBot.create :transaction_sorted,
         name: 'Test Sorted Transaction',
         posted_at: Date.parse('2012-10-15'),
         account: account,
@@ -155,7 +155,7 @@ feature 'Accounts', truncate: true, js: true do
 
   describe 'Update' do
     let(:account) do
-      FactoryGirl.create :account,
+      FactoryBot.create :account,
         name: 'Test Account',
         balance: 2000.00,
         number: '12-3456-1234567-123',

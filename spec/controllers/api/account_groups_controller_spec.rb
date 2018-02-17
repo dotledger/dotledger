@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::AccountGroupsController do
-  let!(:account_group) { FactoryGirl.create :account_group, name: 'Account Group' }
+  let!(:account_group) { FactoryBot.create :account_group, name: 'Account Group' }
 
   describe 'GET index' do
     before { get :index }

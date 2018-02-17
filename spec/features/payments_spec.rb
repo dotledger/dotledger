@@ -6,11 +6,11 @@ feature 'Payments', truncate: true, js: true do
   let(:date) { Time.now + 4.days }
 
   let!(:category) do
-    FactoryGirl.create :category, type: 'Income', name: 'Salary & Wages'
+    FactoryBot.create :category, type: 'Income', name: 'Salary & Wages'
   end
 
   let!(:payment) do
-    FactoryGirl.create :payment,
+    FactoryBot.create :payment,
       category: category,
       name: 'Foobar Wages',
       amount: 5000,
@@ -45,7 +45,7 @@ feature 'Payments', truncate: true, js: true do
   end
 
   describe 'Create' do
-    let!(:category) { FactoryGirl.create :category }
+    let!(:category) { FactoryBot.create :category }
 
     before do
       visit '/payments/new'

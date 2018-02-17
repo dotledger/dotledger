@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe Api::TransactionsController do
-  let!(:transaction) { FactoryGirl.create :transaction, name: 'Transaction Name' }
-  let!(:account) { FactoryGirl.create :account }
+  let!(:transaction) { FactoryBot.create :transaction, name: 'Transaction Name' }
+  let!(:account) { FactoryBot.create :account }
 
   describe 'GET index' do
-    let!(:account_transactions) { FactoryGirl.create_list :transaction, 2, account: account }
-    let!(:other_transactions) { FactoryGirl.create_list :transaction, 2 }
-    let!(:sorted_transactions) { FactoryGirl.create_list :transaction, 2 }
-    let!(:transactions_for_review) { FactoryGirl.create_list :transaction, 2 }
+    let!(:account_transactions) { FactoryBot.create_list :transaction, 2, account: account }
+    let!(:other_transactions) { FactoryBot.create_list :transaction, 2 }
+    let!(:sorted_transactions) { FactoryBot.create_list :transaction, 2 }
+    let!(:transactions_for_review) { FactoryBot.create_list :transaction, 2 }
     let!(:all_transactions) do
       [
         transaction,
@@ -25,8 +25,8 @@ describe Api::TransactionsController do
         other_transactions
       ].flatten
     end
-    let!(:category) { FactoryGirl.create :category, type: 'Essential' }
-    let!(:other_category) { FactoryGirl.create :category, type: 'Income' }
+    let!(:category) { FactoryBot.create :category, type: 'Essential' }
+    let!(:other_category) { FactoryBot.create :category, type: 'Income' }
 
     before do
       sorted_transactions.each do |t|
@@ -155,7 +155,7 @@ describe Api::TransactionsController do
     end
 
     context 'filter between dates' do
-      let!(:transaction_during) { FactoryGirl.create :transaction, posted_at: Date.parse('2012-04-10') }
+      let!(:transaction_during) { FactoryBot.create :transaction, posted_at: Date.parse('2012-04-10') }
 
       before do
         get :index, date_from: '2012-04-01', date_to: '2012-04-30'
@@ -169,9 +169,9 @@ describe Api::TransactionsController do
     end
 
     context 'filter with tags' do
-      let!(:tag) { FactoryGirl.create :tag }
-      let!(:transaction_match_1) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, tag_ids: [tag.id]) }
-      let!(:transaction_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, tag_ids: [tag.id]) }
+      let!(:tag) { FactoryBot.create :tag }
+      let!(:transaction_match_1) { FactoryBot.create :transaction, sorted_transaction: FactoryBot.create(:sorted_transaction, tag_ids: [tag.id]) }
+      let!(:transaction_match_2) { FactoryBot.create :transaction, sorted_transaction: FactoryBot.create(:sorted_transaction, tag_ids: [tag.id]) }
 
       before do
         get :index, tag_ids: tag.id
@@ -197,7 +197,7 @@ describe Api::TransactionsController do
 
   describe 'POST create' do
     def valid_request
-      attributes = FactoryGirl.attributes_for(:transaction)
+      attributes = FactoryBot.attributes_for(:transaction)
       attributes[:account_id] = account.id
       post :create, attributes
     end
@@ -260,7 +260,7 @@ describe Api::TransactionsController do
     end
 
     context 'with account_id' do
-      let(:account) { FactoryGirl.create :account }
+      let(:account) { FactoryBot.create :account }
       it 'responds with 200' do
         post :sort, account_id: account.id
         expect(subject).to respond_with(:success)

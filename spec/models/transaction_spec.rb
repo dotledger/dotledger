@@ -36,7 +36,7 @@ describe Transaction do
   it { should have_one :sorted_transaction }
 
   it 'sets the search attribute before validation' do
-    transaction = FactoryGirl.build :transaction, name: 'FOO', memo: 'BAR'
+    transaction = FactoryBot.build :transaction, name: 'FOO', memo: 'BAR'
 
     expect do
       transaction.valid?
@@ -44,11 +44,11 @@ describe Transaction do
   end
 
   describe '#unsorted' do
-    let!(:unsorted) { FactoryGirl.create_list :transaction, 2 }
-    let!(:sorted) { FactoryGirl.create_list :transaction, 2 }
+    let!(:unsorted) { FactoryBot.create_list :transaction, 2 }
+    let!(:sorted) { FactoryBot.create_list :transaction, 2 }
 
     before do
-      category = FactoryGirl.create :category
+      category = FactoryBot.create :category
       sorted.each do |t|
         t.create_sorted_transaction!(
           name: t.search,
@@ -64,9 +64,9 @@ describe Transaction do
   end
 
   describe '#sorted' do
-    let!(:unsorted) { FactoryGirl.create_list :transaction, 2 }
-    let!(:sorted) { FactoryGirl.create_list :transaction, 2 }
-    let!(:category) { FactoryGirl.create :category }
+    let!(:unsorted) { FactoryBot.create_list :transaction, 2 }
+    let!(:sorted) { FactoryBot.create_list :transaction, 2 }
+    let!(:category) { FactoryBot.create :category }
 
     before do
       sorted.each do |t|
@@ -84,10 +84,10 @@ describe Transaction do
   end
 
   describe '#with_category' do
-    let!(:transactions_1) { FactoryGirl.create_list :transaction, 2 }
-    let!(:transactions_2) { FactoryGirl.create_list :transaction, 2 }
-    let!(:category_1) { FactoryGirl.create :category }
-    let!(:category_2) { FactoryGirl.create :category }
+    let!(:transactions_1) { FactoryBot.create_list :transaction, 2 }
+    let!(:transactions_2) { FactoryBot.create_list :transaction, 2 }
+    let!(:category_1) { FactoryBot.create :category }
+    let!(:category_2) { FactoryBot.create :category }
 
     before do
       transactions_1.each do |t|
@@ -105,12 +105,12 @@ describe Transaction do
   end
 
   describe '#with_category_type' do
-    let!(:transactions_1) { FactoryGirl.create_list :transaction, 2 }
-    let!(:transactions_2) { FactoryGirl.create_list :transaction, 2 }
-    let!(:transactions_3) { FactoryGirl.create_list :transaction, 2 }
-    let!(:category_1) { FactoryGirl.create :category, type: 'Essential' }
-    let!(:category_2) { FactoryGirl.create :category, type: 'Essential' }
-    let!(:category_3) { FactoryGirl.create :category, type: 'Flexible' }
+    let!(:transactions_1) { FactoryBot.create_list :transaction, 2 }
+    let!(:transactions_2) { FactoryBot.create_list :transaction, 2 }
+    let!(:transactions_3) { FactoryBot.create_list :transaction, 2 }
+    let!(:category_1) { FactoryBot.create :category, type: 'Essential' }
+    let!(:category_2) { FactoryBot.create :category, type: 'Essential' }
+    let!(:category_3) { FactoryBot.create :category, type: 'Flexible' }
 
     before do
       transactions_1.each do |t|
@@ -136,9 +136,9 @@ describe Transaction do
   end
 
   describe '#between_dates' do
-    let!(:transaction_before) { FactoryGirl.create :transaction, posted_at: Date.parse('2012-03-05') }
-    let!(:transaction_during) { FactoryGirl.create :transaction, posted_at: Date.parse('2012-04-10') }
-    let!(:transaction_after) { FactoryGirl.create :transaction, posted_at: Date.parse('2012-05-20') }
+    let!(:transaction_before) { FactoryBot.create :transaction, posted_at: Date.parse('2012-03-05') }
+    let!(:transaction_during) { FactoryBot.create :transaction, posted_at: Date.parse('2012-04-10') }
+    let!(:transaction_after) { FactoryBot.create :transaction, posted_at: Date.parse('2012-05-20') }
 
     it 'only includes transaction within the date range' do
       date_from = '2012-04-01'
@@ -149,10 +149,10 @@ describe Transaction do
   end
 
   describe '#search_query' do
-    let!(:transaction_match_1) { FactoryGirl.create :transaction, name: 'Foobar', memo: 'Test-Baz' }
-    let!(:transaction_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, name: 'Some Test Baz Name') }
-    let!(:transaction_no_match_1) { FactoryGirl.create :transaction, name: 'Foobar' }
-    let!(:transaction_no_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, name: 'Some Name') }
+    let!(:transaction_match_1) { FactoryBot.create :transaction, name: 'Foobar', memo: 'Test-Baz' }
+    let!(:transaction_match_2) { FactoryBot.create :transaction, sorted_transaction: FactoryBot.create(:sorted_transaction, name: 'Some Test Baz Name') }
+    let!(:transaction_no_match_1) { FactoryBot.create :transaction, name: 'Foobar' }
+    let!(:transaction_no_match_2) { FactoryBot.create :transaction, sorted_transaction: FactoryBot.create(:sorted_transaction, name: 'Some Name') }
 
     it 'only includes transaction that match the search query' do
       expect(described_class.search_query('Test')).to match_array [transaction_match_1, transaction_match_2]
@@ -168,11 +168,11 @@ describe Transaction do
   end
 
   describe '#with_tags' do
-    let!(:tag_1) { FactoryGirl.create :tag }
-    let!(:tag_2) { FactoryGirl.create :tag }
-    let!(:transaction_match_1) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, tag_ids: [tag_1.id, tag_2.id]) }
-    let!(:transaction_match_2) { FactoryGirl.create :transaction, sorted_transaction: FactoryGirl.create(:sorted_transaction, tag_ids: [tag_1.id, tag_2.id]) }
-    let!(:transaction_no_match) { FactoryGirl.create :transaction }
+    let!(:tag_1) { FactoryBot.create :tag }
+    let!(:tag_2) { FactoryBot.create :tag }
+    let!(:transaction_match_1) { FactoryBot.create :transaction, sorted_transaction: FactoryBot.create(:sorted_transaction, tag_ids: [tag_1.id, tag_2.id]) }
+    let!(:transaction_match_2) { FactoryBot.create :transaction, sorted_transaction: FactoryBot.create(:sorted_transaction, tag_ids: [tag_1.id, tag_2.id]) }
+    let!(:transaction_no_match) { FactoryBot.create :transaction }
 
     it 'only includes transaction that have all the correct tags' do
       expect(described_class.with_tags([tag_1.id, tag_2.id])).to match_array [transaction_match_1, transaction_match_2]

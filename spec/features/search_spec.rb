@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature 'Search', truncate: true, js: true do
   background do
-    FactoryGirl.create :transaction, name: 'Foobar Something'
-    FactoryGirl.create :transaction, name: 'Another Foobar'
-    FactoryGirl.create :transaction, name: 'Blah'
+    FactoryBot.create :transaction, name: 'Foobar Something'
+    FactoryBot.create :transaction, name: 'Another Foobar'
+    FactoryBot.create :transaction, name: 'Blah'
   end
 
   describe 'results' do

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Tag do
   before do
-    FactoryGirl.create :tag
+    FactoryBot.create :tag
   end
 
   it { should have_db_column(:name).of_type(:string).with_options(null: false) }
@@ -17,11 +17,11 @@ describe Tag do
     let(:tags_name_array) { ['First Tag', 'Second Tag', 'Third Tag'] }
 
     context 'existing tags' do
-      let!(:tag1) { FactoryGirl.create :tag, name: 'First Tag' }
+      let!(:tag1) { FactoryBot.create :tag, name: 'First Tag' }
 
-      let!(:tag2) { FactoryGirl.create :tag, name: 'Second Tag' }
+      let!(:tag2) { FactoryBot.create :tag, name: 'Second Tag' }
 
-      let!(:tag3) { FactoryGirl.create :tag, name: 'Third Tag' }
+      let!(:tag3) { FactoryBot.create :tag, name: 'Third Tag' }
 
       specify do
         expect(described_class.tags_from_string(tags_string)).to eq [tag1, tag2, tag3]

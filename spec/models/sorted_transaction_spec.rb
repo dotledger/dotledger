@@ -26,12 +26,12 @@ describe SortedTransaction do
   it { should belong_to :account_transaction }
 
   describe 'tags' do
-    let!(:tag1) { FactoryGirl.create :tag, name: 'First Tag' }
+    let!(:tag1) { FactoryBot.create :tag, name: 'First Tag' }
 
-    let!(:tag2) { FactoryGirl.create :tag, name: 'Second Tag' }
+    let!(:tag2) { FactoryBot.create :tag, name: 'Second Tag' }
 
     describe '.tags' do
-      subject { FactoryGirl.build :sorted_transaction, tag_ids: [tag1.id, tag2.id] }
+      subject { FactoryBot.build :sorted_transaction, tag_ids: [tag1.id, tag2.id] }
 
       specify do
         expect(subject.tags).to eq [tag1, tag2]
@@ -39,7 +39,7 @@ describe SortedTransaction do
     end
 
     describe '.tags=' do
-      subject { FactoryGirl.build :sorted_transaction, tag_ids: [] }
+      subject { FactoryBot.build :sorted_transaction, tag_ids: [] }
 
       context 'a list of tag models' do
         before do
@@ -71,7 +71,7 @@ describe SortedTransaction do
     end
 
     describe '.tag_list' do
-      subject { FactoryGirl.build :sorting_rule, tag_ids: [tag1.id, tag2.id] }
+      subject { FactoryBot.build :sorting_rule, tag_ids: [tag1.id, tag2.id] }
 
       specify do
         expect(subject.tag_list).to eq [tag1.name, tag2.name]
@@ -79,7 +79,7 @@ describe SortedTransaction do
     end
 
     describe '.tag_list=' do
-      subject { FactoryGirl.build :sorting_rule, tag_ids: [] }
+      subject { FactoryBot.build :sorting_rule, tag_ids: [] }
 
       before do
         subject.tag_list = [tag1.name, tag2.name]

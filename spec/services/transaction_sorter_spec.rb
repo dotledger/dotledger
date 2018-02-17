@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe TransactionSorter do
-  let!(:transaction) { FactoryGirl.create :transaction, name: 'Some Transaction Foobar' }
-  let!(:best_rule) { FactoryGirl.create :sorting_rule, contains: 'Some Transaction' }
-  let!(:second_best_rule) { FactoryGirl.create :sorting_rule, contains: 'Transaction' }
-  let!(:least_best_rule) { FactoryGirl.create :sorting_rule, contains: 'Action' }
+  let!(:transaction) { FactoryBot.create :transaction, name: 'Some Transaction Foobar' }
+  let!(:best_rule) { FactoryBot.create :sorting_rule, contains: 'Some Transaction' }
+  let!(:second_best_rule) { FactoryBot.create :sorting_rule, contains: 'Transaction' }
+  let!(:least_best_rule) { FactoryBot.create :sorting_rule, contains: 'Action' }
 
   subject { described_class.new(transaction) }
 

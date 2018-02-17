@@ -1,17 +1,17 @@
 require 'rails_helper'
 
 describe Api::SortingRulesController do
-  let!(:sorting_rule) { FactoryGirl.create :sorting_rule, name: 'Some Name' }
-  let!(:test_sorting_rule) { FactoryGirl.create :sorting_rule, name: 'Test' }
-  let!(:tagged_sorting_rules) { FactoryGirl.create_list :sorting_rule, 2, tag_ids: [tag.id] }
-  let!(:categorised_sorting_rules_1) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_1.id }
-  let!(:categorised_sorting_rules_2) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_2.id }
-  let!(:categorised_sorting_rules_3) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_3.id }
-  let!(:category_1) { FactoryGirl.create :category, type: 'Flexible' }
-  let!(:category_2) { FactoryGirl.create :category, type: 'Flexible' }
-  let!(:category_3) { FactoryGirl.create :category, type: 'Essential' }
+  let!(:sorting_rule) { FactoryBot.create :sorting_rule, name: 'Some Name' }
+  let!(:test_sorting_rule) { FactoryBot.create :sorting_rule, name: 'Test' }
+  let!(:tagged_sorting_rules) { FactoryBot.create_list :sorting_rule, 2, tag_ids: [tag.id] }
+  let!(:categorised_sorting_rules_1) { FactoryBot.create_list :sorting_rule, 2, category_id: category_1.id }
+  let!(:categorised_sorting_rules_2) { FactoryBot.create_list :sorting_rule, 2, category_id: category_2.id }
+  let!(:categorised_sorting_rules_3) { FactoryBot.create_list :sorting_rule, 2, category_id: category_3.id }
+  let!(:category_1) { FactoryBot.create :category, type: 'Flexible' }
+  let!(:category_2) { FactoryBot.create :category, type: 'Flexible' }
+  let!(:category_3) { FactoryBot.create :category, type: 'Essential' }
 
-  let!(:tag) { FactoryGirl.create :tag }
+  let!(:tag) { FactoryBot.create :tag }
 
   describe 'GET index' do
     context 'no filters' do

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe AccountGroup do
   before do
-    FactoryGirl.create :account_group
+    FactoryBot.create :account_group
   end
 
   it { should have_db_column(:name).of_type(:string).with_options(null: false) }

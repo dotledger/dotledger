@@ -1,6 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+# Read about factories at https://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :sorting_rule do
     sequence(:contains) { |n| "Contains #{n}" }
     sequence(:name) { |n| "Name #{n}" }

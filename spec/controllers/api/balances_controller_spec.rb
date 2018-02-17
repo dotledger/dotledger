@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::BalancesController do
-  let!(:account) { FactoryGirl.create :account, balance: 1000.0 }
+  let!(:account) { FactoryBot.create :account, balance: 1000.0 }
 
   describe 'GET index' do
     context 'no account id' do

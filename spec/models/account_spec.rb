@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Account do
   before do
-    FactoryGirl.create :account
+    FactoryBot.create :account
   end
 
   it { should have_db_column(:name).of_type(:string).with_options(null: false) }

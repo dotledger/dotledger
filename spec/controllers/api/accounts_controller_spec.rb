@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::AccountsController do
-  let!(:account) { FactoryGirl.create :account, name: 'Account Name' }
+  let!(:account) { FactoryBot.create :account, name: 'Account Name' }
 
   describe 'GET index' do
     before { get :index }

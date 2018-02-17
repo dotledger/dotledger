@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Category do
   before do
-    FactoryGirl.create :category
+    FactoryBot.create :category
   end
 
   it { should have_db_column(:name).of_type(:string).with_options(null: false) }
@@ -29,7 +29,7 @@ describe Category do
 
   it 'creates a related goal' do
     expect do
-      FactoryGirl.create :category
+      FactoryBot.create :category
     end.to change(Goal, :count).by(1)
   end
 end

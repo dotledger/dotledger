@@ -7,14 +7,14 @@ describe BalanceProjector do
     schedule = IceCube::Schedule.new(Date.parse('2014-01-01')) do |s|
       s.add_recurrence_rule(IceCube::Rule.daily(2))
     end
-    FactoryGirl.create :payment, type: 'Spend', amount: 10.00, schedule: schedule
+    FactoryBot.create :payment, type: 'Spend', amount: 10.00, schedule: schedule
   end
 
   let!(:payment2) do
     schedule = IceCube::Schedule.new(Date.parse('2014-01-01')) do |s|
       s.add_recurrence_rule(IceCube::Rule.daily(4))
     end
-    FactoryGirl.create :payment, type: 'Receive', amount: 50.00, schedule: schedule
+    FactoryBot.create :payment, type: 'Receive', amount: 50.00, schedule: schedule
   end
 
   let(:expected) do

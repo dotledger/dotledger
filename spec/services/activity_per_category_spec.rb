@@ -11,11 +11,11 @@ describe ActivityPerCategory do
   end
 
   context 'with transactions for one category' do
-    let!(:category) { FactoryGirl.create(:category) }
-    let!(:transaction1) { FactoryGirl.create(:transaction, posted_at: rand(date_range), amount: -40.0) }
-    let!(:sorted_transaction1) { FactoryGirl.create(:sorted_transaction, category_id: category.id, transaction_id: transaction1.id) }
-    let!(:transaction2) { FactoryGirl.create(:transaction, posted_at: rand(date_range), amount: 30.0) }
-    let!(:sorted_transaction2) { FactoryGirl.create(:sorted_transaction, category_id: category.id, transaction_id: transaction2.id) }
+    let!(:category) { FactoryBot.create(:category) }
+    let!(:transaction1) { FactoryBot.create(:transaction, posted_at: rand(date_range), amount: -40.0) }
+    let!(:sorted_transaction1) { FactoryBot.create(:sorted_transaction, category_id: category.id, transaction_id: transaction1.id) }
+    let!(:transaction2) { FactoryBot.create(:transaction, posted_at: rand(date_range), amount: 30.0) }
+    let!(:sorted_transaction2) { FactoryBot.create(:sorted_transaction, category_id: category.id, transaction_id: transaction2.id) }
 
     before do
       category.goal.update_attributes(amount: 100, period: 'Week', type: 'Spend')

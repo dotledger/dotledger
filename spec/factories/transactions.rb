@@ -1,6 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+# Read about factories at https://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :transaction do
     amount 10.00
     sequence(:fit_id)
@@ -12,7 +12,7 @@ FactoryGirl.define do
 
     factory :transaction_sorted do
       after(:create) do |transaction|
-        FactoryGirl.create :sorted_transaction,
+        FactoryBot.create :sorted_transaction,
           account_transaction: transaction,
           name: transaction.search
       end
@@ -20,7 +20,7 @@ FactoryGirl.define do
 
     factory :transaction_review do
       after(:create) do |transaction|
-        FactoryGirl.create :sorted_transaction,
+        FactoryBot.create :sorted_transaction,
           review: true,
           account_transaction: transaction,
           name: transaction.search

@@ -20,12 +20,12 @@ describe SortingRule do
   it { should belong_to :category }
 
   describe 'tags' do
-    let!(:tag1) { FactoryGirl.create :tag, name: 'First Tag' }
+    let!(:tag1) { FactoryBot.create :tag, name: 'First Tag' }
 
-    let!(:tag2) { FactoryGirl.create :tag, name: 'Second Tag' }
+    let!(:tag2) { FactoryBot.create :tag, name: 'Second Tag' }
 
     describe '.tags' do
-      subject { FactoryGirl.build :sorting_rule, tag_ids: [tag1.id, tag2.id] }
+      subject { FactoryBot.build :sorting_rule, tag_ids: [tag1.id, tag2.id] }
 
       specify do
         expect(subject.tags).to eq [tag1, tag2]
@@ -33,7 +33,7 @@ describe SortingRule do
     end
 
     describe '.tags=' do
-      subject { FactoryGirl.build :sorting_rule, tag_ids: [] }
+      subject { FactoryBot.build :sorting_rule, tag_ids: [] }
 
       context 'a list of tag models' do
         before do
@@ -65,7 +65,7 @@ describe SortingRule do
     end
 
     describe '.tag_list' do
-      subject { FactoryGirl.build :sorting_rule, tag_ids: [tag1.id, tag2.id] }
+      subject { FactoryBot.build :sorting_rule, tag_ids: [tag1.id, tag2.id] }
 
       specify do
         expect(subject.tag_list).to eq [tag1.name, tag2.name]
@@ -73,7 +73,7 @@ describe SortingRule do
     end
 
     describe '.tag_list=' do
-      subject { FactoryGirl.build :sorting_rule, tag_ids: [] }
+      subject { FactoryBot.build :sorting_rule, tag_ids: [] }
 
       before do
         subject.tag_list = [tag1.name, tag2.name]
@@ -86,10 +86,10 @@ describe SortingRule do
   end
 
   describe '#with_category' do
-    let!(:sorting_rules_1) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_1.id }
-    let!(:sorting_rules_2) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_2.id }
-    let!(:category_1) { FactoryGirl.create :category }
-    let!(:category_2) { FactoryGirl.create :category }
+    let!(:sorting_rules_1) { FactoryBot.create_list :sorting_rule, 2, category_id: category_1.id }
+    let!(:sorting_rules_2) { FactoryBot.create_list :sorting_rule, 2, category_id: category_2.id }
+    let!(:category_1) { FactoryBot.create :category }
+    let!(:category_2) { FactoryBot.create :category }
 
     it 'only includes sorting rules with the correct category' do
       expect(described_class.with_category(category_1.id)).to match_array sorting_rules_1
@@ -97,12 +97,12 @@ describe SortingRule do
   end
 
   describe '#with_category_type' do
-    let!(:sorting_rules_1) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_1.id }
-    let!(:sorting_rules_2) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_2.id }
-    let!(:sorting_rules_3) { FactoryGirl.create_list :sorting_rule, 2, category_id: category_3.id }
-    let!(:category_1) { FactoryGirl.create :category, type: 'Flexible' }
-    let!(:category_2) { FactoryGirl.create :category, type: 'Flexible' }
-    let!(:category_3) { FactoryGirl.create :category, type: 'Essential' }
+    let!(:sorting_rules_1) { FactoryBot.create_list :sorting_rule, 2, category_id: category_1.id }
+    let!(:sorting_rules_2) { FactoryBot.create_list :sorting_rule, 2, category_id: category_2.id }
+    let!(:sorting_rules_3) { FactoryBot.create_list :sorting_rule, 2, category_id: category_3.id }
+    let!(:category_1) { FactoryBot.create :category, type: 'Flexible' }
+    let!(:category_2) { FactoryBot.create :category, type: 'Flexible' }
+    let!(:category_3) { FactoryBot.create :category, type: 'Essential' }
 
     it 'only includes sorting rules with the correct category type' do
       expect(described_class.with_category_type('Flexible')).to match_array sorting_rules_1 + sorting_rules_2
@@ -110,8 +110,8 @@ describe SortingRule do
   end
 
   describe '#search_query' do
-    let!(:sorting_rule_match) { FactoryGirl.create :sorting_rule, name: 'Test Foobar' }
-    let!(:sorting_rule_no_match) { FactoryGirl.create :sorting_rule, name: 'Foobar' }
+    let!(:sorting_rule_match) { FactoryBot.create :sorting_rule, name: 'Test Foobar' }
+    let!(:sorting_rule_no_match) { FactoryBot.create :sorting_rule, name: 'Foobar' }
 
     it 'only includes sorting rule that match the search query' do
       expect(described_class.search_query('Test')).to match_array [sorting_rule_match]
@@ -123,11 +123,11 @@ describe SortingRule do
   end
 
   describe '#with_tags' do
-    let!(:tag_1) { FactoryGirl.create :tag }
-    let!(:tag_2) { FactoryGirl.create :tag }
-    let!(:sorting_rule_match_1) { FactoryGirl.create :sorting_rule, tag_ids: [tag_1.id, tag_2.id] }
-    let!(:sorting_rule_match_2) { FactoryGirl.create :sorting_rule, tag_ids: [tag_1.id, tag_2.id] }
-    let!(:sorting_rule_no_match) { FactoryGirl.create :sorting_rule }
+    let!(:tag_1) { FactoryBot.create :tag }
+    let!(:tag_2) { FactoryBot.create :tag }
+    let!(:sorting_rule_match_1) { FactoryBot.create :sorting_rule, tag_ids: [tag_1.id, tag_2.id] }
+    let!(:sorting_rule_match_2) { FactoryBot.create :sorting_rule, tag_ids: [tag_1.id, tag_2.id] }
+    let!(:sorting_rule_no_match) { FactoryBot.create :sorting_rule }
 
     it 'only includes sorting rule that have all the correct tags' do
       expect(described_class.with_tags([tag_1.id, tag_2.id])).to match_array [sorting_rule_match_1, sorting_rule_match_2]

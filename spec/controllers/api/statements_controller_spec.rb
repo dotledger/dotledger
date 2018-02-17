@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe Api::StatementsController do
-  let!(:statement) { FactoryGirl.create :statement }
-  let!(:account) { FactoryGirl.create :account }
+  let!(:statement) { FactoryBot.create :statement }
+  let!(:account) { FactoryBot.create :account }
 
   describe 'GET index' do
-    let!(:account_statements) { FactoryGirl.create_list :statement, 2, account: account }
+    let!(:account_statements) { FactoryBot.create_list :statement, 2, account: account }
 
     context 'no filters' do
       before { get :index }

@@ -1,22 +1,22 @@
 require 'rails_helper'
 
 describe BalanceCalculator do
-  let(:account) { FactoryGirl.create(:account, balance: 100.0) }
+  let(:account) { FactoryBot.create(:account, balance: 100.0) }
 
   let!(:transaction_1) do
-    FactoryGirl.create(:transaction, account: account, amount: 10.0, posted_at: Date.parse('2014-03-20'))
+    FactoryBot.create(:transaction, account: account, amount: 10.0, posted_at: Date.parse('2014-03-20'))
   end
 
   let!(:transaction_2) do
-    FactoryGirl.create(:transaction, account: account, amount: 5.0, posted_at: Date.parse('2014-03-18'))
+    FactoryBot.create(:transaction, account: account, amount: 5.0, posted_at: Date.parse('2014-03-18'))
   end
 
   let!(:transaction_3) do
-    FactoryGirl.create(:transaction, account: account, amount: -8.99, posted_at: Date.parse('2014-03-16'))
+    FactoryBot.create(:transaction, account: account, amount: -8.99, posted_at: Date.parse('2014-03-16'))
   end
 
   let!(:transaction_4) do
-    FactoryGirl.create(:transaction, account: account, amount: 2.0, posted_at: Date.parse('2014-03-14'))
+    FactoryBot.create(:transaction, account: account, amount: 2.0, posted_at: Date.parse('2014-03-14'))
   end
 
   context 'to the present balance' do

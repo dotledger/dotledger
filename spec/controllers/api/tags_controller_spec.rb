@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Api::TagsController do
-  let!(:tag1) { FactoryGirl.create :tag, name: 'Tag A' }
-  let!(:tag2) { FactoryGirl.create :tag, name: 'Tag B' }
+  let!(:tag1) { FactoryBot.create :tag, name: 'Tag A' }
+  let!(:tag2) { FactoryBot.create :tag, name: 'Tag B' }
 
   describe 'GET index' do
     before { get :index }

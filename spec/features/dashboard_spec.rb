@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature 'Dashboard', truncate: true, js: true do
-  let!(:account_1) { FactoryGirl.create :account, name: 'Test Account 1', balance: 2000.00 }
-  let!(:account_2) { FactoryGirl.create :account, name: 'Test Account 2', balance: 123.45 }
-  let!(:account_3) { FactoryGirl.create :account, name: 'Test Account 3', balance: -500.00 }
-  let!(:unsorted_transaction) { FactoryGirl.create :transaction, account: account_1 }
+  let!(:account_1) { FactoryBot.create :account, name: 'Test Account 1', balance: 2000.00 }
+  let!(:account_2) { FactoryBot.create :account, name: 'Test Account 2', balance: 123.45 }
+  let!(:account_3) { FactoryBot.create :account, name: 'Test Account 3', balance: -500.00 }
+  let!(:unsorted_transaction) { FactoryBot.create :transaction, account: account_1 }
 
   before do
     visit '/'

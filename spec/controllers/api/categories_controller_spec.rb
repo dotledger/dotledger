@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::CategoriesController do
-  let!(:category) { FactoryGirl.create :category, name: 'Category' }
+  let!(:category) { FactoryBot.create :category, name: 'Category' }
 
   describe 'GET index' do
     before { get :index }

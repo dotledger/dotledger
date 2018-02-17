@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::GoalsController do
-  let!(:category) { FactoryGirl.create :category }
+  let!(:category) { FactoryBot.create :category }
   let!(:goal) { category.goal }
 
   describe 'GET index' do

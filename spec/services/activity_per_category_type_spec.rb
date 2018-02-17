@@ -11,16 +11,16 @@ describe ActivityPerCategoryType do
   end
 
   context 'with transactions' do
-    let!(:category1) { FactoryGirl.create(:category, type: 'Flexible') }
-    let!(:category2) { FactoryGirl.create(:category, type: 'Essential') }
-    let!(:category3) { FactoryGirl.create(:category, type: 'Income') }
-    let!(:transaction1) { FactoryGirl.create(:transaction, posted_at: rand(date_range), amount: -40.0) }
-    let!(:sorted_transaction1) { FactoryGirl.create(:sorted_transaction, category_id: category1.id, transaction_id: transaction1.id) }
-    let!(:transaction2) { FactoryGirl.create(:transaction, posted_at: rand(date_range), amount: -30.0) }
-    let!(:sorted_transaction2) { FactoryGirl.create(:sorted_transaction, category_id: category2.id, transaction_id: transaction2.id) }
-    let!(:transaction3) { FactoryGirl.create(:transaction, posted_at: rand(date_range), amount: 50.0) }
-    let!(:sorted_transaction3) { FactoryGirl.create(:sorted_transaction, category_id: category3.id, transaction_id: transaction3.id) }
-    let!(:transaction4) { FactoryGirl.create(:transaction, posted_at: rand(date_range), amount: -70.0) }
+    let!(:category1) { FactoryBot.create(:category, type: 'Flexible') }
+    let!(:category2) { FactoryBot.create(:category, type: 'Essential') }
+    let!(:category3) { FactoryBot.create(:category, type: 'Income') }
+    let!(:transaction1) { FactoryBot.create(:transaction, posted_at: rand(date_range), amount: -40.0) }
+    let!(:sorted_transaction1) { FactoryBot.create(:sorted_transaction, category_id: category1.id, transaction_id: transaction1.id) }
+    let!(:transaction2) { FactoryBot.create(:transaction, posted_at: rand(date_range), amount: -30.0) }
+    let!(:sorted_transaction2) { FactoryBot.create(:sorted_transaction, category_id: category2.id, transaction_id: transaction2.id) }
+    let!(:transaction3) { FactoryBot.create(:transaction, posted_at: rand(date_range), amount: 50.0) }
+    let!(:sorted_transaction3) { FactoryBot.create(:sorted_transaction, category_id: category3.id, transaction_id: transaction3.id) }
+    let!(:transaction4) { FactoryBot.create(:transaction, posted_at: rand(date_range), amount: -70.0) }
 
     it 'returns an array with one element' do
       expect(subject.activity_per_category_type.length).to eq 4
