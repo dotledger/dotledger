@@ -28,7 +28,9 @@ describe('DotLedger.Views.Statistics.ActivityPerCategoryType.List', function () 
     collection.metadata = {
       total_received: '50.0',
       total_spent: '140.0',
-      total_net: '-90.0'
+      total_net: '-90.0',
+      date_from: "2011-03-01",
+      date_to: "2011-03-31"
     };
     view = new DotLedger.Views.Statistics.ActivityPerCategoryType.List({
       collection: collection
@@ -71,6 +73,15 @@ describe('DotLedger.Views.Statistics.ActivityPerCategoryType.List', function () 
     expect(view.$el.find('.list-group-item:eq(1) .type')).toHaveText(/Flexible/);
     expect(view.$el.find('.list-group-item:eq(2) .type')).toHaveText(/Income/);
     expect(view.$el.find('.list-group-item:eq(3) .type')).toHaveText(/Uncategorised/);
+  });
+
+  it('renders the category type links', function () {
+    var view;
+    view = createView().render();
+    expect(view.$el).toContainElement('a[href="/search?date_from=2011-03-01&date_to=2011-03-31&page=1&category_type=Essential"]');
+    expect(view.$el).toContainElement('a[href="/search?date_from=2011-03-01&date_to=2011-03-31&page=1&category_type=Flexible"]');
+    expect(view.$el).toContainElement('a[href="/search?date_from=2011-03-01&date_to=2011-03-31&page=1&category_type=Income"]');
+    expect(view.$el).toContainElement('a[href="/search?date_from=2011-03-01&date_to=2011-03-31&page=1&unsorted=true"]');
   });
 
   it('renders the category received values', function () {
