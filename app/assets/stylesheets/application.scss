@@ -104,7 +104,7 @@ div.balance {
         }
 
         .badge {
-          background-color: $brand-primary;
+          background-color: $component-active-bg;
         } 
       }
 
@@ -112,12 +112,12 @@ div.balance {
         &,
         &:hover,
         &:focus {
-          background-color: $brand-primary;
+          background-color: $component-active-bg;
           color: $component-active-color;
 
           .badge {
             background-color: $panel-default-heading-bg;
-            color: $brand-primary;
+            color: $component-active-bg;
           } 
         }
       }
