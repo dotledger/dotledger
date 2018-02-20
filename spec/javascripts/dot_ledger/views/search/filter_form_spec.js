@@ -102,6 +102,7 @@ describe('DotLedger.Views.Search.FilterForm', function () {
     expect(view.$el).toContainElement('select[name=review] option[value=true]');
     expect(view.$el).toContainElement('select[name=review] option[value=false]');
     expect(view.$el).toContainElement('button.search');
+    expect(view.$el).toContainElement('a.save-search');
   });
 
   it('should clear the model and set the query', function () {
@@ -172,5 +173,17 @@ describe('DotLedger.Views.Search.FilterForm', function () {
     spyOn(view, 'trigger');
     view.search();
     expect(view.trigger).toHaveBeenCalledWith('search', model);
+  });
+
+  it('should navigate to the save search form', function () {
+    var model, view;
+    model = new DotLedger.Models.QueryParams();
+    view = createView(model).render();
+    view.$el.find('input[name=query]').val('coffee');
+    spyOn(Backbone.history, 'navigate');
+    view.saveSearch();
+    expect(Backbone.history.navigate).toHaveBeenCalledWith('/saved-searches/new?query=coffee', {
+      trigger: true
+    });
   });
 });

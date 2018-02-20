@@ -52,7 +52,15 @@
     </div>
 
     <div class="col-xs-6 col-sm-2">
-      <button type="submit" class="search btn btn-default btn-sm btn-block" style="margin-top: 24px;" title="Search">Search</button>
+      <div class="btn-group"style=" margin-top: 24px;">
+        <button type="button" class="search btn btn-default btn-sm" title="Search">Search</button>
+        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#" class="save-search">Save Search</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </form>

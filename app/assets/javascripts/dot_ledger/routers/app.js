@@ -640,7 +640,7 @@ DotLedger.module('Routers', function () {
 
     newSavedSearch: function () {
       var savedSearch, form;
-      savedSearch = new DotLedger.Models.SavedSearch();
+      savedSearch = new DotLedger.Models.SavedSearch(_.omit(this.QueryParams.attributes, ['id']));
       DotLedger.title('New Saved Search');
       form = new DotLedger.Views.SavedSearches.Form({
         model: savedSearch

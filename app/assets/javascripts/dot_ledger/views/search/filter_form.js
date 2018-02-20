@@ -22,7 +22,16 @@ DotLedger.module('Views.Search', function () {
 
     events: {
       'click button.search': 'search',
-      'submit form': 'search'
+      'submit form': 'search',
+      'click a.save-search': 'saveSearch'
+    },
+
+    templateHelpers: function () {
+      return {
+        params: _.bind(function () {
+          return _.omit(this.model.attributes, ['page']);
+        }, this)
+      };
     },
 
     onRender: function () {
@@ -48,7 +57,7 @@ DotLedger.module('Views.Search', function () {
       }
     },
 
-    search: function () {
+    update: function () {
       var data;
       data = {};
       data['query'] = this.ui.query.val();
@@ -71,7 +80,20 @@ DotLedger.module('Views.Search', function () {
       data['page'] = 1;
       this.model.clear();
       this.model.set(_.compactObject(data));
+    },
+
+    search: function () {
+      this.update();
       this.trigger('search', this.model);
+      return false;
+    },
+
+    saveSearch: function() {
+      this.update();
+      DotLedger.navigate.newSavedSearch(_.omit(this.model.attributes, ['page']), {
+        trigger: true
+      });
+
       return false;
     }
   });
