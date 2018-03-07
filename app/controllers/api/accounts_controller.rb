@@ -1,7 +1,11 @@
 module Api
   class AccountsController < BaseController
     def index
-      @accounts = Account.all
+      if filter_archived
+        @accounts = Account.archived
+      else
+        @accounts = Account.unarchived
+      end
 
       @accounts = @accounts.includes(:account_group).order('account_groups.name ASC').order(:name)
 
@@ -42,6 +46,10 @@ module Api
 
     def account_id
       params[:id].to_s
+    end
+
+    def filter_archived
+      params[:archived].to_s =~ /true/i
     end
 
     def account_params

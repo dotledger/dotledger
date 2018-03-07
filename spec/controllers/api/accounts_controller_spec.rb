@@ -2,14 +2,27 @@ require 'rails_helper'
 
 describe Api::AccountsController do
   let!(:account) { FactoryBot.create :account, name: 'Account Name' }
+  let!(:archived_account) { FactoryBot.create :account, name: 'Old Account', archived: true }
 
   describe 'GET index' do
-    before { get :index }
+    context 'no filters' do
+      before { get :index }
 
-    it { should respond_with :success }
+      it { should respond_with :success }
 
-    it 'returns all accounts' do
-      expect(assigns(:accounts)).to eq [account]
+      it 'returns active accounts' do
+        expect(assigns(:accounts)).to eq [account]
+      end
+    end
+    
+    context 'filter archived' do
+      before { get :index, archived: true }
+
+      it { should respond_with :success }
+
+      it 'returns archived accounts' do
+        expect(assigns(:accounts)).to eq [archived_account]
+      end
     end
   end
 
