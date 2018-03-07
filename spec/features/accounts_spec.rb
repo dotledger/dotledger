@@ -62,6 +62,11 @@ feature 'Accounts', truncate: true, js: true do
       expect(page).to have_content 'Unsorted 1'
     end
 
+    it 'shows the archive link' do
+      click_on 'Account Options'
+      expect(page).to have_link 'Archive Account'
+    end
+
     describe 'Unsorted Transactions' do
       before do
         click_on 'Unsorted'

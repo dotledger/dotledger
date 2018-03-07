@@ -12,7 +12,8 @@ describe('DotLedger.Views.Accounts.Show', function () {
       balance: 123.45,
       updated_at: '2013-01-01T01:00:00Z',
       account_group_id: 2,
-      account_group_name: 'Personal'
+      account_group_name: 'Personal',
+      archived: false
     });
   };
 
@@ -92,6 +93,12 @@ describe('DotLedger.Views.Accounts.Show', function () {
     var view;
     view = createView().render();
     expect(view.$el).toContainElement('a[href="/accounts/1/import"]');
+  });
+
+  it('renders the archive link', function () {
+    var view;
+    view = createView().render();
+    expect(view.$el).toContainElement('a[href="#"].archive');
   });
 
   it('renders the sorted transactions tab link', function () {
