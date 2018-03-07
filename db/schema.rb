@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024025407) do
+ActiveRecord::Schema.define(version: 20180307094811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,14 @@ ActiveRecord::Schema.define(version: 20161024025407) do
   add_index "account_groups", ["name"], name: "index_account_groups_on_name", unique: true, using: :btree
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "name",             limit: 255,                                        null: false
-    t.string   "number",           limit: 255,                                        null: false
-    t.string   "type",             limit: 255,                                        null: false
+    t.string   "name",             limit: 255,                                          null: false
+    t.string   "number",           limit: 255,                                          null: false
+    t.string   "type",             limit: 255,                                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "balance",                      precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "balance",                      precision: 10, scale: 2, default: 0.0,   null: false
     t.integer  "account_group_id"
+    t.boolean  "archived",                                              default: false, null: false
   end
 
   add_index "accounts", ["number"], name: "index_accounts_on_number", unique: true, using: :btree

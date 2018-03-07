@@ -6,5 +6,6 @@ FactoryBot.define do
     sequence(:number) { |n| "A121234123456712#{n}" }
     type 'Cheque'
     account_group
+    archived false
   end
 end

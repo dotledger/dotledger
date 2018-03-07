@@ -13,6 +13,8 @@ describe Account do
 
   it { should have_db_column(:balance).of_type(:decimal).with_options(precision: 10, scale: 2, null: false, default: 0.0) }
 
+  it { should have_db_column(:archived).of_type(:boolean).with_options(null: false, default: false) }
+
   it { should have_db_index(:number).unique(:true) }
 
   it { should validate_presence_of :name }

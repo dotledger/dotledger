@@ -1,6 +1,10 @@
 class Account < ActiveRecord::Base
   self.inheritance_column = nil
 
+  scope :unarchived, proc { unscoped.where(archived: false) }
+
+  scope :archived, proc { unscoped.where(archived: true) }
+
   belongs_to :account_group
 
   has_many :transactions, dependent: :restrict_with_error
