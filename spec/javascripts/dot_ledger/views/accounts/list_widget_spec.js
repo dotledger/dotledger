@@ -1,4 +1,4 @@
-describe('DotLedger.Views.Accounts.List', function () {
+describe('DotLedger.Views.Accounts.ListWidget', function () {
   var createView;
   createView = function () {
     var collection, view;
@@ -29,18 +29,18 @@ describe('DotLedger.Views.Accounts.List', function () {
         account_group_name: 'Group B'
       }
     ]);
-    view = new DotLedger.Views.Accounts.List({
+    view = new DotLedger.Views.Accounts.ListWidget({
       collection: collection
     });
     return view;
   };
 
   it('should be defined', function () {
-    expect(DotLedger.Views.Accounts.List).toBeDefined();
+    expect(DotLedger.Views.Accounts.ListWidget).toBeDefined();
   });
 
   it('should use the correct template', function () {
-    expect(DotLedger.Views.Accounts.List).toUseTemplate('accounts/list');
+    expect(DotLedger.Views.Accounts.ListWidget).toUseTemplate('accounts/list_widget');
   });
 
   it('can be rendered', function () {

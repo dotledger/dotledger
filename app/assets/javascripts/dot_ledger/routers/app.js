@@ -90,7 +90,7 @@ DotLedger.module('Routers', function () {
       accounts.fetch({
         success: function () {
           var accountsList;
-          accountsList = new DotLedger.Views.Accounts.List({
+          accountsList = new DotLedger.Views.Accounts.ListWidget({
             collection: accounts
           });
 

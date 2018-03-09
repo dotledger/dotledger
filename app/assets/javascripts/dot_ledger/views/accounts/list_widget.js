@@ -1,8 +1,8 @@
 DotLedger.module('Views.Accounts', function () {
-  this.List = Backbone.Marionette.CompositeView.extend({
+  this.ListWidget = Backbone.Marionette.CompositeView.extend({
     className: 'panel panel-default',
 
-    template: 'accounts/list',
+    template: 'accounts/list_widget',
 
     getChildView: function () {
       return DotLedger.Views.Accounts.ListItem;
