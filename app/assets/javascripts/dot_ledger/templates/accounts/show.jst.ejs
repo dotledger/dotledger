@@ -11,7 +11,11 @@
         <li><a href="<%= DotLedger.path.newStatement({id: id}) %>">Import statement</a></li>
         <li><a href="<%= DotLedger.path.listStatements({id: id}) %>">Statements</a></li>
         <li class="divider"></li>
-        <li><a href="#" class="archive"><span class="text-danger">Archive Account</span></a></li>
+        <% if (obj.archived) { %>
+          <li><a href="#" class="unarchive">Unarchive Account</a></li>
+        <% } else { %> 
+          <li><a href="#" class="archive"><span class="text-danger">Archive Account</span></a></li>
+        <% } %>
       </ul>
     </div>
 

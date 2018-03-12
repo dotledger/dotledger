@@ -1,0 +1,8 @@
+<span class="pull-right text-right">
+  <a href="#" class="btn btn-default unarchive">Unarchive</a>
+</span>
+
+<h4 class="list-group-item-heading"><a href="<%= DotLedger.path.showAccount({id: id, tab: 'sorted', page: 1}) %>"><%- name %></a></h4>
+<p class="list-group-item-text">
+  <small class="text-muted">Updated <time datetime="<%= updated_at %>"><%= DotLedger.Helpers.Format.agoDate(updated_at) %></time></small>
+</p>

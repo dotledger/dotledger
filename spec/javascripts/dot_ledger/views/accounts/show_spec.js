@@ -99,6 +99,16 @@ describe('DotLedger.Views.Accounts.Show', function () {
     var view;
     view = createView().render();
     expect(view.$el).toContainElement('a[href="#"].archive');
+    expect(view.$el).not.toContainElement('a[href="#"].unarchive');
+  });
+
+  it('renders the unarchive link for archived accounts', function () {
+    var view, model;
+    model = createModel();
+    model.set('archived', true)
+    view = createView(model).render();
+    expect(view.$el).not.toContainElement('a[href="#"].archive');
+    expect(view.$el).toContainElement('a[href="#"].unarchive');
   });
 
   it('renders the sorted transactions tab link', function () {

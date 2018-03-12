@@ -12,12 +12,14 @@ DotLedger.module('Views.Accounts', function () {
     },
 
     ui: {
-      'archive': 'a.archive'
+      'archive': 'a.archive',
+      'unarchive': 'a.unarchive'
     },
 
     events: {
       'click a[data-tab]': 'clickTab',
-      'click @ui.archive': 'confirmArchive'
+      'click @ui.archive': 'confirmArchive',
+      'click @ui.unarchive': 'unarchiveAccount'
     },
 
     setActiveTab: function () {
@@ -63,6 +65,24 @@ DotLedger.module('Views.Accounts', function () {
           }
         });
       }, this));
+    },
+
+    unarchiveAccount: function () {
+      this.model.save({
+          archived: 'false'
+        },
+        {
+          success: function (model, response, options) {
+            DotLedger.accounts.fetch();
+            DotLedger.navigate.root({}, {
+              trigger: true
+            });
+          },
+          error: function (model, response, options) {
+            model.serverSideErrors(model, response, options);
+            DotLedger.Helpers.Notification.danger(model.validationError.base[0]);
+          }
+        });
     }
   });
 });

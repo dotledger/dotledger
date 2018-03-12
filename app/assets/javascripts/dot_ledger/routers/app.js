@@ -5,6 +5,7 @@ DotLedger.module('Routers', function () {
     '': 'root',
 
     // Accounts
+    'accounts': 'listAccounts',
     'accounts/new': 'newAccount',
     'accounts/:id/sort': 'sortAccount',
     'accounts/:id/edit': 'editAccount',
@@ -91,7 +92,8 @@ DotLedger.module('Routers', function () {
         success: function () {
           var accountsList;
           accountsList = new DotLedger.Views.Accounts.ListWidget({
-            collection: accounts
+            collection: accounts,
+            isDashboard: true
           });
 
           dashboard.panelA.show(accountsList);
@@ -109,6 +111,44 @@ DotLedger.module('Routers', function () {
         model: model
       });
       DotLedger.mainRegion.show(notFoundView);
+    },
+
+    listAccounts: function () {
+      var activeAccounts, archivedAccounts;
+      DotLedger.title('Accounts');
+
+      list = new DotLedger.Views.Accounts.List();
+      DotLedger.mainRegion.show(list);
+
+      activeAccounts = new DotLedger.Collections.Accounts();
+      activeAccounts.fetch({
+        success: function () {
+          var listWidget;
+          listWidget = new DotLedger.Views.Accounts.ListWidget({
+            collection: activeAccounts,
+            pageTitle: 'Active Accounts',
+            isDashboard: false
+          });
+          list.activeAccounts.show(listWidget);
+        }
+      });
+
+      archivedAccounts = new DotLedger.Collections.Accounts();
+      archivedAccounts.fetch({
+        data: {
+          archived: true
+        },
+        success: function () {
+          var listWidget;
+          listWidget = new DotLedger.Views.Accounts.ListWidget({
+            collection: archivedAccounts,
+            pageTitle: 'Archived Accounts',
+            isDashboard: false,
+            childView: DotLedger.Views.Accounts.ListItemArchived
+          });
+          list.archivedAccounts.show(listWidget);
+        }
+      });
     },
 
     showAccount: function (accountID) {

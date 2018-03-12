@@ -4,8 +4,14 @@ DotLedger.module('Views.Accounts', function () {
 
     template: 'accounts/list_widget',
 
+    initialize: function () {
+      this.isDashboard = this.options.isDashboard;
+      this.pageTitle = this.options.pageTitle || 'Accounts';
+      this.childView = this.options.childView || DotLedger.Views.Accounts.ListItem;
+    },
+
     getChildView: function () {
-      return DotLedger.Views.Accounts.ListItem;
+      return this.childView;
     },
 
     attachHtml: function (collectionView, childView, index) {
@@ -16,6 +22,18 @@ DotLedger.module('Views.Accounts', function () {
 
     templateHelpers: function () {
       return {
+        showNewAccountButton: _.bind(function () {
+          return this.isDashboard;
+        }, this),
+        showSummary: _.bind(function () {
+          return this.isDashboard;
+        }, this),
+        showShowAllLink: _.bind(function () {
+          return this.isDashboard;
+        }, this),
+        pageTitle: _.bind(function () {
+          return this.pageTitle;
+        }, this),
         accountGroups: _.bind(function () {
           return this.collection.chain().map(function (account) {
             return [

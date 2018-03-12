@@ -30,7 +30,8 @@ describe('DotLedger.Views.Accounts.ListWidget', function () {
       }
     ]);
     view = new DotLedger.Views.Accounts.ListWidget({
-      collection: collection
+      collection: collection,
+      isDashboard: true
     });
     return view;
   };

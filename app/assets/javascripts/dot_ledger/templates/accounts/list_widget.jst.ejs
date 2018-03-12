@@ -1,12 +1,15 @@
 <div class="panel-heading">
+  <% if (showNewAccountButton()) { %>
   <div class="pull-right">
     <a href="<%= DotLedger.path.newAccount() %>" class="btn btn-xs btn-default" title="New Account">
       New Account
     </a>
   </div>
-  <h3 class="panel-title">Accounts</h3>
+  <% } %>
+  <h3 class="panel-title"><%= pageTitle() %></h3>
 </div>
 
+<% if (showSummary()) { %>
 <div class="panel-body">
   <div class="row text-muted">
     <div class="col-xs-4 text-left">
@@ -20,6 +23,7 @@
     </div>
   </div>
 </div>
+<% } %>
 
 <% _.each(accountGroups(), function(group) { %>
   <div class="list-group" id="<%= group.id %>">
@@ -35,3 +39,10 @@
     </div>
   </div>
 <% }) %>
+
+
+<% if (showShowAllLink()) { %>
+<div class="panel-footer">
+  <a href="<%= DotLedger.path.listAccounts() %>">Show all accounts</a>
+</div>
+<% } %>
