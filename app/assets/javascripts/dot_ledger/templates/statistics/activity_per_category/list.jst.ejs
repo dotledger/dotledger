@@ -21,4 +21,10 @@
   </div>
 </div>
 
-<div class="list-group"></div>  
+<div class="list-group"></div>
+
+<% if (!hasActivity()) { %>
+  <div class="panel-body">
+    <h3 class="blankslate">No Activity</h3>
+  </div>
+<% } %>

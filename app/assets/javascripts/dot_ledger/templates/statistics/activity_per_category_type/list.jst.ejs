@@ -17,7 +17,11 @@
 </div>
 
 <div class="panel-body">
+  <% if (hasTransactions()) { %>
   <div id="activity-per-category-type-pie"></div>
+  <% } else { %>
+    <h3 class="blankslate">No Activity</h3>
+  <% } %>
 </div>
 
 <div class="list-group"></div>  

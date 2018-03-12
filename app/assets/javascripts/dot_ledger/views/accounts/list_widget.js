@@ -22,6 +22,9 @@ DotLedger.module('Views.Accounts', function () {
 
     templateHelpers: function () {
       return {
+        hasAccounts: _.bind(function () {
+          return this.collection.length > 0;
+        }, this),
         showNewAccountButton: _.bind(function () {
           return this.isDashboard;
         }, this),

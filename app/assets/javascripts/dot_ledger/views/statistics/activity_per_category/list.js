@@ -12,6 +12,9 @@ DotLedger.module('Views.Statistics.ActivityPerCategory', function () {
 
     templateHelpers: function () {
       return {
+        hasActivity: _.bind(function () {
+          return this.collection.length > 0;
+        }, this),
         spentAmountTotal: _.bind(function () {
           return DotLedger.Helpers.Format.money(this.collection.metadata.total_spent);
         }, this),

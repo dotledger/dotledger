@@ -1,7 +1,8 @@
 describe('DotLedger.Views.Statistics.ActivityPerCategory.List', function () {
-  var createView;
-  createView = function () {
-    var collection, view;
+  var createView, createCollection;
+
+  createCollection = function () {
+    var collection;
     collection = new Backbone.Collection([
       {
         id: 3,
@@ -40,6 +41,14 @@ describe('DotLedger.Views.Statistics.ActivityPerCategory.List', function () {
       total_spent: '244.87',
       total_net: '-244.87'
     };
+
+    return collection;
+  };
+
+  createView = function (collection) {
+    var view;
+    collection = (collection || createCollection());
+
     view = new DotLedger.Views.Statistics.ActivityPerCategory.List({
       collection: collection
     });
@@ -98,5 +107,17 @@ describe('DotLedger.Views.Statistics.ActivityPerCategory.List', function () {
     expect(view.$el.find('.list-group-item:eq(0)')).toContainElement('.progress-bar.progress-bar-success');
     expect(view.$el.find('.list-group-item:eq(1)')).toContainElement('.progress-bar.progress-bar-danger');
     expect(view.$el.find('.list-group-item:eq(2)')).toContainElement('.progress-bar.progress-bar-success');
+  });
+
+  it('renders the blank slate text when there is no activity', function () {
+    var view, collection;
+    collection = new Backbone.Collection([]);
+    collection.metadata = {
+      total_received: '0.0',
+      total_spent: '0.0',
+      total_net: '0.0'
+    };
+    view = createView(collection).render();
+    expect(view.$el.find('.blankslate')).toHaveText(/No Activity/);
   });
 });

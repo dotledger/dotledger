@@ -1,7 +1,8 @@
 describe('DotLedger.Views.Statistics.ActivityPerCategoryType.List', function () {
-  var createView;
-  createView = function () {
-    var collection, view;
+  var createView, createCollection;
+
+  createCollection = function () {
+    var collection;
     collection = new Backbone.Collection([
       {
         'net': '-30.0',
@@ -32,6 +33,14 @@ describe('DotLedger.Views.Statistics.ActivityPerCategoryType.List', function () 
       date_from: "2011-03-01",
       date_to: "2011-03-31"
     };
+
+    return collection;
+  };
+
+  createView = function (collection) {
+    var view;
+    collection = (collection || createCollection());
+
     view = new DotLedger.Views.Statistics.ActivityPerCategoryType.List({
       collection: collection
     });
@@ -109,5 +118,19 @@ describe('DotLedger.Views.Statistics.ActivityPerCategoryType.List', function () 
     expect(view.$el.find('.list-group-item:eq(1)')).toHaveText(/Difference: \$-40.00/);
     expect(view.$el.find('.list-group-item:eq(2)')).toHaveText(/Difference: \$50.00/);
     expect(view.$el.find('.list-group-item:eq(3)')).toHaveText(/Difference: \$-70.00/);
+  });
+
+  it('renders the blank slate text when there is no activity', function () {
+    var view, collection;
+    collection = new Backbone.Collection([]);
+    collection.metadata = {
+      total_received: '0.0',
+      total_spent: '0.0',
+      total_net: '0.0',
+      date_from: "2011-03-01",
+      date_to: "2011-03-31"
+    };
+    view = createView(collection).render();
+    expect(view.$el.find('.blankslate')).toHaveText(/No Activity/);
   });
 });

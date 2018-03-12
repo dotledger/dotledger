@@ -24,7 +24,7 @@
   </div>
 </div>
 <% } %>
-
+<% if (hasAccounts()) { %>
 <% _.each(accountGroups(), function(group) { %>
   <div class="list-group" id="<%= group.id %>">
     <div class="list-group-item active">
@@ -39,6 +39,9 @@
     </div>
   </div>
 <% }) %>
+<% } else { %>
+  <h3 class="blankslate">No Accounts</h3>
+<% } %>
 
 
 <% if (showShowAllLink()) { %>

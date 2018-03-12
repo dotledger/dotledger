@@ -1,7 +1,8 @@
 describe('DotLedger.Views.Accounts.ListWidget', function () {
-  var createView;
-  createView = function () {
-    var collection, view;
+  var createView, createCollection;
+
+  createCollection = function () {
+    var collection;
     collection = new DotLedger.Collections.Accounts([
       {
         id: 1,
@@ -29,6 +30,13 @@ describe('DotLedger.Views.Accounts.ListWidget', function () {
         account_group_name: 'Group B'
       }
     ]);
+
+    return collection;
+  };
+  createView = function (collection) {
+    var view;
+    collection = (collection || createCollection());
+
     view = new DotLedger.Views.Accounts.ListWidget({
       collection: collection,
       isDashboard: true
@@ -117,5 +125,17 @@ describe('DotLedger.Views.Accounts.ListWidget', function () {
     var view;
     view = createView().render();
     expect(view.$el.text()).toContain('Difference: $10.00');
+  });
+
+  it('renders the blank slate text when there are no accounts', function () {
+    var view, collection;
+    collection = new Backbone.Collection([]);
+    collection.metadata = {
+      total_received: '0.0',
+      total_spent: '0.0',
+      total_net: '0.0'
+    };
+    view = createView(collection).render();
+    expect(view.$el.find('.blankslate')).toHaveText(/No Accounts/);
   });
 });

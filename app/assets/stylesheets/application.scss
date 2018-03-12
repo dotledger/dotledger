@@ -150,3 +150,10 @@ table thead th h3 {
 .panel table + hr {
   margin: 0;
 }
+
+h3.blankslate {
+  @extend .text-muted;
+  @extend .text-center;
+  font-style: italic;
+  margin: 50px 0;
+}
