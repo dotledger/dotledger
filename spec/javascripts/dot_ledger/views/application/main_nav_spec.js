@@ -67,9 +67,11 @@ describe('DotLedger.Views.Application.MainNav', function () {
   it('renders the account links', function () {
     var view;
     view = createView().render();
+    expect(view.$el).toContainElement('a[href="/accounts"]');
     expect(view.$el).toContainElement('a[href="/accounts/1"]');
     expect(view.$el).toContainElement('a[href="/accounts/2"]');
     expect(view.$el).toContainElement('a[href="/accounts/3"]');
+    expect(view.$el).toContainElement('a[href="/accounts/new"]');
   });
 
   it('renders the account groups', function () {

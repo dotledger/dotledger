@@ -17,6 +17,8 @@
       <li class="dropdown <%= activeClass('showAccount', 'newAccount', 'editAccount', 'importStatement', 'listStatements') %>">
         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts <span class="caret"></span></a>
         <ul class="dropdown-menu">
+          <li><a href="<%= DotLedger.path.listAccounts() %>">Show all accounts</a></li>
+          <li class="divider"></li>
             <% _.each(accounts().groupBy('account_group_name'), function(accounts, label, list) { %>
               <li class="dropdown-header"><%= label === 'null' ? '<i>Other</i>' : label %></li>
               <% _.each(accounts, function(account) { %>
