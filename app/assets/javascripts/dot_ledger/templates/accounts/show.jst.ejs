@@ -11,7 +11,7 @@
         <li><a href="<%= DotLedger.path.newStatement({id: id}) %>">Import statement</a></li>
         <li><a href="<%= DotLedger.path.listStatements({id: id}) %>">Statements</a></li>
         <li class="divider"></li>
-        <% if (obj.archived) { %>
+        <% if (archived) { %>
           <li><a href="#" class="unarchive">Unarchive Account</a></li>
         <% } else { %> 
           <li><a href="#" class="archive"><span class="text-danger">Archive Account</span></a></li>
@@ -22,6 +22,9 @@
   </div>
   <h1><%- name %> <small><%= DotLedger.Helpers.Format.money(balance) %></small></h1>
   <small>
+    <% if (archived) { %>
+      <span class="label label-default archived">Archived</span>
+    <% } %>
     <% if (account_group_name) { %>
       <%= account_group_name %> &mdash;
     <% } %>
