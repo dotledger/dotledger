@@ -105,7 +105,7 @@ describe('DotLedger.Views.Accounts.Show', function () {
   it('renders the unarchive link for archived accounts', function () {
     var view, model;
     model = createModel();
-    model.set('archived', true)
+    model.set('archived', true);
     view = createView(model).render();
     expect(view.$el).not.toContainElement('a[href="#"].archive');
     expect(view.$el).toContainElement('a[href="#"].unarchive');

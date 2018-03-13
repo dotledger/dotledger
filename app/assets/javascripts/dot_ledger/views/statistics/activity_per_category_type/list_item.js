@@ -17,14 +17,13 @@ DotLedger.module('Views.Statistics.ActivityPerCategoryType', function () {
           var type = self.model.get('type');
           if (type === 'Uncategorised') {
             params.unsorted = true;
-          }
-          else {
+          }else {
             params.category_type = type;
           }
 
           return DotLedger.path.search(params);
         }
-      }
+      };
     }
   });
 });

@@ -44,20 +44,20 @@ DotLedger.module('Views.Accounts', function () {
               account.get('account_group_name')
             ];
           })
-          .object()
-          .map(_.bind(function (name, id) {
-            var net = this.collection.chain().select(function (account) {
-              return account.get('account_group_id') === id * 1;
-            }).reduce(function (total, account) {
-              return total + parseFloat(account.get('balance'));
-            }, 0.0).value();
+            .object()
+            .map(_.bind(function (name, id) {
+              var net = this.collection.chain().select(function (account) {
+                return account.get('account_group_id') === id * 1;
+              }).reduce(function (total, account) {
+                return total + parseFloat(account.get('balance'));
+              }, 0.0).value();
 
-            return {
-              label: name,
-              id: 'account_group_' + id,
-              net: net
-            };
-          }, this)).value();
+              return {
+                label: name,
+                id: 'account_group_' + id,
+                net: net
+              };
+            }, this)).value();
         }, this),
         totalCash: _.bind(function () {
           var balances;

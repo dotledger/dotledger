@@ -35,22 +35,22 @@ _.mixin({
     var variables = queryString.trim().replace(/\+/g, ' ').split('&');
 
     return _.chain(variables)
-    .map(function (pair) {
-      return pair.split('=');
-    })
-    .reduce(function (output, pair) {
-      var key = decodeURIComponent(pair[0]);
-      var value = decodeURIComponent(pair[1] || '');
+      .map(function (pair) {
+        return pair.split('=');
+      })
+      .reduce(function (output, pair) {
+        var key = decodeURIComponent(pair[0]);
+        var value = decodeURIComponent(pair[1] || '');
 
-      if (!(key in output)) {
-        output[key] = value;
-      } else if (_.isArray(output[key])) {
-        output[key].push(value);
-      } else {
-        output[key] = [output[key], value];
-      }
-      return output;
-    }, {})
-    .value();
+        if (!(key in output)) {
+          output[key] = value;
+        } else if (_.isArray(output[key])) {
+          output[key].push(value);
+        } else {
+          output[key] = [output[key], value];
+        }
+        return output;
+      }, {})
+      .value();
   }
 });

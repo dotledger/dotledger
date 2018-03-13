@@ -30,8 +30,8 @@ describe('DotLedger.Views.Statistics.ActivityPerCategoryType.List', function () 
       total_received: '50.0',
       total_spent: '140.0',
       total_net: '-90.0',
-      date_from: "2011-03-01",
-      date_to: "2011-03-31"
+      date_from: '2011-03-01',
+      date_to: '2011-03-31'
     };
 
     return collection;
@@ -127,8 +127,8 @@ describe('DotLedger.Views.Statistics.ActivityPerCategoryType.List', function () 
       total_received: '0.0',
       total_spent: '0.0',
       total_net: '0.0',
-      date_from: "2011-03-01",
-      date_to: "2011-03-31"
+      date_from: '2011-03-01',
+      date_to: '2011-03-31'
     };
     view = createView(collection).render();
     expect(view.$el.find('.blankslate')).toHaveText(/No Activity/);

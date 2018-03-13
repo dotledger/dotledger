@@ -52,25 +52,25 @@ DotLedger.module('Views.Accounts', function () {
         this.model.save({
           archived: 'true'
         },
-        {
-          success: function (model, response, options) {
-            DotLedger.accounts.fetch();
-            DotLedger.navigate.root({}, {
-              trigger: true
-            });
-          },
-          error: function (model, response, options) {
-            model.serverSideErrors(model, response, options);
-            DotLedger.Helpers.Notification.danger(model.validationError.base[0]);
-          }
-        });
+          {
+            success: function (model, response, options) {
+              DotLedger.accounts.fetch();
+              DotLedger.navigate.root({}, {
+                trigger: true
+              });
+            },
+            error: function (model, response, options) {
+              model.serverSideErrors(model, response, options);
+              DotLedger.Helpers.Notification.danger(model.validationError.base[0]);
+            }
+          });
       }, this));
     },
 
     unarchiveAccount: function () {
       this.model.save({
-          archived: 'false'
-        },
+        archived: 'false'
+      },
         {
           success: function (model, response, options) {
             DotLedger.accounts.fetch();
