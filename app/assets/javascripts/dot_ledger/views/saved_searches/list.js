@@ -6,6 +6,14 @@ DotLedger.module('Views.SavedSearches', function () {
       return DotLedger.Views.SavedSearches.ListItem;
     },
 
-    childViewContainer: 'table tbody'
+    childViewContainer: 'table tbody',
+
+    templateHelpers: function () {
+      return {
+        hasSavedSearches: _.bind(function () {
+          return this.collection.length > 0;
+        }, this),
+      }
+    }
   });
 });

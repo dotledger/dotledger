@@ -10,6 +10,7 @@
 
 <div class="panel panel-default">
   <div class="panel-body has-table">
+    <% if (hasSavedSearches()) { %>
     <table class="table">
       <thead>
         <tr>
@@ -20,5 +21,8 @@
       <tbody>
       </tbody>
     </table>
+    <% } else { %>
+      <h3 class="blankslate">No Saved Searches</h3>
+    <% } %>
   </div>
 </div>
