@@ -198,7 +198,7 @@ GEM
     tilt (2.0.8)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.6)
+    uglifier (4.1.10)
       execjs (>= 0.3.0, < 3)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
