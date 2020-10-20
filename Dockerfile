@@ -1,4 +1,4 @@
-FROM ruby:2.3.3-alpine
+FROM ruby:2.3-alpine3.7
 
 MAINTAINER Kale Worsley <kale@worsley.co.nz>
 
