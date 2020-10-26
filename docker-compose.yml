@@ -22,3 +22,17 @@ services:
       RAILS_LOG_TO_STDOUT: 'true'
     ports:
       - '3000:3000'
+  spec:
+    build:
+      context: .
+      dockerfile: Dockerfile.spec
+    restart: 'no'
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    environment:
+      DATABASE_URL: 'postgres://dot_ledger:dot_ledger@postgres/dot_ledger_test?sslmode=disable'
+      DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: 'true'
+      RAILS_ENV: 'test'
+      LOG_LEVEL: 'DEBUG'
