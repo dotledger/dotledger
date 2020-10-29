@@ -15,7 +15,17 @@ RUN apk --update add --no-cache --update --virtual build-dependencies \
    build-base ruby-dev postgresql-dev tzdata nodejs
 RUN gem install bundler && bundle install --without development test
 
-COPY . /app/
+COPY app /app/app
+COPY bin /app/bin
+COPY config /app/config
+COPY db /app/db
+COPY lib /app/lib
+COPY public /app/public
+COPY vendor /app/vendor
+COPY Rakefile /app/Rakefile
+COPY config.ru /app/config.ru
+COPY docker-entrypoint.sh /app/docker-entrypoint.sh
+
 RUN chown -R nobody:nogroup /app/
 USER nobody
 

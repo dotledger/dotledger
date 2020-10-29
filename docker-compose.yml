@@ -4,11 +4,11 @@ services:
     image: postgres:9.5
     restart: always
     environment:
-       POSTGRES_PASSWORD: dot_ledger
-       POSTGRES_USER: dot_ledger
-       POSTGRES_DB: dot_ledger
+      POSTGRES_PASSWORD: dot_ledger
+      POSTGRES_USER: dot_ledger
+      POSTGRES_DB: dot_ledger
     expose:
-      - "5432"
+      - '5432'
   dotledger:
     build: .
     restart: always
@@ -17,8 +17,22 @@ services:
     links:
       - postgres
     environment:
-      DATABASE_URL: "postgres://dot_ledger:dot_ledger@postgres/dot_ledger?sslmode=disable"
-      RAILS_SERVE_STATIC_FILES: "true"
-      RAILS_LOG_TO_STDOUT: "true"
+      DATABASE_URL: 'postgres://dot_ledger:dot_ledger@postgres/dot_ledger?sslmode=disable'
+      RAILS_SERVE_STATIC_FILES: 'true'
+      RAILS_LOG_TO_STDOUT: 'true'
     ports:
-      - "3000:3000"
+      - '3000:3000'
+  spec:
+    build:
+      context: .
+      dockerfile: Dockerfile.spec
+    restart: 'no'
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    environment:
+      DATABASE_URL: 'postgres://dot_ledger:dot_ledger@postgres/dot_ledger_test?sslmode=disable'
+      DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: 'true'
+      RAILS_ENV: 'test'
+      LOG_LEVEL: 'DEBUG'

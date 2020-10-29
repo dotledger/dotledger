@@ -12,3 +12,9 @@
 !config.ru
 !docker-entrypoint.sh
 !.ruby-version
+
+!docker-entrypoint.spec.sh
+!spec
+!.rspec
+!.rubocop.yml
+!Rakefile
