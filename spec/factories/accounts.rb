@@ -2,10 +2,10 @@
 
 FactoryBot.define do
   factory :account do
-    name 'Eftpos'
+    name { 'Eftpos' }
     sequence(:number) { |n| "A121234123456712#{n}" }
-    type 'Cheque'
+    type { 'Cheque' }
     account_group
-    archived false
+    archived { false }
   end
 end

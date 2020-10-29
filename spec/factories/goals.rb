@@ -3,8 +3,8 @@
 FactoryBot.define do
   factory :goal do
     category
-    amount 1000
-    period 'Month'
-    type 'Spend'
+    amount { 1000 }
+    period { 'Month' }
+    type { 'Spend' }
   end
 end

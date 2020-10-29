@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :saved_search do
-    name "Name"
+    name { "Name" }
   end
 end
