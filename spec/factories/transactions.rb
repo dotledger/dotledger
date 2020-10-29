@@ -2,12 +2,12 @@
 
 FactoryBot.define do
   factory :transaction do
-    amount 10.00
+    amount { 10.00 }
     sequence(:fit_id)
-    memo 'Memo'
-    name 'Name'
-    payee 'Payee'
-    posted_at DateTime.now
+    memo { 'Memo' }
+    name { 'Name' }
+    payee { 'Payee' }
+    posted_at { DateTime.now }
     account
 
     factory :transaction_sorted do

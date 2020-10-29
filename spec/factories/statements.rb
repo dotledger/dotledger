@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :statement do
     account
-    balance '9.99'
+    balance { '9.99' }
   end
 end
